@@ -1,3 +1,0 @@
-::
-greeting = $ (name) -> Promise.resolve "Hello, #{name}!\n\nThis is on another line!\n"
-::

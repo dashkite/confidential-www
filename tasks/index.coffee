@@ -94,7 +94,7 @@ define "js", ->
             JSON.stringify result.toJson()
           yay()
 
-define "build", [ "clean", "biscotti" ]#, "html&", "css&", "js&", "images&" ]
+define "build", [ "clean", "biscotti", "html&", "css&", "js&", "images&" ]
 
 define "watch", watch source, -> run "build"
 

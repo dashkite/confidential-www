@@ -1,0 +1,7 @@
+h2 Properties
+
+::
+include "./properties-atomic", "../../content/sections/properties/nacl.yaml"
+include "./properties-atomic", "../../content/sections/properties/key.yaml"
+include "./properties-atomic", "../../content/sections/properties/keyPair.yaml"
+::
