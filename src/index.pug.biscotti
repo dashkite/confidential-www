@@ -1,0 +1,10 @@
+::
+include "../templates/greeting"
+::
+
+h1 This is a test
+p
+  ::
+  greeting "Foo"
+  greeting "Bar"
+  ::
