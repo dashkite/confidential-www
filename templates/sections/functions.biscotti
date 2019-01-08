@@ -1,0 +1,11 @@
+::
+# Helper to keep the imports below short.
+_include = (name) ->
+  include "./functions-atomic", "../../content/sections/functions/#{name}.yaml"
+::
+
+h2 Functions
+
+::
+_include "confidential"
+::

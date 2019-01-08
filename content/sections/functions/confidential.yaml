@@ -1,0 +1,11 @@
+title: confidential
+signature:
+  inputs: [ value ]
+  output: gadget
+  variables:
+    value:
+      type: object
+      description: an object with keys (selectors to listen on) and values (events to listen for).
+    gadget:
+      type: gadget
+      description: the gadget that events is being mixed into.
