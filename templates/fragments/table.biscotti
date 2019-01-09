@@ -18,7 +18,7 @@ $fragments.table = (head, body) ->
         $bind """
         \n      td
                 :markdown
-                  #{indent 10, item}
+                  #{indent 10, setLinks item}
         """
 
 $fragments.signatureTable = ({variables}) ->

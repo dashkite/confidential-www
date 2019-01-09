@@ -8,7 +8,7 @@ import {imagePattern} from "./constants"
 Biscotti = (source, intermediate, target) ->
   ->
     _render = engine [
-      sandbox: sandbox {require}
+      sandbox: sandbox {require, console}
       loader
         biscotti:
           index: true

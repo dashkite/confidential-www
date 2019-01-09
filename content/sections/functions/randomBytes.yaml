@@ -4,13 +4,13 @@ signature:
   output: bytes
   variables:
     length:
-      type: integer
+      type: "[`Integer`]()"
       description: |
         Length of the output in bytes.
     bytes:
-      type: "[Uint8Array][uint8array] | [Buffer][buffer]"
+      type: "[`Uint8Array`]() | [`Buffer`]()"
       description: |
-        Array of _length_ pseudo-random bytes.
+        Array of `length` pseudo-random bytes.
 
 prose: |
   **Warning**: Throws when unable to locate a suitable source of entropy.

@@ -1,0 +1,36 @@
+::
+$references =
+  #==============================
+  # External Links
+  #==============================
+  "TweetNaCl.js": "https://github.com/dchest/tweetnacl-js"
+
+  # Reference Links
+  "`Function`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"
+  "`Object`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"
+  "`Number`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"
+  "`Integer`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger"
+  "`Boolean`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"
+  "`String`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+  "`Date`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"
+  "`Uint8Array`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
+  "`Buffer`": "https://nodejs.org/api/buffer.html"
+
+  #========================================
+  # Internal Links
+  #========================================
+  "`nacl`": "#property-nacl"
+
+  "`confidential`": "#function-confidential"
+  "`randomBytes`": "#function-randomBytes"
+
+
+setLinks = (string) ->
+  string.replace /\[(.+?)\]\(\)/g, (match, $1, offset, str) ->
+    if $references[$1]?
+      "[#{$1}](#{$references[$1]})"
+    else
+      "[#{$1}](#broken)"
+
+    #splice str, offset, match.length, link
+::

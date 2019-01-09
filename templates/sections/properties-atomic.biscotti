@@ -1,7 +1,6 @@
 section
-  h2 ::$bind title::
+  h2#properties-::$bind title:: ::$bind title::
 
-  :markdown
-    ::
-    $bind description
-    ::
+  ::
+  $fragments.prose description
+  ::

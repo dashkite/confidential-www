@@ -4,13 +4,13 @@ signature:
   output: api
   variables:
     randomBytes:
-      type: function
+      type: "[`Function`]()"
       description: |
-        Provide a custom implementation for [randomBytes][randombytes].
+        Provide a custom implementation for [`randomBytes`]().
 
         > Warning: A robust source of entropy is necessary for encryption. Use this feature with caution.
     api:
-      type: object
+      type: "[`Object`]()"
       description: |
         An instance of the Confidential API.
 

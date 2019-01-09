@@ -1,5 +1,5 @@
 section
-  h2 ::$bind title ? ""::
+  h2#function-::$bind title:: ::$bind title::
 
   ::
   $fragments.signature title, signature

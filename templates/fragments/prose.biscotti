@@ -2,13 +2,13 @@
 $fragments.prose = (content) ->
   $bind """
   \n:markdown
-    #{indent 2, content}
+    #{indent 2, setLinks content}
   """
 
 $fragments.blockquote = (content) ->
   $bind """
   \nblockquote
     :markdown
-      #{indent 4, content}
+      #{indent 4, setLinks content}
   """
 ::

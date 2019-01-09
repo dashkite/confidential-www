@@ -1,8 +1,12 @@
+::
+# Helper to keep the imports below short.
+_include = (name) ->
+  include "./properties-atomic", "../../content/sections/properties/#{name}.yaml"
+::
+
 section
   h1 Properties
 
   ::
-  include "./properties-atomic", "../../content/sections/properties/nacl.yaml"
-  include "./properties-atomic", "../../content/sections/properties/key.yaml"
-  include "./properties-atomic", "../../content/sections/properties/keyPair.yaml"
+  _include "nacl"
   ::

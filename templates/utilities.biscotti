@@ -1,13 +1,13 @@
 ::
 $bind = $ (string = "") -> string
 
+splice = (string, start, deleteCount, items...) ->
+  pre = string[0...start]
+  post = string[(start + deleteCount)...]
+  pre + items.join() + post
+
 # Based on input identation shift string's newlines.
 indent = (spaces, block) ->
-  splice = (string, start, deleteCount, items...) ->
-    pre = string[0...start]
-    post = string[(start + deleteCount)...]
-    pre + items.join() + post
-
   output = []
   subBlocks = block.split "\n"
   output.push subBlocks[0]

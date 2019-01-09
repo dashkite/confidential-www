@@ -1,6 +1,6 @@
 title: nacl
 description: |
-  The TweetNaCl.js module imported by Confidential. Useful for bypassing the
+  The [TweetNaCl.js]() module imported by Confidential. Useful for bypassing the
   Confidential API and accessing TweetNaCl directly.
 
   Changing this property will not affect the behavior of an instance of the API.
