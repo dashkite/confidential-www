@@ -11,6 +11,7 @@ block main
   article
     h1 API Documentation
     ::
+    include "../templates/utilities"
     include "../templates/helpers"
     include "../templates/sections/properties.biscotti"
     include "../templates/sections/functions.biscotti"

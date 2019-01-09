@@ -1,0 +1,13 @@
+::
+$fragments.prose = (content) ->
+  $bind """
+  :markdown
+    #{content}
+  """
+
+$fragments.blockquote = (content) ->
+  $bind """
+  blockquote
+    #{$fragments.prose content}
+  """
+::

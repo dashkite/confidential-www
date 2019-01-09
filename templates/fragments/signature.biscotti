@@ -1,0 +1,26 @@
+::
+import {last} from "panda-parchment"
+
+$fragments.signature = (title, signature) ->
+  {inputs, output} = signature
+  _inputs = ""
+  for input, index in inputs
+    if (last input) == "&"
+      _inputs += "[ #{input[...-1]}"
+      if index == inputs.length - 1
+        _inputs += " ]"
+      else
+        _inputs += " ,] "
+    else
+      _inputs += input
+      if index != inputs.length - 1
+        _inputs += " , "
+
+  $bind """
+  p:em
+    | #[strong #{title}]
+    | #{_inputs}
+    | &rarr;
+    | #{output}
+  """
+::

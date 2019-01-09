@@ -9,4 +9,5 @@ section
 
   ::
   _include "confidential"
+  _include "encrypt"
   ::

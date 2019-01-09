@@ -1,12 +1,10 @@
 section
-  h2 ::$bind title::
+  h2 ::$bind title ? ""::
 
   ::
-  $signature title, signature.inputs, signature.output
+  $fragments.signature title, signature
   ::
 
   ::
-  $table ["name", "type", "description"],
-    for name, {type, description} of signature.variables
-      [name, type, description]
+  $fragments.signatureTable signature
   ::

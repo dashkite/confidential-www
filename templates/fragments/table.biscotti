@@ -1,0 +1,30 @@
+::
+#TODO: Come up with a Biscotti primative that makes this less hideous.
+$fragments.table = (head, body) ->
+  $bind "table"
+  if head?
+    $bind """
+    \n  thead
+        tr
+    """
+    for item in head
+      $bind "\n      th #{item}"
+
+  if body?
+    $bind "\n  tbody"
+    for row in body
+      $bind "\n    tr"
+      for item in row
+        $bind """
+        \n      td
+                :markdown
+                  #{indent 10, item}
+        """
+
+$fragments.signatureTable = ({variables}) ->
+  head = ["name", "type", "description"]
+  body =
+    for name, {type, description} of variables
+      [name, type, description]
+  $fragments.table head, body
+::

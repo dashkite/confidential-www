@@ -1,11 +1,15 @@
 title: confidential
 signature:
-  inputs: [ value ]
-  output: gadget
+  inputs: [ randomBytes& ]
+  output: api
   variables:
-    value:
+    randomBytes:
+      type: function
+      description: |
+        Provide a custom implementation for [randomBytes][randombytes].
+
+        > Warning: A robust source of entropy is necessary for encryption. Use this feature with caution.
+    api:
       type: object
-      description: an object with keys (selectors to listen on) and values (events to listen for).
-    gadget:
-      type: gadget
-      description: the gadget that events is being mixed into.
+      description: |
+        An instance of the Confidential API.

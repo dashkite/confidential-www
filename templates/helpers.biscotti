@@ -1,31 +1,5 @@
 ::
+include "./utilities"
+include "./fragments/index"
 
-$bind = $ (string) -> string
-
-$table = $ (head, body) ->
-  output = "table\n"
-
-  if head?
-    output += "\n  thead\n    tr"
-    for item in head
-      output += "\n      th #{item}"
-
-  if body?
-    output += "\n  tbody"
-    for row in body
-      output += "\n    tr"
-      for item in row
-        output += "\n      td #{item}"
-
-  output
-
-# Function signature to showcase inputs and outputs
-$signature = $ (name, inputs, output) ->
-  """
-  p:em
-    | #[strong #{name}]
-    | #{inputs.join ", "}
-    | &rarr;
-    | #{output}
-  """
 ::
