@@ -1,6 +1,9 @@
 ::
 $fragments.example = ({title, note, content}) ->
-  $bind "h3 Example: #{title ? ""}"
+  $bind """
+  \nh3(id = "example-#{dashify title}")
+    a.header-anchor(href="#example-#{dashify title}") Example: #{title ? ""}
+  """
   $fragments.blockquote note if note?
   $fragments.prose content
 ::

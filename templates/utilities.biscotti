@@ -1,4 +1,6 @@
 ::
+import {plainText, dashed} from "panda-parchment"
+
 $bind = $ (string = "") -> string
 
 splice = (string, start, deleteCount, items...) ->
@@ -15,4 +17,10 @@ indent = (spaces, block) ->
     output.push splice subBlocks[i], 0, 0, " ".repeat spaces
 
   output.join "\n"
+
+dashify = (string) ->
+  if string?
+    dashed plainText string 
+  else
+    ""
 ::

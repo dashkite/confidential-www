@@ -1,5 +1,6 @@
 section
-  h2#properties-::$bind title:: ::$bind title::
+  h2#properties-::$bind title::
+    a.header-anchor(href="#properties-::$bind title::") ::$bind title::
 
   ::
   $fragments.prose description

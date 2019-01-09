@@ -25,6 +25,7 @@
     "jstransformer-pug": "^0.3.0",
     "jstransformer-stylus": "^1.5.0",
     "markdown-it": "^8.4.2",
+    "markdown-it-anchor": "^5.0.2",
     "panda-9000": "^4.4.0",
     "panda-parchment": "^4.2.0",
     "panda-river": "^4.4.2",

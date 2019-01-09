@@ -1,5 +1,6 @@
 section
-  h2#function-::$bind title:: ::$bind title::
+  h2#function-::$bind title::
+    a.header-anchor(href="#function-::$bind title::") ::$bind title::
 
   ::
   $fragments.signature title, signature
