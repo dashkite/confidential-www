@@ -1,6 +1,7 @@
-h3 ::$bind title::
+section
+  h2 ::$bind title::
 
-:markdown
-  ::
-  $bind description
-  ::
+  :markdown
+    ::
+    $bind description
+    ::

@@ -1,0 +1,40 @@
+rhythm(rem, ratio)
+  line-height unit(rem, 'rem')
+  font-size unit(rem * ratio, 'rem')
+
+flist()
+  display flex
+  flex-flow arguments
+  list-style-type none
+  margin 0
+  padding 0
+
+card()
+  display flex
+  max-width 60rem
+  min-width 50rem
+  border-radius 0.5rem
+  padding 2rem
+  margin-right 2rem
+  margin-bottom 2rem
+
+menu()
+  display flex
+  align-items center
+
+  & > ul
+    list-style-type none
+    margin 0
+    padding 0
+
+    display flex
+    align-items center
+    flex 1 1 auto
+
+    & > li
+      flex 1 1 auto
+      text-align center
+
+      & > a
+        & > img
+          width 100%

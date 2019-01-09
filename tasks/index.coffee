@@ -30,7 +30,7 @@ define "html", ->
   go [
     glob [ "**/*.pug", "!**/components" ], intermediate
     wait map read
-    map transform pug, filters: {markdown}
+    map transform pug, filters: {markdown}, basedir: source
     map extension ".html"
     map write target
   ]

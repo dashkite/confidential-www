@@ -1,6 +1,17 @@
-h1 Panda Confidential API
-::
-include "../templates/helpers"
-include "../templates/sections/properties.biscotti"
-include "../templates/sections/functions.biscotti"
-::
+extends /shared/-html/default
+
+block append head
+  +google-font("Patua One")
+  link(rel="stylesheet" href="./index.css")
+
+block header
+  a(href = "/"): h1 Panda Confidential
+
+block main
+  article
+    h1 API Documentation
+    ::
+    include "../templates/helpers"
+    include "../templates/sections/properties.biscotti"
+    include "../templates/sections/functions.biscotti"
+    ::

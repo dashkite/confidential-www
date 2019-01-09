@@ -4,8 +4,9 @@ _include = (name) ->
   include "./functions-atomic", "../../content/sections/functions/#{name}.yaml"
 ::
 
-h2 Functions
+section
+  h1 Functions
 
-::
-_include "confidential"
-::
+  ::
+  _include "confidential"
+  ::

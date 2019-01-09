@@ -1,11 +1,12 @@
-h3 ::$bind title::
+section
+  h2 ::$bind title::
 
-::
-$signature title, signature.inputs, signature.output
-::
+  ::
+  $signature title, signature.inputs, signature.output
+  ::
 
-::
-$table ["name", "type", "description"],
-  for name, {type, description} of signature.variables
-    [name, type, description]
-::
+  ::
+  $table ["name", "type", "description"],
+    for name, {type, description} of signature.variables
+      [name, type, description]
+  ::

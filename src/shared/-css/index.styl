@@ -1,0 +1,77 @@
+@require "mixins"
+@require "typography"
+@require "theme"
+@require "layout"
+
+body
+  color -color-dark
+  background-color white
+
+  & > header
+    padding 4rem
+    background-color white
+    border-bottom 1px solid silver
+
+    a
+      color white
+
+    & > nav
+      menu()
+
+      h1
+        rhythm 5, .9
+        margin 0
+        padding 0
+        // margin-right 4rem
+
+      & > ul
+
+        & > li
+          rhythm 4, .8
+
+          & > h1
+            rhythm 4, .8
+            margin-bottom 0
+
+          & > a
+            text-transform lowercase
+            &:hover
+              color -color-light
+
+  & > main
+    background-color white
+
+  & > footer
+    background-color white
+
+    & > nav
+      menu()
+
+      & > ul
+        background-color -color-main
+        border-top 1px solid black
+
+        & > li
+          rhythm 3, .9
+          border-right 1px solid white
+
+          &:last-child
+            border-right none
+
+          &:first-child
+            background-color white
+            flex 0 0 14rem
+            margin-right 1rem
+            padding 1.5rem
+
+          & > a
+            color white
+            text-transform lowercase
+            &:hover
+              color -color-light
+
+a
+  color -color-main
+  // text-decoration none
+  &:hover
+    color -color-light
