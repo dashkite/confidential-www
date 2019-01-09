@@ -8,3 +8,12 @@ section
   ::
   $fragments.signatureTable signature
   ::
+
+  ::
+  $fragments.prose prose
+  ::
+
+  ::
+  for example in examples
+    $fragments.example example
+  ::

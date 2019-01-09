@@ -9,5 +9,6 @@ section
 
   ::
   _include "confidential"
+  _include "randomBytes"
   _include "encrypt"
   ::

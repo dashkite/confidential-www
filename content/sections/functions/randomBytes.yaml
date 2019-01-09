@@ -1,0 +1,27 @@
+title: randomBytes
+signature:
+  inputs: [ length ]
+  output: bytes
+  variables:
+    length:
+      type: integer
+      description: |
+        Length of the output in bytes.
+    bytes:
+      type: "[Uint8Array][uint8array] | [Buffer][buffer]"
+      description: |
+        Array of _length_ pseudo-random bytes.
+
+prose: |
+  **Warning**: Throws when unable to locate a suitable source of entropy.
+
+examples:
+  - content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {randomBytes} = confidential()
+
+      randomBytes 32
+      .then (bytes) ->
+      # ...
+      ```

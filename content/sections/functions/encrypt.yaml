@@ -18,3 +18,25 @@ signature:
         type: "[Envelope][envelope]"
         description: |
           Object with properties ciphertext and nonce. Suitable for use with decrypt.
+
+prose: |
+  When given a [symmetric key][key-symmetric], [encrypt][encrypt] uses [symmetric encryption][tweetnacl-secretbox].
+
+  When given a [shared key][key-shared], [encrypt][encrypt] uses authenticated, [asymmetric encryption][tweetnacl-box].
+
+examples:
+  - title: Symmetric Encryption
+    note: |
+      **Warning**: Key pairs for signing do not work for encryption.
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {encrypt} = confidential()
+      import {keyLookup, write} from "my-library"
+
+      do ->
+        alice = keyLookup "Alice/private"
+        envelope = await encrypt alice, "Hello, World!"
+        # serialize as needed with convert
+        write "greeting", convert to: "safe-base64", envelope
+      ```

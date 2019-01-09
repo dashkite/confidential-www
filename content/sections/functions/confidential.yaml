@@ -13,3 +13,8 @@ signature:
       type: object
       description: |
         An instance of the Confidential API.
+
+prose: |
+  An instance of the Confidential API.
+
+examples: []

@@ -1,13 +1,14 @@
 ::
 $fragments.prose = (content) ->
   $bind """
-  :markdown
-    #{content}
+  \n:markdown
+    #{indent 2, content}
   """
 
 $fragments.blockquote = (content) ->
   $bind """
-  blockquote
-    #{$fragments.prose content}
+  \nblockquote
+    :markdown
+      #{indent 4, content}
   """
 ::
