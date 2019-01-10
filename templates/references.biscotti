@@ -24,9 +24,12 @@ $references =
   "`nacl`": "/api.html#property-nacl"
 
   "`confidential`": "/api.html#function-confidential"
+  "`randomBytes`": "/api.html#function-randomBytes"
   "`encrypt`": "/api.html#function-encrypt"
   "`decrypt`": "/api.html#function-decrypt"
-  "`randomBytes`": "/api.html#function-randomBytes"
+  "`sign`": "/api.html#function-sign"
+  "`verify`": "/api.html#function-verify"
+
 
   "symmetric key": "/api.html#type-key-symmetric"
   "`key.Symmetric`": "/api.html#type-key-symmetric"

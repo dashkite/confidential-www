@@ -1,0 +1,38 @@
+title: verify
+signature:
+  - inputs: [ declaration ]
+    output: [ is-valid ]
+variables:
+  declaration:
+    type: "[`Declaration`]()"
+    description: |
+      Container object with for Panda-Confidential signing. Has properties `data`, `signatures`, and `signatories`.
+  is-valid:
+    type: "[`Boolean`]()"
+    description: |
+      `true` if the signatures are valid, `false` otherwise.
+
+prose: |
+  Accepts the [`Declaration`]() output of `sign` and verifies its integrity, returning `true` or `false`.  In this way, `verify` and [`sign`]() form a pair of opposing operations.
+
+  > **Warning:** Everything needed to verify the signatures exists within a [`Declaration`](), but it is up to _you_ to verify the authenticity of the public keys within `signatories`.
+
+examples:
+  - title:
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {verify, declaration} = confidential()
+      import {receive, process} from "my-library"
+
+      do ->
+        # convert JSON to declaration
+        greeting = declaration convert from: "json", receive "Alice"
+
+
+        if verify greeting
+          # do something with the verified data.
+          process convert to: "utf8", greeting.data
+        else
+          throw new Error "Unable to verify data signatures."
+      ```
