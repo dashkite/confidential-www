@@ -1,18 +1,18 @@
 title: confidential
 signature:
-  inputs: [ randomBytes& ]
-  output: api
-  variables:
-    randomBytes:
-      type: "[`Function`]()"
-      description: |
-        Optional. Provides a custom implementation for [`randomBytes`]().
+  - inputs: [ randomBytes& ]
+    output: api
+variables:
+  randomBytes:
+    type: "[`Function`]()"
+    description: |
+      Optional. Provides a custom implementation for [`randomBytes`]().
 
-        > **Warning:** A robust source of entropy is necessary for encryption. Use this feature with caution.
-    api:
-      type: "[`Object`]()"
-      description: |
-        An instance of the Confidential API.
+      > **Warning:** A robust source of entropy is necessary for encryption. Use this feature with caution.
+  api:
+    type: "[`Object`]()"
+    description: |
+      An instance of the Confidential API.
 
 prose: |
   Because Panda-Confidential is extensible, it uses instantiation to prevent unexpected changes by third parties. Once you have an instance, you can destructure its functions and use them directly.

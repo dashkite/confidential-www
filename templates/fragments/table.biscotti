@@ -21,7 +21,7 @@ $fragments.table = (head, body) ->
                   #{indent 10, setLinks item}
         """
 
-$fragments.signatureTable = ({variables}) ->
+$fragments.signatureTable = (variables) ->
   head = ["name", "type", "description"]
   body =
     for name, {type, description} of variables

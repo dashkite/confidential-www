@@ -12,4 +12,5 @@ section
   _include "randomBytes"
   _include "encrypt"
   _include "decrypt"
+  _include "sign"
   ::

@@ -1,23 +1,23 @@
 title: encrypt
 signature:
-  inputs: [ key, nonce&, plaintext ]
-  output: envelope
-  variables:
-    key:
-      type: "[`key.Symmetric`]() | [`key.Asymmetric`]()"
+  - inputs: [ key, nonce&, plaintext ]
+    output: envelope
+variables:
+  key:
+    type: "[`key.Symmetric`]() | [`key.Asymmetric`]()"
+    description: |
+      Key to be used in the encryption operation.
+  nonce:
+    type: "[`Uint8Array`]() | [`Buffer`]()"
+    description: |
+      A value to be combined with the plaintext before encryption. A nonceLength random nonce is generated if not supplied.
+    plaintext:
+      type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
+      description: The plaintext to be encrypted.
+    envelope:
+      type: "[`Envelope`]()"
       description: |
-        Key to be used in the encryption operation.
-    nonce:
-      type: "[`Uint8Array`]() | [`Buffer`]()"
-      description: |
-        A value to be combined with the plaintext before encryption. A nonceLength random nonce is generated if not supplied.
-      plaintext:
-        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
-        description: The plaintext to be encrypted.
-      envelope:
-        type: "[`Envelope`]()"
-        description: |
-          Object with properties ciphertext and nonce. Suitable for use with decrypt.
+        Object with properties ciphertext and nonce. Suitable for use with decrypt.
 
 prose: |
   A [generic function]() accepting an encryption key and plaintext to output a ciphertext [`Envelope`]().  `encrypt` and its counterpart [`decrypt`]() form a pair of opposing operations.
@@ -26,7 +26,7 @@ prose: |
    - When given a [symmetric key](), `encrypt` uses [symmetric encryption]().
    - When given a [shared key](), `encrypt` uses authenticated, [asymmetric encryption]().
 
-  > **Warning**: Signing key pairs do not work for encryption and will cause `encrypt` to throw an error.
+  > **Warning**: Signing key pairs are incompatible with `encrypt` and will cause `encrypt` to throw an error.
 
   The output ciphertext is enclosed in a special container, [`Envelope`](), and is expected by [`decrypt`]().
 

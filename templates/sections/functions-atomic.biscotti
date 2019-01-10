@@ -7,7 +7,7 @@ section
   ::
 
   ::
-  $fragments.signatureTable signature
+  $fragments.signatureTable variables
   ::
 
   ::

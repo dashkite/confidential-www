@@ -1,16 +1,16 @@
 title: randomBytes
 signature:
-  inputs: [ length ]
-  output: bytes
-  variables:
-    length:
-      type: "[`Integer`]()"
-      description: |
-        Length of the desired output, in bytes.
-    bytes:
-      type: "[`Uint8Array`]() | [`Buffer`]()"
-      description: |
-        Array of `length` pseudo-random bytes.
+  - inputs: [ length ]
+    output: bytes
+variables:
+  length:
+    type: "[`Integer`]()"
+    description: |
+      Length of the desired output, in bytes.
+  bytes:
+    type: "[`Uint8Array`]() | [`Buffer`]()"
+    description: |
+      Array of `length` pseudo-random bytes.
 
 prose: |
   Provides an interface produce pseudorandom bytes of cryptographic quality.  This interface is also used internally to generate keys and nonces.

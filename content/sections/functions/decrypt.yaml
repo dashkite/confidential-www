@@ -1,20 +1,20 @@
 title: decrypt
 signature:
-  inputs: [ key, envelope ]
-  output: plaintext
-  variables:
-    key:
-      type: "[`key.Symmetric`]() | [`key.Asymmetric`]()"
-      description: |
-        Key to be used in the encryption operation.
-    envelope:
-      type: "[`Envelope`]()"
-      description: |
-        Object with properties `ciphertext` and nonce. As returned by [`encrypt`]().
-    plaintext:
-      type: "[`Uint8Array`]()"
-      description: |
-        The decrypted ciphertext.
+  - inputs: [ key, envelope ]
+    output: plaintext
+variables:
+  key:
+    type: "[`key.Symmetric`]() | [`key.Asymmetric`]()"
+    description: |
+      Key to be used in the encryption operation.
+  envelope:
+    type: "[`Envelope`]()"
+    description: |
+      Object with properties `ciphertext` and nonce. As returned by [`encrypt`]().
+  plaintext:
+    type: "[`Uint8Array`]()"
+    description: |
+      The decrypted ciphertext.
 
 prose: |
   A [generic function]() accepting an encryption key and ciphertext to output a plaintext.  `decrypt` and its counterpart [`encrypt`]() form a pair of opposing operations.
