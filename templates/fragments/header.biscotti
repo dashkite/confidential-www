@@ -1,0 +1,8 @@
+::
+$fragments.header = (level, content) ->
+  anchor = "#" + $string(content).slugify().s
+  $bind """
+  \nh#{level}#{anchor}
+    a.header-anchor(href="#{anchor}") #{content}
+  """
+::

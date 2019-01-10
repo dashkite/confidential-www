@@ -5,7 +5,7 @@ _include = (name) ->
 ::
 
 section
-  h1 Functions
+  h1#functions Functions
 
   ::
   _include "confidential"

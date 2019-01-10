@@ -1,6 +1,8 @@
 ::
-import {plainText, dashed} from "panda-parchment"
+# TODO: expand the panda toolset to include a module like string.  It's useful for converting weird string situations to a anchor slug, but it has problems.
 
+import _$string from "string"
+$string = _$string
 $bind = $ (string = "") -> string
 
 splice = (string, start, deleteCount, items...) ->
@@ -17,10 +19,4 @@ indent = (spaces, block) ->
     output.push splice subBlocks[i], 0, 0, " ".repeat spaces
 
   output.join "\n"
-
-dashify = (string) ->
-  if string?
-    dashed plainText string 
-  else
-    ""
 ::

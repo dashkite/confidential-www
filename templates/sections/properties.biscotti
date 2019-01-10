@@ -5,7 +5,7 @@ _include = (name) ->
 ::
 
 section
-  h1 Properties
+  h1#properties Properties
 
   ::
   _include "nacl"
