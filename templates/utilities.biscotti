@@ -1,8 +1,12 @@
 ::
 # TODO: expand the panda toolset to include a module like string.  It's useful for converting weird string situations to a anchor slug, but it has problems.
 
+import _fs from "fs"
+fs = _fs
+
 import _$string from "string"
 $string = _$string
+
 $bind = $ (string = "") -> string
 
 splice = (string, start, deleteCount, items...) ->

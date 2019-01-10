@@ -16,14 +16,27 @@ $references =
   "`Uint8Array`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
   "`Buffer`": "https://nodejs.org/api/buffer.html"
 
+  "generic function": "https://en.wikipedia.org/wiki/Generic_programming"
+
   #========================================
   # Internal Links
   #========================================
-  "`nacl`": "#property-nacl"
+  "`nacl`": "/api.html#property-nacl"
 
-  "`confidential`": "#function-confidential"
-  "`encrypt`": "#function-encrypt"
-  "`randomBytes`": "#function-randomBytes"
+  "`confidential`": "/api.html#function-confidential"
+  "`encrypt`": "/api.html#function-encrypt"
+  "`decrypt`": "/api.html#function-decrypt"
+  "`randomBytes`": "/api.html#function-randomBytes"
+
+  "symmetric key": "/api.html#type-key-symmetric"
+  "`key.Symmetric`": "/api.html#type-key-symmetric"
+  "`key.Asymmetric`": "/api.html#type-key-asymmetric"
+
+
+  "symmetric encryption": "/usage.html#symmetric-encryption-and-decryption"
+  "symmetric decryption": "/usage.html#symmetric-encryption-and-decryption"
+  "asymmetric encryption": "/usage.html#authenticated-asymmetric-encryption-and-decryption"
+  "asymmetric decryption": "/usage.html#authenticated-asymmetric-encryption-and-decryption"
 
 
 setLinks = (string) ->

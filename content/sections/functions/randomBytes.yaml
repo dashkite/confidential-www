@@ -6,17 +6,20 @@ signature:
     length:
       type: "[`Integer`]()"
       description: |
-        Length of the output in bytes.
+        Length of the desired output, in bytes.
     bytes:
       type: "[`Uint8Array`]() | [`Buffer`]()"
       description: |
         Array of `length` pseudo-random bytes.
 
 prose: |
-  **Warning**: Throws when unable to locate a suitable source of entropy.
+  Provides an interface produce pseudorandom bytes of cryptographic quality.  This interface is also used internally to generate keys and nonces.
+
+  By default, this is the [TweetNaCl.js `randomBytes` implmentation](https://github.com/dchest/tweetnacl-js#random-bytes-generation), which selects the underlying interface most appropriate for a given environment.  When such an interface cannot be accessed, this function throws an error.
 
 examples:
-  - content: |
+  - title: Using randomBytes
+    content: |
       ```coffeescript
       import {confidential} from "panda-confidential"
       {randomBytes} = confidential()

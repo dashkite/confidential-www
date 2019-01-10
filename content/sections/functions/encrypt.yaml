@@ -10,7 +10,7 @@ signature:
     nonce:
       type: "[`Uint8Array`]() | [`Buffer`]()"
       description: |
-        A value combined with the plaintext before encryption. A nonceLength random nonce is generated if not supplied.
+        A value to be combined with the plaintext before encryption. A nonceLength random nonce is generated if not supplied.
       plaintext:
         type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
         description: The plaintext to be encrypted.
@@ -20,11 +20,15 @@ signature:
           Object with properties ciphertext and nonce. Suitable for use with decrypt.
 
 prose: |
-  When given a [symmetric key](), [`encrypt`]() uses [symmetric encryption]().
+  A [generic function]() accepting an encryption key and plaintext to output a ciphertext [`Envelope`]().  `encrypt` and its counterpart [`decrypt`]() form a pair of opposing operations.
 
-  When given a [shared key](), [`encrypt`]() uses authenticated, [asymmetric encryption]().
+  Panda-Confidential establishes a key type system to determine your intention in a clear and error-free way.  That allows `encrypt`'s behavior to depend on the input key:
+   - When given a [symmetric key](), `encrypt` uses [symmetric encryption]().
+   - When given a [shared key](), `encrypt` uses authenticated, [asymmetric encryption]().
 
-  > **Warning**: Key pairs for signing do not work for encryption.
+  > **Warning**: Signing key pairs do not work for encryption and will cause `encrypt` to throw an error.
+
+  The output ciphertext is enclosed in a special container, [`Envelope`](), and is expected by [`decrypt`]().
 
 examples:
   - title: Symmetric Encryption

@@ -1,0 +1,56 @@
+title: decrypt
+signature:
+  inputs: [ key, envelope ]
+  output: plaintext
+  variables:
+    key:
+      type: "[`key.Symmetric`]() | [`key.Asymmetric`]()"
+      description: |
+        Key to be used in the encryption operation.
+    envelope:
+      type: "[`Envelope`]()"
+      description: |
+        Object with properties `ciphertext` and nonce. As returned by [`encrypt`]().
+    plaintext:
+      type: "[`Uint8Array`]()"
+      description: |
+        The decrypted ciphertext.
+
+prose: |
+  A [generic function]() accepting an encryption key and ciphertext to output a plaintext.  `decrypt` and its counterpart [`encrypt`]() form a pair of opposing operations.
+
+  Panda-Confidential establishes a key type system to determine your intention in a clear and error-free way.  That allows `decrypt`'s behavior to depend on the input key:
+   - When given a [symmetric key](), `decrypt` uses [symmetric decryption]().
+   - When given a [shared key](), `decrypt` uses authenticated, [asymmetric decryption]().
+
+  Ciphertext is enclosed in a special container, [`Envelope`](), provided by [`encrypt`]().  `decrypt` is agnostic about the data it processes, outputting a [`Uint8Array`]() byte array.  [`convert`]() may then be used to explicitly specify a data encoding.
+
+examples:
+  - title: Symmetric Decryption
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {decrypt} = confidential()
+      import {keyLookup, read} from "my-library"
+
+      do ->
+        alice = keyLookup "Alice/private"
+        serialized = read "greeting"
+        envelope = convert from: "safe-base64", to: "object", serialized
+        plaintext = await decrypt alice, envelope
+      ```
+  - title: Asymmetric Decryption
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {key, decrypt} = confidential()
+      import {keyLookup, receive} from "my-library"
+
+      do ->
+        alice = keyLookup "Alice/public"
+        bob = keyLookup "Bob/private"
+        toBobFromAlice = key.shared alice, bob
+        serialized = receive "Bob"
+        envelope = convert from: "safe-base64", to: "object", serialized
+        plaintext = await decrypt toBobFromAlice, envelope
+      ```
