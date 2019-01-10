@@ -14,4 +14,6 @@ section
   _include "decrypt"
   _include "sign"
   _include "verify"
+
+  _include "convert"
   ::

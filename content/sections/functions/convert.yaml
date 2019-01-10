@@ -1,0 +1,77 @@
+title: convert
+signature:
+  - inputs: [ instructions, input ]
+    output: [ output ]
+
+variables:
+  instructions:
+    type: "[`Object`]()"
+    description: |
+      Describes the conversion to be applied to _input_. Contains the properties `from` and `to`.
+  input:
+    type: "[`Uint8Array`]() | [`Buffer`]() | [`String`]() | [`Object`]()"
+    description: |
+      The value to be converted.
+  output:
+    type: "[`Uint8Array`]() | [`Buffer`]() | [`String`]() | [`Object`]()"
+    description: |
+      The result of the conversion.
+
+prose: |
+  A utility function to manage encoding conversion between a variety of targets.
+
+  A conversion is specified by the fields within `instructions`, `from` and `to`.  These identify the current and target encoding of `input`, respectively. Attempting an unsupported conversion will throw an error.
+
+  > **Note:** When `from` can be inferred from `input` (ex: a byte array), it is not necessary to specify it.
+
+  Supported formats or encodings include:
+    - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+    - `utf8`: A string with [UTF-8 encoding]()
+    - `base64`: A string with [Base64 encoding]()
+    - `safe-base64`: A string with [URL-Safe Base64 encoding]()
+    - `object`: An [`Object`]() transformed with the `parse` and `stringify` methods on the native [`JSON`]() object.
+    - `envelope`: An instance of [`Envelope`]().  Specifying this is suitable for serializing and de-serializing an `Envelope` with the functions [`encrypt`]() and [`decrypt`]().
+
+examples:
+  - title: String Conversion
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {convert} = confidential()
+
+      do ->
+        assert.equal "Hello, World!",
+          convert from: "base64", to: "utf8", "SGVsbG8sIFdvcmxkIQ=="
+
+        # The property `from` can be inferred from the argument
+        assert.equal "Hello, World!",
+          convert to: "utf8", Buffer.from "Hello, World!"
+      ```
+
+  - title: Converting Plaintexts and Ciphertexts
+    content: |
+      [`encrypt`]() and [`decrypt`]() are purposefully agnostic to the data they operate on.  An [`Envelope`]() represents its data as a byte array and requires explicit instructions to encode.
+
+      ```coffeescript
+      import assert from "assert"
+      import {confidential} from "panda-confidential"
+      {encrypt} = confidential()
+      import {keyLookup, write} from "my-library"
+
+      do ->
+        # First, Alice encrypts a message for Bob and serializes...
+        alice = keyLookup "Alice/private"
+        bob = keyLookup "Bob/public"
+        fromAliceToBob = key.shared alice, bob
+        envelope = await encrypt fromAliceToBob, "Hello, World!"
+        send "Bob", convert {to: "base64"}, envelope
+
+        # Later, with Bob on the recieving end....
+        alice = keyLookup "Alice/public"
+        bob = keyLookup "Bob/private"
+        toBobFromAlice = key.shared alice, bob
+        serialized = receive "Bob"
+        envelope = convert {from: "base64", to: "envelope"}, serialized
+        plaintext = await decrypt toBobFromAlice, envelope
+        assert.equal plaintext, "Hello, World!"
+      ```

@@ -61,5 +61,5 @@ examples:
         bob = keyLookup "Bob/public"
         fromAliceToBob = key.shared alice, bob
         envelope = await encrypt fromAliceToBob, "Hello, World!"
-        send "Bob", convert to: "safe-base64", envelope
+        send "Bob", convert to: "base64", envelope
       ```

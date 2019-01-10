@@ -36,7 +36,7 @@ examples:
       do ->
         alice = keyLookup "Alice/private"
         serialized = read "greeting"
-        envelope = convert from: "safe-base64", to: "object", serialized
+        envelope = convert {from: "base64", to: "envelope"}, serialized
         plaintext = await decrypt alice, envelope
       ```
   - title: Asymmetric Decryption
@@ -51,6 +51,6 @@ examples:
         bob = keyLookup "Bob/private"
         toBobFromAlice = key.shared alice, bob
         serialized = receive "Bob"
-        envelope = convert from: "safe-base64", to: "object", serialized
+        envelope = convert {from: "base64", to: "envelope"}, serialized
         plaintext = await decrypt toBobFromAlice, envelope
       ```
