@@ -1,0 +1,5 @@
+title: SymmetricKey
+prototype: "[`Key`]()"
+properties: {}
+prose: |
+  The key type used to perform [symmetric encryption]().

@@ -1,0 +1,5 @@
+title: PrivateKey
+prototype: "[`Key`]()"
+properties: {}
+prose: |
+  One of the two key types used to perform [asymmetric encryption]().  This key must remain a secret for the encryption be effective.

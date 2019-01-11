@@ -16,4 +16,10 @@ section
   ::
   _include "envelope"
   _include "declaration"
+
+  _include "key"
+  _include "symmetricKey"
+  _include "publicKey"
+  _include "privateKey"
+  _include "sharedKey"
   ::
