@@ -1,0 +1,16 @@
+title: Envelope
+prototype: false
+properties:
+  ciphertext:
+    type: "[`Uint8Array`]()"
+    description: |
+      The ciphertext output from [`encrypt`], the counterpart to the original plaintext.
+  nonce:
+    type: "[`Uint8Array`]()"
+    description: |
+      nonce used to encrypt the plaintext
+
+prose: |
+  The return value for [`encrypt`]().  This class organizes the `ciphertext` and `nonce` and is expected by the [`decrypt`]() interface.
+
+  You may serialize an `Envelope` using [`convert`]().

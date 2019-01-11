@@ -1,0 +1,19 @@
+::
+# Helper to keep the imports below short.
+_include = (name) ->
+  include "./types-atomic", "../../content/sections/types/#{name}.yaml"
+::
+
+section
+  h1#types Types
+
+  ::
+  $fragments.prose indent 4, """
+  Classes in panda-confidential are lightweight wrappers for values. They provide a type-system to support the generics ([`encrypt`](), [`decrypt`](), [`sign`](), [`verify`]()) and a couple of convenience methods. Their constructors ready values for use with the underlying TweetNaCl.js invocations ([`Uint8Array`]()).  But, you can use [`convert`]() to encode that value into a form that's easier for transport or store.
+  """
+  ::
+
+  ::
+  _include "envelope"
+  _include "declaration"
+  ::

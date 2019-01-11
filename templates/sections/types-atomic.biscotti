@@ -1,0 +1,12 @@
+section
+  h2#class-::$bind title.replace(/\./g, "-")::
+    a.header-anchor(href="#class-::$bind title.replace /\./, "-"::") ::$bind title::
+
+  ::
+  if prototype
+    $fragments.blockquote "Extends #{prototype}"
+  if Object.keys(properties).length > 0
+    $fragments.header 3, "Properties"
+    $fragments.signatureTable properties
+  $fragments.prose prose ? ""
+  ::

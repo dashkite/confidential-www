@@ -4,17 +4,8 @@ section
 
   ::
   $fragments.signature title, signature
-  ::
-
-  ::
   $fragments.signatureTable variables
-  ::
-
-  ::
   $fragments.prose prose ? ""
-  ::
-
-  ::
   for example in examples
     $fragments.example example
   ::

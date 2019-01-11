@@ -1,7 +1,7 @@
 ::
 #TODO: Come up with a Biscotti primative that makes this less hideous.
 $fragments.table = (head, body) ->
-  $bind "table"
+  $bind "\n\ntable"
   if head?
     $bind """
     \n  thead

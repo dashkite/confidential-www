@@ -7,6 +7,7 @@ $references =
 
   # Reference Links
   "`Function`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"
+  "`Array`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
   "`Object`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"
   "`Number`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"
   "`Integer`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger"
@@ -71,6 +72,7 @@ $references =
   "symmetric decryption": "/usage.html#symmetric-encryption-and-decryption"
   "asymmetric encryption": "/usage.html#authenticated-asymmetric-encryption-and-decryption"
   "asymmetric decryption": "/usage.html#authenticated-asymmetric-encryption-and-decryption"
+  "digital signature": "usage.html#signing-and-verifying-messages"
 
 
 setLinks = (string) ->
