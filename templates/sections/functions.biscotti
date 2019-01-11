@@ -16,4 +16,5 @@ section
   _include "verify"
 
   _include "convert"
+  _include "hash"
   ::

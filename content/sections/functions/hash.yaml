@@ -1,0 +1,30 @@
+title: hash
+signature:
+  - inputs: [ data ]
+    output: [ hash ]
+variables:
+  data:
+    type: "[`Uint8Array`]() | [`Buffer`]()"
+    description: |
+      The data to be hashed.
+  hash:
+    type: "[`Uint8Array`]()"
+    description: |
+      A byte array containing the [SHA-512]() hash of _data_.
+
+prose: |
+  Convenience function that exposes the TweetNaCl.js implementation of [SHA-512]() hashing.  This function requires an [`Uint8Array`]() input and provides the same as output.  So, to process various entities, combine this function with [`convert`]().
+
+examples:
+  - title: FIX THIS EXAMPLE
+    content: |
+      ```coffeescript
+      import assert from "assert"
+      import {confidential} from "panda-confidential"
+      {hash, convert} = confidential()
+
+      do ->
+        myHash = hash convert {from: "utf8", to: "bytes"}, "Hello, World!"
+
+        assert.equal (convert {to: "base64"}, myHash), ""
+      ```

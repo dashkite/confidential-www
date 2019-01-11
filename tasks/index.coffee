@@ -1,9 +1,10 @@
 import "coffeescript/register"
 import fs from "fs"
+import Path from "path"
+
 import pug from "jstransformer-pug"
 import stylus from "jstransformer-stylus"
 import webpack from "webpack"
-import Path from "path"
 import {define, run, glob, read, write,
   extension, copy, transform, watch, serve} from "panda-9000"
 import {read as _read, rmr, mkdirp} from "panda-quill"
@@ -96,7 +97,14 @@ define "js", ->
 
 define "build", [ "clean", "biscotti", "html&", "css&", "js&", "images&" ]
 
-define "watch", watch source, -> run "build"
+define "watch:source",
+  watch source, -> run "build"
+define "watch:templates",
+  watch (Path.resolve process.cwd(), "templates"), -> run "build"
+define "watch:content",
+  watch (Path.resolve process.cwd(), "content"), -> run "build"
+
+define "watch", ["watch:source&", "watch:templates&", "watch:content&"]
 
 define "server",
   serve target,

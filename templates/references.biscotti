@@ -21,6 +21,7 @@ $references =
   "UTF-8 encoding": "https://tools.ietf.org/html/rfc3629"
   "Base64 encoding": "https://tools.ietf.org/html/rfc4648"
   "URL-Safe Base64 encoding": "https://tools.ietf.org/html/rfc4648#section-5"
+  "SHA-512": "https://tools.ietf.org/html/rfc4634"
 
   #========================================
   # Internal Links
@@ -33,6 +34,8 @@ $references =
   "`decrypt`": "/api.html#function-decrypt"
   "`sign`": "/api.html#function-sign"
   "`verify`": "/api.html#function-verify"
+  "`convert`": "/api.html#function-convert"
+  "`hash`": "/api.html#function-hash"
 
 
   "symmetric key": "/api.html#type-key-symmetric"
