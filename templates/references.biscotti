@@ -16,12 +16,15 @@ $references =
   "`Uint8Array`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
   "`Buffer`": "https://nodejs.org/api/buffer.html"
   "`JSON`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON"
+  "`Promise`": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"
 
   "generic function": "https://en.wikipedia.org/wiki/Generic_programming"
   "UTF-8 encoding": "https://tools.ietf.org/html/rfc3629"
   "Base64 encoding": "https://tools.ietf.org/html/rfc4648"
   "URL-Safe Base64 encoding": "https://tools.ietf.org/html/rfc4648#section-5"
   "SHA-512": "https://tools.ietf.org/html/rfc4634"
+
+  "`nacl.secretbox.keyLength`": "https://github.com/dchest/tweetnacl-js#constants-1"
 
   #========================================
   # Internal Links

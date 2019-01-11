@@ -1,0 +1,50 @@
+title: key.symmetric
+signature:
+  - inputs: []
+    output: [ promise ]
+  - inputs: [ key ]
+    output: [ symmetric-key ]
+
+variables:
+  promise:
+    type: "[`Promise`]()"
+    description: |
+      Resolves to an instance of [`SymmetricKey`]()
+  key:
+    type: "[`Uint8Array`]() | [`Buffer`]()"
+    description: |
+      Byte array representation of a key literal.
+  symmetric-key:
+    type: "[`SymmetricKey`]()"
+    description: |
+      Instance of [`SymmetricKey`]()
+
+prose: |
+  Generates an instance of [`SymmetricKey`]().
+
+  If `key` is provided, `key.symmetric` uses that value as a key literal and instanciates the [`SymmetricKey`]() wrapper around that value.  Key literals must be in the form of a [`Uint8Array`]() (or its Node.js [`Buffer`]() equivalent).  You may use [`convert`]() to convert serialized key literals into the correct form.  If you provide a literal that is not [`nacl.secretbox.keyLength`]() bytes long, `key.symmetric` throws.
+
+  If `key` is not provided, `key.symmetric` uses [`randomBytes`]() to generate a new instance of [`SymmetricKey`]().
+
+examples:
+  - title: New Symmetric Key
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {key} = confidential()
+
+      do ->
+        # Generate a symmetric key from `randomBytes`
+        key2 = await key.symmetric()
+      ```
+  - title: Symmetric Key From Literal
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {key, convert} = confidential()
+
+      do ->
+        # Generate a symmetric key from a key literal.
+        key1 = key.symmetric convert {from: "base64", to: "bytes"},
+          "WM4YL5yo+6yKAFaIZGp3QPbcjW9ICEGXlxR/Odnr2+k="
+      ```

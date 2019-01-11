@@ -20,4 +20,6 @@ section
   _include "isBytes"
   _include "isDeclaration"
   _include "isEnvelope"
+
+  _include "key/symmetric"
   ::
