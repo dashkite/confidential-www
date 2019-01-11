@@ -1,0 +1,7 @@
+title: EncryptionKeyPair
+prototype: "[`KeyPair`]()"
+properties: {}
+prose: |
+  Key pair suitable for [asymmetric encryption](). You may generate a pair by invoking [`keyPair.encryption`]().
+
+  > **Warning:** `EncryptionKeyPair` is not suitable for signing.

@@ -22,4 +22,8 @@ section
   _include "publicKey"
   _include "privateKey"
   _include "sharedKey"
+
+  _include "keyPair"
+  _include "encryptionKeyPair"
+  _include "signatureKeyPair"
   ::

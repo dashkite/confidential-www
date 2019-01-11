@@ -1,0 +1,16 @@
+title: KeyPair
+prototype: false
+properties:
+  privateKey:
+    type: "[`PrivateKey`]()"
+    description: |
+      The private key of this key pair.
+  publicKey:
+    type: "[`PublicKey`]()"
+    description: |
+      The public key of this key pair.
+
+prose: |
+  Base class for all key pairs in Panda-Confidential. Stores a pair of algorithmically related keys, the [`PrivateKey`]() and [`PublicKey`]() instances.
+
+  This class is not directly part of the Panda-Confidential interface, but its descendants all share its interface.

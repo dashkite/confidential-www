@@ -3,3 +3,5 @@ prototype: "[`Key`]()"
 properties: {}
 prose: |
   The key type used to perform [symmetric encryption]().
+
+  Generate a new instance of this key with [`key.symmetric`]().

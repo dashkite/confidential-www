@@ -11,4 +11,4 @@ prose: |
 
   You may use [`convert`]() to serialize the value `key`.
 
-  This class is not used directly within panda-confidential, but its descendants all share its interface.
+  This class is not directly part of the Panda-Confidential interface, but its descendants all share its interface.

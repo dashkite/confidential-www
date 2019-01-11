@@ -11,6 +11,8 @@ properties:
       nonce used to encrypt the plaintext
 
 prose: |
-  The return value for [`encrypt`]().  This class organizes the `ciphertext` and `nonce` and is expected by the [`decrypt`]() interface.
+  The return value for [`encrypt`]().
+
+  `Envelope` organizes the `ciphertext` and `nonce` products of encryption and is expected by the [`decrypt`]() interface.
 
   You may serialize an `Envelope` using [`convert`]().

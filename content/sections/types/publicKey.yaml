@@ -3,3 +3,5 @@ prototype: "[`Key`]()"
 properties: {}
 prose: |
   One of the two key types used to perform [asymmetric encryption]().  This key is shared widely, serving to identify the holder.
+
+  Generate an instance of this key (and its [`PrivateKey`]() counterpart) with [`keyPair.encryption`]() or [`keyPair.signature`](), depending on your needs.  Remember that encryption and signing keys cannot interoperate.

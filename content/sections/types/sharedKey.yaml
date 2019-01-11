@@ -2,4 +2,6 @@ title: SharedKey
 prototype: "[`Key`]()"
 properties: {}
 prose: |
-  A special key type used to perform [asymmetric encryption]().  This key is derived algorithmically from one [`PublicKey`]() and one [`PrivateKey`].  That allows two people to, remotely, generate the same _shared_ secret key and conduct authenticated encryption/decryption.
+  A special key type used to perform [asymmetric encryption]().  This key is derived algorithmically from one [`PublicKey`]() and one [`PrivateKey`]().  That allows two people to, remotely, generate the same _shared_ secret key and conduct authenticated encryption/decryption.
+
+  Generate an instance of this key with [`key.shared`]().

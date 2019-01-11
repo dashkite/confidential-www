@@ -57,6 +57,11 @@ $references =
   "`key.private`": "/api.html#function-key-private"
   "`key.isPrivate`": "/api.html#function-key-isPrivate"
 
+  "`keyPair.encryption`": "/api.html#function-keyPair-encryption"
+  "`keyPair.isEncryption`": "/api.html#function-keyPair-isEncryption"
+  "`keyPair.signature`": "/api.html#function-keyPair-signature"
+  "`keyPair.isSignature`": "/api.html#function-keyPair-isSignature"
+
   "`Envelope`": "/api.html#class-Envelope"
   "`Declaration`": "/api.html#class-Declaration"
   "`Key`": "/api.html#class-Key"
@@ -73,6 +78,7 @@ $references =
   "asymmetric encryption": "/usage.html#authenticated-asymmetric-encryption-and-decryption"
   "asymmetric decryption": "/usage.html#authenticated-asymmetric-encryption-and-decryption"
   "digital signature": "usage.html#signing-and-verifying-messages"
+  "digital signing": "usage.html#signing-and-verifying-messages"
 
 
 setLinks = (string) ->
