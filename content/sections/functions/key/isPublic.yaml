@@ -1,0 +1,33 @@
+title: key.isPublic
+signature:
+  - inputs: [ value ]
+    output: [ is-public ]
+
+variables:
+  value:
+    type: Value
+    description: |
+      A value to be tested.
+  is-public:
+    type: "[`Boolean`]()"
+    description: |
+      `true` if `value` is an instance of [`PublicKey`](), `false` otherwise.
+
+prose: |
+  Type check method to determine if the input `value` is an instance of [`PublicKey`]().  Returns `true` if it is and `false` for anything else.
+
+examples:
+  - title: PublicKey Check
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {key, keyPair} = confidential()
+
+      do ->
+        # Generate an encryption key-pair.
+        {publicKey} = await keyPair.encryption()
+
+        # Type check
+        key.isPublic publicKey    # true
+        key.isPublic "foobar"     # false
+      ```

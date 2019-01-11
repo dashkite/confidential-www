@@ -25,6 +25,9 @@ $references =
   "SHA-512": "https://tools.ietf.org/html/rfc4634"
 
   "`nacl.secretbox.keyLength`": "https://github.com/dchest/tweetnacl-js#constants-1"
+  "`nacl.box.sharedKeyLength`": "https://github.com/dchest/tweetnacl-js#constants-1"
+  "`nacl.box.publicKeyLength`": "https://github.com/dchest/tweetnacl-js#constants-1"
+  "`nacl.box.secretKeyLength`": "https://github.com/dchest/tweetnacl-js#constants-1"
 
   #========================================
   # Internal Links
@@ -40,29 +43,29 @@ $references =
   "`convert`": "/api.html#function-convert"
 
   "`hash`": "/api.html#function-hash"
-  "`isDeclaration`": "/api.html#function-isdeclaration"
-  "`isEnvelope`": "/api.html#function-isenvelope"
+  "`isDeclaration`": "/api.html#function-isDeclaration"
+  "`isEnvelope`": "/api.html#function-isEnvelope"
   "`isBytes`": "/api.html#function-isBytes"
 
   "`key.symmetric`": "/api.html#function-key-symmetric"
-  "`key.isSymmetric`": "/api.html#function-key-issymmetric"
+  "`key.isSymmetric`": "/api.html#function-key-isSymmetric"
   "`key.shared`": "/api.html#function-key-shared"
-  "`key.isShared`": "/api.html#function-key-isshared"
+  "`key.isShared`": "/api.html#function-key-isShared"
   "`key.public`": "/api.html#function-key-public"
-  "`key.isPublic`": "/api.html#function-key-ispublic"
+  "`key.isPublic`": "/api.html#function-key-isPublic"
   "`key.private`": "/api.html#function-key-private"
-  "`key.isPrivate`": "/api.html#function-key-isprivate"
+  "`key.isPrivate`": "/api.html#function-key-isPrivate"
 
-  "`Envelope`": "/api.html#class-envelope"
-  "`Declaration`": "/api.html#class-declaration"
-  "`Key`": "/api.html#class-key"
-  "`SymmetricKey`": "/api.html#class-symmetrickey"
-  "`SharedKey`": "/api.html#class-sharedkey"
-  "`PublicKey`": "/api.html#class-publickey"
-  "`PrivateKey`": "/api.html#class-privatekey"
-  "`KeyPair`": "/api.html#class-keypair"
-  "`EncryptionKeyPair`": "/api.html#class-encryptionkeypair"
-  "`SignatureKeyPair`": "/api.html#class-signaturekeypair"
+  "`Envelope`": "/api.html#class-Envelope"
+  "`Declaration`": "/api.html#class-Declaration"
+  "`Key`": "/api.html#class-Key"
+  "`SymmetricKey`": "/api.html#class-SymmetricKey"
+  "`SharedKey`": "/api.html#class-SharedKey"
+  "`PublicKey`": "/api.html#class-PublicKey"
+  "`PrivateKey`": "/api.html#class-PrivateKey"
+  "`KeyPair`": "/api.html#class-KeyPair"
+  "`EncryptionKeyPair`": "/api.html#class-EncryptionKeyPair"
+  "`SignatureKeyPair`": "/api.html#class-SignatureKeyPair"
 
   "symmetric encryption": "/usage.html#symmetric-encryption-and-decryption"
   "symmetric decryption": "/usage.html#symmetric-encryption-and-decryption"
@@ -71,7 +74,10 @@ $references =
 
 
 setLinks = (string) ->
-  string.replace /\[(.+?)\]\(\)/g, (match, $1, offset, str) ->
+  string.replace /\[(.+?)\]\((.*?)\)/g, (match, $1, $2, offset, str) ->
+    if $2 != ""
+      return match
+
     if $references[$1]?
       "[#{$1}](#{$references[$1]})"
     else

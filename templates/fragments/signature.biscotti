@@ -17,7 +17,7 @@ $fragments.signature = (title, signature) ->
           _inputs += " , "
 
     $bind """
-    \np:em
+    \n\nblockquote: p
       | #[strong #{title}]
       | #{_inputs}
       | &rarr;

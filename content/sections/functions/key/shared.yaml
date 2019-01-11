@@ -1,0 +1,49 @@
+title: key.shared
+signature:
+  - inputs: [ private-key, public-key]
+    output: [ shared-key ]
+  - inputs: [ public-key, private-key ]
+    output: [ shared-key ]
+  - inputs: [ key-data ]
+    output: [ shared-key ]
+
+variables:
+  private-key:
+    type: "[`PrivateKey`]()"
+    description: |
+      Instance of [`PrivateKey`]()
+  public-key:
+    type: "[`PublicKey`]()"
+    description: |
+      Instance of [`PublicKey`]()
+  key-data:
+    type: "[`Uint8Array`]() | [`Buffer`]()"
+    description: |
+      Byte array representation of a key literal.
+  shared-key:
+    type: "[`SharedKey`]()"
+    description: |
+      Instance of [`SharedKey`]()
+
+prose: |
+  Algorithmically generates a ["shared" secret key](https://github.com/dchest/tweetnacl-js#naclboxbeforetheirpublickey-mysecretkey) needed to conduct [asymmetric encryption]() with [`encrypt`]().
+
+  Because of Panda-Confidential's type system, you may provide `public-key` and `private-key` in either order.
+
+  Alternatively, you may proivde a key literal. `key.shared` uses that value to instanciate the [`SymmetricKey`]() wrapper.  Key literals must be in the form of a [`Uint8Array`]() (or its Node.js [`Buffer`]() equivalent).  You may use [`convert`]() to convert serialized key literals into the correct form.  If you provide a literal that is not [`nacl.box.sharedKeyLength`]() bytes long, `key.shared` throws.
+
+examples:
+  - title: New Shared Key
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {key, encrypt} = confidential()
+      import {keyLookup} from "my-library"
+
+      do ->
+        alice = keyLookup "Alice/private"
+        bob = keyLookup "Bob/public"
+        fromAliceToBob = key.shared alice, bob
+        envelope = await encrypt fromAliceToBob, "Hello, World!"
+        send "Bob", convert to: "base64", envelope
+      ```

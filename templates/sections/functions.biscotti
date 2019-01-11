@@ -22,4 +22,11 @@ section
   _include "isEnvelope"
 
   _include "key/symmetric"
+  _include "key/isSymmetric"
+  _include "key/shared"
+  _include "key/isShared"
+  _include "key/public"
+  _include "key/isPublic"
+  _include "key/private"
+  _include "key/isPrivate"
   ::

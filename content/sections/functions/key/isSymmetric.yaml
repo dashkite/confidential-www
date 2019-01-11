@@ -1,0 +1,33 @@
+title: key.isSymmetric
+signature:
+  - inputs: [ value ]
+    output: [ is-symmetric ]
+
+variables:
+  value:
+    type: Value
+    description: |
+      A value to be tested.
+  is-symmetric:
+    type: "[`Boolean`]()"
+    description: |
+      `true` if `value` is an instance of [`SymmetricKey`](), `false` otherwise.
+
+prose: |
+  Type check method to determine if the input `value` is an instance of [`SymmetricKey`]().  Returns `true` if it is and `false` for anything else.
+
+examples:
+  - title: SymmetricKey Check
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {key} = confidential()
+
+      do ->
+        # Generate a symmetric key.
+        myKey = await key.symmetric()
+
+        # Type check
+        key.isSymmetric myKey     # true
+        key.isSymmetric "foobar"  # false
+      ```

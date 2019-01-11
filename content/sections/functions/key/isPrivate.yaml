@@ -1,0 +1,33 @@
+title: key.isPrivate
+signature:
+  - inputs: [ value ]
+    output: [ is-private ]
+
+variables:
+  value:
+    type: Value
+    description: |
+      A value to be tested.
+  is-private:
+    type: "[`Boolean`]()"
+    description: |
+      `true` if `value` is an instance of [`PrivateKey`](), `false` otherwise.
+
+prose: |
+  Type check method to determine if the input `value` is an instance of [`PrivateKey`]().  Returns `true` if it is and `false` for anything else.
+
+examples:
+  - title: PrivateKey Check
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {key, keyPair} = confidential()
+
+      do ->
+        # Generate an encryption key-pair.
+        {privateKey} = await keyPair.encryption()
+
+        # Type check
+        key.isPrivate privateKey    # true
+        key.isPrivate "foobar"      # false
+      ```
