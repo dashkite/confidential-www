@@ -1,0 +1,18 @@
+title: isDeclaration
+signature:
+  - inputs: [ value ]
+    output: [ is-declaration ]
+
+variables:
+  type: Value
+  value:
+    type: A value to be tested.
+  is-declaration:
+    type: "[`Boolean`]()".
+    description: |
+      `true` if _value_ is an instance of [`Declaration`](), `false` otherwise.
+
+prose: |
+  Type check method to determine if the input `value` is an instance of [`Declaration`]().  Returns `true` or `false`.
+
+  A [`Declaration`] organizies the signatures and signatories on a piece of data to make it easy to transport and verify its integrity.

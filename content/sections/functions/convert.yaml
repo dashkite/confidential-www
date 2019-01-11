@@ -20,7 +20,7 @@ variables:
 prose: |
   A utility function to manage encoding conversion between a variety of targets.
 
-  A conversion is specified by the fields within `instructions`, `from` and `to`.  These identify the current and target encoding of `input`, respectively. Attempting an unsupported conversion will throw an error.
+  A conversion is specified by the fields within `instructions`, `from` and `to`.  These identify the current and target encoding of `input`, respectively. Attempting an unsupported conversion will throw.
 
   > **Note:** When `from` can be inferred from `input` (ex: a byte array), it is not necessary to specify it.
 
@@ -30,7 +30,8 @@ prose: |
     - `base64`: A string with [Base64 encoding]()
     - `safe-base64`: A string with [URL-Safe Base64 encoding]()
     - `object`: An [`Object`]() transformed with the `parse` and `stringify` methods on the native [`JSON`]() object.
-    - `envelope`: An instance of [`Envelope`]().  Specifying this is suitable for serializing and de-serializing an `Envelope` with the functions [`encrypt`]() and [`decrypt`]().
+    - `envelope`: An instance of [`Envelope`]().  Specifying this is suitable for serializing and de-serializing an `Envelope` to use with [`encrypt`]() and [`decrypt`]().
+    - `declaration`: An instance of [`Declaration`](). Specifying this is suitable for serializing and de-serializing a `Declaration` to use `sign` and `verify`.
 
 examples:
   - title: String Conversion

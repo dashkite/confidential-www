@@ -8,15 +8,15 @@ signature:
     output: [ declaration ]
 variables:
   key-pair:
-    type: "[`keyPair.Signature`]()"
+    type: "[`SignatureKeyPair`]()"
     description: |
       The public and private keys with which to sign `data`.
   public-key:
-    type: "[`key.Public`]()"
+    type: "[`PublicKey`]()"
     description: |
       The public key of the person wishing to sign `data`.
   private-key:
-    type: "[`key.Private`]()"
+    type: "[`PrivateKey`]()"
     description: |
       The private key of the person wishing to sign `data`.
   data:
@@ -33,7 +33,7 @@ prose: |
 
   Panda-Confidential establishes a key type system to determine your intention in a clear and error-free way.  That allows `sign` to accept either a signing keypair or the signing keys individually.
 
-  > **Warning**: Encryption key pairs are incompatible with `sign` and will cause `sign` to throw an error.
+  > **Warning**: Encryption key pairs are incompatible with `sign` and will cause `sign` to throw.
 
   The output is a special container object, [`Declaration`](), and is expected by [`verify`]().  `Declaration` holds the original data, the public keys of the `signatories`, and the `signatures` that attest the integrity of the data and the irrefutablitiy of the given signatory.
 

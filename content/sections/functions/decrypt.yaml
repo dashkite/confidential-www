@@ -4,7 +4,7 @@ signature:
     output: plaintext
 variables:
   key:
-    type: "[`key.Symmetric`]() | [`key.Asymmetric`]()"
+    type: "[`SymmetricKey`]() | [`SharedKey`]()"
     description: |
       Key to be used in the encryption operation.
   envelope:
@@ -20,8 +20,8 @@ prose: |
   A [generic function]() accepting an encryption key and ciphertext to output a plaintext.  `decrypt` and its counterpart [`encrypt`]() form a pair of opposing operations.
 
   Panda-Confidential establishes a key type system to determine your intention in a clear and error-free way.  That allows `decrypt`'s behavior to depend on the input key:
-   - When given a [symmetric key](), `decrypt` uses [symmetric decryption]().
-   - When given a [shared key](), `decrypt` uses authenticated, [asymmetric decryption]().
+   - When given a [`SymmetricKey`](), `decrypt` uses [symmetric decryption]().
+   - When given a [`SharedKey`](), `decrypt` uses authenticated, [asymmetric decryption]().
 
   Ciphertext is enclosed in a special container, [`Envelope`](), provided by [`encrypt`]().  `decrypt` is agnostic about the data it processes, outputting a [`Uint8Array`]() byte array.  [`convert`]() may then be used to explicitly specify a data encoding.
 

@@ -15,6 +15,8 @@ variables:
 prose: |
   Accepts the [`Declaration`]() output of `sign` and verifies its integrity, returning `true` or `false`.  In this way, `verify` and [`sign`]() form a pair of opposing operations.
 
+  `verify` will throw if you do not provide an instance of [`Declaration`]().
+
   > **Warning:** Everything needed to verify the signatures exists within a [`Declaration`](), but it is up to _you_ to verify the authenticity of the public keys within `signatories`.
 
 examples:

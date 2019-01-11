@@ -35,13 +35,31 @@ $references =
   "`sign`": "/api.html#function-sign"
   "`verify`": "/api.html#function-verify"
   "`convert`": "/api.html#function-convert"
+
   "`hash`": "/api.html#function-hash"
+  "`isDeclaration`": "/api.html#function-isdeclaration"
+  "`isEnvelope`": "/api.html#function-isenvelope"
+  "`isBytes`": "/api.html#function-isBytes"
 
+  "`key.symmetric`": "/api.html#function-key-symmetric"
+  "`key.isSymmetric`": "/api.html#function-key-issymmetric"
+  "`key.shared`": "/api.html#function-key-shared"
+  "`key.isShared`": "/api.html#function-key-isshared"
+  "`key.public`": "/api.html#function-key-public"
+  "`key.isPublic`": "/api.html#function-key-ispublic"
+  "`key.private`": "/api.html#function-key-private"
+  "`key.isPrivate`": "/api.html#function-key-isprivate"
 
-  "symmetric key": "/api.html#type-key-symmetric"
-  "`key.Symmetric`": "/api.html#type-key-symmetric"
-  "`key.Asymmetric`": "/api.html#type-key-asymmetric"
-
+  "`Envelope`": "/api.html#class-envelope"
+  "`Declaration`": "/api.html#class-declaration"
+  "`Key`": "/api.html#class-key"
+  "`SymmetricKey`": "/api.html#class-symmetrickey"
+  "`SharedKey`": "/api.html#class-sharedkey"
+  "`PublicKey`": "/api.html#class-publickey"
+  "`PrivateKey`": "/api.html#class-privatekey"
+  "`KeyPair`": "/api.html#class-keypair"
+  "`EncryptionKeyPair`": "/api.html#class-encryptionkeypair"
+  "`SignatureKeyPair`": "/api.html#class-signaturekeypair"
 
   "symmetric encryption": "/usage.html#symmetric-encryption-and-decryption"
   "symmetric decryption": "/usage.html#symmetric-encryption-and-decryption"
@@ -55,6 +73,4 @@ setLinks = (string) ->
       "[#{$1}](#{$references[$1]})"
     else
       "[#{$1}](#broken)"
-
-    #splice str, offset, match.length, link
 ::
