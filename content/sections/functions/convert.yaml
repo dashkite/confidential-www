@@ -42,11 +42,11 @@ examples:
 
       do ->
         assert.equal "Hello, World!",
-          convert from: "base64", to: "utf8", "SGVsbG8sIFdvcmxkIQ=="
+          convert {from: "base64", to: "utf8"}, "SGVsbG8sIFdvcmxkIQ=="
 
         # The property `from` can be inferred from the argument
         assert.equal "Hello, World!",
-          convert to: "utf8", Buffer.from "Hello, World!"
+          convert {to: "utf8"}, Buffer.from "Hello, World!"
       ```
 
   - title: Converting Plaintexts and Ciphertexts

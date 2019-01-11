@@ -1,0 +1,36 @@
+title: keyPair.signature
+signature:
+  - inputs: []
+    output: [ signature-key-pair ]
+
+variables:
+  signature-key-pair:
+    type: "[`Promise`]()"
+    description: |
+      Resolves to an instance of [`SignatureKeyPair`]()
+
+prose: |
+  Generates a key pair suitable for signing.  It uses the uses [`randomBytes`]() to generate a new instance of [`SignatureKeyPair`]().
+
+  > **Warning:** The private keys you generate for signing are not suitable for encryption.
+
+examples:
+  - title: New Signature Key Pair
+    note: |
+      **Warning:** Private keys should only be accessible to their owners.
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {keyPair, sign, convert} = confidential()
+      import {send} from "my-library"
+
+      do ->
+        # Generate a key pair for Alice.
+        alice = await keyPair.Signature()
+
+        # `alice` now has `publicKey` and `privateKey` fields.
+        # Use the key pair to sign some data.
+
+        declaration = sign alice, "Hello, World!"
+        send "Bob", convert {to: "base64"}, declaration
+      ```

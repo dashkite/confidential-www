@@ -16,7 +16,7 @@ variables:
 prose: |
   Generates an instance of [`PrivateKey`]() by wrapping `key`. Key literals must be in the form of a [`Uint8Array`]() (or its Node.js [`Buffer`]() equivalent).  You may use [`convert`]() to convert serialized key literals into the correct form.  If you provide a literal that is not [`nacl.box.secretKeyLength`]() bytes long, `key.private` throws.
 
-  Panda-Confidential always generates _new_ private keys as part of public-private keypairs.  Please see [`EncryptionKeyPair`]() or [`SignatureKeyPair`]() for more information.
+  Panda-Confidential always generates _new_ private keys as part of public-private key pairs.  Please see [`EncryptionKeyPair`]() or [`SignatureKeyPair`]() for more information.
 
 examples:
   - title: Private Key From Literal

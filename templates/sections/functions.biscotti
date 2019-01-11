@@ -29,4 +29,9 @@ section
   _include "key/isPublic"
   _include "key/private"
   _include "key/isPrivate"
+
+  _include "keyPair/encryption"
+  _include "keyPair/isEncryption"
+  _include "keyPair/signature"
+  _include "keyPair/isSignature"
   ::

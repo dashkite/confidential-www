@@ -44,7 +44,7 @@ examples:
         alice = keyLookup "Alice/private"
         envelope = await encrypt alice, "Hello, World!"
         # serialize as needed with convert
-        write "greeting", convert to: "safe-base64", envelope
+        write "greeting", convert to: "base64", envelope
       ```
 
   - title: Asymmetric Encryption

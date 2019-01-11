@@ -1,0 +1,38 @@
+title: keyPair.encryption
+signature:
+  - inputs: []
+    output: [ encryption-key-pair ]
+
+variables:
+  encryption-key-pair:
+    type: "[`Promise`]()"
+    description: |
+      Resolves to an instance of [`EncryptionKeyPair`]()
+
+prose: |
+  Generates a key pair suitable for asymmetric encryption.  It uses the uses [`randomBytes`]() to generate a new instance of [`EncryptionKeyPair`]().
+
+  > **Warning:** The private keys you generate for encryption are not suitable for signing.
+
+examples:
+  - title: New Encryption Key Pair
+    note: |
+      **Warning:** Private keys should only be accessible to their owners.
+    content: |
+      ```coffeescript
+      import {confidential} from "panda-confidential"
+      {key, keyPair, encrypt, convert} = confidential()
+      import {send, keyLookup} from "my-library"
+
+      do ->
+        # Generate a key pair for Alice.
+        alice = await keyPair.encryption()
+
+        # `alice` now has `publicKey` and `privateKey` fields.
+        # Use the private key to encrypt a message for Bob.
+
+        bob = keyLookup "Bob/public"
+        fromAliceToBob = key.shared alice.privateKey, bob
+        envelope = await encrypt fromAliceToBob, "Hello, World!"
+        send "Bob", convert {to: "base64"}, envelope
+      ```

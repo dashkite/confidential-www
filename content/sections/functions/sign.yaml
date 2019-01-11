@@ -20,7 +20,7 @@ variables:
     description: |
       The private key of the person wishing to sign `data`.
   data:
-    type: "[`Uint8Array`]() | [`Buffer`]() | [`Declaration`]()"
+    type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]() | [`Declaration`]()"
     description: |
       Data to be signed.
   declaration:
