@@ -14,7 +14,10 @@ section
   _include "decrypt"
   _include "sign"
   _include "verify"
-
   _include "convert"
+
   _include "hash"
+  _include "isBytes"
+  _include "isDeclaration"
+  _include "isEnvelope"
   ::

@@ -4,13 +4,16 @@ signature:
     output: [ is-bytes ]
 
 variables:
-  type: Value
   value:
-    type: A value to be tested.
-  is-bytes:
-    type: "[`Boolean`]()".
+    type: Value
     description: |
-      `true` if _value_ is an instance of [`Buffer`]() _or_ [`Uint8Array`](), `false` otherwise.
+      A value to be tested.
+  is-bytes:
+    type: "[`Boolean`]()"
+    description: |
+      `true` if `value` is an instance of [`Buffer`]() _or_ [`Uint8Array`](), `false` otherwise.
 
 prose: |
   Type check method to determine if the input `value` is a byte array, either an instance of [`Uint8Array`]() or its equivalent in Node.js, [`Buffer`](). Returns `true` or `false`.
+
+examples: []

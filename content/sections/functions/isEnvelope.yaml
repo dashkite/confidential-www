@@ -4,15 +4,18 @@ signature:
     output: [ is-envelope ]
 
 variables:
-  type: Value
   value:
-    type: A value to be tested.
-  is-envelope:
-    type: "[`Boolean`]()".
+    type: Value
     description: |
-      `true` if _value_ is an instance of [`Envelope`](), `false` otherwise.
+      A value to be tested.
+  is-envelope:
+    type: "[`Boolean`]()"
+    description: |
+      `true` if `value` is an instance of [`Envelope`](), `false` otherwise.
 
 prose: |
   Type check method to determine if the input `value` is an instance of [`Envelope`]().  Returns `true` or `false`.
 
-  A [`Envelope`] organizies the ciphertext and nonce output from [`encrypt`](), making it easy to transport and eventually process with [`decrypt`]().
+  A [`Envelope`]() organizies the ciphertext and nonce output from [`encrypt`](), making it easy to transport and eventually process with [`decrypt`]().
+
+examples: []
