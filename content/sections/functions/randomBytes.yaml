@@ -13,9 +13,9 @@ variables:
       Array of `length` pseudo-random bytes.
 
 prose: |
-  Provides an interface produce pseudorandom bytes of cryptographic quality.  This interface is also used internally to generate keys and nonces.
+  Provides an interface produce an array of pseudorandom bytes of cryptographic quality.  This interface is also used internally to generate keys and nonces.
 
-  By default, this is the [TweetNaCl.js `randomBytes` implmentation](https://github.com/dchest/tweetnacl-js#random-bytes-generation), which selects the underlying interface most appropriate for a given environment.  When such an interface cannot be accessed, this function throws an error.
+  By default, this is the [TweetNaCl.js `randomBytes` implmentation](https://github.com/dchest/tweetnacl-js#random-bytes-generation), which selects the underlying interface most appropriate for a given environment.  When such an interface cannot be accessed, this function throws.
 
 examples:
   - title: Using randomBytes
@@ -24,7 +24,5 @@ examples:
       import {confidential} from "panda-confidential"
       {randomBytes} = confidential()
 
-      randomBytes 32
-      .then (bytes) ->
-      # ...
+      bytes = randomBytes 32
       ```

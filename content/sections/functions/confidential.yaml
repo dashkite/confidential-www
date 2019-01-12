@@ -15,7 +15,7 @@ variables:
       An instance of the Confidential API.
 
 prose: |
-  Because Panda-Confidential is extensible, it uses instantiation to prevent unexpected changes by third parties. Once you have an instance, you can destructure its functions and use them directly.
+  Because Panda-Confidential is extensible, it uses instantiation to prevent unexpected changes by third parties. Once you have an instance, you can destructure its functions and types to use them directly.
 
   Please use caution when replacing [`randomBytes`]() with an arugment to this instanciation.  Insufficiently robust sources of psuedo-randomness will compromise encryption.
 
@@ -26,5 +26,5 @@ examples:
       import {confidential} from "panda-confidential"
 
       # Instantiate Panda-Confidential
-      {encrypt, decrypt, key} = confidential()
+      {encrypt, decrypt, SymmetricKey} = confidential()
       ```

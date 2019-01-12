@@ -5,8 +5,19 @@ section
   ::
   if prototype
     $fragments.blockquote "Extends #{prototype}"
+
+  $fragments.prose prose ? ""
+
   if Object.keys(properties).length > 0
     $fragments.header 3, "Properties"
     $fragments.signatureTable properties
-  $fragments.prose prose ? ""
+  if Object.keys(methods).length > 0
+    $fragments.header 3, "Methods"
+    for name, {signature, variables, prose, examples = []} of methods
+      $fragments.header 4, name
+      $fragments.signature name, signature
+      $fragments.signatureTable variables
+      $fragments.prose prose ? ""
+      for example in examples
+        $fragments.example example
   ::

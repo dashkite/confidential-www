@@ -1,6 +1,7 @@
 title: EncryptionKeyPair
 prototype: "[`KeyPair`]()"
 properties: {}
+methods: {}
 prose: |
   Key pair suitable for [asymmetric encryption](). You may generate a pair by invoking [`keyPair.encryption`]().
 

@@ -11,13 +11,13 @@ variables:
     type: "[`Uint8Array`]() | [`Buffer`]()"
     description: |
       A value to be combined with the plaintext before encryption. A nonceLength random nonce is generated if not supplied.
-    plaintext:
-      type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
-      description: The plaintext to be encrypted.
-    envelope:
-      type: "[`Envelope`]()"
-      description: |
-        Object with properties ciphertext and nonce. Suitable for use with decrypt.
+  plaintext:
+    type: "[`Uint8Array`]() | [`Buffer`]()"
+    description: The plaintext to be encrypted.
+  envelope:
+    type: "[`Promise`]() &map; [`Envelope`]()"
+    description: |
+      Object with properties ciphertext and nonce. Suitable for use with decrypt.
 
 prose: |
   A [generic function]() accepting an encryption key and plaintext to output a ciphertext [`Envelope`]().  `encrypt` and its counterpart [`decrypt`]() form a pair of opposing operations.
@@ -28,7 +28,9 @@ prose: |
 
   > **Warning**: Signing key pairs are incompatible with `encrypt` and will cause `encrypt` to throw.
 
-  The output ciphertext is enclosed in a special container, [`Envelope`](), and is expected by [`decrypt`]().
+  Note that `input` must be a byte array, so use [`convert`]() to prepare your data for this function, if required.
+
+  `encrypt` returns a promise that yields [`Envelope`], a special container for the resultant ciphertext.  This container is expected by [`decrypt`]().
 
 examples:
   - title: Symmetric Encryption
@@ -36,15 +38,17 @@ examples:
       **Warning**: Private keys should only be accessible to their owners.
     content: |
       ```coffeescript
+      import assert from "assert"
       import {confidential} from "panda-confidential"
       {encrypt} = confidential()
       import {keyLookup, write} from "my-library"
 
       do ->
         alice = keyLookup "Alice/private"
-        envelope = await encrypt alice, "Hello, World!"
+        plaintext = convert from: "utf8", to: "bytes", "Hello, Alice!"
+        envelope = await encrypt alice, plaintext
         # serialize as needed with convert
-        write "greeting", convert to: "base64", envelope
+        write "greeting", envelope.to "base64"
       ```
 
   - title: Asymmetric Encryption
@@ -52,14 +56,16 @@ examples:
       **Warning:** Private keys should only be accessible to their owners.
     content: |
       ```coffeescript
+      import assert from "assert"
       import {confidential} from "panda-confidential"
-      {key, encrypt} = confidential()
-      import {keyLookup} from "my-library"
+      {SharedKey, encrypt} = confidential()
+      import {keyLookup, send} from "my-library"
 
       do ->
         alice = keyLookup "Alice/private"
         bob = keyLookup "Bob/public"
-        fromAliceToBob = key.shared alice, bob
-        envelope = await encrypt fromAliceToBob, "Hello, World!"
-        send "Bob", convert to: "base64", envelope
+        fromAliceToBob = sharedKey.create alice, bob
+        plaintext = convert {from: "utf8"}, "Hello, Bob!"
+        envelope = await encrypt fromAliceToBob, plaintext
+        send "Bob", envelope.to "base64"
       ```

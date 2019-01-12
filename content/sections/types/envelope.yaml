@@ -1,5 +1,6 @@
 title: Envelope
 prototype: false
+methods: {}
 properties:
   ciphertext:
     type: "[`Uint8Array`]()"

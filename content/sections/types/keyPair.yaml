@@ -9,7 +9,7 @@ properties:
     type: "[`PublicKey`]()"
     description: |
       The public key of this key pair.
-
+methods: {}
 prose: |
   Base class for all key pairs in Panda-Confidential. Stores a pair of algorithmically related keys, the [`PrivateKey`]() and [`PublicKey`]() instances.
 

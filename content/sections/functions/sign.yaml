@@ -20,7 +20,7 @@ variables:
     description: |
       The private key of the person wishing to sign `data`.
   data:
-    type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]() | [`Declaration`]()"
+    type: "[`Uint8Array`]() | [`Buffer`]() | [`Declaration`]()"
     description: |
       Data to be signed.
   declaration:
@@ -29,31 +29,34 @@ variables:
       Object with properties `data`, `signatures`, and `signatories`. Suitable for use with `verify`.
 
 prose: |
-  A [generic function]() accepting signing keys and data to output a cryptographic signature.  `sign` and its counterpart [`verify`]() form a pair of opposing operations.
+  A [generic function]() accepting signing keys and data to output a digital signature.  `sign` and its counterpart [`verify`]() form a pair of opposing operations.
 
-  Panda-Confidential establishes a key type system to determine your intention in a clear and error-free way.  That allows `sign` to accept either a signing keypair or the signing keys individually.
+  Panda-Confidential establishes a key type system to determine your intention in a clear and error-free way.  That allows `sign` to accept either a [`SignatureKeyPair`]() or keys as individual arguments.
 
   > **Warning**: Encryption key pairs are incompatible with `sign` and will cause `sign` to throw.
 
+  `sign` is agnostic to the data it processes.  Therefore, it requires you to present `data` as a byte array.  Use [`convert`]() to explicitly indicate a conversion to byte array for your data if needed.
+
   The output is a special container object, [`Declaration`](), and is expected by [`verify`]().  `Declaration` holds the original data, the public keys of the `signatories`, and the `signatures` that attest the integrity of the data and the irrefutablitiy of the given signatory.
 
-  The `Declaration` object is also a valid input to `sign` and cause it to append a signature to the existing list.
+  The `Declaration` object is also a valid input to `sign` and causes it to append a signature to the existing list.
 
 examples:
   - title: Single Signature
     content: |
       ```coffeescript
       import {confidential} from "panda-confidential"
-      {sign} = confidential()
+      {sign, convert} = confidential()
 
       import {send, keyPairLookup} from "my-library"
 
       do ->
         alice = keyPairLookup "Alice/signature"
-        greeting = sign alice, "Hello, World!"
+        data = convert from: "utf8" to: "bytes", "Hello, World!"
+        declaration = sign alice, data
 
         # encode the signed data object itself
-        send "Bob", convert to: "safe-base64", declaration
+        send "Bob", declaration.to "base64"
       ```
 
   - title: Multiple Signatures
@@ -63,12 +66,12 @@ examples:
       ```coffeescript
       import assert from "assert"
       import {confidential} from "panda-confidential"
-      {sign, declaration} = confidential()
+      {sign, Declaration} = confidential()
       import {receive, keyPairLookup} from "my-library"
 
       do ->
         # convert JSON to declaration
-        greeting = declaration convert from: "json", receive "Bob"
+        greeting = Declaration.from "base64", receive "Bob"
 
         # add Bob's signature
         bob = keyPairLookup "Bob/signature"

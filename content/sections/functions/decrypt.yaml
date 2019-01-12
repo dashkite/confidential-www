@@ -10,7 +10,7 @@ variables:
   envelope:
     type: "[`Envelope`]()"
     description: |
-      Object with properties `ciphertext` and nonce. As returned by [`encrypt`]().
+      Container class for encryption products, `ciphertext` and `nonce`. As returned by [`encrypt`]().
   plaintext:
     type: "[`Uint8Array`]()"
     description: |
@@ -23,34 +23,44 @@ prose: |
    - When given a [`SymmetricKey`](), `decrypt` uses [symmetric decryption]().
    - When given a [`SharedKey`](), `decrypt` uses authenticated, [asymmetric decryption]().
 
-  Ciphertext is enclosed in a special container, [`Envelope`](), provided by [`encrypt`]().  `decrypt` is agnostic about the data it processes, outputting a [`Uint8Array`]() byte array.  [`convert`]() may then be used to explicitly specify a data encoding.
+  Ciphertext is enclosed in the special container, [`Envelope`](), provided by [`encrypt`]().  If you wish to instanciate an `Envelope` from a serialized form, use the type method `Envelope.from` to do so.
+
+  `decrypt` is agnostic about the data it processes, outputting a [`Uint8Array`]() byte array.  [`convert`]() may then be used to explicitly specify a data encoding.
 
 examples:
   - title: Symmetric Decryption
     content: |
       ```coffeescript
+      import assert from "assert"
       import {confidential} from "panda-confidential"
-      {decrypt} = confidential()
+      {decrypt, Envelope, convert} = confidential()
       import {keyLookup, read} from "my-library"
 
       do ->
         alice = keyLookup "Alice/private"
         serialized = read "greeting"
-        envelope = convert {from: "base64", to: "envelope"}, serialized
+        envelope = Envelope.from "base64", serialized
         plaintext = await decrypt alice, envelope
+
+        assert.equal (convert from: "bytes", to: "utf8", plaintext),
+          "Hello, Alice!"
       ```
   - title: Asymmetric Decryption
     content: |
       ```coffeescript
+      import assert from "assert"
       import {confidential} from "panda-confidential"
-      {key, decrypt} = confidential()
+      {SharedKey, decrypt, Envelope, convert} = confidential()
       import {keyLookup, receive} from "my-library"
 
       do ->
         alice = keyLookup "Alice/public"
         bob = keyLookup "Bob/private"
-        toBobFromAlice = key.shared alice, bob
+        toBobFromAlice = SharedKey.create alice, bob
         serialized = receive "Bob"
-        envelope = convert {from: "base64", to: "envelope"}, serialized
+        envelope = Envelope.from "base64", serialized
         plaintext = await decrypt toBobFromAlice, envelope
+
+        assert.equal (convert from: "bytes", to: "utf8", plaintext),
+          "Hello, Bob!"
       ```

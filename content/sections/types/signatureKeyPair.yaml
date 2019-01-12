@@ -1,6 +1,7 @@
 title: SignatureKeyPair
 prototype: "[`KeyPair`]()"
 properties: {}
+methods: {}
 prose: |
   Key pair suitable for [digital signing](). You may generate a pair by invoking [`keyPair.signature`]().
 

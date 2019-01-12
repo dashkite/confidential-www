@@ -1,6 +1,7 @@
 title: PublicKey
 prototype: "[`Key`]()"
 properties: {}
+methods: {}
 prose: |
   One of the two key types used to perform [asymmetric encryption]().  This key is shared widely, serving to identify the holder.
 

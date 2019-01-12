@@ -1,10 +1,10 @@
 title: convert
 signature:
-  - inputs: [ instructions, input ]
+  - inputs: [ hints, input ]
     output: [ output ]
 
 variables:
-  instructions:
+  hints:
     type: "[`Object`]()"
     description: |
       Describes the conversion to be applied to _input_. Contains the properties `from` and `to`.
@@ -18,61 +18,79 @@ variables:
       The result of the conversion.
 
 prose: |
-  A utility function to manage encoding conversion between a variety of targets.
+  A utility function to manage data format conversion between a variety of targets.
 
-  A conversion is specified by the fields within `instructions`, `from` and `to`.  These identify the current and target encoding of `input`, respectively. Attempting an unsupported conversion will throw.
+  A conversion is specified by `hints`'s fields, `from` and `to`.  These identify the current and target encoding of `input`, respectively.
 
-  > **Note:** When `from` can be inferred from `input` (ex: a byte array), it is not necessary to specify it.
+  #### Supported Formats
+  - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+  - `utf8`: A [`String`]() with [UTF-8 encoding]()
+  - `base64`: A [`String`]() with [Base64 encoding]()
+  - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
+  - `object`: An [`Object`]().  Objects are transformed by using the native [`JSON`]() object's `stringify` and `parse` methods.
 
-  Supported formats or encodings include:
-    - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
-    - `utf8`: A string with [UTF-8 encoding]()
-    - `base64`: A string with [Base64 encoding]()
-    - `safe-base64`: A string with [URL-Safe Base64 encoding]()
-    - `object`: An [`Object`]() transformed with the `parse` and `stringify` methods on the native [`JSON`]() object.
-    - `envelope`: An instance of [`Envelope`]().  Specifying this is suitable for serializing and de-serializing an `Envelope` to use with [`encrypt`]() and [`decrypt`]().
-    - `declaration`: An instance of [`Declaration`](). Specifying this is suitable for serializing and de-serializing a `Declaration` to use `sign` and `verify`.
+  #### Errors
+  `convert` is meant to provide safe and correct format conversion for your data.  There are a number of checks in place that will throw errors if they fail:
+  - Specifying an unsupported conversion
+  - Failing to specify either `from` or `to`
+  - Specifying the same value for `from` and `to`
+  - Specifying a value for `from` that conflicts with the type of `input`. ex, specifying `bytes` when the input is a string
+
 
 examples:
   - title: String Conversion
     content: |
       ```coffeescript
+      import assert from "assert"
       import {confidential} from "panda-confidential"
       {convert} = confidential()
 
       do ->
         assert.equal "Hello, World!",
-          convert {from: "base64", to: "utf8"}, "SGVsbG8sIFdvcmxkIQ=="
+          convert from: "base64", to: "utf8", "SGVsbG8sIFdvcmxkIQ=="
 
-        # The property `from` can be inferred from the argument
+        assert.equal (Buffer.from "Hello, World!"),
+          convert from: "utf8", to: "bytes" , "Hello, World!"
+
         assert.equal "Hello, World!",
-          convert {to: "utf8"}, Buffer.from "Hello, World!"
+          convert from: "bytes", to: "utf8", Buffer.from "Hello, World!"
       ```
 
-  - title: Converting Plaintexts and Ciphertexts
+  - title: Formatting Data for the API
     content: |
-      [`encrypt`]() and [`decrypt`]() are purposefully agnostic to the data they operate on.  An [`Envelope`]() represents its data as a byte array and requires explicit instructions to encode.
+      The Panda-Confidential generics, ([`encrypt`](), [`decrypt`](), [`sign`](), and [`verify`]()) are purposefully agnostic to the content they process, be it a document, message, or image.  The API always operates on byte arrays, requiring you convert inputs into bytes and then dealing with byte array outputs.
+
+      Any data formmatting is your responsibility, but Panda-Confidential provides `convert` to safely and correctly conduct formatting by requiring explicit formatting instructions via `hints`.
+
+      Similiarly, types like [`Envelope`](), [`Declaration`], and the various keys use the `.to()` and `.from()` methods to safely conduct conversions based around their types.  See those classes for more information.
 
       ```coffeescript
       import assert from "assert"
       import {confidential} from "panda-confidential"
-      {encrypt} = confidential()
-      import {keyLookup, write} from "my-library"
-
+      {encrypt, SharedKey, Envelope, decrypt, convert} = confidential()
+      import {keyLookup} from "my-library"
       do ->
-        # First, Alice encrypts a message for Bob and serializes...
+        # First, Alice creates a SharedKey for asymmetric encryption..
         alice = keyLookup "Alice/private"
         bob = keyLookup "Bob/public"
-        fromAliceToBob = key.shared alice, bob
-        envelope = await encrypt fromAliceToBob, "Hello, World!"
-        send "Bob", convert {to: "base64"}, envelope
+        fromAliceToBob = SharedKey.create alice, bob
+
+        # Use convert to turn the message into a byte array...
+        plaintext = convert from: "utf8", to: "bytes", "Hello, Bob!"
+        envelope = await encrypt fromAliceToBob, plaintext
+
+        # Use the Envelope method `to` to serialize.
+        send "Bob", envelope.to "base64"
 
         # Later, with Bob on the recieving end....
         alice = keyLookup "Alice/public"
         bob = keyLookup "Bob/private"
-        toBobFromAlice = key.shared alice, bob
+        toBobFromAlice = SharedKey.create alice, bob
         serialized = receive "Bob"
-        envelope = convert {from: "base64", to: "envelope"}, serialized
+        envelope = Envelope.from "base64", serialized
         plaintext = await decrypt toBobFromAlice, envelope
-        assert.equal plaintext, "Hello, World!"
+
+        # And use `convert` to encode the resulting plaintext.
+        assert.equal (convert from: "bytes", to: "utf8", plaintext),  "Hello,
+        Bob!"
       ```

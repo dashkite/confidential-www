@@ -1,6 +1,7 @@
 title: SymmetricKey
 prototype: "[`Key`]()"
 properties: {}
+methods: {}
 prose: |
   The key type used to perform [symmetric encryption]().
 

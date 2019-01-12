@@ -5,7 +5,7 @@ properties:
     type: "[`Uint8Array`]()"
     description: |
       The value of the key wrapper.
-
+methods: {}
 prose: |
   Base class for all keys in Panda-Confidential. It stores a decoded key ready for use in TweetNaCl.js functions, along with a type label to ensure correct application.
 
