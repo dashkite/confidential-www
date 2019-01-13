@@ -1,14 +1,89 @@
 title: Key
 prototype: false
+prose: |
+  Base class for all keys in Panda-Confidential. It stores a decoded key ready for use in TweetNaCl.js functions, along with a type label to ensure correct application.
+
+  This class contains a method interface for managing the serialization of `Key`s.
+
+  This class is not directly part of the Panda-Confidential interface, but its descendants inherit its interface.
+
 properties:
   key:
     type: "[`Uint8Array`]()"
     description: |
-      The value of the key wrapper.
-methods: {}
-prose: |
-  Base class for all keys in Panda-Confidential. It stores a decoded key ready for use in TweetNaCl.js functions, along with a type label to ensure correct application.
+      The value of this key.
 
-  You may use [`convert`]() to serialize the value `key`.
+methods:
+  to:
+    signature:
+      - inputs: [ format ]
+        output: encoded-key
+    variables:
+      to:
+        type: "[`String`]()"
+        description: |
+          name that specifies the output encoding.
+      encoded-key:
+        type: "[`String`]() | [`Uint8Array`]()"
+        description: |
+          The key in an encoded form for transport or storage.
+    prose:  |
+      Outputs this instance's value in the form specified in `format`.
 
-  This class is not directly part of the Panda-Confidential interface, but its descendants all share its interface.
+      #### Supported Types
+      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      - `utf8`: A [`String`]() with [UTF-8 encoding]()
+      - `base64`: A [`String`]() with [Base64 encoding]()
+      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
+      - `object`: An [`Object`] with fields containing values as they are stored internally, as byte arrays.
+
+      Specifying an unsupported conversion throws.
+
+  from:
+    signature:
+      - inputs: [ format, data ]
+        output: key
+    variables:
+      to:
+        type: "[`String`]()"
+        description: |
+          name that specifies the input format.
+      data:
+        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]() | [`Object`]()"
+        description: |
+          A representation of the data of a key.
+      key:
+        type: "[`Key`]()"
+        description: |
+          The key in an encoded form for transport or storage.
+    prose: |
+      Returns an instanciated `Delcaration` based on the value of `data`.
+
+      `format` is a hint that tells `from` how convert the value into `Key`'s internal reprentation.
+
+      #### Supported Types
+      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      - `utf8`: A [`String`]() with [UTF-8 encoding]()
+      - `base64`: A [`String`]() with [Base64 encoding]()
+      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
+      - `object`: An [`Object`]
+
+      Specifying an unsupported conversion throws.
+
+      If `format` conflicts with `data`'s type (ex: `data` is a byte array, while `format` is "string"), `from` thows.
+
+  isKind:
+    signature:
+      - inputs: [ value ]
+        output: is-key
+    variables:
+      value:
+        type: Value
+        description: |
+          A value to be tested.
+      is-key:
+        type: "[`Boolean`]()"
+        description: |
+          `true` if `value` has the `Key` in its prototype chain, `false` otherwise.
+    prose: |
+      Type check method to determine if the input `value` is an instance of `Key` or has inherited from one in its prototype.  Returns `true` or `false`.

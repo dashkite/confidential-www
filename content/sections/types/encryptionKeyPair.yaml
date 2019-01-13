@@ -1,8 +1,44 @@
 title: EncryptionKeyPair
 prototype: "[`KeyPair`]()"
-properties: {}
-methods: {}
 prose: |
-  Key pair suitable for [asymmetric encryption](). You may generate a pair by invoking [`keyPair.encryption`]().
+  Key pair suitable for [asymmetric encryption]().
 
   > **Warning:** `EncryptionKeyPair` is not suitable for signing.
+
+  Because this type extends [`KeyPair`](), you may:
+  - manage `EncryptionKeyPair` serialization through the `to` and `from` methods.
+  - check if this key pair is _any_ type of instanciated [`KeyPair`]() through the `isKind` method.
+
+  This class adds to the method interface with:
+  - `create`: generates a key pair suitable for encryption
+  - `isType`: type check specifically for `EncryptionKeyPair`
+
+properties: false
+methods:
+  create:
+    signature:
+      - inputs: []
+        output: promise
+    variables:
+      promise:
+        type: "[`Promise`]() &map; `EncryptionKeyPair`"
+        description: |
+          Promise that resolves to an instance of `EncryptionKeyPair`.
+    prose: |
+      Generate a new `EncryptionKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
+
+  isType:
+    signature:
+      - inputs: [ value ]
+        output: is-encryption-key-pair
+    variables:
+      value:
+        type: Value
+        description: |
+          A value to be tested.
+      is-encryption-key-pair:
+        type: "[`Boolean`]()"
+        description: |
+          `true` if `value` is an instance of [`EncryptionKeyPair`](), `false` otherwise.
+    prose: |
+      Type check method to determine if the input `value` is an instance of `EncryptionKeyPair`.  Returns `true` or `false`.

@@ -1,8 +1,33 @@
 title: PrivateKey
 prototype: "[`Key`]()"
-properties: {}
-methods: {}
 prose: |
-  One of the two key types used to perform [asymmetric encryption]().  This key must remain a secret for the encryption be effective.
+  One of the two key types in a [`KeyPair`](), used to perform public-key cryptography.
 
-  Generate an instance of this key (and its [`PublicKey`]() counterpart) with [`keyPair.encryption`]() or [`keyPair.signature`](), depending on your needs.  Remember that encryption and signing keys cannot interoperate.
+  > **Warning:** This key must remain secret for the public-key cryptography to be effective.
+
+  Because this type extends [`Key`](), you may:
+  - manage `PrivateKey` serialization through the `to` and `from` methods.
+  - check if this key is _any_ type of instanciated [`Key`]() through the `isKind` method.
+
+  This class adds to the method interface with:
+  - `isType`: type check specifically for `PrivateKey`
+
+  Note that this key type cannot be created directly, but rather through the creation of an [`EncryptionKeyPair`]() or [`SignatureKeyPair`]().  Further, while both of those key pairs contain instances of `PrivateKey`, encryption and signing keys in Panda-Confidential cannot interoperate.
+
+properties: false
+methods:
+  isType:
+    signature:
+      - inputs: [ value ]
+        output: is-private-key
+    variables:
+      value:
+        type: Value
+        description: |
+          A value to be tested.
+      is-private-key:
+        type: "[`Boolean`]()"
+        description: |
+          `true` if `value` is an instance of [`PrivateKey`](), `false` otherwise.
+    prose: |
+      Type check method to determine if the input `value` is an instance of `PrivateKey`.  Returns `true` or `false`.

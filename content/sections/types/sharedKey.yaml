@@ -1,8 +1,46 @@
 title: SharedKey
 prototype: "[`Key`]()"
-properties: {}
-methods: {}
 prose: |
-  A special key type used to perform [asymmetric encryption]().  This key is derived algorithmically from one [`PublicKey`]() and one [`PrivateKey`]().  That allows two people to, remotely, generate the same _shared_ secret key and conduct authenticated encryption/decryption.
+  A special key type used to perform [asymmetric encryption]().  This key is derived algorithmically from one [`PublicKey`]() and one [`PrivateKey`]().  That allows two people to, independently, generate the same _shared_ secret key and conduct authenticated encryption/decryption.
 
-  Generate an instance of this key with [`key.shared`]().
+  > **Warning:** This key must remain secret for the encryption to be effective.
+
+  Because this type extends [`Key`](), you may:
+  - manage `SharedKey` serialization through the `to` and `from` methods.
+  - check if this key is _any_ type of instanciated [`Key`]() through the `isKind` method.
+
+  This class adds to the method interface with:
+  - `create`: generates a shared key pair suitable for [asymmetric encryption]()
+  - `isType`: type check specifically for `SharedKey`
+
+properties: false
+methods:
+  create:
+    signature:
+      - inputs: [public-key, private-key]
+        output: promise
+      - inputs: [private-key, public-key]
+        output: promise
+    variables:
+      promise:
+        type: "[`Promise`]() &map; `SharedKey`"
+        description: |
+          Promise that resolves to an instance of `SharedKey`.
+    prose: |
+      Generate a new `SharedKey` by algorithmically combinding `public-key` and `private-key`.
+
+  isType:
+    signature:
+      - inputs: [ value ]
+        output: is-shared-key
+    variables:
+      value:
+        type: Value
+        description: |
+          A value to be tested.
+      is-shared-key:
+        type: "[`Boolean`]()"
+        description: |
+          `true` if `value` is an instance of [`SharedKey`](), `false` otherwise.
+    prose: |
+      Type check method to determine if the input `value` is an instance of `SharedKey`.  Returns `true` or `false`.

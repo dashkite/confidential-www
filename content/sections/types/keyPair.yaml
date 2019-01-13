@@ -1,5 +1,12 @@
 title: KeyPair
 prototype: false
+prose: |
+  Base class for all key pairs in Panda-Confidential. Stores a pair of algorithmically related keys, the [`PrivateKey`]() and [`PublicKey`]() instances.
+
+  This class contains a method interface for managing the serialization of `KeyPair`s.
+
+  This class is not directly part of the Panda-Confidential interface, but its descendants inherit its interface.
+
 properties:
   privateKey:
     type: "[`PrivateKey`]()"
@@ -9,8 +16,78 @@ properties:
     type: "[`PublicKey`]()"
     description: |
       The public key of this key pair.
-methods: {}
-prose: |
-  Base class for all key pairs in Panda-Confidential. Stores a pair of algorithmically related keys, the [`PrivateKey`]() and [`PublicKey`]() instances.
 
-  This class is not directly part of the Panda-Confidential interface, but its descendants all share its interface.
+methods:
+  to:
+    signature:
+      - inputs: [ format ]
+        output: encoded-key-pair
+    variables:
+      to:
+        type: "[`String`]()"
+        description: |
+          name that specifies the output encoding.
+      encoded-key-pair:
+        type: "[`String`]() | [`Uint8Array`]()"
+        description: |
+          The key-pair in an encoded form for transport or storage.
+    prose:  |
+      Outputs this instance's value in the form specified in `format`.
+
+      #### Supported Types
+      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      - `utf8`: A [`String`]() with [UTF-8 encoding]()
+      - `base64`: A [`String`]() with [Base64 encoding]()
+      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
+      - `object`: An [`Object`] with fields containing values as they are stored internally, as byte arrays.
+
+      Specifying an unsupported conversion throws.
+
+  from:
+    signature:
+      - inputs: [ format, data ]
+        output: key-pair
+    variables:
+      to:
+        type: "[`String`]()"
+        description: |
+          name that specifies the input format.
+      data:
+        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]() | [`Object`]()"
+        description: |
+          A representation of the data of a key-pair.
+      key-pair:
+        type: "[`KeyPair`]()"
+        description: |
+          The key-pair in an encoded form for transport or storage.
+    prose: |
+      Returns an instanciated `Delcaration` based on the value of `data`.
+
+      `format` is a hint that tells `from` how convert the value into `KeyPair`'s internal reprentation.
+
+      #### Supported Types
+      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      - `utf8`: A [`String`]() with [UTF-8 encoding]()
+      - `base64`: A [`String`]() with [Base64 encoding]()
+      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
+      - `object`: An [`Object`]
+
+      Specifying an unsupported conversion throws.
+
+      If `format` conflicts with `data`'s type (ex: `data` is a byte array, while `format` is "string"), `from` thows.
+
+  isKind:
+    signature:
+      - inputs: [ value ]
+        output: is-key-pair
+    variables:
+      value:
+        type: Value
+        description: |
+          A value to be tested.
+      is-key-pair:
+        type: "[`Boolean`]()"
+        description: |
+          `true` if `value` has the `KeyPair` in its prototype chain, `false` otherwise.
+    prose: |
+      Type check method to determine if the input `value` is an instance of `KeyPair` or has inherited from one in its prototype.  Returns `true` or `false`.

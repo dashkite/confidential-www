@@ -1,8 +1,44 @@
 title: SignatureKeyPair
 prototype: "[`KeyPair`]()"
-properties: {}
-methods: {}
 prose: |
-  Key pair suitable for [digital signing](). You may generate a pair by invoking [`keyPair.signature`]().
+  Key pair suitable for [digital signing]().
 
-  > **Warning:** `SignatureKeyPair` is not suitable for encryption.
+  > **Warning:** `SignatureKeyPair` is not suitable for signature.
+
+  Because this type extends [`KeyPair`](), you may:
+  - manage `SignatureKeyPair` serialization through the `to` and `from` methods.
+  - check if this key pair is _any_ type of instanciated [`KeyPair`]() through the `isKind` method.
+
+  This class adds to the method interface with:
+  - `create`: generates a key pair suitable for digitial signing
+  - `isType`: type check specifically for `SignatureKeyPair`
+
+properties: false
+methods:
+  create:
+    signature:
+      - inputs: []
+        output: promise
+    variables:
+      promise:
+        type: "[`Promise`]() &map; `SignatureKeyPair`"
+        description: |
+          Promise that resolves to an instance of `SignatureKeyPair`.
+    prose: |
+      Generate a new `SignatureKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
+
+  isType:
+    signature:
+      - inputs: [ value ]
+        output: is-signature-key-pair
+    variables:
+      value:
+        type: Value
+        description: |
+          A value to be tested.
+      is-signature-key-pair:
+        type: "[`Boolean`]()"
+        description: |
+          `true` if `value` is an instance of [`SignatureKeyPair`](), `false` otherwise.
+    prose: |
+      Type check method to determine if the input `value` is an instance of `SignatureKeyPair`.  Returns `true` or `false`.

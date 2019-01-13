@@ -1,7 +1,7 @@
 title: encrypt
 signature:
   - inputs: [ key, nonce&, plaintext ]
-    output: envelope
+    output: promise
 variables:
   key:
     type: "[`SymmetricKey`]() | [`SharedKey`]()"
@@ -14,10 +14,10 @@ variables:
   plaintext:
     type: "[`Uint8Array`]() | [`Buffer`]()"
     description: The plaintext to be encrypted.
-  envelope:
+  promise:
     type: "[`Promise`]() &map; [`Envelope`]()"
     description: |
-      Object with properties ciphertext and nonce. Suitable for use with decrypt.
+      Promise that resolves to an [`Envelope`], an object with properties ciphertext and nonce. Suitable for use with decrypt.
 
 prose: |
   A [generic function]() accepting an encryption key and plaintext to output a ciphertext [`Envelope`]().  `encrypt` and its counterpart [`decrypt`]() form a pair of opposing operations.
@@ -30,7 +30,9 @@ prose: |
 
   Note that `input` must be a byte array, so use [`convert`]() to prepare your data for this function, if required.
 
-  `encrypt` returns a promise that yields [`Envelope`], a special container for the resultant ciphertext.  This container is expected by [`decrypt`]().
+  `encrypt` accepts an optional `nonce` as its second argument, or will generate its own from the [`randomBytes`]() interface if it is omitted.
+
+  `encrypt` returns a promise that yields [`Envelope`](), a special container for the resultant ciphertext.  This container is expected by [`decrypt`]().
 
 examples:
   - title: Symmetric Encryption
