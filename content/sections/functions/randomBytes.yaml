@@ -15,6 +15,8 @@ variables:
 prose: |
   Provides an interface produce an array of pseudorandom bytes of cryptographic quality.  This interface is also used internally to generate keys and nonces.
 
+  This interface may be replaced by a function of your choosing when instanciating [`confidential`]().
+
   By default, this is the [TweetNaCl.js `randomBytes` implmentation](https://github.com/dchest/tweetnacl-js#random-bytes-generation), which selects the underlying interface most appropriate for a given environment.  When such an interface cannot be accessed, this function throws.
 
 examples:

@@ -15,7 +15,7 @@ variables:
 prose: |
   Convenience function that exposes the TweetNaCl.js implementation of [SHA-512]() hashing.
 
-  Note that `data` must be a byte array, so use [`convert`]() to prepare your data for this function, if required. 
+  Note that `data` must be a byte array, so use [`convert`]() to prepare your data for this function, if required.
 
 examples:
   - title: FIX THIS EXAMPLE
@@ -26,6 +26,6 @@ examples:
       {hash, convert} = confidential()
 
       do ->
-        myHash = hash convert {from: "utf8"}, "Hello, World!"
-        assert.equal (convert {to: "base64"}, myHash), ""
+        myHash = hash convert from: "utf8", to: "bytes", "Hello, World!"
+        assert.equal myHash, ""
       ```

@@ -58,11 +58,11 @@ examples:
 
   - title: Formatting Data for the API
     content: |
-      The Panda-Confidential generics, ([`encrypt`](), [`decrypt`](), [`sign`](), and [`verify`]()) are purposefully agnostic to the content they process, be it a document, message, or image.  The API always operates on byte arrays, requiring you convert inputs into bytes and then dealing with byte array outputs.
+      The Panda-Confidential generics, ([`encrypt`](), [`decrypt`](), [`sign`](), and [`verify`]()) are purposefully agnostic to the content they process, be it text or binary media.  The API always operates on byte arrays, requiring you convert inputs into bytes and then dealing with byte array outputs.
 
       Any data formmatting is your responsibility, but Panda-Confidential provides `convert` to safely and correctly conduct formatting by requiring explicit formatting instructions via `hints`.
 
-      Similiarly, types like [`Envelope`](), [`Declaration`], and the various keys use the `.to()` and `.from()` methods to safely conduct conversions based around their types.  See those classes for more information.
+      Similiarly, types like [`Envelope`](), [`Declaration`](), and the various keys use the `.to()` and `.from()` methods to safely conduct conversions based around their types.  See those classes for more information.
 
       ```coffeescript
       import assert from "assert"

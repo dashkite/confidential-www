@@ -10,7 +10,7 @@ variables:
   nonce:
     type: "[`Uint8Array`]() | [`Buffer`]()"
     description: |
-      A value to be combined with the plaintext before encryption. A nonceLength random nonce is generated if not supplied.
+      Optional. A value to be combined with the plaintext before encryption. A nonceLength random nonce is generated if not supplied.
   plaintext:
     type: "[`Uint8Array`]() | [`Buffer`]()"
     description: The plaintext to be encrypted.
@@ -23,8 +23,8 @@ prose: |
   A [generic function]() accepting an encryption key and plaintext to output a ciphertext [`Envelope`]().  `encrypt` and its counterpart [`decrypt`]() form a pair of opposing operations.
 
   Panda-Confidential establishes a key type system to determine your intention in a clear and error-free way.  That allows `encrypt`'s behavior to depend on the input key:
-   - When given a [`SymmetricKey`](), `encrypt` uses [symmetric encryption]().
-   - When given a [`SharedKey`](), `encrypt` uses authenticated, [asymmetric encryption]().
+   - When given a [`SymmetricKey`](), `encrypt` uses [symmetric encryption]() and requires a nonce `nacl.secretbox.nonceLength` bytes long if you provide `nonce`.
+   - When given a [`SharedKey`](), `encrypt` uses authenticated, [asymmetric encryption]() and requires a nonce `nacl.box.nonceLength` bytes long if you provide `nonce`.
 
   > **Warning**: Signing key pairs are incompatible with `encrypt` and will cause `encrypt` to throw.
 

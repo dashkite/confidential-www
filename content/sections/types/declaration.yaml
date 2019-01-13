@@ -12,7 +12,7 @@ properties:
   data:
     type: "[`Uint8Array`]()"
     description: |
-      The data that has been signed.
+      The original data signed by the `signatories`.
   signatures:
     type: "[`Array`]() of [`Uint8Array`]()"
     description: |

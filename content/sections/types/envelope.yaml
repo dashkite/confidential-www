@@ -11,7 +11,7 @@ properties:
   ciphertext:
     type: "[`Uint8Array`]()"
     description: |
-      The ciphertext output from [`encrypt`], the counterpart to the original plaintext.
+      The ciphertext output from [`encrypt`](), the counterpart to the original plaintext.
   nonce:
     type: "[`Uint8Array`]()"
     description: |
@@ -77,7 +77,7 @@ methods:
         description: |
           The envelope in an encoded form for transport or storage.
     prose: |
-      Returns an instanciated `Delcaration` based on the value of `data`.
+      Returns an instanciated `Envelope` based on the value of `data`.
 
       `format` is a hint that tells `from` how convert the value into `Envelope`'s internal reprentation.
 
