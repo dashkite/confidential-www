@@ -19,7 +19,7 @@ import {confidential} from "panda-confidential"
 
 do ->
   # Instantiate Panda-Confidential
-  {encrypt, decrypt, convert, SymmetricKey} = confidential()
+  {encrypt, decrypt, Plaintext, SymmetricKey} = confidential()
 ```
 
 Panda-confidential wraps the TweetNaCl.js interface with pairs of opposing functions:
@@ -35,8 +35,8 @@ For example, let's perform a symmetric encryption with a secret key.
   myKey = await Symmetric.create()
 
   # Person A symmetrically encrypts their data.
-  message = convert from:"utf8", to: "bytes", "Hello World!"
-  envelope = await encrypt myKey, message
+  plaintext = Plaintext.from "utf8", "Hello World!"
+  envelope = await encrypt myKey, plaintext
 ```
 
 The details -- key length, ensuring a robust source of randomness, encryption algorithm, etc -- are all handled by TweetNaCl.js.  `encrypt` and the type system just provides clear interface for that power.
@@ -45,15 +45,16 @@ Even the outputs of `encrypt` and `sign` are typed to organize the cryptographic
 
 We can serialize that product by simply using:
 ```coffeescript
-  blob = envelope.to "base64"
-  # Store or transmit the base64-encoded string blob
+  serialized = envelope.to "base64"
+  # Store or transmit the base64-encoded string
 ```
 
 Here we use `decrypt` to retrieve the data just as simply.
 ```coffeescript
   # Later, Person A decrypts that ciphertext.
-  envelope = Envelope.from "base64", blob
-  output = decrypt myKey, envelope
+  envelope = Envelope.from "base64", serialized
+  plaintext = decrypt myKey, envelope
+  assert.equal (plaintext.to "utf8"), "Hello, World!"
 ```
 
 Please see the [full API documentation][api-docs] for more detailed information about key types and function pairs.
