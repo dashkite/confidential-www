@@ -1,47 +1,43 @@
-title: Envelope
+title: Plaintext
 prototype: false
 prose: |
-  The return value for [`encrypt`]() and the required input for [`decrypt`]()
+  The return value for [`decrypt`]() and the required input for [`encrypt`]()
 
-  `Envelope` organizes the `ciphertext` and `nonce` products of encryption.
+  `Plaintext` holds the `plaintext` in the correct hint for [`encrypt`].
 
-  `Envelope` contains methods to assist managing this resource, summarized below.  Please see the relevant section for more details.
+  `Plaintext` contains methods to assist managing this resource, summarized below.  Please see the relevant section for more details.
 
   - `to`: instance method to output the internal value in the given hint
-  - `from`: static method to hydrate an instance of `Envelope` from data
-  - `isType`: static method providing a boolean type-check for `Envelope`
+  - `from`: static method to hydrate an instance of `Plaintext` from data
+  - `isType`: static method providing a boolean type-check for `Plaintext`
 
 properties:
-  ciphertext:
+  plaintext:
     type: "[`Uint8Array`]()"
     description: |
-      The ciphertext output from [`encrypt`](), the counterpart to the original plaintext.
-  nonce:
-    type: "[`Uint8Array`]()"
-    description: |
-      nonce used to encrypt the plaintext
+      The plaintext, properly formmated for [`encrypt`](), the counterpart to the ciphertext product.
 
 staticMethods:
   isType:
     signature:
       - inputs: [ value ]
-        output: is-envelope
+        output: is-plaintext
     variables:
       value:
         type: Value
         description: |
           A value to be tested.
-      is-envelope:
+      is-plaintext:
         type: "[`Boolean`]()"
         description: |
-          `true` if `value` is an instance of `Envelope`, `false` otherwise.
+          `true` if `value` is an instance of `Plaintext`, `false` otherwise.
     prose: |
-      Type check method to determine if the input `value` is an instance of `Envelope`.  Returns `true` or `false`.
+      Type check method to determine if the input `value` is an instance of `Plaintext`.  Returns `true` or `false`.
 
   from:
     signature:
       - inputs: [ hint, data ]
-        output: envelope
+        output: plaintext
     variables:
       hint:
         type: "[`String`]()"
@@ -50,15 +46,15 @@ staticMethods:
       data:
         type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]() | [`Object`]()"
         description: |
-          A representation of the data of a envelope.
-      envelope:
-        type: "[`Envelope`]()"
+          A representation of the data of a plaintext.
+      plaintext:
+        type: "[`Plaintext`]()"
         description: |
-          The envelope in an encoded form for transport or storage.
+          The plaintext in an encoded form for transport or storage.
     prose: |
-      Returns an instanciated `Envelope` based on the value of `data`.
+      Returns an instanciated `Plaintext` based on the value of `data`.
 
-      `hint` tells `from` how convert the value into `Envelope`'s internal reprentation.
+      `hint` tells `from` how convert the value into `Plaintext`'s internal reprentation.
 
       #### Supported Types
       - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
@@ -74,16 +70,16 @@ instanceMethods:
   to:
     signature:
       - inputs: [ hint ]
-        output: encoded-envelope
+        output: encoded-plaintext
     variables:
       hint:
         type: "[`String`]()"
         description: |
           name that specifies the output encoding.
-      encoded-envelope:
+      encoded-plaintext:
         type: "[`String`]() | [`Uint8Array`]()"
         description: |
-          The envelope in an encoded form for transport or storage.
+          The plaintext in an encoded form for transport or storage.
     prose:  |
       Outputs this instance's value in the form specified in `hint`.
 

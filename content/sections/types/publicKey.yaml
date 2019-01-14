@@ -9,13 +9,13 @@ prose: |
   - manage `PublicKey` serialization through the `to` and `from` methods.
   - check if this key is _any_ type of instanciated [`Key`]() through the `isKind` method.
 
-  This class adds to the method interface with:
-  - `isType`: type check specifically for `PublicKey`
+  This class adds to the interface with:
+  - `isType`: static method to type check specifically on `PublicKey`
 
   Note that this key type cannot be created directly, but rather through the creation of an [`EncryptionKeyPair`]() or [`SignatureKeyPair`]().  Further, while both of those key pairs contain instances of `PublicKey`, encryption and signing keys in Panda-Confidential cannot interoperate.
 
 properties: false
-methods:
+staticMethods:
   isType:
     signature:
       - inputs: [ value ]
@@ -30,4 +30,5 @@ methods:
         description: |
           `true` if `value` is an instance of [`PublicKey`](), `false` otherwise.
     prose: |
-      Type check method to determine if the input `value` is an instance of `PublicKey`.  Returns `true` or `false`.
+      Type checks on `value` to see if it is an instance of `PublicKey`.  Returns `true` or `false`.
+instanceMethods: false

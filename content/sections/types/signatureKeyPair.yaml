@@ -10,22 +10,23 @@ prose: |
   - check if this key pair is _any_ type of instanciated [`KeyPair`]() through the `isKind` method.
 
   This class adds to the method interface with:
-  - `create`: generates a key pair suitable for digitial signing
-  - `isType`: type check specifically for `SignatureKeyPair`
+  - `create`: static method to generate a key pair suitable for digitial signing
+  - `isType`: static method type check specifically on `SignatureKeyPair`
 
 properties: false
-methods:
+staticMethods:
   create:
     signature:
       - inputs: []
-        output: promise
+        output: signature-key-pair
     variables:
-      promise:
-        type: "[`Promise`]() &map; `SignatureKeyPair`"
+      signature-key-pair:
+        isPromised: true
+        type: "`SignatureKeyPair`"
         description: |
           Promise that resolves to an instance of `SignatureKeyPair`.
     prose: |
-      Generate a new `SignatureKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
+      Generates a new `SignatureKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
 
   isType:
     signature:
@@ -41,4 +42,6 @@ methods:
         description: |
           `true` if `value` is an instance of [`SignatureKeyPair`](), `false` otherwise.
     prose: |
-      Type check method to determine if the input `value` is an instance of `SignatureKeyPair`.  Returns `true` or `false`.
+      Type checks on `value` to see if it is an instance of `SignatureKeyPair`.  Returns `true` or `false`.
+
+instanceMethods: false

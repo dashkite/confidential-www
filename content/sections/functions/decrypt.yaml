@@ -6,26 +6,26 @@ variables:
   key:
     type: "[`SymmetricKey`]() | [`SharedKey`]()"
     description: |
-      Key to be used in the encryption operation.
+      Key to be used in the decryption operation.
   envelope:
     type: "[`Envelope`]()"
     description: |
       Container class for encryption products, `ciphertext` and `nonce`. As returned by [`encrypt`]().
   plaintext:
-    type: "[`Uint8Array`]()"
+    type: "[`Plaintext`]()"
     description: |
-      The decrypted ciphertext.
+      Container class for the plaintext resulting from decryption.
 
 prose: |
   A [generic function]() accepting an encryption key and ciphertext to output a plaintext.  `decrypt` and its counterpart [`encrypt`]() form a pair of opposing operations.
 
-  Panda-Confidential establishes a key type system to determine your intention in a clear and error-free way.  That allows `decrypt`'s behavior to depend on the input key:
+  Panda-Confidential establishes a type system to determine your intention in a clear and error-free way.  That allows `decrypt`'s behavior to depend on the input key:
    - When given a [`SymmetricKey`](), `decrypt` uses [symmetric decryption]().
    - When given a [`SharedKey`](), `decrypt` uses authenticated, [asymmetric decryption]().
 
-  Ciphertext is enclosed in the special container, [`Envelope`](), provided by [`encrypt`]().  If you wish to instanciate an `Envelope` from a serialized form, use the type method `Envelope.from` to do so.
+  Ciphertext is enclosed in the special container, [`Envelope`](), provided by [`encrypt`]().  If you wish to instanciate an `Envelope` from a serialized form, use the static method `Envelope.from` to do so.
 
-  `decrypt` is agnostic about the data it processes, outputting a [`Uint8Array`]() byte array.  [`convert`]() may then be used to explicitly specify a data encoding.
+  `decrypt` outputs an instance of [`Plaintext`](), a special container to type the plaintext product of decryptiong.  You may output the data in the format of your choice via the instance method `Plaintext.to`.
 
 examples:
   - title: Symmetric Decryption
@@ -33,7 +33,7 @@ examples:
       ```coffeescript
       import assert from "assert"
       import {confidential} from "panda-confidential"
-      {decrypt, Envelope, convert} = confidential()
+      {decrypt, Envelope} = confidential()
       import {keyLookup, read} from "my-library"
 
       do ->
@@ -42,15 +42,14 @@ examples:
         envelope = Envelope.from "base64", serialized
         plaintext = await decrypt alice, envelope
 
-        assert.equal (convert from: "bytes", to: "utf8", plaintext),
-          "Hello, Alice!"
+        assert.equal (plaintext.to: "utf8"), "Hello, Alice!"
       ```
   - title: Asymmetric Decryption
     content: |
       ```coffeescript
       import assert from "assert"
       import {confidential} from "panda-confidential"
-      {SharedKey, decrypt, Envelope, convert} = confidential()
+      {SharedKey, decrypt, Envelope} = confidential()
       import {keyLookup, receive} from "my-library"
 
       do ->
@@ -61,6 +60,5 @@ examples:
         envelope = Envelope.from "base64", serialized
         plaintext = await decrypt toBobFromAlice, envelope
 
-        assert.equal (convert from: "bytes", to: "utf8", plaintext),
-          "Hello, Bob!"
+        assert.equal (plaintext.to: "utf8"), "Hello, Bob!"
       ```

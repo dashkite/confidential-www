@@ -9,25 +9,39 @@ prose: |
   - manage `SharedKey` serialization through the `to` and `from` methods.
   - check if this key is _any_ type of instanciated [`Key`]() through the `isKind` method.
 
-  This class adds to the method interface with:
-  - `create`: generates a shared key pair suitable for [asymmetric encryption]()
-  - `isType`: type check specifically for `SharedKey`
+  This class adds to the interface with:
+  - `create`: static method to generate a shared key suitable for [asymmetric encryption]()
+  - `isType`: static method to type check specifically on `SharedKey`
 
 properties: false
-methods:
+staticMethods:
   create:
     signature:
       - inputs: [public-key, private-key]
-        output: promise
+        output: shared-key
       - inputs: [private-key, public-key]
-        output: promise
+        output: shared-key
+      - inputs: [key-pair]
+        output: shared-key
     variables:
-      promise:
-        type: "[`Promise`]() &map; `SharedKey`"
+      public-key:
+        type: "[`PublicKey`]()"
         description: |
-          Promise that resolves to an instance of `SharedKey`.
+          Public key suitable for encryption.
+      private-key:
+        type: "[`PrivateKey`]()"
+        description: |
+          Private key suitable for encryption.
+      key-pair:
+        type: "[`EncryptionKeyPair`]()"
+        description: |
+          Key pair suitable for encryption.
+      shared-key:
+        type: "`SharedKey`"
+        description: |
+          An instance of `SharedKey`.
     prose: |
-      Generate a new `SharedKey` by algorithmically combinding `public-key` and `private-key`.
+      Generates a new `SharedKey` by algorithmically combinding `public-key` and `private-key`.
 
   isType:
     signature:
@@ -43,4 +57,5 @@ methods:
         description: |
           `true` if `value` is an instance of [`SharedKey`](), `false` otherwise.
     prose: |
-      Type check method to determine if the input `value` is an instance of `SharedKey`.  Returns `true` or `false`.
+      Type checks on `value` to see if it is an instance of `SharedKey`.  Returns `true` or `false`.
+instanceMethods: false

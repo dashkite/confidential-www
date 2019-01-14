@@ -62,6 +62,7 @@ $references =
   "`keyPair.signature`": "/api.html#function-keyPair-signature"
   "`keyPair.isSignature`": "/api.html#function-keyPair-isSignature"
 
+  "`Plaintext`": "/api.html#class-Plaintext"
   "`Envelope`": "/api.html#class-Envelope"
   "`Declaration`": "/api.html#class-Declaration"
   "`Key`": "/api.html#class-Key"

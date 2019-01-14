@@ -1,33 +1,34 @@
 title: convert
 signature:
-  - inputs: [ hints, input ]
+  - inputs: [ hint, input ]
     output: [ output ]
 
 variables:
-  hints:
+  hint:
     type: "[`Object`]()"
     description: |
       Describes the conversion to be applied to _input_. Contains the properties `from` and `to`.
   input:
-    type: "[`Uint8Array`]() | [`Buffer`]() | [`String`]() | [`Object`]()"
+    type: "[`Uint8Array`]() | [`Buffer`]() | [`String`]()"
     description: |
       The value to be converted.
   output:
-    type: "[`Uint8Array`]() | [`Buffer`]() | [`String`]() | [`Object`]()"
+    type: "[`Uint8Array`]() | [`Buffer`]() | [`String`]()"
     description: |
       The result of the conversion.
 
 prose: |
   A utility function to manage data format conversion between a variety of targets.
 
-  A conversion is specified by `hints`'s fields, `from` and `to`.  These identify the current and target encoding of `input`, respectively.
+  A conversion is specified by `hint`'s fields, `from` and `to`.  These identify the current and target encoding of `input`, respectively.
+
+  Normally, you should not need to directly use this function because Panda-Confidential provides typed containers for the input and output of the main generics ([`encrypt`](), [`decrypt`](), [`sign`](), and [`verify`]()).  Those containers ([`Plaintext`](), [`Envelope`](), and [`Declaration`]()) have methods to manage data encoding, and use `convert` internally, providing a standard interface.
 
   #### Supported Formats
   - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
   - `utf8`: A [`String`]() with [UTF-8 encoding]()
   - `base64`: A [`String`]() with [Base64 encoding]()
   - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
-  - `object`: An [`Object`]().  Objects are transformed by using the native [`JSON`]() object's `stringify` and `parse` methods.
 
   #### Errors
   `convert` is meant to provide safe and correct format conversion for your data.  There are a number of checks in place that will throw errors if they fail:
@@ -60,14 +61,15 @@ examples:
     content: |
       The Panda-Confidential generics, ([`encrypt`](), [`decrypt`](), [`sign`](), and [`verify`]()) are purposefully agnostic to the content they process, be it text or binary media.  The API always operates on byte arrays, requiring you convert inputs into bytes and then dealing with byte array outputs.
 
-      Any data formmatting is your responsibility, but Panda-Confidential provides `convert` to safely and correctly conduct formatting by requiring explicit formatting instructions via `hints`.
+      Normally, you will not need to use `convert` directly because Panda-Confidential provides type containers with builtin formatting helper methods.  Their interfaces are standardized by using `convert` internally, so you provide each with explicit formatting instructions via `hint`.
 
-      Similiarly, types like [`Envelope`](), [`Declaration`](), and the various keys use the `.to()` and `.from()` methods to safely conduct conversions based around their types.  See those classes for more information.
+      Here is an example that uses these containers and their formatting helpers. Please see those class references for more information.
+
 
       ```coffeescript
       import assert from "assert"
       import {confidential} from "panda-confidential"
-      {encrypt, SharedKey, Envelope, decrypt, convert} = confidential()
+      {SharedKey, Plaintext, encrypt, Envelope, decrypt} = confidential()
       import {keyLookup} from "my-library"
       do ->
         # First, Alice creates a SharedKey for asymmetric encryption..
@@ -75,22 +77,25 @@ examples:
         bob = keyLookup "Bob/public"
         fromAliceToBob = SharedKey.create alice, bob
 
-        # Use convert to turn the message into a byte array...
-        plaintext = convert from: "utf8", to: "bytes", "Hello, Bob!"
+        # Use the Plaintext static method to turn the message into a byte array
+        plaintext = Plaintext.from "utf8", "Hello, Bob!"
         envelope = await encrypt fromAliceToBob, plaintext
 
-        # Use the Envelope method `to` to serialize.
+        # Use the Envelope instance method `to` to serialize.
         send "Bob", envelope.to "base64"
+
+
 
         # Later, with Bob on the recieving end....
         alice = keyLookup "Alice/public"
         bob = keyLookup "Bob/private"
         toBobFromAlice = SharedKey.create alice, bob
         serialized = receive "Bob"
+
+        # Use the Envelope static method `from` to hydrate a new Envelope
         envelope = Envelope.from "base64", serialized
         plaintext = await decrypt toBobFromAlice, envelope
 
-        # And use `convert` to encode the resulting plaintext.
-        assert.equal (convert from: "bytes", to: "utf8", plaintext),  "Hello,
-        Bob!"
+        # Use the Plaintext instance method to encode the resulting plaintext
+        assert.equal (plaintext.to "utf8"), "Hello, Bob!"
       ```

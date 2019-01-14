@@ -4,7 +4,7 @@ section
 
   ::
   if prototype
-    $fragments.blockquote "Extends #{prototype}"
+    $fragments.blockquote "### Extends #{prototype}"
 
   if properties
     $fragments.header 3, "Properties"
@@ -12,9 +12,19 @@ section
 
   $fragments.prose prose ? ""
 
-  if methods
-    $fragments.header 3, "Methods"
-    for name, {signature, variables, prose, examples = []} of methods
+  if staticMethods
+    $fragments.header 3, "Static Methods"
+    for name, {signature, variables, prose, examples = []} of staticMethods
+      $fragments.header 4, name
+      $fragments.staticSignature title, name, signature
+      $fragments.signatureTable variables
+      $fragments.prose prose ? ""
+      for example in examples
+        $fragments.example example
+
+  if instanceMethods
+    $fragments.header 3, "Instance Methods"
+    for name, {signature, variables, prose, examples = []} of instanceMethods
       $fragments.header 4, name
       $fragments.signature name, signature
       $fragments.signatureTable variables

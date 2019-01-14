@@ -10,22 +10,23 @@ prose: |
   - check if this key pair is _any_ type of instanciated [`KeyPair`]() through the `isKind` method.
 
   This class adds to the method interface with:
-  - `create`: generates a key pair suitable for encryption
-  - `isType`: type check specifically for `EncryptionKeyPair`
+  - `create`: static method to generate a key pair suitable for encryption
+  - `isType`: static method to type check specifically on `EncryptionKeyPair`
 
 properties: false
-methods:
+staticMethods:
   create:
     signature:
       - inputs: []
-        output: promise
+        output: encryption-key-pair
     variables:
-      promise:
-        type: "[`Promise`]() &map; `EncryptionKeyPair`"
+      encryption-key-pair:
+        isPromised: true
+        type: "`EncryptionKeyPair`"
         description: |
           Promise that resolves to an instance of `EncryptionKeyPair`.
     prose: |
-      Generate a new `EncryptionKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
+      Generates a new `EncryptionKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
 
   isType:
     signature:
@@ -42,3 +43,5 @@ methods:
           `true` if `value` is an instance of [`EncryptionKeyPair`](), `false` otherwise.
     prose: |
       Type check method to determine if the input `value` is an instance of `EncryptionKeyPair`.  Returns `true` or `false`.
+
+instanceMethods: false

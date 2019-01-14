@@ -10,18 +10,19 @@ prose: |
   - check if this key is _any_ type of instanciated [`Key`]() through the `isKind` method.
 
   This class adds to the method interface with:
-  - `create`: generates a symmetric key pair suitable for [symmetric encryption]()
-  - `isType`: type check specifically for `SymmetricKey`
+  - `create`: static method to generate a symmetric key suitable for [symmetric encryption]()
+  - `isType`: static method to type check specifically on `SymmetricKey`
 
 properties: false
-methods:
+staticMethods:
   create:
     signature:
       - inputs: []
-        output: promise
+        output: symmetric-key
     variables:
-      promise:
-        type: "[`Promise`]() &map; `SymmetricKey`"
+      symmetric-key:
+        isPromised: true
+        type: "`SymmetricKey`"
         description: |
           Promise that resolves to an instance of `SymmetricKey`.
     prose: |
@@ -41,4 +42,6 @@ methods:
         description: |
           `true` if `value` is an instance of [`SymmetricKey`](), `false` otherwise.
     prose: |
-      Type check method to determine if the input `value` is an instance of `SymmetricKey`.  Returns `true` or `false`.
+      Type checks on `value` to see if it is an instance of `SymmetricKey`.  Returns `true` or `false`.
+
+instanceMethods: false

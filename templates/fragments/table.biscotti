@@ -24,7 +24,8 @@ $fragments.table = (head, body) ->
 $fragments.signatureTable = (variables) ->
   head = ["name", "type", "description"]
   body =
-    for name, {type, description} of variables
+    for name, {type, description, isPromised} of variables
+      type = "🤞 #{type}" if isPromised
       [name, type, description]
   $fragments.table head, body
 ::

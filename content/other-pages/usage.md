@@ -64,7 +64,7 @@ do ->
 
   # Alice encrypts her data.
   message = "Hello, Alice!"
-  plaintext = convert from: "utf8", to: "bytes", message
+  plaintext = Plaintext.from "utf8", message
   envelope = await encrypt aliceKey, plaintext
 
   # Alice could store this serialized envelope somewhere if she wanted.

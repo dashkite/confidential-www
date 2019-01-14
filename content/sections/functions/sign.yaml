@@ -20,7 +20,7 @@ variables:
     description: |
       The private key of the person wishing to sign `data`.
   data:
-    type: "[`Uint8Array`]() | [`Buffer`]() | [`Declaration`]()"
+    type: "[`Plaintext`]() | [`Declaration`]()"
     description: |
       Data to be signed.
   declaration:
@@ -35,24 +35,24 @@ prose: |
 
   > **Warning**: Encryption key pairs are incompatible with `sign` and will cause `sign` to throw.
 
-  `sign` is agnostic to the data it processes.  Therefore, it requires you to present `data` as a byte array.  Use [`convert`]() to explicitly indicate a conversion to byte array for your data if needed.
-
   The output is a special container object, [`Declaration`](), and is expected by [`verify`]().  `Declaration` holds the original data, the public keys of the `signatories`, and the `signatures` that attest the integrity of the data and the irrefutablitiy of the given signatory.
 
-  The `Declaration` object is also a valid input to `sign` and causes it to append a signature to the existing list.
+  `sign` expects its input to be either an instance of `Plaintext` or `Declaration`:
+    - `Declaration` is mentioned above.  It causes sign to append a signature to the existing lists.
+    - `Plaintext` is a similar container that keeps generic data typed and formmated properly for `sign`.  To convert your data into an instance of `Plaintext`, use the static method `Plaintext.from`.
 
 examples:
   - title: Single Signature
     content: |
       ```coffeescript
       import {confidential} from "panda-confidential"
-      {sign, convert} = confidential()
+      {sign, Plaintext} = confidential()
 
       import {send, keyPairLookup} from "my-library"
 
       do ->
         alice = keyPairLookup "Alice/signature"
-        data = convert from: "utf8" to: "bytes", "Hello, World!"
+        data = Plaintext.from "utf8", "Hello, World!"
         declaration = sign alice, data
 
         # encode the signed data object itself

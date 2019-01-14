@@ -1,24 +1,38 @@
 ::
 import {last} from "panda-parchment"
 
+$fragments._signatureInputs = (inputs) ->
+  string = ""
+  for input, index in inputs
+    if (last input) == "&"
+      string += "[ #{input[...-1]}"
+      if index == inputs.length - 1
+        string += " ]"
+      else
+        string += " ,] "
+    else
+      string += input
+      if index != inputs.length - 1
+        string += " , "
+  string
+
 $fragments.signature = (title, signature) ->
   for {inputs, output} in signature
-    _inputs = ""
-    for input, index in inputs
-      if (last input) == "&"
-        _inputs += "[ #{input[...-1]}"
-        if index == inputs.length - 1
-          _inputs += " ]"
-        else
-          _inputs += " ,] "
-      else
-        _inputs += input
-        if index != inputs.length - 1
-          _inputs += " , "
-
+    _inputs = $fragments._signatureInputs inputs
     $bind """
     \n\nblockquote: p
       | #[strong #{title}]
+      | #{_inputs}
+      | &rarr;
+      | #{output}
+    """
+
+$fragments.staticSignature = (className, title, signature) ->
+  for {inputs, output} in signature
+    _inputs = $fragments._signatureInputs inputs
+    $bind """
+    \n\nblockquote: p
+      | #[strong #{className}.#{title}]
       | #{_inputs}
       | &rarr;
       | #{output}

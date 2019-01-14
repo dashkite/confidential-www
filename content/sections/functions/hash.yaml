@@ -1,10 +1,10 @@
 title: hash
 signature:
-  - inputs: [ data ]
+  - inputs: [ plaintext ]
     output: [ hash ]
 variables:
-  data:
-    type: "[`Uint8Array`]() | [`Buffer`]()"
+  plaintext:
+    type: "[`Plaintext`]()"
     description: |
       The data to be hashed.
   hash:
@@ -15,7 +15,7 @@ variables:
 prose: |
   Convenience function that exposes the TweetNaCl.js implementation of [SHA-512]() hashing.
 
-  Note that `data` must be a byte array, so use [`convert`]() to prepare your data for this function, if required.
+  `encrypt` expects its input to be an instance of `Plaintext`, a special container that keeps your data typed and formmated properly for `hash`.  To convert your data into an instance of `Plaintext`, use the static method `Plaintext.from`.
 
 examples:
   - title: FIX THIS EXAMPLE
@@ -23,9 +23,9 @@ examples:
       ```coffeescript
       import assert from "assert"
       import {confidential} from "panda-confidential"
-      {hash, convert} = confidential()
+      {hash, Plaintext} = confidential()
 
       do ->
-        myHash = hash convert from: "utf8", to: "bytes", "Hello, World!"
+        myHash = hash Plaintext.from "utf8", "Hello, World!"
         assert.equal myHash, ""
       ```
