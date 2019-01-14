@@ -6,10 +6,11 @@ prose: |
   > **Warning:** This key must remain secret for the public-key cryptography to be effective.
 
   Because this type extends [`Key`](), you may:
-  - manage `PrivateKey` serialization through the `to` and `from` methods.
+  - manage `PrivateKey` serialization through the `to` method.
   - check if this key is _any_ type of instanciated [`Key`]() through the `isKind` method.
 
   This class adds to the interface with:
+  - `from`: static method to instanciate a `PrivateKey` from serialized data.
   - `isType`: static method to type check specifically on `PrivateKey`
 
   Note that this key type cannot be created directly, but rather through the creation of an [`EncryptionKeyPair`]() or [`SignatureKeyPair`]().  Further, while both of those key pairs contain instances of `PrivateKey`, encryption and signing keys in Panda-Confidential cannot interoperate.
@@ -31,5 +32,37 @@ staticMethods:
           `true` if `value` is an instance of [`PrivateKey`](), `false` otherwise.
     prose: |
       Type checks on `value` to see if it is an instance of `PrivateKey`.  Returns `true` or `false`.
+
+  from:
+    signature:
+      - inputs: [ hint, data ]
+        output: key
+    variables:
+      hint:
+        type: "[`String`]()"
+        description: |
+          name that specifies the input hint.
+      data:
+        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
+        description: |
+          A representation of the data of a key.
+      key:
+        type: "[`PrivateKey`]()"
+        description: |
+          An instanciated `PrivateKey`.
+    prose: |
+      Returns an instanciated `PrivateKey` based on the value of `data`.
+
+      `hint` tells `from` how convert the value into `PrivateKey`'s internal reprentation.
+
+      #### Supported Types
+      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      - `utf8`: A [`String`]() with [UTF-8 encoding]()
+      - `base64`: A [`String`]() with [Base64 encoding]()
+      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
+
+      Specifying an unsupported conversion throws.
+
+      If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
 
 instanceMethods: false

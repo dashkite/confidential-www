@@ -17,6 +17,8 @@ section
   _include "plaintext"
   _include "envelope"
   _include "declaration"
+  _include "hash"
+  _include "nonce"
 
   _include "key"
   _include "symmetricKey"

@@ -8,7 +8,7 @@ variables:
     description: |
       Key to be used in the encryption operation.
   nonce:
-    type: "[`Uint8Array`]() | [`Buffer`]()"
+    type: "[`Nonce`]()"
     description: |
       Optional. A value to be combined with the plaintext before encryption. A nonceLength random nonce is generated if not supplied.
   plaintext:

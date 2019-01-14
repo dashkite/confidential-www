@@ -1,47 +1,35 @@
-title: Envelope
+title: Nonce
 prototype: false
 prose: |
-  The return value for [`encrypt`]() and the required input for [`decrypt`]()
-
-  `Envelope` organizes the `ciphertext` and `nonce` products of encryption.
-
-  `Envelope` contains methods to assist managing this resource, summarized below.  Please see the relevant section for more details.
-
-  - `to`: instance method to output the internal value in the given hint
-  - `from`: static method to hydrate an instance of `Envelope` from data
-  - `isType`: static method providing a boolean type-check for `Envelope`
+  `Nonce` is a wrapper for the given nonce of random bytes.  `Nonce` contains a method interface for managing the formatting. Invoking the `to` method on an instance of this class returns the nonce itself, in whichever format you request.
 
 properties:
-  ciphertext:
-    type: "[`Uint8Array`]()"
-    description: |
-      The ciphertext output from [`encrypt`](), the counterpart to the original plaintext.
   nonce:
     type: "[`Uint8Array`]()"
     description: |
-      nonce used to encrypt the plaintext
+      The value of this nonce.
 
 staticMethods:
   isType:
     signature:
       - inputs: [ value ]
-        output: is-envelope
+        output: is-nonce
     variables:
       value:
         type: Value
         description: |
           A value to be tested.
-      is-envelope:
+      is-nonce:
         type: "[`Boolean`]()"
         description: |
-          `true` if `value` is an instance of `Envelope`, `false` otherwise.
+          `true` if `value` has the `Has` in its prototype chain, `false` otherwise.
     prose: |
-      Type check method to determine if the input `value` is an instance of `Envelope`.  Returns `true` or `false`.
+      Type check method to determine if the input `value` is an instance of `Nonce`.  Returns `true` or `false`.
 
   from:
     signature:
       - inputs: [ hint, data ]
-        output: envelope
+        output: nonce
     variables:
       hint:
         type: "[`String`]()"
@@ -50,15 +38,15 @@ staticMethods:
       data:
         type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
         description: |
-          A representation of the data of a envelope.
-      envelope:
-        type: "[`Envelope`]()"
+          A representation of the data of a nonce.
+      nonce:
+        type: "[`Nonce`]()"
         description: |
-          The envelope in an encoded form for transport or storage.
+          The nonce in an encoded form for transport or storage.
     prose: |
-      Returns an instanciated `Envelope` based on the value of `data`.
+      Returns an instanciated `Nonce` based on the value of `data`.
 
-      `hint` tells `from` how convert the value into `Envelope`'s internal reprentation.
+      `hint` tells `from` how convert the value into `Nonce`'s internal reprentation.
 
       #### Supported Types
       - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
@@ -74,16 +62,16 @@ instanceMethods:
   to:
     signature:
       - inputs: [ hint ]
-        output: encoded-envelope
+        output: encoded-nonce
     variables:
       hint:
         type: "[`String`]()"
         description: |
           name that specifies the output encoding.
-      encoded-envelope:
+      encoded-nonce:
         type: "[`String`]() | [`Uint8Array`]()"
         description: |
-          The envelope in an encoded form for transport or storage.
+          The nonce in an encoded form for transport or storage.
     prose:  |
       Outputs this instance's value in the form specified in `hint`.
 

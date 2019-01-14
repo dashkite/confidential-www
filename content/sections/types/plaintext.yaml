@@ -3,9 +3,7 @@ prototype: false
 prose: |
   The return value for [`decrypt`]() and the required input for [`encrypt`]()
 
-  `Plaintext` holds the `plaintext` in the correct hint for [`encrypt`].
-
-  `Plaintext` contains methods to assist managing this resource, summarized below.  Please see the relevant section for more details.
+  `Plaintext` is a wrapper for the given plaintext data and contains a method interface for managing formatting. Invoking the `to` method on an instance of this class returns the plaintext itself, in whichever format you request.
 
   - `to`: instance method to output the internal value in the given hint
   - `from`: static method to hydrate an instance of `Plaintext` from data
@@ -44,7 +42,7 @@ staticMethods:
         description: |
           name that specifies the input hint.
       data:
-        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]() | [`Object`]()"
+        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
         description: |
           A representation of the data of a plaintext.
       plaintext:

@@ -28,6 +28,38 @@ staticMethods:
     prose: |
       Generates a new `EncryptionKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
 
+  from:
+    signature:
+      - inputs: [ hint, data ]
+        output: key-pair
+    variables:
+      hint:
+        type: "[`String`]()"
+        description: |
+          name that specifies the input hint.
+      data:
+        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
+        description: |
+          A representation of the data of a key-pair.
+      key-pair:
+        type: "[`EncryptionKeyPair`]()"
+        description: |
+          The key-pair in an encoded form for transport or storage.
+    prose: |
+      Returns an instanciated `EncryptionKeyPair` based on the value of `data`.
+
+      `hint` tells `from` how convert the value into `EncryptionKeyPair`'s internal reprentation.
+
+      #### Supported Types
+      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      - `utf8`: A [`String`]() with [UTF-8 encoding]()
+      - `base64`: A [`String`]() with [Base64 encoding]()
+      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
+
+      Specifying an unsupported conversion throws.
+
+      If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
+
   isType:
     signature:
       - inputs: [ value ]

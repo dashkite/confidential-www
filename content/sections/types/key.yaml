@@ -3,7 +3,7 @@ prototype: false
 prose: |
   Base class for all keys in Panda-Confidential. It stores a decoded key ready for use in TweetNaCl.js functions, along with a type label to ensure correct application.
 
-  This class contains a method interface for managing the serialization of `Key`s.
+  `Key` is a wrapper for the given key and contains a method interface for managing the formatting. Invoking the `to` method on an instance of this class returns the key itself, in whichever format you request.
 
   Normally, you should not require the direct use of this class. But all other keys inherit its interface.
 
@@ -14,38 +14,6 @@ properties:
       The value of this key.
 
 staticMethods:
-  from:
-    signature:
-      - inputs: [ hint, data ]
-        output: key
-    variables:
-      hint:
-        type: "[`String`]()"
-        description: |
-          name that specifies the input hint.
-      data:
-        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]() | [`Object`]()"
-        description: |
-          A representation of the data of a key.
-      key:
-        type: "[`Key`]()"
-        description: |
-          The key in an encoded form for transport or storage.
-    prose: |
-      Returns an instanciated `Key` based on the value of `data`.
-
-      `hint` tells `from` how convert the value into `Key`'s internal reprentation.
-
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
-      - `utf8`: A [`String`]() with [UTF-8 encoding]()
-      - `base64`: A [`String`]() with [Base64 encoding]()
-      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
-
-      Specifying an unsupported conversion throws.
-
-      If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
-
   isKind:
     signature:
       - inputs: [ value ]

@@ -6,10 +6,11 @@ prose: |
   > **Warning:** This key must remain secret for encryption be effective.
 
   Because this type extends [`Key`](), you may:
-  - manage `SymmetricKey` serialization through the `to` and `from` methods.
+  - manage `SymmetricKey` serialization through the `to` method.
   - check if this key is _any_ type of instanciated [`Key`]() through the `isKind` method.
 
   This class adds to the method interface with:
+  - `from`: static method to instanciate a `SymmetricKey` from serialized data.
   - `create`: static method to generate a symmetric key suitable for [symmetric encryption]()
   - `isType`: static method to type check specifically on `SymmetricKey`
 
@@ -27,6 +28,38 @@ staticMethods:
           Promise that resolves to an instance of `SymmetricKey`.
     prose: |
       Generate a new `SymmetricKey`.  Randomly generates a key using the [`randomBytes`]() interface.
+
+  from:
+    signature:
+      - inputs: [ hint, data ]
+        output: key
+    variables:
+      hint:
+        type: "[`String`]()"
+        description: |
+          name that specifies the input hint.
+      data:
+        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
+        description: |
+          A representation of the data of a key.
+      key:
+        type: "[`SymmetricKey`]()"
+        description: |
+          An instanciated `SymmetricKey`.
+    prose: |
+      Returns an instanciated `SymmetricKey` based on the value of `data`.
+
+      `hint` tells `from` how convert the value into `SymmetricKey`'s internal reprentation.
+
+      #### Supported Types
+      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      - `utf8`: A [`String`]() with [UTF-8 encoding]()
+      - `base64`: A [`String`]() with [Base64 encoding]()
+      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
+
+      Specifying an unsupported conversion throws.
+
+      If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
 
   isType:
     signature:

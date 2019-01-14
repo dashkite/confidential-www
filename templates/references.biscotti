@@ -65,6 +65,8 @@ $references =
   "`Plaintext`": "/api.html#class-Plaintext"
   "`Envelope`": "/api.html#class-Envelope"
   "`Declaration`": "/api.html#class-Declaration"
+  "`Hash`": "/api.html#class-Hash"
+  "`Nonce`": "/api.html#class-Nonce"
   "`Key`": "/api.html#class-Key"
   "`SymmetricKey`": "/api.html#class-SymmetricKey"
   "`SharedKey`": "/api.html#class-SharedKey"

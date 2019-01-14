@@ -8,14 +8,16 @@ variables:
     description: |
       The data to be hashed.
   hash:
-    type: "[`Uint8Array`]()"
+    type: "[`Hash`]()"
     description: |
-      A byte array containing the [SHA-512]() hash of _data_.
+      An instance of [`Hash`], a wrapper for the [SHA-512]() hash of _plaintext_.
 
 prose: |
   Convenience function that exposes the TweetNaCl.js implementation of [SHA-512]() hashing.
 
   `encrypt` expects its input to be an instance of `Plaintext`, a special container that keeps your data typed and formmated properly for `hash`.  To convert your data into an instance of `Plaintext`, use the static method `Plaintext.from`.
+
+  `hash` returns an instance of [`Hash`](), a container that wraps the value of the SHA-512 hash.  You may access the value with instance method `to`.
 
 examples:
   - title: FIX THIS EXAMPLE

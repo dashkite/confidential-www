@@ -55,7 +55,7 @@ staticMethods:
         description: |
           name that specifies the input hint.
       data:
-        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]() | [`Object`]()"
+        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
         description: |
           A representation of the data of a declaration.
       declaration:
