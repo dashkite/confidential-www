@@ -21,6 +21,7 @@
     "biscotti": "file:../biscotti",
     "coffee-loader": "^0.9.0",
     "coffeescript": "^2.3.2",
+    "haiku9": "file:../haiku9",
     "jstransformer": "^1.0.0",
     "jstransformer-pug": "^0.3.0",
     "jstransformer-stylus": "^1.5.0",

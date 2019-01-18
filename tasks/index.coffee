@@ -10,6 +10,7 @@ import {define, run, glob, read, write,
 import {read as _read, rmr, mkdirp} from "panda-quill"
 import {go, map, wait, tee, reject} from "panda-river"
 import {match, merge} from "panda-parchment"
+import h9 from "haiku9"
 
 import Biscotti from "./biscotti"
 import markdown from "./markdown"
@@ -94,6 +95,9 @@ define "js", ->
           fs.writeFileSync "webpack-stats.json",
             JSON.stringify result.toJson()
           yay()
+
+define "h9:publish", ->
+  h9.publish "staging"
 
 define "build", [ "clean", "biscotti", "html&", "css&", "js&", "images&" ]
 

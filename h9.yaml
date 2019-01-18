@@ -1,0 +1,22 @@
+source: build
+profile: panda
+domain: pandastrike.com
+region: us-west-1
+site:
+  index: index
+  error: 404
+cors: wildstyle
+
+environments:
+
+  staging:
+    hostnames:
+      - staging-confidential
+
+  production:
+    hostnames:
+      - confidential
+    cache:
+      expires: 1800 # 30 minutes
+      ssl: true
+      priceClass: 100
