@@ -96,8 +96,11 @@ define "js", ->
             JSON.stringify result.toJson()
           yay()
 
-define "h9:publish", ->
+define "h9:publish:staging", ->
   h9.publish "staging"
+
+define "h9:publish:production", ->
+  h9.publish "production"
 
 define "build", [ "clean", "biscotti", "html&", "css&", "js&", "images&" ]
 
