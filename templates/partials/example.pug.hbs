@@ -1,0 +1,11 @@
+h3 Example: {{title}}
+  a.header-anchor(href="#example-{{title}}") {{title}}
+
+:markdown
+  {{indent 2 content}}
+
+{{#if note}}
+blockquote
+  :markdown
+    {{indent 4 note}}
+{{/if}}

@@ -1,12 +1,13 @@
 ::
 # Helper to keep the imports below short.
-_include = (name) ->
-  include "./properties-atomic", "../../content/sections/properties/#{name}.yaml"
+atomic = (name) ->
+  $render "templates/atoms/properties.pug.hbs",
+    "content/sections/properties/#{name}.yaml"
 ::
 
 section
   h1#properties Properties
 
   ::
-  _include "nacl"
+  atomic "nacl"
   ::

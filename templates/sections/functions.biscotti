@@ -1,21 +1,62 @@
 ::
-# Helper to keep the imports below short.
-_include = (name) ->
-  include "./functions-atomic", "../../content/sections/functions/#{name}.yaml"
+import {include, last} from "panda-parchment"
+import {read} from "panda-quill"
+import {yaml} from "panda-serialize"
+import PandaTemplate from "panda-template"
+
+arrangeInputs = (title, inputs) ->
+  string = ""
+  for input, index in inputs
+    if (last input) == "&"
+      string += "[ #{input[...-1]}"
+      if index == inputs.length - 1
+        string += " ]"
+      else
+        string += " ,] "
+    else
+      string += input
+      if index != inputs.length - 1
+        string += " , "
+  string
+
+prepare = (data) ->
+  data.prose = setLinks data.prose
+  data.table =
+    head: ["name", "type", "description"]
+    body: do ->
+      for name, {type, description, isPromised} of data.variables
+        type = "🤞 #{type}" if isPromised
+        [name, type, description]
+
+  for signature in data.signature
+    include signature,
+      title: data.title
+      inputs: arrangeInputs data.title, signature.inputs
+
+  for example in data.examples
+    example.content = setLinks example.content
+
+  data
+
+
+atomic = $ (name) ->
+  template = await read "templates/atoms/functions.pug.hbs"
+  data = prepare yaml await read "content/sections/functions/#{name}.yaml"
+  T.render template, data
 ::
 
 section
   h1#functions Functions
 
   ::
-  _include "confidential"
-  _include "randomBytes"
-  _include "encrypt"
-  _include "decrypt"
-  _include "sign"
-  _include "verify"
-  _include "convert"
+  atomic "confidential"
+  atomic "randomBytes"
+  atomic "encrypt"
+  atomic "decrypt"
+  atomic "sign"
+  atomic "verify"
+  atomic "convert"
 
-  _include "hash"
-  _include "isBytes"
+  atomic "hash"
+  atomic "isBytes"
   ::

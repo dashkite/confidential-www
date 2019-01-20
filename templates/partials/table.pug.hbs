@@ -1,0 +1,20 @@
+table
+  {{#if head}}
+  thead
+    tr
+      {{#each head}}
+      th {{.}}
+      {{/each}}
+  {{/if}}
+
+  {{#if body}}
+  tbody
+  {{#each body}}
+    tr
+      {{#each .}}
+      td
+        :markdown
+          {{indent 10 setLinks .}}
+      {{/each}}
+  {{/each}}
+  {{/body}}

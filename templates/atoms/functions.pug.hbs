@@ -1,0 +1,18 @@
+section
+  h2#function-{{title}}
+    a.header-anchor(href="#function-{{title.replace}}") {{title}}
+
+  {{#each signature}}
+  {{> signature .}}
+  {{/each}}
+
+  {{> table table}}
+
+  {{#if prose}}
+  :markdown
+    {{indent 4 prose}}
+  {{/if}}
+
+  {{#each examples}}
+  {{> example .}}
+  {{/each}}

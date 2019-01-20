@@ -16,6 +16,9 @@ import Biscotti from "./biscotti"
 import markdown from "./markdown"
 import {source, intermediate, target, imagePattern} from "./constants"
 
+process.on 'unhandledRejection', (reason, p) ->
+  console.error "Unhandled Rejection:", reason
+
 define "clean", ->
   rmr target
   rmr intermediate
