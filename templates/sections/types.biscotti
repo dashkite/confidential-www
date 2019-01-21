@@ -1,10 +1,11 @@
 ::
-readyMethod = (title, data) ->
+readyMethod = (title, data, className) ->
   data.title = title
   data.table = _preprocess.readySignatureTable data.variables
+
+  title = "#{className}.#{title}" if className
   data.signatures = _preprocess.readySignatures title, data.signatures
-  if data.examples?
-    data.examples = _preprocess.readyExamples data.examples
+  data.examples = _preprocess.readyExamples data.examples if data.examples?
   data
 
 prepare = (data) ->
@@ -12,7 +13,7 @@ prepare = (data) ->
   if data.staticMethods?
     data.staticMethods =
       for title, value of data.staticMethods
-        readyMethod title, value
+        readyMethod title, value, data.title
   if data.instanceMethods?
     data.instanceMethods =
       for title, value of data.instanceMethods
