@@ -1,5 +1,5 @@
 ::
-$references =
+_references =
   #==============================
   # External Links
   #==============================
@@ -84,23 +84,27 @@ $references =
   "digital signing": "usage.html#signing-and-verifying-messages"
 
 
-setLinks = (string) ->
+_setLinks = (string) ->
   string.replace /\[(.+?)\]\((.*?)\)/g, (match, $1, $2, offset, str) ->
     if $2 != ""
       return match
 
-    if $references[$1]?
-      "[#{$1}](#{$references[$1]})"
+    if _references[$1]?
+      "[#{$1}](#{_references[$1]})"
     else
       "[#{$1}](#broken)"
 
 _seenSlugs = {}
 
-# Gives hrefs unique, safe values so I don't have to worry about what goes into
-# a header.
-slugify = (string) ->
+# Makes human strings safe to put into an href tag.
+_hrefSafe = (string) ->
   return if !string?
-  output = string.replace /[$_.+!*'(),;/?:@=&   "<>#%{}|\\^~[\]`]+/g, "-"
+  string.replace /[$_.+!*'(),;/?:@=&   "<>#%{}|\\^~[\]`]+/g, "-"
+
+# Ensures we avoid href collisions
+_slugify = (string, ignoreUniqueC) ->
+  return if !string?
+  output = _hrefSafe string
   if _seenSlugs[output]?
     if (match = output.match /-(\d+)$/)?
       output = "#{output}-#{match[1]+1}"

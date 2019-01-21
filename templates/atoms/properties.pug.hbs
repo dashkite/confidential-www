@@ -1,6 +1,8 @@
 section
-  h2#properties-{{title}}
-    a.header-anchor(href="#properties-{{title}}") {{title}}
+  h2#properties-{{hrefSafe title}}
+    a.header-anchor(href="#properties-{{hrefSafe title}}") {{title}}
 
+  {{#if description}}
   :markdown
-    {{indent 4 description}}
+    {{indent 4 (setLinks description)}}
+  {{/if}}

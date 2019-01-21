@@ -15,7 +15,7 @@ properties:
 
 staticMethods:
   isKind:
-    signature:
+    signatures:
       - inputs: [ value ]
         output: is-key
     variables:
@@ -32,7 +32,7 @@ staticMethods:
 
 instanceMethods:
   to:
-    signature:
+    signatures:
       - inputs: [ hint ]
         output: encoded-key
     variables:

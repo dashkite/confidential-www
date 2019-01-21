@@ -16,7 +16,7 @@ prose: |
 properties: false
 staticMethods:
   create:
-    signature:
+    signatures:
       - inputs: []
         output: encryption-key-pair
     variables:
@@ -29,7 +29,7 @@ staticMethods:
       Generates a new `EncryptionKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
 
   from:
-    signature:
+    signatures:
       - inputs: [ hint, data ]
         output: key-pair
     variables:
@@ -61,7 +61,7 @@ staticMethods:
       If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
 
   isType:
-    signature:
+    signatures:
       - inputs: [ value ]
         output: is-encryption-key-pair
     variables:

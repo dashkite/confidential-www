@@ -1,5 +1,5 @@
 title: sign
-signature:
+signatures:
   - inputs: [ public-key, private-key, data ]
     output: [ declaration ]
   - inputs: [ private-key, public-key, data ]

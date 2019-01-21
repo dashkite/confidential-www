@@ -1,5 +1,5 @@
 title: confidential
-signature:
+signatures:
   - inputs: [ randomBytes& ]
     output: api
 variables:

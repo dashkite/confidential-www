@@ -23,7 +23,7 @@ properties:
 
 staticMethods:
   isType:
-    signature:
+    signatures:
       - inputs: [ value ]
         output: is-envelope
     variables:
@@ -39,7 +39,7 @@ staticMethods:
       Type check method to determine if the input `value` is an instance of `Envelope`.  Returns `true` or `false`.
 
   from:
-    signature:
+    signatures:
       - inputs: [ hint, data ]
         output: envelope
     variables:
@@ -72,7 +72,7 @@ staticMethods:
 
 instanceMethods:
   to:
-    signature:
+    signatures:
       - inputs: [ hint ]
         output: encoded-envelope
     variables:

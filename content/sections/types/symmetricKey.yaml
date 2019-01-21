@@ -17,7 +17,7 @@ prose: |
 properties: false
 staticMethods:
   create:
-    signature:
+    signatures:
       - inputs: []
         output: symmetric-key
     variables:
@@ -30,7 +30,7 @@ staticMethods:
       Generate a new `SymmetricKey`.  Randomly generates a key using the [`randomBytes`]() interface.
 
   from:
-    signature:
+    signatures:
       - inputs: [ hint, data ]
         output: key
     variables:
@@ -62,7 +62,7 @@ staticMethods:
       If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
 
   isType:
-    signature:
+    signatures:
       - inputs: [ value ]
         output: is-symmetric-key
     variables:

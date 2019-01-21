@@ -11,7 +11,7 @@ properties:
 
 staticMethods:
   isType:
-    signature:
+    signatures:
       - inputs: [ value ]
         output: is-nonce
     variables:
@@ -27,7 +27,7 @@ staticMethods:
       Type check method to determine if the input `value` is an instance of `Nonce`.  Returns `true` or `false`.
 
   from:
-    signature:
+    signatures:
       - inputs: [ hint, data ]
         output: nonce
     variables:
@@ -60,7 +60,7 @@ staticMethods:
 
 instanceMethods:
   to:
-    signature:
+    signatures:
       - inputs: [ hint ]
         output: encoded-nonce
     variables:

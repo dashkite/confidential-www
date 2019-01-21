@@ -1,32 +1,58 @@
 ::
-# Helper to keep the imports below short.
-_include = (name) ->
-  include "./types-atomic", "../../content/sections/types/#{name}.yaml"
+readyMethod = (title, data) ->
+  data.title = title
+  data.table = _preprocess.readySignatureTable data.variables
+  data.signatures = _preprocess.readySignatures title, data.signatures
+  if data.examples?
+    data.examples = _preprocess.readyExamples data.examples
+  data
+
+prepare = (data) ->
+  data.properties = _preprocess.readyPropertiesTable data.properties
+  if data.staticMethods?
+    data.staticMethods =
+      for title, value of data.staticMethods
+        readyMethod title, value
+  if data.instanceMethods?
+    data.instanceMethods =
+      for title, value of data.instanceMethods
+        readyMethod title, value
+  data
+
+atomic = $ (name) ->
+  template = _read "templates/atoms/types.pug.hbs"
+  data = prepare _yaml _read "content/sections/types/#{name}.yaml"
+  _T.render template, data
 ::
+
 
 section
   h1#types Types
 
   ::
-  $fragments.prose indent 4, """
-  Classes in panda-confidential are lightweight wrappers for values. They provide a type-system to support the generics ([`encrypt`](), [`decrypt`](), [`sign`](), [`verify`]()) and a couple of convenience methods. Their constructors ready values for use with the underlying TweetNaCl.js invocations ([`Uint8Array`]()).  But, you can use [`convert`]() to encode that value into a form that's easier for transport or store.
-  """
+  $prose "Classes in panda-confidential are lightweight wrappers for values.
+    They provide a type-system to support the generics ([`encrypt`](),
+    [`decrypt`](), [`sign`](), [`verify`]()) and a couple of convenience
+    methods. Their constructors ready values for use with the underlying
+    TweetNaCl.js invocations ([`Uint8Array`]()).  But, you can use
+    [`convert`]() to encode that value into a form that's easier for
+    transport or store."
   ::
 
   ::
-  _include "plaintext"
-  _include "envelope"
-  _include "declaration"
-  _include "hash"
-  _include "nonce"
+  atomic "plaintext"
+  atomic "envelope"
+  atomic "declaration"
+  atomic "hash"
+  atomic "nonce"
 
-  _include "key"
-  _include "symmetricKey"
-  _include "publicKey"
-  _include "privateKey"
-  _include "sharedKey"
+  atomic "key"
+  atomic "symmetricKey"
+  atomic "publicKey"
+  atomic "privateKey"
+  atomic "sharedKey"
 
-  _include "keyPair"
-  _include "encryptionKeyPair"
-  _include "signatureKeyPair"
+  atomic "keyPair"
+  atomic "encryptionKeyPair"
+  atomic "signatureKeyPair"
   ::

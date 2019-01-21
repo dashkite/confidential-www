@@ -18,7 +18,7 @@ prose: |
 properties: false
 staticMethods:
   isType:
-    signature:
+    signatures:
       - inputs: [ value ]
         output: is-public-key
     variables:
@@ -34,7 +34,7 @@ staticMethods:
       Type checks on `value` to see if it is an instance of `PublicKey`.  Returns `true` or `false`.
 
   from:
-    signature:
+    signatures:
       - inputs: [ hint, data ]
         output: key
     variables:

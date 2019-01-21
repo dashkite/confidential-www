@@ -1,8 +1,10 @@
-h3#example-{{slugify title}}
-  a.header-anchor(href="#example-{{slugify title}}") Example: {{title}}
+h3{{slug}}
+  a.header-anchor(href="{{slug}}") {{title}}
 
+{{#if content}}
 :markdown
   {{indent 2 (setLinks content)}}
+{{/if}}
 
 {{#if note}}
 blockquote

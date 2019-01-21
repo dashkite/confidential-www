@@ -1,5 +1,5 @@
 title: decrypt
-signature:
+signatures:
   - inputs: [ key, envelope ]
     output: plaintext
 variables:

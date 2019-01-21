@@ -1,5 +1,5 @@
 title: randomBytes
-signature:
+signatures:
   - inputs: [ length ]
     output: bytes
 variables:

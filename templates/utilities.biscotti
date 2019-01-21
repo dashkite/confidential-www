@@ -4,24 +4,34 @@
 import {readFileSync} from "fs"
 import {yaml} from "panda-serialize"
 import PandaTemplate from "panda-template"
+
 include "./references"
+include "./preprocess"
 
-read = (path) -> readFileSync path, encoding: "utf8"
+_read = (path) -> readFileSync path, encoding: "utf8"
+_yaml = yaml
 
-$bind = $ (string = "") -> string
-
-splice = (string, start, deleteCount, items...) ->
+_splice = (string, start, deleteCount, items...) ->
   pre = string[0...start]
   post = string[(start + deleteCount)...]
   pre + items.join() + post
 
-T = new PandaTemplate()
-T.registerPartial "signature", read "templates/partials/signature.pug.hbs"
-T.registerPartial "table", read "templates/partials/table.pug.hbs"
-T.registerPartial "example", read "templates/partials/example.pug.hbs"
-T.H.registerHelper "setLinks", setLinks
-T.H.registerHelper "slugify", slugify
+_T = new PandaTemplate()
+_T.registerPartial "signature", _read "templates/partials/signature.pug.hbs"
+_T.registerPartial "table", _read "templates/partials/table.pug.hbs"
+_T.registerPartial "example", _read "templates/partials/example.pug.hbs"
+_T.registerPartial "method", _read "templates/partials/method.pug.hbs"
+_T.H.registerHelper "setLinks", _setLinks
+_T.H.registerHelper "hrefSafe", _hrefSafe
+_T.H.registerHelper "slugify", _slugify
 
 $render = $ (templatePath, dataPath) ->
-  T.render (read templatePath), (yaml read dataPath)
+  _T.render (_read templatePath), (_yaml _read dataPath)
+
+$prose = (string) ->
+  template = """
+  :markdown
+    {{indent 2 (setLinks string)}}
+  """
+  _T.render template, {string}
 ::

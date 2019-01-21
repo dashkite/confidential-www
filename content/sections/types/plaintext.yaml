@@ -17,7 +17,7 @@ properties:
 
 staticMethods:
   isType:
-    signature:
+    signatures:
       - inputs: [ value ]
         output: is-plaintext
     variables:
@@ -33,7 +33,7 @@ staticMethods:
       Type check method to determine if the input `value` is an instance of `Plaintext`.  Returns `true` or `false`.
 
   from:
-    signature:
+    signatures:
       - inputs: [ hint, data ]
         output: plaintext
     variables:
@@ -66,7 +66,7 @@ staticMethods:
 
 instanceMethods:
   to:
-    signature:
+    signatures:
       - inputs: [ hint ]
         output: encoded-plaintext
     variables:

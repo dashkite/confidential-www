@@ -30,7 +30,7 @@ properties:
 
 staticMethods:
   isType:
-    signature:
+    signatures:
       - inputs: [ value ]
         output: is-declaration
     variables:
@@ -46,7 +46,7 @@ staticMethods:
       Type check method to determine if the input `value` is an instance of `Declaration`.  Returns `true` or `false`.
 
   from:
-    signature:
+    signatures:
       - inputs: [ hint, data ]
         output: declaration
     variables:
@@ -79,7 +79,7 @@ staticMethods:
 
 instanceMethods:
   to:
-    signature:
+    signatures:
       - inputs: [ hint ]
         output: encoded-declaration
     variables:

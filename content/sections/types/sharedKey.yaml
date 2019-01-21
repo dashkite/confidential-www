@@ -17,7 +17,7 @@ prose: |
 properties: false
 staticMethods:
   create:
-    signature:
+    signatures:
       - inputs: [public-key, private-key]
         output: shared-key
       - inputs: [private-key, public-key]
@@ -45,7 +45,7 @@ staticMethods:
       Generates a new `SharedKey` by algorithmically combinding `public-key` and `private-key`.
 
   from:
-    signature:
+    signatures:
       - inputs: [ hint, data ]
         output: key
     variables:
@@ -77,7 +77,7 @@ staticMethods:
       If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
 
   isType:
-    signature:
+    signatures:
       - inputs: [ value ]
         output: is-shared-key
     variables:

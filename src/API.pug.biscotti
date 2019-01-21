@@ -14,5 +14,5 @@ block main
     include "../templates/utilities"
     include "../templates/sections/properties"
     include "../templates/sections/functions"
-    # include "../templates/sections/types"
+    include "../templates/sections/types"
     ::

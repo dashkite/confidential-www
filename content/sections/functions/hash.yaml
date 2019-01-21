@@ -1,5 +1,5 @@
 title: hash
-signature:
+signatures:
   - inputs: [ plaintext ]
     output: [ hash ]
 variables:

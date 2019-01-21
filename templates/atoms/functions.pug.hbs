@@ -1,8 +1,8 @@
 section
-  h2#function-{{slugify title}}
-    a.header-anchor(href="#function-{{slugify title}}") {{title}}
+  h2#function-{{hrefSafe title}}
+    a.header-anchor(href="#function-{{hrefSafe title}}") {{title}}
 
-  {{#each signature}}
+  {{#each signatures}}
   {{> signature .}}
   {{/each}}
 
@@ -10,7 +10,7 @@ section
 
   {{#if prose}}
   :markdown
-    {{indent 4 prose}}
+    {{indent 4 (setLinks prose)}}
   {{/if}}
 
   {{#each examples}}

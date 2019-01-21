@@ -1,5 +1,5 @@
 title: encrypt
-signature:
+signatures:
   - inputs: [ key, nonce&, plaintext ]
     output: promise
 variables:
@@ -36,7 +36,7 @@ prose: |
   `encrypt` returns a promise that yields [`Envelope`](), a special container for the resultant ciphertext.  This container is expected by [`decrypt`]().
 
 examples:
-  - title: Instanciation
+  - title: Symmetric Encryption
     note: |
       **Warning**: Private keys should only be accessible to their owners.
     content: |
