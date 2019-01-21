@@ -36,7 +36,7 @@ prose: |
   `encrypt` returns a promise that yields [`Envelope`](), a special container for the resultant ciphertext.  This container is expected by [`decrypt`]().
 
 examples:
-  - title: Symmetric Encryption
+  - title: Instanciation
     note: |
       **Warning**: Private keys should only be accessible to their owners.
     content: |

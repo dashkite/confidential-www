@@ -1,6 +1,5 @@
 ::
 import {include, last} from "panda-parchment"
-import {read} from "panda-quill"
 import {yaml} from "panda-serialize"
 import PandaTemplate from "panda-template"
 
@@ -40,8 +39,8 @@ prepare = (data) ->
 
 
 atomic = $ (name) ->
-  template = await read "templates/atoms/functions.pug.hbs"
-  data = prepare yaml await read "content/sections/functions/#{name}.yaml"
+  template = read "templates/atoms/functions.pug.hbs"
+  data = prepare yaml read "content/sections/functions/#{name}.yaml"
   T.render template, data
 ::
 

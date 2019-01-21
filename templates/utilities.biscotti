@@ -1,9 +1,12 @@
 ::
 # TODO: expand the panda toolset to include a module like string.  It's useful for converting weird string situations to a anchor slug, but it has problems.
 
-import {read} from "panda-quill"
+import {readFileSync} from "fs"
 import {yaml} from "panda-serialize"
 import PandaTemplate from "panda-template"
+include "./references"
+
+read = (path) -> readFileSync path, encoding: "utf8"
 
 $bind = $ (string = "") -> string
 
@@ -12,12 +15,13 @@ splice = (string, start, deleteCount, items...) ->
   post = string[(start + deleteCount)...]
   pre + items.join() + post
 
-T = undefined
-$render = undefined
-do ->
-  T = new PandaTemplate()
-  T.registerPartial "signature", await read "templates/partials/example.pug.hbs"
-  T.registerPartial "table", await read "templates/partials/table.pug.hbs"
-  T.registerPartial "example", await read "templates/partials/example.pug.hbs"
-  T.H.registerHelper "setLinks", setLinks    
+T = new PandaTemplate()
+T.registerPartial "signature", read "templates/partials/signature.pug.hbs"
+T.registerPartial "table", read "templates/partials/table.pug.hbs"
+T.registerPartial "example", read "templates/partials/example.pug.hbs"
+T.H.registerHelper "setLinks", setLinks
+T.H.registerHelper "slugify", slugify
+
+$render = $ (templatePath, dataPath) ->
+  T.render (read templatePath), (yaml read dataPath)
 ::

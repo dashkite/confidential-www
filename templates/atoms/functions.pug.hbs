@@ -1,6 +1,6 @@
 section
-  h2#function-{{title}}
-    a.header-anchor(href="#function-{{title.replace}}") {{title}}
+  h2#function-{{slugify title}}
+    a.header-anchor(href="#function-{{slugify title}}") {{title}}
 
   {{#each signature}}
   {{> signature .}}

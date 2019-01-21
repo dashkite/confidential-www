@@ -14,7 +14,7 @@ table
       {{#each .}}
       td
         :markdown
-          {{indent 10 setLinks .}}
+          {{indent 10 (setLinks .)}}
       {{/each}}
   {{/each}}
-  {{/body}}
+  {{/if}}

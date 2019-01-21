@@ -93,4 +93,20 @@ setLinks = (string) ->
       "[#{$1}](#{$references[$1]})"
     else
       "[#{$1}](#broken)"
+
+_seenSlugs = {}
+
+# Gives hrefs unique, safe values so I don't have to worry about what goes into
+# a header.
+slugify = (string) ->
+  return if !string?
+  output = string.replace /[$_.+!*'(),;/?:@=&   "<>#%{}|\\^~[\]`]+/g, "-"
+  if _seenSlugs[output]?
+    if (match = output.match /-(\d+)$/)?
+      output = "#{output}-#{match[1]+1}"
+    else
+      output = "#{output}-1"
+
+  _seenSlugs[output] = true
+  output
 ::
