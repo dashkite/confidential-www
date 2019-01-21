@@ -3,13 +3,15 @@ prototype: false
 prose: |
   The return value for [`sign`]().
 
-  `Declaration`s are self-contained entities that have everything you need to check their integrity. When passed to [`verify`](), that function matches all the `signatories` to their `signatures` and validates that [digital signature]().
+  `Declaration` contains the products of digital signature: the original `data`, the public keys of the `signatories`, and the [ed25519]() `signatures`.
 
-  While a `Declaration` can be verified to be internally self-consistent, it is up to you to verify the public keys belong to whoever claims to have sent the data.
+  This class is suitable for [`verify`](). When passed to `verify`, `verify` matches all the `signatories` to their `signatures` and validates that [digital signature]().
+
+  Note that while a `Declaration` can be verified to be internally self-consistent, it is up to you to verify the public keys in the `signatories` list belong to whoever claims them.
 
   `Declaration` contains methods to assist managing this resource, summarized below.  Please see the relevant section for more details.
 
-  - `to`: instance method to output the internal value in the given hint
+  - `to`: instance method to format internal data as the given hint
   - `from`: static method to hydrate an instance of `Declaration` from data
   - `isType`: static method providing a boolean type-check for `Declaration`
 
