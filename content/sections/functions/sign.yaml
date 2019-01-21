@@ -10,7 +10,7 @@ variables:
   key-pair:
     type: "[`SignatureKeyPair`]()"
     description: |
-      The public and private keys with which to sign `data`.
+      A key pair containing the public and private keys with which to sign `data`.
   public-key:
     type: "[`PublicKey`]()"
     description: |
@@ -26,24 +26,30 @@ variables:
   declaration:
     type: "[`Declaration`]()"
     description: |
-      Object with properties `data`, `signatures`, and `signatories`. Suitable for use with `verify`.
+      Type class to organize the products of digital signature.  Contains fields `data`, `signatures`, and `signatories`. Suitable for use with `verify`.
 
 prose: |
-  A [generic function]() accepting signing keys and data to output a digital signature.  `sign` and its counterpart [`verify`]() form a pair of opposing operations.
+  Digitially signs an input with the provided key.
 
-  Panda-Confidential establishes a key type system to determine your intention in a clear and error-free way.  That allows `sign` to accept either a [`SignatureKeyPair`]() or keys as individual arguments.
+  `sign` is a [generic function]() accepting signing keys and data to return a digital signature.  `sign` and its counterpart [`verify`]() form a pair of opposing operations.
 
-  > **Warning**: Encryption key pairs are incompatible with `sign` and will cause `sign` to throw.
+  Panda-Confidential establishes a type system to determine your intention in a clear and error-free way.  That allows `sign` to accept either a [`SignatureKeyPair`]() or keys as individual arguments.
 
-  The output is a special container object, [`Declaration`](), and is expected by [`verify`]().  `Declaration` holds the original data, the public keys of the `signatories`, and the `signatures` that attest the integrity of the data and the irrefutablitiy of the given signatory.
+  > **Warning**: Encryption key pairs are incompatible with `sign` and causes `sign` to throw.
 
-  `sign` expects its input to be either an instance of `Plaintext` or `Declaration`:
-    - `Declaration` is mentioned above.  It causes sign to append a signature to the existing lists.
-    - `Plaintext` is a similar container that keeps generic data typed and formmated properly for `sign`.  To convert your data into an instance of `Plaintext`, use the static method `Plaintext.from`.
+  `sign` returns an instance of [`Declaration`](), a type class that holds the holds the original data, the public keys of the `signatories`, and the [ed25519]() `signatures`.  This class is suitable for [`verify`]().
+
+  `sign` expects `data` to be either an instance of [`Plaintext`]() or [`Declaration`]():
+    - When given a `Declaration`, `sign` appends a signature to the existing lists.
+    - When given a `Plaintext`, `sign` generates a new `Declaration`.
+
+  You may format the data of a `Declaration` via the instance method `Declaration.to`.
 
 examples:
   - title: Single Signature
     content: |
+      Provide a [`Plaintext`]() instance to the `data` argument and `sign` generates a new [`Declaration`]().
+
       ```coffeescript
       import {confidential} from "panda-confidential"
       {sign, Plaintext} = confidential()
@@ -53,30 +59,35 @@ examples:
       do ->
         alice = keyPairLookup "Alice/signature"
         data = Plaintext.from "utf8", "Hello, World!"
+
         declaration = sign alice, data
 
-        # encode the signed data object itself
+        # You may serialize with the instance method `to`
         send "Bob", declaration.to "base64"
       ```
 
   - title: Multiple Signatures
     content: |
-      `sign` supports multiple signatories.  Provide a [`Declaration`]() object to the `data` argument and `sign` will append the signature to the `Declaration` in the output. The `signatures` property contains a list of signatures. The `signatories` property contains a list of the corresponding public keys.
+      `sign` supports multiple signatories.  Provide a [`Declaration`]() instance to the `data` argument and `sign` appends the signature to the existing list.
 
       ```coffeescript
       import assert from "assert"
       import {confidential} from "panda-confidential"
       {sign, Declaration} = confidential()
-      import {receive, keyPairLookup} from "my-library"
+      import {send, receive, keyPairLookup} from "my-library"
 
       do ->
-        # convert JSON to declaration
+        # You may hydrate a Declaration instance with the static method `from`
         greeting = Declaration.from "base64", receive "Bob"
 
         # add Bob's signature
         bob = keyPairLookup "Bob/signature"
         greeting = sign bob, greeting
 
+        # sign appends to the lists signatures and signatories
         assert.equal greeting.signatures.length, 2
         assert.equal greeting.signatories.length, 2
+
+        # You may serialize with the instance method `to`
+        send "Charlotte", declaration.to "base64"
       ```

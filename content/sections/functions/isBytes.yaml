@@ -11,9 +11,29 @@ variables:
   is-bytes:
     type: "[`Boolean`]()"
     description: |
-      `true` if `value` is an instance of [`Buffer`]() _or_ [`Uint8Array`](), `false` otherwise.
+      `true` if `value` is an instance of [`Uint8Array`](), `false` otherwise.
 
 prose: |
-  Type check method to determine if the input `value` is a byte array, either an instance of [`Uint8Array`]() or its equivalent in Node.js, [`Buffer`](). Returns `true` or `false`.
+  Determines if the argument is a byte array.
 
-examples: []
+  `isBytes` provides a type check to determine if `value` is a byte array, an instance of [`Uint8Array`]() or its equivalent in Node.js, [`Buffer`]().
+
+  Returns `true` or `false`.
+
+examples:
+  - title: Testing For Byte Arrays
+    content: |
+      ```coffeescript
+      import assert from "assert"
+      import {confidential} from "panda-confidential"
+      {isBytes, Plaintext} = confidential()
+
+      do ->
+        assert.equal (isBytes "Hello, World!"), false
+
+        assert.equal (isBytes Buffer.from "Hello, World!"), true
+
+        # Type classes can return byte arrays with the hint `bytes`
+        plaintext = Plaintext.from "utf8", "Hello, World!"
+        assert.equal (isBytes plaintext.to "bytes"), true
+      ```

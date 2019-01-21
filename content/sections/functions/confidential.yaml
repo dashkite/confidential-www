@@ -8,16 +8,18 @@ variables:
     description: |
       Optional. Provides a custom implementation for [`randomBytes`]().
 
-      > **Warning:** A robust source of entropy is necessary for encryption. Use this feature with caution.
+      > **Warning:** Effective encryption requires a robust implementation of pseudo-randomness. Replace `randomBytes` with caution.
   api:
     type: "[`Object`]()"
     description: |
       An instance of the Confidential API.
 
 prose: |
+  Instanciates the Panda-Confidential API.
+
   Because Panda-Confidential is extensible, it uses instantiation to prevent unexpected changes by third parties. Once you have an instance, you can destructure its functions and types to use them directly.
 
-  Please use caution when replacing [`randomBytes`]() with an arugment to this instanciation.  Insufficiently robust sources of psuedo-randomness will compromise encryption.
+  `randomBytes` is an optional argument to replace the default [`randomBytes`]() implementation. Please use caution when replacing `randomBytes`.  Inadequate sources of psuedo-randomness compromise encryption.
 
 examples:
   - title: Instanciation

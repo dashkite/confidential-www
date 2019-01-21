@@ -7,10 +7,6 @@ TweetNaCl.js is an opinionated bundle of [universal JavaScript][universal] that 
 
 Panda Confidential aims to make TweetNaCl.js easier to use and extend without giving up auditability.
 
-[tweetnacl]: https://github.com/dchest/tweetnacl-js#documentation
-[universal]: https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb
-
-
 ## Usage
 Because panda-confidential is extensible, we use instantiation to prevent unexpected changes by third parties.
 
@@ -59,8 +55,6 @@ Here we use `decrypt` to retrieve the data just as simply.
 
 Please see the [full API documentation][api-docs] for more detailed information about key types and function pairs.
 
-[generics]: https://en.wikipedia.org/wiki/Generic_programming
-
 ## Installation
 
 For the browser, bundle using your favorite bundler:
@@ -80,3 +74,6 @@ These functions all make use of TweetNaCl.js, but the accept a variety of inputs
 [Full API Documentation][api-docs]
 
 [api-docs]:/api
+[generics]: https://en.wikipedia.org/wiki/Generic_programming
+[tweetnacl]: https://github.com/dchest/tweetnacl-js#documentation
+[universal]: https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb

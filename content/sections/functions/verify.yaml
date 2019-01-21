@@ -6,18 +6,23 @@ variables:
   declaration:
     type: "[`Declaration`]()"
     description: |
-      Container object with for Panda-Confidential signing. Has properties `data`, `signatures`, and `signatories`.
+      Type class for digital signature products: `data`, `signatures`, and `signatories`. Returned by [`sign`]().
   is-valid:
     type: "[`Boolean`]()"
     description: |
       `true` if the signatures are valid, `false` otherwise.
 
 prose: |
-  Accepts the [`Declaration`]() output of `sign` and verifies its integrity, returning `true` or `false`.  In this way, `verify` and [`sign`]() form a pair of opposing operations.
+  Verifies one or more digital signatures on a document.
 
-  `verify` throws without an instance of [`Declaration`]().  You may instanciate one from a serialized form with the type method `Declaration.from`.
+  `sign` is a [generic function]() accepting a [`Declaration`] to return a boolean result on its integrity.  `verify` and its counterpart [`sign`]() form a pair of opposing operations.
+
+  `verify` throws without an instance of [`Declaration`]().  You may instanciate one from a serialized form with the static method `Declaration.from`.
+
+  `verify` returns `true` if _all_ [ed25519]() signatures can be verified with their corresponding public keys.  Otherwise, `verify` returns `false`.
 
   > **Warning:** Everything needed to verify the signatures exists within a [`Declaration`](), but it is up to _you_ to verify the authenticity of the public keys within `signatories`.
+
 
 examples:
   - title:
@@ -28,7 +33,7 @@ examples:
       import {receive, process} from "my-library"
 
       do ->
-        # convert JSON to declaration
+        # You may hydrate a Declaration instance with the static method `from`
         greeting = Declaration.from "base64", receive "Alice"
 
         if verify greeting

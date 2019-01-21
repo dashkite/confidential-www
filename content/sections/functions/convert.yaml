@@ -7,25 +7,25 @@ variables:
   hint:
     type: "[`Object`]()"
     description: |
-      Describes the conversion to be applied to _input_. Contains the properties `from` and `to`.
+      An object with the keys `from` and `to`.  Their values describe the conversion to be applied to _input_.
   input:
-    type: "[`Uint8Array`]() | [`Buffer`]() | [`String`]()"
+    type: "[`Uint8Array`]() | [`String`]()"
     description: |
       The value to be converted.
   output:
-    type: "[`Uint8Array`]() | [`Buffer`]() | [`String`]()"
+    type: "[`Uint8Array`]() | [`String`]()"
     description: |
       The result of the conversion.
 
 prose: |
-  A utility function to manage data format conversion between a variety of targets.
+  Manages data format conversion between a variety of targets.
 
-  A conversion is specified by `hint`'s fields, `from` and `to`.  These identify the current and target encoding of `input`, respectively.
+  A conversion is specified by the fields of `hint`, `from` and `to`.  These identify the current and target format of `input`, respectively.
 
-  Normally, you should not need to directly use this function because Panda-Confidential provides typed containers for the input and output of the main generics ([`encrypt`](), [`decrypt`](), [`sign`](), and [`verify`]()).  Those containers ([`Plaintext`](), [`Envelope`](), and [`Declaration`]()) have methods to manage data encoding, and use `convert` internally, providing a standard interface.
+  Typically, you will not need to use `convert` directly.  Panda-Confidential provides type classes (ex: [`Plaintext`](), [`Envelope`](), and [`Declaration`]()) with methods to manage data formatting.  Each class follows a convention to include the methods `from` and `to`, but internally, they all use `convert` to peform the conversion.
 
   #### Supported Formats
-  - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+  - `bytes`: A byte array, specifically [`Uint8Array`]()
   - `utf8`: A [`String`]() with [UTF-8 encoding]()
   - `base64`: A [`String`]() with [Base64 encoding]()
   - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
@@ -59,11 +59,11 @@ examples:
 
   - title: Formatting Data for the API
     content: |
-      The Panda-Confidential generics, ([`encrypt`](), [`decrypt`](), [`sign`](), and [`verify`]()) are purposefully agnostic to the content they process, be it text or binary media.  The API always operates on byte arrays, requiring you convert inputs into bytes and then dealing with byte array outputs.
+      The Panda-Confidential generics (ex: [`encrypt`](), [`decrypt`](), [`sign`](), and [`verify`]()) are purposefully agnostic to the content they process, be it text or binary media.  The API always operates on byte arrays, requiring you convert inputs into bytes and then dealing with byte array outputs.
 
-      Normally, you will not need to use `convert` directly because Panda-Confidential provides type containers with builtin formatting helper methods.  Their interfaces are standardized by using `convert` internally, so you provide each with explicit formatting instructions via `hint`.
+      Typically, you will not need to use `convert` directly.  Panda-Confidential provides type classes with formatting methods that use `convert` internally.
 
-      Here is an example that uses these containers and their formatting helpers. Please see those class references for more information.
+      Here is an example that uses these classes. Please see those class references for more information.
 
 
       ```coffeescript
@@ -96,6 +96,6 @@ examples:
         envelope = Envelope.from "base64", serialized
         plaintext = await decrypt toBobFromAlice, envelope
 
-        # Use the Plaintext instance method to encode the resulting plaintext
+        # Use Plaintext instance method `to` to encode the plaintext
         assert.equal (plaintext.to "utf8"), "Hello, Bob!"
       ```

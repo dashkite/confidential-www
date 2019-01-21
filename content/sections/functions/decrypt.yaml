@@ -10,22 +10,26 @@ variables:
   envelope:
     type: "[`Envelope`]()"
     description: |
-      Container class for encryption products, `ciphertext` and `nonce`. As returned by [`encrypt`]().
+      Type class for encryption products: `ciphertext` and `nonce`. Returned by [`encrypt`]().
   plaintext:
     type: "[`Plaintext`]()"
     description: |
-      Container class for the plaintext resulting from decryption.
+      Type class for the plaintext resulting from decryption.
 
 prose: |
-  A [generic function]() accepting an encryption key and ciphertext to output a plaintext.  `decrypt` and its counterpart [`encrypt`]() form a pair of opposing operations.
+  Decrypts a ciphertext, when provided the correct key.
 
-  Panda-Confidential establishes a type system to determine your intention in a clear and error-free way.  That allows `decrypt`'s behavior to depend on the input key:
+  `decrypt` is a [generic function](), accepting an encryption key and ciphertext to return a plaintext.  `decrypt` and its counterpart [`encrypt`]() form a pair of opposing operations.
+
+  Panda-Confidential establishes a type system to determine your intention in a clear and error-free way.  That allows `decrypt` behavior to depend on the input key:
    - When given a [`SymmetricKey`](), `decrypt` uses [symmetric decryption]().
    - When given a [`SharedKey`](), `decrypt` uses authenticated, [asymmetric decryption]().
 
-  Ciphertext is enclosed in the special container, [`Envelope`](), provided by [`encrypt`]().  If you wish to instanciate an `Envelope` from a serialized form, use the static method `Envelope.from` to do so.
+  Ciphertext is enclosed in the type class [`Envelope`](), returned by [`encrypt`]().  If you wish to hydrate an `Envelope` from a serialized form, use the static method `Envelope.from` to do so.
 
-  `decrypt` outputs an instance of [`Plaintext`](), a special container to type the plaintext product of decryptiong.  You may output the data in the format of your choice via the instance method `Plaintext.to`.
+  `decrypt` returns an instance of [`Plaintext`](), a type class that holds the plaintext product of decryption.  You may format the data of a `Plaintext` via the instance method `Plaintext.to`.
+
+  If `decrypt` cannot decrypt a ciphertext (ex: the incorrect key is provided), it throws.
 
 examples:
   - title: Symmetric Decryption
@@ -38,10 +42,13 @@ examples:
 
       do ->
         alice = keyLookup "Alice/private"
+
         serialized = read "greeting"
         envelope = Envelope.from "base64", serialized
+
         plaintext = await decrypt alice, envelope
 
+        # You may format the plaintext with the instance method `to`.
         assert.equal (plaintext.to: "utf8"), "Hello, Alice!"
       ```
   - title: Asymmetric Decryption
@@ -56,9 +63,12 @@ examples:
         alice = keyLookup "Alice/public"
         bob = keyLookup "Bob/private"
         toBobFromAlice = SharedKey.create alice, bob
+
         serialized = receive "Bob"
         envelope = Envelope.from "base64", serialized
+
         plaintext = await decrypt toBobFromAlice, envelope
 
+        # You may format the plaintext with the instance method `to`.
         assert.equal (plaintext.to: "utf8"), "Hello, Bob!"
       ```

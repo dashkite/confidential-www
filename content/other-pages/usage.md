@@ -46,9 +46,6 @@ Here are the key types...
 
 _Please see the [full API documentation][api-docs] for more detailed information._
 
-[generics]: https://en.wikipedia.org/wiki/Generic_programming
-[api-docs]:https://github.com/pandastrike/panda-confidential/blob/master/API.md
-
 ## Symmetric Encryption and Decryption
 Alice would like to encrypt her data at rest.  This calls for [symmetric encryption][symmetric-encryption], allowing Alice to encrypt and decrypt private data with the same key.
 
@@ -316,7 +313,8 @@ declaration = sign Bob, newDeclaration
 Bob can also sign this `Declaration`.  He just passes the `Declaration` instance to `sign` again with his signing key pair.  The relevant data will be appended to the signatories and signatures fields within the `Declaration` instance.
 
 
-[api-docs]:/API.html
+[api-docs]:/api
+[generics]: https://en.wikipedia.org/wiki/Generic_programming
 [symmetric-encryption]: https://en.wikipedia.org/wiki/Symmetric-key_algorithm
 [pke]: https://en.wikipedia.org/wiki/Public-key_cryptography
 [digitial-signature]: https://en.wikipedia.org/wiki/Digital_signature

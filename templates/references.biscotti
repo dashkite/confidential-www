@@ -25,6 +25,8 @@ _references =
   "URL-Safe Base64 encoding": "https://tools.ietf.org/html/rfc4648#section-5"
   "SHA-512": "https://tools.ietf.org/html/rfc4634"
 
+  "ed25519": "https://ed25519.cr.yp.to/"
+
   "`nacl.secretbox.keyLength`": "https://github.com/dchest/tweetnacl-js#constants-1"
   "`nacl.box.sharedKeyLength`": "https://github.com/dchest/tweetnacl-js#constants-1"
   "`nacl.box.publicKeyLength`": "https://github.com/dchest/tweetnacl-js#constants-1"
