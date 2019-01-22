@@ -1,0 +1,46 @@
+// The shenanigans in what follows WRT to borders
+// is due to the fact that there's apparently (?)
+// no simple way to give a table rounded borders
+// — you have to select each of the corner cells
+// of the table and round each corner individually
+
+table
+  font-family "Titillium Web", sans-serif
+  border-collapse separate
+  border-spacing 0
+
+  thead
+    font-weight bold
+
+    th
+      border-top 1px solid silver
+
+      &:first-child
+        border-top-left-radius 0.5rem
+
+      &:last-child
+        border-top-right-radius 0.5rem
+
+  thead
+  tr:nth-child(2n)
+    background-color silver + 85%
+
+  th, td
+    padding 2rem
+    border-right 1px solid silver
+    border-bottom 1px solid silver
+
+    &:first-child
+      border-left 1px solid silver
+
+  tbody
+
+    tr:last-child
+
+      td
+
+        &:first-child
+          border-bottom-left-radius 0.5rem
+
+        &:last-child
+          border-bottom-right-radius 0.5rem

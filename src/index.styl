@@ -16,6 +16,7 @@ body
         display none
 
   & >  main
+
     article
       max-width 65ch
       padding 4rem
@@ -34,12 +35,15 @@ body
         rhythm 6rem, .9
 
       h1, h2, h3, h4, h5, h6
+
         font-family "Titillium Web"
-        a::before
-          content: "🔗 "
+
         a
           color -color-dark
           text-decoration none
+
+          &::before
+            content "¶ "
 
       blockquote
         h1, h2, h3, h4, h5, h6
@@ -47,13 +51,12 @@ body
           a::before
             content: ""
 
+      h2 + blockquote
+        font-family "Titillium Web", sans-serif
+
       section
 
         pre
           //- prism trunmps line-height
           font-size 2rem
           margin-bottom 4rem !important
-
-        table, th, td
-          border solid 1px black
-          padding 1rem

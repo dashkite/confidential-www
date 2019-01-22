@@ -121,6 +121,6 @@ define "server",
     files: extensions: [ "html" ]
     logger: "tiny"
     rewrite: true
-    port: 8000
+    port: 8001
 
 define "default", [ "build", "watch&", "server&" ]
