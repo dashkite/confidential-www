@@ -1,13 +1,15 @@
 title: Envelope
 prototype: false
 prose: |
-  The return value for [`encrypt`]() and the required input for [`decrypt`]()
+  The return value for [`encrypt`]().
 
-  `Envelope` organizes the `ciphertext` and `nonce` products of encryption.
+  `Envelope` contains the products of encryption: the `ciphertext` and `nonce`.
 
-  `Envelope` contains methods to assist managing this resource, summarized below.  Please see the relevant section for more details.
+  This class is suitable for [`decrypt`]().
 
-  - `to`: instance method to output the internal value in the given hint
+  `Envelope` contains helpers methods manage its, summarized below.  Please see the relevant section for more details.
+
+  - `to`: instance method to return formatted internal data
   - `from`: static method to hydrate an instance of `Envelope` from data
   - `isType`: static method providing a boolean type-check for `Envelope`
 
@@ -46,22 +48,22 @@ staticMethods:
       hint:
         type: "[`String`]()"
         description: |
-          name that specifies the input hint.
+          name that specifies the `from` conversion hint.
       data:
         type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
         description: |
-          A representation of the data of a envelope.
+          A data representation of an envelope.
       envelope:
         type: "[`Envelope`]()"
         description: |
-          The envelope in an encoded form for transport or storage.
+          Instance of [`Envelope`](), hydrated by the input `data`.
     prose: |
-      Returns an instanciated `Envelope` based on the value of `data`.
+      Hydrates an instance of `Envelope` from given `data`.
 
-      `hint` tells `from` how convert the value into `Envelope`'s internal reprentation.
+      `hint` informs `from` how convert `data` into `Envelope`'s internal reprentation.
 
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
       - `utf8`: A [`String`]() with [UTF-8 encoding]()
       - `base64`: A [`String`]() with [Base64 encoding]()
       - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
@@ -79,16 +81,16 @@ instanceMethods:
       hint:
         type: "[`String`]()"
         description: |
-          name that specifies the output encoding.
+          name that specifies the `to` conversion hint.
       encoded-envelope:
         type: "[`String`]() | [`Uint8Array`]()"
         description: |
-          The envelope in an encoded form for transport or storage.
+          A data representation of an envelope.
     prose:  |
-      Outputs this instance's value in the form specified in `hint`.
+      Converts this instance's value into the form specified by `hint`.
 
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
       - `utf8`: A [`String`]() with [UTF-8 encoding]()
       - `base64`: A [`String`]() with [Base64 encoding]()
       - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()

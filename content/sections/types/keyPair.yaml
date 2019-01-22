@@ -1,11 +1,16 @@
 title: KeyPair
 prototype: false
 prose: |
-  Base class for all key pairs in Panda-Confidential. Stores a pair of algorithmically related keys, the [`PrivateKey`]() and [`PublicKey`]() instances.
+  Base class for all key pairs in Panda-Confidential.
 
-  This class contains a method interface for managing the serialization of `KeyPair`s.
+  `KeyPair` contains a pair of algorithmically related keys, instances of [`PrivateKey`]() and [`PublicKey`]().
 
-  Normally, you should not require the direct use of this class. But all other key pairs inherit its interface.
+  `Key` has helper methods to manage its data, summarized below. Please see the relevant section for more details.
+
+  - `to`: instance method to return formatted internal data.
+  - `isKind`: static method providing a boolean prototype chain check for `KeyPair`
+
+  Typically, you will not directly use this class. But all other key pairs inherit its interface.
 
 properties:
   privateKey:
@@ -30,9 +35,9 @@ staticMethods:
       is-key-pair:
         type: "[`Boolean`]()"
         description: |
-          `true` if `value` has the `KeyPair` in its prototype chain, `false` otherwise.
+          true` if `value` has an instance of `KeyPair` in its prototype chain, `false` otherwise.
     prose: |
-      Type check method to determine if the input `value` is an instance of `KeyPair` or has inherited from one in its prototype.  Returns `true` or `false`.
+      Type check method to determine if the input `value` is an instance of `KeyPair` or contains `KeyPair` in its prototype chain.  Returns `true` or `false`.
 
 instanceMethods:
   to:
@@ -43,16 +48,16 @@ instanceMethods:
       hint:
         type: "[`String`]()"
         description: |
-          name that specifies the output encoding.
+          name that specifies the `to` conversion hint.
       encoded-key-pair:
         type: "[`String`]() | [`Uint8Array`]()"
         description: |
-          The key-pair in an encoded form for transport or storage.
+          A data representation of a key pair
     prose:  |
-      Outputs this instance's value in the form specified in `hint`.
+      Converts this instance's value into the form specified by `hint`.
 
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
       - `utf8`: A [`String`]() with [UTF-8 encoding]()
       - `base64`: A [`String`]() with [Base64 encoding]()
       - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()

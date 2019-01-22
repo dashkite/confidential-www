@@ -1,7 +1,13 @@
 title: Nonce
 prototype: false
 prose: |
-  `Nonce` is a wrapper for the given nonce of random bytes.  `Nonce` contains a method interface for managing the formatting. Invoking the `to` method on an instance of this class returns the nonce itself, in whichever format you request.
+  A wrapper for a given nonce of random bytes.
+
+  `Nonce` has helper methods to manage its data, summarized below. Please see the relevant section for more details.
+
+  - `to`: instance method to return formatted internal data. `to` returns the nonce itself, in whichever format you request.
+  - `from`: static method to hydrate an instance of `Nonce` from data
+  - `isType`: static method providing a boolean type-check for `Nonce`
 
 properties:
   nonce:
@@ -22,7 +28,7 @@ staticMethods:
       is-nonce:
         type: "[`Boolean`]()"
         description: |
-          `true` if `value` has the `Has` in its prototype chain, `false` otherwise.
+          `true` if `value` is an instance of `Nonce`, `false` otherwise.
     prose: |
       Type check method to determine if the input `value` is an instance of `Nonce`.  Returns `true` or `false`.
 
@@ -34,22 +40,22 @@ staticMethods:
       hint:
         type: "[`String`]()"
         description: |
-          name that specifies the input hint.
+          name that specifies the `from` conversion hint.
       data:
         type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
         description: |
-          A representation of the data of a nonce.
+          A data representation of a nonce.
       nonce:
         type: "[`Nonce`]()"
         description: |
-          The nonce in an encoded form for transport or storage.
+          Instance of [`Nonce`], hydrated by the input `data`.
     prose: |
-      Returns an instanciated `Nonce` based on the value of `data`.
+      Hydrates an instance of `Nonce` from given `data`.
 
-      `hint` tells `from` how convert the value into `Nonce`'s internal reprentation.
+      `hint` informs `from` how convert `data` into `Nonce`'s internal reprentation.
 
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
       - `utf8`: A [`String`]() with [UTF-8 encoding]()
       - `base64`: A [`String`]() with [Base64 encoding]()
       - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
@@ -67,16 +73,18 @@ instanceMethods:
       hint:
         type: "[`String`]()"
         description: |
-          name that specifies the output encoding.
+          name that specifies the `to` conversion hint.
       encoded-nonce:
         type: "[`String`]() | [`Uint8Array`]()"
         description: |
-          The nonce in an encoded form for transport or storage.
+          A data representation of a nonce
     prose:  |
-      Outputs this instance's value in the form specified in `hint`.
+      Converts this instance's value into the form specified by `hint`.
 
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      `Nonce` is a simple wrapper for the given nonce, so `to` returns the nonce itself, in whichever format you request.
+
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
       - `utf8`: A [`String`]() with [UTF-8 encoding]()
       - `base64`: A [`String`]() with [Base64 encoding]()
       - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()

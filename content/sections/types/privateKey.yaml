@@ -5,15 +5,15 @@ prose: |
 
   > **Warning:** This key must remain secret for the public-key cryptography to be effective.
 
-  Because this type extends [`Key`](), you may:
-  - manage `PrivateKey` serialization through the `to` method.
-  - check if this key is _any_ type of instanciated [`Key`]() through the `isKind` method.
+  `PrivateKey` extends [`Key`](), so it inherits its inteface: (Please see that class for more details.)
+  - `to`: instance method to return formatted internal data. `to` returns the key itself, in whichever format you request.
+  - `isKind`: static method providing a boolean prototype chain check for `Key`
 
-  This class adds to the interface with:
-  - `from`: static method to instanciate a `PrivateKey` from serialized data.
-  - `isType`: static method to type check specifically on `PrivateKey`
+  `PrivateKey` extends that interface with:
+  - `from`: static method to hydrate an instance of `PrivateKey` from data
+  - `isType`: static method providing a boolean type-check for `PrivateKey`
 
-  Note that this key type cannot be created directly, but rather through the creation of an [`EncryptionKeyPair`]() or [`SignatureKeyPair`]().  Further, while both of those key pairs contain instances of `PrivateKey`, encryption and signing keys in Panda-Confidential cannot interoperate.
+  Note that this key type cannot be created directly, but rather through the creation of an [`EncryptionKeyPair`]() or [`SignatureKeyPair`]().  Further, while both types of key pairs contain instances of `PrivateKey`, encryption and signing keys in Panda-Confidential cannot interoperate.
 
 properties: false
 staticMethods:
@@ -41,22 +41,22 @@ staticMethods:
       hint:
         type: "[`String`]()"
         description: |
-          name that specifies the input hint.
+          name that specifies the `from` conversion hint.
       data:
-        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
+        type: "[`String`]() | [`Uint8Array`]()"
         description: |
-          A representation of the data of a key.
+          A data representation of a private key.
       key:
         type: "[`PrivateKey`]()"
         description: |
-          An instanciated `PrivateKey`.
+          Instance of [`PrivateKey`](), hydrated by the input `data`.
     prose: |
-      Returns an instanciated `PrivateKey` based on the value of `data`.
+      Hydrates an instance of `PrivateKey` from given `data`.
 
-      `hint` tells `from` how convert the value into `PrivateKey`'s internal reprentation.
+      `hint` informs `from` how convert `data` into `PrivateKey`'s internal reprentation.
 
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
       - `utf8`: A [`String`]() with [UTF-8 encoding]()
       - `base64`: A [`String`]() with [Base64 encoding]()
       - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()

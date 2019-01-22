@@ -1,17 +1,18 @@
 title: SignatureKeyPair
 prototype: "[`KeyPair`]()"
 prose: |
-  Key pair suitable for [digital signing]().
+  Key pair suitable for [digital signature]().
 
-  > **Warning:** `SignatureKeyPair` is not suitable for signature.
+  > **Warning:** `SignatureKeyPair` is not suitable for encryption.
 
-  Because this type extends [`KeyPair`](), you may:
-  - manage `SignatureKeyPair` serialization through the `to` and `from` methods.
-  - check if this key pair is _any_ type of instanciated [`KeyPair`]() through the `isKind` method.
+  `SignatureKeyPair` extends [`KeyPair`](), so it inherits its inteface: (Please see that class for more details.)
+  - `to`: instance method to return formatted internal data.
+  - `isKind`: static method providing a boolean prototype chain check for `KeyPair`
 
-  This class adds to the method interface with:
-  - `create`: static method to generate a key pair suitable for digitial signing
-  - `isType`: static method type check specifically on `SignatureKeyPair`
+  `EncryptionKeyPair` extends that interface with:
+  - `create`: static method to generate an instance of `SignatureKeyPair`, suitable for digital signature.
+  - `from`: static method to hydrate an instance of `SignatureKeyPair` from data
+  - `isType`: static method providing a boolean type-check for `SignatureKeyPair`
 
 properties: false
 staticMethods:
@@ -22,43 +23,11 @@ staticMethods:
     variables:
       signature-key-pair:
         isPromised: true
-        type: "`SignatureKeyPair`"
-        description: |
-          Promise that resolves to an instance of `SignatureKeyPair`.
-    prose: |
-      Generates a new `SignatureKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
-
-  from:
-    signatures:
-      - inputs: [ hint, data ]
-        output: key-pair
-    variables:
-      hint:
-        type: "[`String`]()"
-        description: |
-          name that specifies the input hint.
-      data:
-        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
-        description: |
-          A representation of the data of a key-pair.
-      key-pair:
         type: "[`SignatureKeyPair`]()"
         description: |
-          The key-pair in an encoded form for transport or storage.
+          Promise that resolves to an instance of [`SignatureKeyPair`]().
     prose: |
-      Returns an instanciated `SignatureKeyPair` based on the value of `data`.
-
-      `hint` tells `from` how convert the value into `SignatureKeyPair`'s internal reprentation.
-
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
-      - `utf8`: A [`String`]() with [UTF-8 encoding]()
-      - `base64`: A [`String`]() with [Base64 encoding]()
-      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
-
-      Specifying an unsupported conversion throws.
-
-      If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
+      Generates a new `SignatureKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
 
   isType:
     signatures:
@@ -74,6 +43,38 @@ staticMethods:
         description: |
           `true` if `value` is an instance of [`SignatureKeyPair`](), `false` otherwise.
     prose: |
-      Type checks on `value` to see if it is an instance of `SignatureKeyPair`.  Returns `true` or `false`.
+      Type check on `value` to see if it is an instance of `SignatureKeyPair`.  Returns `true` or `false`.
+
+  from:
+    signatures:
+      - inputs: [ hint, data ]
+        output: key-pair
+    variables:
+      hint:
+        type: "[`String`]()"
+        description: |
+          name that specifies the `from` conversion hint.
+      data:
+        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
+        description: |
+          A data representation of a signature key pair.
+      key-pair:
+        type: "[`SignatureKeyPair`]()"
+        description: |
+          Instance of [`SignatureKeyPair`](), hydrated by the input `data`.
+    prose: |
+      Hydrates an instance of `SignatureKeyPair` from given `data`.
+
+      `hint` informs `from` how convert `data` into `SignatureKeyPair`'s internal reprentation.
+
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
+      - `utf8`: A [`String`]() with [UTF-8 encoding]()
+      - `base64`: A [`String`]() with [Base64 encoding]()
+      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
+
+      Specifying an unsupported conversion throws.
+
+      If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
 
 instanceMethods: false

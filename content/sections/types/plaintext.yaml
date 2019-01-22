@@ -1,11 +1,13 @@
 title: Plaintext
 prototype: false
 prose: |
-  The return value for [`decrypt`]() and the required input for [`encrypt`]()
+  The return value for [`decrypt`]().
 
-  `Plaintext` is a wrapper for the given plaintext data and contains a method interface for managing formatting. Invoking the `to` method on an instance of this class returns the plaintext itself, in whichever format you request.
+  `Plaintext` is a wrapper for plaintext data.
 
-  - `to`: instance method to output the internal value in the given hint
+  `Plaintext` has helper methods to manage its data, summarized below. Please see the relevant section for more details.
+
+  - `to`: instance method to return formatted internal data. `to` returns the plaintext itself, in whichever format you request.
   - `from`: static method to hydrate an instance of `Plaintext` from data
   - `isType`: static method providing a boolean type-check for `Plaintext`
 
@@ -40,22 +42,22 @@ staticMethods:
       hint:
         type: "[`String`]()"
         description: |
-          name that specifies the input hint.
+          name that specifies the `from` conversion hint.
       data:
         type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
         description: |
-          A representation of the data of a plaintext.
+          A data representation of a plaintext.
       plaintext:
         type: "[`Plaintext`]()"
         description: |
-          The plaintext in an encoded form for transport or storage.
+          Instance of [`Plaintext`](), hydrated by the input `data`.
     prose: |
-      Returns an instanciated `Plaintext` based on the value of `data`.
+      Hydrates an instance of `Plaintext` from given `data`.
 
-      `hint` tells `from` how convert the value into `Plaintext`'s internal reprentation.
+      `hint` informs `from` how convert `data` into `Plaintext`'s internal reprentation.
 
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
       - `utf8`: A [`String`]() with [UTF-8 encoding]()
       - `base64`: A [`String`]() with [Base64 encoding]()
       - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
@@ -73,16 +75,18 @@ instanceMethods:
       hint:
         type: "[`String`]()"
         description: |
-          name that specifies the output encoding.
+          name that specifies the `to` conversion hint.
       encoded-plaintext:
         type: "[`String`]() | [`Uint8Array`]()"
         description: |
-          The plaintext in an encoded form for transport or storage.
+          A data representation of a plaintext
     prose:  |
-      Outputs this instance's value in the form specified in `hint`.
+      Converts this instance's value into the form specified by `hint`.
 
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      `Plaintext` is a simple wrapper for the given plaintext, so `to` returns the plaintext itself, in whichever format you request.
+
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
       - `utf8`: A [`String`]() with [UTF-8 encoding]()
       - `base64`: A [`String`]() with [Base64 encoding]()
       - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()

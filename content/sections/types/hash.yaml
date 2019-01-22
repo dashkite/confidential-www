@@ -1,7 +1,15 @@
 title: Hash
 prototype: false
 prose: |
-  `Hash` is a wrapper for the given [SHA-512]() hash of a piece of data and is returned by the function [`hash`]().  `Hash` contains a method interface for managing the formatting. Invoking the `to` method on an instance of this class returns the hash itself, in whichever format you request.
+  The return value for [`hash`]().
+
+  `Hash` is a wrapper for the [SHA-512]() hash of a document.
+
+  `Hash` has helper methods to manage its data, summarized below. Please see the relevant section for more details.
+
+  - `to`: instance method to return formatted internal data. `to` returns the hash itself, in whichever format you request.
+  - `from`: static method to hydrate an instance of `Hash` from data
+  - `isType`: static method providing a boolean type-check for `Hash`
 
 properties:
   hash:
@@ -22,7 +30,7 @@ staticMethods:
       is-hash:
         type: "[`Boolean`]()"
         description: |
-          `true` if `value` has the `Has` in its prototype chain, `false` otherwise.
+          `true` if `value` is an instance of `Hash`, `false` otherwise.
     prose: |
       Type check method to determine if the input `value` is an instance of `Hash`.  Returns `true` or `false`.
 
@@ -34,22 +42,22 @@ staticMethods:
       hint:
         type: "[`String`]()"
         description: |
-          name that specifies the input hint.
+          name that specifies the `from` conversion hint.
       data:
-        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
+        type: "[`String`]() | [`Uint8Array`]()"
         description: |
-          A representation of the data of a hash.
+          A data representation of a hash.
       hash:
         type: "[`Hash`]()"
         description: |
-          The hash in an encoded form for transport or storage.
+          Instance of [`Hash`](), hydrated by the input `data`.
     prose: |
-      Returns an instanciated `Hash` based on the value of `data`.
+      Hydrates an instance of `Hash` from given `data`.
 
-      `hint` tells `from` how convert the value into `Hash`'s internal reprentation.
+      `hint` informs `from` how convert `data` into `Hash`'s internal reprentation.
 
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
       - `utf8`: A [`String`]() with [UTF-8 encoding]()
       - `base64`: A [`String`]() with [Base64 encoding]()
       - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
@@ -67,16 +75,18 @@ instanceMethods:
       hint:
         type: "[`String`]()"
         description: |
-          name that specifies the output encoding.
+          name that specifies the `to` conversion hint.
       encoded-hash:
         type: "[`String`]() | [`Uint8Array`]()"
         description: |
-          The hash in an encoded form for transport or storage.
+          A data representation of a hash
     prose:  |
-      Outputs this instance's value in the form specified in `hint`.
+      Converts this instance's value into the form specified by `hint`.
 
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
+      `Hash` is a simple wrapper for the given hash, so `to` returns the hash itself, in whichever format you request.
+
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
       - `utf8`: A [`String`]() with [UTF-8 encoding]()
       - `base64`: A [`String`]() with [Base64 encoding]()
       - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()

@@ -5,13 +5,14 @@ prose: |
 
   > **Warning:** `EncryptionKeyPair` is not suitable for signing.
 
-  Because this type extends [`KeyPair`](), you may:
-  - manage `EncryptionKeyPair` serialization through the `to` and `from` methods.
-  - check if this key pair is _any_ type of instanciated [`KeyPair`]() through the `isKind` method.
+  `EncryptionKeyPair` extends [`KeyPair`](), so it inherits its inteface: (Please see that class for more details.)
+  - `to`: instance method to return formatted internal data.
+  - `isKind`: static method providing a boolean prototype chain check for `KeyPair`
 
-  This class adds to the method interface with:
-  - `create`: static method to generate a key pair suitable for encryption
-  - `isType`: static method to type check specifically on `EncryptionKeyPair`
+  `EncryptionKeyPair` extends that interface with:
+  - `create`: static method to generate an instance of `EncryptionKeyPair`, suitable for encryption.
+  - `from`: static method to hydrate an instance of `EncryptionKeyPair` from data
+  - `isType`: static method providing a boolean type-check for `EncryptionKeyPair`
 
 properties: false
 staticMethods:
@@ -22,43 +23,11 @@ staticMethods:
     variables:
       encryption-key-pair:
         isPromised: true
-        type: "`EncryptionKeyPair`"
-        description: |
-          Promise that resolves to an instance of `EncryptionKeyPair`.
-    prose: |
-      Generates a new `EncryptionKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
-
-  from:
-    signatures:
-      - inputs: [ hint, data ]
-        output: key-pair
-    variables:
-      hint:
-        type: "[`String`]()"
-        description: |
-          name that specifies the input hint.
-      data:
-        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
-        description: |
-          A representation of the data of a key-pair.
-      key-pair:
         type: "[`EncryptionKeyPair`]()"
         description: |
-          The key-pair in an encoded form for transport or storage.
+          Promise that resolves to an instance of [`EncryptionKeyPair`]().
     prose: |
-      Returns an instanciated `EncryptionKeyPair` based on the value of `data`.
-
-      `hint` tells `from` how convert the value into `EncryptionKeyPair`'s internal reprentation.
-
-      #### Supported Types
-      - `bytes`: A byte array, specifically [`Uint8Array`]() or its equivalent in Node.js [`Buffer`]()
-      - `utf8`: A [`String`]() with [UTF-8 encoding]()
-      - `base64`: A [`String`]() with [Base64 encoding]()
-      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
-
-      Specifying an unsupported conversion throws.
-
-      If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
+      Generates a new `EncryptionKeyPair`.  Randomly generates a pair of algorithmically related keys using the [`randomBytes`]() interface.
 
   isType:
     signatures:
@@ -74,6 +43,38 @@ staticMethods:
         description: |
           `true` if `value` is an instance of [`EncryptionKeyPair`](), `false` otherwise.
     prose: |
-      Type check method to determine if the input `value` is an instance of `EncryptionKeyPair`.  Returns `true` or `false`.
+      Type check on `value` to see if it is an instance of `EncryptionKeyPair`.  Returns `true` or `false`.
+
+  from:
+    signatures:
+      - inputs: [ hint, data ]
+        output: key-pair
+    variables:
+      hint:
+        type: "[`String`]()"
+        description: |
+          name that specifies the `from` conversion hint.
+      data:
+        type: "[`String`]() | [`Uint8Array`]() | [`Buffer`]()"
+        description: |
+          A data representation of a encryption key pair.
+      key-pair:
+        type: "[`EncryptionKeyPair`]()"
+        description: |
+          Instance of [`EncryptionKeyPair`](), hydrated by the input `data`.
+    prose: |
+      Hydrates an instance of `EncryptionKeyPair` from given `data`.
+
+      `hint` informs `from` how convert `data` into `EncryptionKeyPair`'s internal reprentation.
+
+      #### Supported Hints
+      - `bytes`: A byte array, specifically [`Uint8Array`]()
+      - `utf8`: A [`String`]() with [UTF-8 encoding]()
+      - `base64`: A [`String`]() with [Base64 encoding]()
+      - `safe-base64`: A [`String`]() with [URL-Safe Base64 encoding]()
+
+      Specifying an unsupported conversion throws.
+
+      If `hint` conflicts with `data`'s type (ex: `data` is a byte array, while `hint` is "string"), `from` thows.
 
 instanceMethods: false

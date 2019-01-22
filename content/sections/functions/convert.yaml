@@ -24,7 +24,7 @@ prose: |
 
   Typically, you will not need to use `convert` directly.  Panda-Confidential provides type classes (ex: [`Plaintext`](), [`Envelope`](), and [`Declaration`]()) with methods to manage data formatting.  Each class follows a convention to include the methods `from` and `to`, but internally, they all use `convert` to peform the conversion.
 
-  #### Supported Formats
+  #### Supported Hints
   - `bytes`: A byte array, specifically [`Uint8Array`]()
   - `utf8`: A [`String`]() with [UTF-8 encoding]()
   - `base64`: A [`String`]() with [Base64 encoding]()
