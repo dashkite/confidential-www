@@ -1,18 +1,23 @@
 import Path from "path"
-import {glob, read, write, copy} from "panda-9000"
+import {glob, read, write, copy, extension, transform} from "panda-9000"
 import {go, map, wait, tee, reject} from "panda-river"
 import {loader, fallback, buffer, include, embedded, filters, sandbox, engine} from "biscotti"
 
 import {imagePattern} from "./constants"
 
+
+
+import pug from "jstransformer-pug"
+import markdown from "./markdown"
+
 Biscotti = (source, intermediate, target) ->
   ->
     _render = engine [
-      sandbox: sandbox {require, console}
+      sandbox: sandbox {require, console, process}
       loader
         biscotti:
           index: true
-          extensions: [ ".biscotti" ]
+          extensions: [ ".biscotti", ".b" ]
       fallback language: "biscotti"
       do include
       buffer
@@ -31,7 +36,7 @@ Biscotti = (source, intermediate, target) ->
 
     # Render Biscotti templates to the intermediate stage.
     await go [
-      glob "**/*.biscotti", source
+      glob ["**/*.pug.b", "!**/-*/**"], source
       wait map read
       render
       tee ({source, target}) ->
@@ -39,7 +44,11 @@ Biscotti = (source, intermediate, target) ->
         {ext, name:final} = Path.parse name
         target.name = final
         target.extension = ext
-      map write intermediate
+      tee ({source, target}) ->
+        source.content = target.content
+      map transform pug, filters: {markdown}, basedir: source
+      map extension ".html"
+      map write target
     ]
 
 export default Biscotti
