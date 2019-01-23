@@ -1,5 +1,6 @@
 ::
 
+import {join} from "path"
 import {yaml} from "panda-serialize"
 import {readFileSync} from "fs"
 
@@ -24,9 +25,9 @@ markdown = do (p = undefined) ->
 
 
 read = (path) -> readFileSync path, encoding: "utf8"
-data = yaml read "./src/api/-functions/encrypt/index.yaml"
+data = yaml read join __dirname, "./index.yaml"
 options = filters: markdown
-html = pug.renderFile "./src/api/-functions/encrypt/index.pug", options, data
+html = pug.renderFile (join __dirname, "./index.pug"), options, data
 
 ::
 .

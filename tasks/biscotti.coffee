@@ -5,15 +5,16 @@ import {loader, fallback, buffer, include, embedded, filters, sandbox, engine} f
 
 import {imagePattern} from "./constants"
 
-
-
 import pug from "jstransformer-pug"
 import markdown from "./markdown"
 
 Biscotti = (source, intermediate, target) ->
   ->
     _render = engine [
-      sandbox: sandbox {require, console, process}
+      sandbox: sandbox {require, console, process},
+        (globals, unit) ->
+          globals.__filename = unit.path
+          globals.__dirname = Path.dirname unit.path
       loader
         biscotti:
           index: true
