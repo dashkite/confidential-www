@@ -1,0 +1,16 @@
+extends ../shared/-html/default
+
+block append head
+  +google-font("Patua One")
+  link(rel="stylesheet" href="/api/index.css")
+
+block header
+  a(href = "/")
+    h1 Panda Confidential
+
+block main
+  article
+    h2 API Reference
+    
+    section
+      block section
