@@ -1,0 +1,44 @@
+extends ../-layout
+  
+mixin signatures(description)
+  each signature in description
+    blockquote.signature
+      p
+        strong= description.title
+        |
+        |
+        = signature.inputs.join(", ")
+        |
+        | &rarr;
+        |
+        = signature.output
+  
+
+mixin variables(variables)
+  table
+    thead
+      tr
+        th name
+        th type
+        th description
+    
+    tbody    
+      each variable, name in variables
+        tr
+          td= name
+          td!= helpers.markdown(variable.type)
+          td!= helpers.markdown(variable.description)
+
+mixin function(description)
+  h3(id=description.fragment)
+    a.permalink(href="#" + description.fragment)= description.title
+
+  +signatures(description.signatures)
+  +variables(description.variables)
+  
+  block
+  
+block section
+          
+  +function(decrypt)
+    include decrypt/index.pug

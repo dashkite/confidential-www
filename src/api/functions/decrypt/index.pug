@@ -1,10 +1,7 @@
-extends ../-layout.pug
+  
+include:markdown description.md
+  
+h4 Examples
 
-block function
-  
-  include:markdown description.md
-    
-  h4 Examples
-  
-  include:markdown examples/symmetric.md
-  include:markdown examples/asymmetric.md
+include:markdown examples/symmetric.md
+include:markdown examples/asymmetric.md
