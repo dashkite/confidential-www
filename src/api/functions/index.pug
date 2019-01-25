@@ -3,6 +3,15 @@ extends ../-layout
 include -mixins.pug
 
 block section
+  
+  .toc
+    
+    h3 Functions
+        
+    ul
+      each description, name in $site.api.functions
+        li: a(href="#function-" + description.fragment)= name
+    
           
   +summary($site.api.functions.encrypt)
   

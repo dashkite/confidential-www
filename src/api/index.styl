@@ -45,6 +45,35 @@ body
           &::before
             content "¶ "
 
+      .toc
+        font-family "Titillium Web"
+        rhythm 3rem .9
+
+        h3
+          display inline-block
+          margin-right 1rem
+          &::after
+            content ":"
+          rhythm 3rem .9
+
+        ul
+          display inline-block
+          margin 0
+          padding 0
+          margin-bottom 2rem
+
+          li
+            display inline-block
+            margin 0
+            padding 0
+
+            &:not(:first-child)
+              padding-left 1rem
+
+            &:not(:last-child)
+              padding-right 1rem
+              border-right 1px solid silver
+
       blockquote
         h1, h2, h3, h4, h5, h6
           font-family "Titillium Web"
