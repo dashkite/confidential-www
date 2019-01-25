@@ -12,36 +12,27 @@ import {go, map, wait, tee, reject} from "panda-river"
 import {tee as _tee} from "panda-garden"
 import {match, merge} from "panda-parchment"
 import h9 from "haiku9"
-import {yaml as _yaml} from "panda-serialize"
+import {yaml} from "panda-serialize"
 
-# import Biscotti from "./biscotti"
 import markdown from "./markdown"
 import {source, intermediate, target, imagePattern} from "./constants"
+import Site from "./site"
 
 import _transform from "jstransformer"
 
 transform = (transformer, options) ->
   adapter = _transform transformer
-  _tee ({source, target}) ->
+  _tee ({source, data, target}) ->
     source.content ?= await read source.path
     options.filename = source.path
-    result = await adapter.renderAsync source.content, options, source.data
+    result = await adapter.renderAsync source.content, options, data
     target.content = result.body ? ""
-
-yaml = (filename) ->
-  _tee ({source}) ->
-    path = Path.join source.directory, filename
-    if await exist path
-      source.data = _yaml await _read path
 
 process.on 'unhandledRejection', (reason, p) ->
   console.error "Unhandled Rejection:", reason
 
 define "clean", ->
   rmr target
-  rmr intermediate
-
-# define "biscotti", Biscotti source, intermediate, target
 
 define "images", ->
   go [
@@ -49,14 +40,26 @@ define "images", ->
     map copy target
   ]
 
+define "data", ->
+  go [
+    glob [ "**/*.yaml" ], source
+    wait map read
+    tee ({path, source}) ->
+      Site.set path,
+        yaml source.content
+  ]
+
 define "html", ->
+
+  globals =
+    $site: Site.data
+    $helpers: {markdown}
+
   go [
     glob [ "**/*.pug", "!**/-*/**" ], source
     wait map read
-    map yaml "index.yaml"
-    tee ({source}) ->
-      if source.data?
-        source.data.helpers ?= {markdown}
+    tee (context) ->
+      context.data = merge globals, Site.get context.path
     map transform pug, filters: {markdown}, basedir: source
     map extension ".html"
     map write target
@@ -127,8 +130,8 @@ define "h9:publish:staging", ->
 define "h9:publish:production", ->
   h9.publish "production"
 
-define "build", [ "clean", "biscotti", "html&", "css&", "js&", "images&" ]
-define "build", [ "clean", "html&", "css&", "images&" ]
+define "build", [ "clean", "data", "html&", "css&", "js&", "images&" ]
+# define "build", [ "clean", "html&", "css&", "images&" ]
 
 define "watch:source",
   watch source, -> run "build"

@@ -1,44 +1,23 @@
 extends ../-layout
-  
-mixin signatures(description)
-  each signature in description
-    blockquote.signature
-      p
-        strong= description.title
-        |
-        |
-        = signature.inputs.join(", ")
-        |
-        | &rarr;
-        |
-        = signature.output
-  
 
-mixin variables(variables)
-  table
-    thead
-      tr
-        th name
-        th type
-        th description
-    
-    tbody    
-      each variable, name in variables
-        tr
-          td= name
-          td!= helpers.markdown(variable.type)
-          td!= helpers.markdown(variable.description)
+include -mixins.pug
 
-mixin function(description)
-  h3(id=description.fragment)
-    a.permalink(href="#" + description.fragment)= description.title
-
-  +signatures(description.signatures)
-  +variables(description.variables)
-  
-  block
-  
 block section
           
-  +function(decrypt)
-    include decrypt/index.pug
+  +summary($site.api.functions.encrypt)
+  
+    include:markdown encrypt/description.md
+      
+    h4 Examples
+
+    include:markdown encrypt/examples/symmetric.md
+    include:markdown encrypt/examples/asymmetric.md
+
+  +summary($site.api.functions.decrypt)
+  
+    include:markdown decrypt/description.md
+      
+    h4 Examples
+
+    include:markdown decrypt/examples/symmetric.md
+    include:markdown decrypt/examples/asymmetric.md

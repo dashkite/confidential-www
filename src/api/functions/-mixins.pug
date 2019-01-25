@@ -1,0 +1,41 @@
+mixin signatures(name, list)
+
+  each signature in list
+    blockquote.signature
+      p
+        strong= name
+        |
+        |
+        = signature.arguments
+        |
+        | &rarr;
+        |
+        = signature.result
+  
+
+mixin arguments(args)
+
+  table
+    thead
+      tr
+        th name
+        th type
+        th description
+    
+    tbody    
+      each arg, name in args
+        tr
+          td= name
+          td!= $helpers.markdown(arg.type)
+          td!= $helpers.markdown(arg.description)
+
+mixin summary(description)
+  - var fragment = "function-" + description.fragment
+
+  h3(id=fragment)
+    a.permalink(href="#" + fragment)= description.name
+
+  +signatures(description.name, description.signatures)
+  +arguments(description.arguments)
+  
+  block

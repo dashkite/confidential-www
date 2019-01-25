@@ -1,8 +1,9 @@
-title: encrypt
+name: encrypt
+fragment: encrypt
 signatures:
-  - inputs: [ key, nonce&, plaintext ]
-    output: promise
-variables:
+  - arguments: key, [ nonce,] plaintext
+    result: envelope
+arguments:
   key:
     type: "[`SymmetricKey`]() | [`SharedKey`]()"
     description: |
@@ -15,68 +16,7 @@ variables:
     type: "[`Plaintext`]()"
     description: |
       Type class for the plaintext to be encrypted.
-  promise:
-    isPromised: true
-    type: "[`Envelope`]()"
+  envelope:
+    type: "🤞[`Envelope`]()"
     description: |
       Promise that resolves to an [`Envelope`](), a type class for the ciphertext and nonce products of encryption. Suitable for use with decrypt.
-
-prose: |
-  Encrypts a plaintext with the provided key.
-
-  `encrypt` is a [generic function](), accepting an encryption key and plaintext to return a ciphertext.  `encrypt` and its counterpart [`decrypt`]() form a pair of opposing operations.
-
-  Panda-Confidential establishes a type system to determine your intention in a clear and error-free way.  That allows `encrypt` behavior to depend on the input key:
-   - When given a [`SymmetricKey`](), `encrypt` uses [symmetric encryption](). If you pass in a `nonce`, it must be `nacl.secretbox.nonceLength` bytes long.
-   - When given a [`SharedKey`](), `encrypt` uses authenticated, [asymmetric encryption](). If you pass in a `nonce`, it must be `nacl.box.nonceLength` bytes long.
-
-  > **Warning**: Signing key pairs are incompatible with `encrypt` and causes `encrypt` to throw.
-
-  Plaintext is enclosed in the type class [`Plaintext`](). To create a new `Plaintext` from a given format, use the static method `Plaintext.from`.  `
-
-  `nonce` is an optional argument, an instance of the type class [`Nonce`]().  To create a new `Nonce` from a given format, use the static method `Nonce.from`.  If you omit this arugment, `encrypt` automatically generates one from the [`randomBytes`]() interface.
-
-  `encrypt` returns a promise that yields [`Envelope`](), a type class to hold the ciphertext and nonce products of encryption. This container is suitable for [`decrypt`]().  You may format the value of an `Envelope` via the instance method `Envelope.to`.
-
-examples:
-  - title: Symmetric Encryption
-    note: |
-      **Warning**: Private keys should only be accessible to their owners.
-    content: |
-      ```coffeescript
-      import {confidential} from "panda-confidential"
-      {encrypt, Plaintext} = confidential()
-      import {keyLookup, write} from "my-library"
-
-      do ->
-        alice = keyLookup "Alice/private"
-
-        plaintext = Plaintext.from "utf8", "Hello, Alice!"
-
-        envelope = await encrypt alice, plaintext
-
-        # You may serialize with the instance method `to`
-        write "greeting", envelope.to "base64"
-      ```
-
-  - title: Asymmetric Encryption
-    note: |
-      **Warning:** Private keys should only be accessible to their owners.
-    content: |
-      ```coffeescript
-      import {confidential} from "panda-confidential"
-      {SharedKey, encrypt, Plaintext} = confidential()
-      import {keyLookup, send} from "my-library"
-
-      do ->
-        alice = keyLookup "Alice/private"
-        bob = keyLookup "Bob/public"
-        fromAliceToBob = sharedKey.create alice, bob
-
-        plaintext = Plaintext.from "utf8", "Hello, Bob!"
-
-        envelope = await encrypt fromAliceToBob, plaintext
-
-        # You may serialize with the instance method `to`
-        send "Bob", envelope.to "base64"
-      ```
