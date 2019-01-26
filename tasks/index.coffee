@@ -16,8 +16,6 @@ import Site from "./site"
 import pug from "jstransformer-pug"
 import stylus from "jstransformer-stylus"
 
-import "./convert"
-
 process.on 'unhandledRejection', (reason, p) ->
   console.error "Unhandled Rejection:", reason
 
