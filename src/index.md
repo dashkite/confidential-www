@@ -1,4 +1,4 @@
-A simple, extensible interface for the [TweetNaCl.js][tweetnacl] cryptography library
+Panda Confidential is a simple, extensible interface for the [TweetNaCl.js][tweetnacl] cryptography library
 
 ## Motivation
 Cryptography is hard. Even subtle bugs in implementation can render your efforts insecure.  That inspired the creation of TweetNaCl and its JavaScript port, [TweetNaCl.js][tweetnacl].

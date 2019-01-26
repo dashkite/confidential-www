@@ -1,13 +1,17 @@
 extends /shared/-html/default
 
 block append head
-  +google-font("Patua One")
+  +font("google", "Patua One")
   link(rel="stylesheet" href="./index.css")
 
 block header
-  a(href = "/"): h1 Panda Confidential
+  h1 Panda Confidential
+  
+  section
+    p Cryptography is hard. Confidential makes it easier.
   
 block main
+    
   article
     section
       include:markdown index.md

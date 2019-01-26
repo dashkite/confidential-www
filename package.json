@@ -3,14 +3,11 @@
   "version": "0.0.1",
   "description": "Documentation website for the Panda-Confidential Project",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pandastrike/panda-confidential-www.git"
   },
-  "author": "David Harper",
+  "authors": [ "David Harper", "Dan Yoder" ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pandastrike/panda-confidential-www/issues"
@@ -18,8 +15,6 @@
   "homepage": "https://github.com/pandastrike/panda-confidential-www#readme",
   "dependencies": {},
   "devDependencies": {
-    "biscotti": "^3.0.0",
-    "coffee-loader": "^0.9.0",
     "coffeescript": "^2.3.2",
     "haiku9": "^3.0.0",
     "jstransformer": "^1.0.0",
@@ -31,12 +26,6 @@
     "panda-parchment": "^4.2.0",
     "panda-quill": "^3.4.5",
     "panda-river": "^4.4.2",
-    "panda-serialize": "^0.4.0",
-    "panda-template": "^1.0.0",
-    "pug-loader": "^2.4.0",
-    "raw-loader": "^0.5.1",
-    "source-map-loader": "^0.2.4",
-    "stylus-loader": "^3.0.1",
-    "webpack": "^4.27.1"
+    "panda-serialize": "^0.4.0"
   }
 }

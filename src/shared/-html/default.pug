@@ -12,31 +12,31 @@ html
       meta(property='og:url', content= "https://confidential.pandastrike.com")
       meta(property='og:type', content='article')
       meta(property='og:title', content= "Panda Confidential")
-      meta(property='og:description', content= "Cryptography is hard. Panda Confidential is here to make it safe and easy.")
+      meta(
+        property='og:description', 
+        content= "Cryptography is hard. Panda Confidential makes it easier.")
       meta(property='og:image', content= "https://confidential.pandastrike.com/shared/images/logo.png")
       meta(name='twitter:card', content='summary_large_image')
       meta(name='twitter:site', content='@deliciousbamboo')
       meta(name='twitter:title', content= "Panda Confidential")
-      meta(name='twitter:text:description', content= "Cryptography is hard. Panda Confidential is here to make it safe and easy.")
+      meta(
+        name='twitter:text:description', 
+        content= "Cryptography is hard. Panda Confidential makes it easier.")
 
 
       link(rel='shortcut icon', href='/shared/images/favicon.ico')
       
-      +google-font("Titillium+Web", "400", "400i", "700", "700i")
+      +font("google", "Titillium+Web", "400", "400i", "700", "700i")
 
-      +rawgit-css("necolas/normalize.css", "normalize.css", "8.0.0")
-      +rawgit-js("PrismJS/prism", "components/prism-core.min.js", "v1.11.0")
-      +rawgit-js("PrismJS/prism", "components/prism-clike.min.js", "v1.11.0")
-      +rawgit-js("PrismJS/prism", "components/prism-javascript.min.js", "v1.11.0")
-      +rawgit-js("PrismJS/prism", "components/prism-coffeescript.min.js", "v1.11.0")
-      +rawgit-css("PrismJS/prism", "themes/prism.css", "v1.11.0")
-      link(
-        rel="stylesheet" 
-        href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" 
-        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-        crossorigin="anonymous"
-      )
+      +css("jsdeliver", "normalize.css", "8.0.1", "normalize.min.css")
 
+      +js("jsdelivr", "prismjs", "1.15.0", "prism.min.js")
+      +js("jsdelivr", "prismjs", "1.15.0", "components/prism-core.min.js")
+      +js("jsdelivr", "prismjs", "1.15.0", "components/prism-clike.min.js")
+      +js("jsdelivr", "prismjs", "1.15.0", "components/prism-javascript.min.js")
+      +js("jsdelivr", "prismjs", "1.15.0", "components/prism-coffeescript.min.js")
+      +css("jsdelivr", "prismjs", "1.15.0", "themes/prism.min.css")
+            
       title Panda Confidential
 
   body
@@ -52,13 +52,13 @@ html
           li
             a(href="/")
               img(src="/shared/images/logo.png")
-          li
-            a(href="/api") API Docs
-          li
-            a(href="https://www.pandastrike.com/team") Team
-          li
-            a(href="https://www.pandastrike.com/blog") Blog
-          li
-            a(href="https://www.pandastrike.com/open-source") Code
-          li
-            a(href="https://www.pandastrike.com/join") Join
+          //- li
+          //-   a(href="/api") API Docs
+          //- li
+          //-   a(href="https://www.pandastrike.com/team") Team
+          //- li
+          //-   a(href="https://www.pandastrike.com/blog") Blog
+          //- li
+          //-   a(href="https://www.pandastrike.com/open-source") Code
+          //- li
+          //-   a(href="https://www.pandastrike.com/join") Join
