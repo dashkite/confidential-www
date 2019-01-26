@@ -21,7 +21,7 @@ markdown = do (p = undefined) ->
 # (the change is passing the data into the transformer)
 transform = (transformer, options) ->
   adapter = _transform transformer
-  _tee ({source, data, target}) ->
+  tee ({source, data, target}) ->
     source.content ?= await read source.path
     options.filename = source.path
     result = await adapter.renderAsync source.content, options, data

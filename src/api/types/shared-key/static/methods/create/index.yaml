@@ -1,0 +1,31 @@
+signatures:
+  - inputs:
+      - public-key
+      - private-key
+    output: shared-key
+  - inputs:
+      - private-key
+      - public-key
+    output: shared-key
+  - inputs:
+      - key-pair
+    output: shared-key
+variables:
+  public-key:
+    type: '[`PublicKey`]()'
+    description: |
+      [`PublicKey`]() suitable for encryption.
+  private-key:
+    type: '[`PrivateKey`]()'
+    description: |
+      [`PrivateKey`]() suitable for encryption.
+  key-pair:
+    type: '[`EncryptionKeyPair`]()'
+    description: >
+      An [`EncryptionKeyPair`](), containing one [`PublicKey`]() and one
+      [`PrivateKey`]() suitable for encryption.
+  shared-key:
+    type: '`SharedKey`'
+    description: >
+      Instance of [`SharedKey`](), derived from either the `public-key` and
+      `private-key` or from the `key-pair`.

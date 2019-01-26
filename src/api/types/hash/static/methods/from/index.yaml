@@ -1,0 +1,18 @@
+signatures:
+  - inputs:
+      - hint
+      - data
+    output: hash
+variables:
+  hint:
+    type: '[`String`]()'
+    description: |
+      name that specifies the `from` conversion hint.
+  data:
+    type: '[`String`]() | [`Uint8Array`]()'
+    description: |
+      A data representation of a hash.
+  hash:
+    type: '[`Hash`]()'
+    description: |
+      Instance of [`Hash`](), hydrated by the input `data`.

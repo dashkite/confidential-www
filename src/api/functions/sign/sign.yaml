@@ -1,93 +1,43 @@
-title: sign
+name: sign
+fragment: sign
 signatures:
-  - inputs: [ public-key, private-key, data ]
-    output: [ declaration ]
-  - inputs: [ private-key, public-key, data ]
-    output: [ declaration ]
-  - inputs: [ key-pair, data ]
-    output: [ declaration ]
+  - inputs:
+      - public-key
+      - private-key
+      - data
+    output:
+      - declaration
+  - inputs:
+      - private-key
+      - public-key
+      - data
+    output:
+      - declaration
+  - inputs:
+      - key-pair
+      - data
+    output:
+      - declaration
 variables:
   key-pair:
-    type: "[`SignatureKeyPair`]()"
-    description: |
-      A key pair containing the public and private keys with which to sign `data`.
+    type: '[`SignatureKeyPair`]()'
+    description: >
+      A key pair containing the public and private keys with which to sign
+      `data`.
   public-key:
-    type: "[`PublicKey`]()"
+    type: '[`PublicKey`]()'
     description: |
       The public key of the person wishing to sign `data`.
   private-key:
-    type: "[`PrivateKey`]()"
+    type: '[`PrivateKey`]()'
     description: |
       The private key of the person wishing to sign `data`.
   data:
-    type: "[`Plaintext`]() | [`Declaration`]()"
+    type: '[`Plaintext`]() | [`Declaration`]()'
     description: |
       Data to be signed.
   declaration:
-    type: "[`Declaration`]()"
-    description: |
-      Type class to organize the products of digital signature.  Contains fields `data`, `signatures`, and `signatories`. Suitable for use with `verify`.
-
-prose: |
-  Digitially signs an input with the provided key.
-
-  `sign` is a [generic function]() accepting signing keys and data to return a digital signature.  `sign` and its counterpart [`verify`]() form a pair of opposing operations.
-
-  Panda-Confidential establishes a type system to determine your intention in a clear and error-free way.  That allows `sign` to accept either a [`SignatureKeyPair`]() or keys as individual arguments.
-
-  > **Warning**: Encryption key pairs are incompatible with `sign` and causes `sign` to throw.
-
-  `sign` returns an instance of [`Declaration`](), a type class that holds the holds the original data, the public keys of the `signatories`, and the [ed25519]() `signatures`.  This class is suitable for [`verify`]().
-
-  `sign` expects `data` to be either an instance of [`Plaintext`]() or [`Declaration`]():
-    - When given a `Declaration`, `sign` appends a signature to the existing lists.
-    - When given a `Plaintext`, `sign` generates a new `Declaration`.
-
-  You may format the data of a `Declaration` via the instance method `Declaration.to`.
-
-examples:
-  - title: Single Signature
-    content: |
-      Provide a [`Plaintext`]() instance to the `data` argument and `sign` generates a new [`Declaration`]().
-
-      ```coffeescript
-      import {confidential} from "panda-confidential"
-      {sign, Plaintext} = confidential()
-
-      import {send, keyPairLookup} from "my-library"
-
-      do ->
-        alice = keyPairLookup "Alice/signature"
-        data = Plaintext.from "utf8", "Hello, World!"
-
-        declaration = sign alice, data
-
-        # You may serialize with the instance method `to`
-        send "Bob", declaration.to "base64"
-      ```
-
-  - title: Multiple Signatures
-    content: |
-      `sign` supports multiple signatories.  Provide a [`Declaration`]() instance to the `data` argument and `sign` appends the signature to the existing list.
-
-      ```coffeescript
-      import assert from "assert"
-      import {confidential} from "panda-confidential"
-      {sign, Declaration} = confidential()
-      import {send, receive, keyPairLookup} from "my-library"
-
-      do ->
-        # You may hydrate a Declaration instance with the static method `from`
-        greeting = Declaration.from "base64", receive "Bob"
-
-        # add Bob's signature
-        bob = keyPairLookup "Bob/signature"
-        greeting = sign bob, greeting
-
-        # sign appends to the lists signatures and signatories
-        assert.equal greeting.signatures.length, 2
-        assert.equal greeting.signatories.length, 2
-
-        # You may serialize with the instance method `to`
-        send "Charlotte", declaration.to "base64"
-      ```
+    type: '[`Declaration`]()'
+    description: >
+      Type class to organize the products of digital signature.  Contains fields
+      `data`, `signatures`, and `signatories`. Suitable for use with `verify`.

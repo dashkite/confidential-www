@@ -1,32 +1,19 @@
-title: confidential
+name: confidential
+fragment: confidential
 signatures:
-  - inputs: [ randomBytes& ]
+  - inputs:
+      - randomBytes&
     output: api
 variables:
   randomBytes:
-    type: "[`Function`]()"
-    description: |
+    type: '[`Function`]()'
+    description: >
       Optional. Provides a custom implementation for [`randomBytes`]().
 
-      > **Warning:** Effective encryption requires a robust implementation of pseudo-randomness. Replace `randomBytes` with caution.
+
+      > **Warning:** Effective encryption requires a robust implementation of
+      pseudo-randomness. Replace `randomBytes` with caution.
   api:
-    type: "[`Object`]()"
+    type: '[`Object`]()'
     description: |
       An instance of the Confidential API.
-
-prose: |
-  Instanciates the Panda-Confidential API.
-
-  Because Panda-Confidential is extensible, it uses instantiation to prevent unexpected changes by third parties. Once you have an instance, you can destructure its functions and types to use them directly.
-
-  `randomBytes` is an optional argument to replace the default [`randomBytes`]() implementation. Please use caution when replacing `randomBytes`.  Inadequate sources of psuedo-randomness compromise encryption.
-
-examples:
-  - title: Instanciation
-    content: |
-      ```coffeescript
-      import {confidential} from "panda-confidential"
-
-      # Instantiate Panda-Confidential
-      {encrypt, decrypt, SymmetricKey} = confidential()
-      ```

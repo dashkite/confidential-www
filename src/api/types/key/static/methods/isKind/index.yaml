@@ -1,0 +1,14 @@
+signatures:
+  - inputs:
+      - value
+    output: is-key
+variables:
+  value:
+    type: Value
+    description: |
+      A value to be tested.
+  is-key:
+    type: '[`Boolean`]()'
+    description: >
+      `true` if `value` is an instance of `Key` or has one in its prototype
+      chain, `false` otherwise.

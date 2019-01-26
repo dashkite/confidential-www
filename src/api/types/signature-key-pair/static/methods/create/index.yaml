@@ -1,0 +1,9 @@
+signatures:
+  - inputs: []
+    output: signature-key-pair
+variables:
+  signature-key-pair:
+    isPromised: true
+    type: '[`SignatureKeyPair`]()'
+    description: |
+      Promise that resolves to an instance of [`SignatureKeyPair`]().

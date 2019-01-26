@@ -1,0 +1,13 @@
+signatures:
+  - inputs:
+      - hint
+    output: encoded-hash
+variables:
+  hint:
+    type: '[`String`]()'
+    description: |
+      name that specifies the `to` conversion hint.
+  encoded-hash:
+    type: '[`String`]() | [`Uint8Array`]()'
+    description: |
+      A data representation of a hash

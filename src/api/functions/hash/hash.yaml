@@ -1,41 +1,16 @@
-title: hash
+name: hash
+fragment: hash
 signatures:
-  - inputs: [ plaintext ]
-    output: [ hash ]
+  - inputs:
+      - plaintext
+    output:
+      - hash
 variables:
   plaintext:
-    type: "[`Plaintext`]()"
+    type: '[`Plaintext`]()'
     description: |
       Type class for the plaintext to be hashed.
   hash:
-    type: "[`Hash`]()"
+    type: '[`Hash`]()'
     description: |
       Type class for the [SHA-512]() hash of _plaintext_.
-
-prose: |
-  Performs a [SHA-512]() hash of the input plaintext.
-
-  `hash` is a convenience function that exposes the TweetNaCl.js implementation of [SHA-512]() hashing.
-
-  Plaintext is enclosed in the type class [`Plaintext`](). To create a new `Plaintext` from a given format, use the static method `Plaintext.from`.  `
-
-  `hash` returns an instance of [`Hash`](), a type class that holds the value of the SHA-512 hash.  You may format the value via the instance method `to`.
-
-examples:
-  - title: Hashing a String
-    content: |
-      ```coffeescript
-      import assert from "assert"
-      import {confidential} from "panda-confidential"
-      {hash, Plaintext} = confidential()
-
-      do ->
-        # Instanciate a Plaintext with the input value
-        plaintext = Plaintext.from "utf8", "Hello, World!"
-
-        myHash = hash plaintext
-
-        # You may serialize with the instance method `to`
-        assert.equal (myHash.to "base64"),
-          "N015SpXNz9izWZMYX++bo2jxYNja9DLQi6nx7R5avmzGkpHg+i/gAGpSVw7xjBne9OYXwzzlLvCm5fvjGMsDhw=="
-      ```

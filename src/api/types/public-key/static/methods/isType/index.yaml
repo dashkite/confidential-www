@@ -1,0 +1,13 @@
+signatures:
+  - inputs:
+      - value
+    output: is-public-key
+variables:
+  value:
+    type: Value
+    description: |
+      A value to be tested.
+  is-public-key:
+    type: '[`Boolean`]()'
+    description: |
+      `true` if `value` is an instance of [`PublicKey`](), `false` otherwise.

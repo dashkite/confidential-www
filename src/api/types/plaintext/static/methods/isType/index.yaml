@@ -1,0 +1,13 @@
+signatures:
+  - inputs:
+      - value
+    output: is-plaintext
+variables:
+  value:
+    type: Value
+    description: |
+      A value to be tested.
+  is-plaintext:
+    type: '[`Boolean`]()'
+    description: |
+      `true` if `value` is an instance of `Plaintext`, `false` otherwise.

@@ -1,8 +1,5 @@
 import "coffeescript/register"
 
-import fs from "fs"
-import Path from "path"
-
 import {define, run, glob, read, write,
   extension, copy, watch, serve} from "panda-9000"
 
@@ -19,8 +16,13 @@ import Site from "./site"
 import pug from "jstransformer-pug"
 import stylus from "jstransformer-stylus"
 
+import "./convert"
+
 process.on 'unhandledRejection', (reason, p) ->
   console.error "Unhandled Rejection:", reason
+
+source = "src"
+target = "build"
 
 define "clean", -> rmr target
 
@@ -33,7 +35,7 @@ define "images", ->
 define "data", ->
   go [
     glob [ "**/*.yaml" ], source
-    wait map read
+    wait tee read
     tee ({path, source}) ->
       Site.set path,
         yaml source.content
@@ -47,12 +49,12 @@ define "html", ->
 
   go [
     glob [ "**/*.pug", "!**/-*/**" ], source
-    wait map read
+    wait tee read
     tee (context) ->
       context.data = merge globals, Site.get context.path
-    map transform pug, filters: {markdown}, basedir: source
-    map extension ".html"
-    map write target
+    tee transform pug, filters: {markdown}, basedir: source
+    tee extension ".html"
+    tee write target
   ]
 
 define "css", ->
@@ -65,6 +67,7 @@ define "css", ->
   ]
 
 # TODO add back CS compilation
+define "js", ->
 
 define "h9:publish:staging", -> h9.publish "staging"
 

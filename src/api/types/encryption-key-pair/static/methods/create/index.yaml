@@ -1,0 +1,9 @@
+signatures:
+  - inputs: []
+    output: encryption-key-pair
+variables:
+  encryption-key-pair:
+    isPromised: true
+    type: '[`EncryptionKeyPair`]()'
+    description: |
+      Promise that resolves to an instance of [`EncryptionKeyPair`]().

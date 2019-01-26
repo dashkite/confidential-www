@@ -1,0 +1,13 @@
+signatures:
+  - inputs:
+      - value
+    output: is-declaration
+variables:
+  value:
+    type: Value
+    description: |
+      A value to be tested.
+  is-declaration:
+    type: '[`Boolean`]()'
+    description: |
+      `true` if `value` is an instance of `Declaration`, `false` otherwise.

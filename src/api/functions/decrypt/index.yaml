@@ -3,7 +3,7 @@ fragment: decrypt
 signatures:
   - arguments: key, envelope
     result: plaintext
-arguments:
+variables:
   key:
     type: "[`SymmetricKey`]() | [`SharedKey`]()"
     description: |

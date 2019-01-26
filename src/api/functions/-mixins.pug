@@ -13,7 +13,7 @@ mixin signatures(name, list)
         = signature.result
   
 
-mixin arguments(args)
+mixin variables(list)
 
   table
     thead
@@ -23,11 +23,11 @@ mixin arguments(args)
         th description
     
     tbody    
-      each arg, name in args
+      each variable, name in list
         tr
           td= name
-          td!= $helpers.markdown(arg.type)
-          td!= $helpers.markdown(arg.description)
+          td!= $helpers.markdown(variable.type)
+          td!= $helpers.markdown(variable.description)
 
 mixin summary(description)
   - var fragment = "function-" + description.fragment
@@ -36,6 +36,6 @@ mixin summary(description)
     a.permalink(href="#" + fragment)= description.name
 
   +signatures(description.name, description.signatures)
-  +arguments(description.arguments)
+  +variables(description.variables)
   
   block

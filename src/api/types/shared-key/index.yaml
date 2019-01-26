@@ -1,0 +1,3 @@
+name: SharedKey
+fragment: shared-key
+extends: '[`Key`]()'

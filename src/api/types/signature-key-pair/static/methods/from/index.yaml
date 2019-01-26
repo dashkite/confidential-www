@@ -1,0 +1,18 @@
+signatures:
+  - inputs:
+      - hint
+      - data
+    output: key-pair
+variables:
+  hint:
+    type: '[`String`]()'
+    description: |
+      name that specifies the `from` conversion hint.
+  data:
+    type: '[`String`]() | [`Uint8Array`]() | [`Buffer`]()'
+    description: |
+      A data representation of a signature key pair.
+  key-pair:
+    type: '[`SignatureKeyPair`]()'
+    description: |
+      Instance of [`SignatureKeyPair`](), hydrated by the input `data`.

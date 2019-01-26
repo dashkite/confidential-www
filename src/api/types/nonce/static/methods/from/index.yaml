@@ -1,0 +1,18 @@
+signatures:
+  - inputs:
+      - hint
+      - data
+    output: nonce
+variables:
+  hint:
+    type: '[`String`]()'
+    description: |
+      name that specifies the `from` conversion hint.
+  data:
+    type: '[`String`]() | [`Uint8Array`]() | [`Buffer`]()'
+    description: |
+      A data representation of a nonce.
+  nonce:
+    type: '[`Nonce`]()'
+    description: |
+      Instance of [`Nonce`], hydrated by the input `data`.

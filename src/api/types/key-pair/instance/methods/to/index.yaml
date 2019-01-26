@@ -1,0 +1,13 @@
+signatures:
+  - inputs:
+      - hint
+    output: encoded-key-pair
+variables:
+  hint:
+    type: '[`String`]()'
+    description: |
+      name that specifies the `to` conversion hint.
+  encoded-key-pair:
+    type: '[`String`]() | [`Uint8Array`]()'
+    description: |
+      A data representation of a key pair

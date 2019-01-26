@@ -1,0 +1,13 @@
+signatures:
+  - inputs:
+      - value
+    output: is-hash
+variables:
+  value:
+    type: Value
+    description: |
+      A value to be tested.
+  is-hash:
+    type: '[`Boolean`]()'
+    description: |
+      `true` if `value` is an instance of `Hash`, `false` otherwise.
