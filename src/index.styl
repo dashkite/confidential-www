@@ -3,44 +3,54 @@
 body
 
   & > header
+    padding 3rem
     background -color-main
     border none
     color white
+    padding-top 8rem
+    padding-bottom 6rem
+
+    display flex
+    justify-content center
 
     h1
-      padding 6rem
+      width 100%
+      max-width 96rem
       font-family "Patua One", cursive
-
-    // TODO needs to be in main so it scrolls
-    section
-      color white
-      background -color-light
-
-      p
-        margin 0
-        padding 10rem 6rem
-        font-family "Titillium Web"
-        rhythm 8rem, .6
-
 
   & >  main
 
+    & > section
+      padding 8rem 0
+      color white
+      padding 3rem
+      background -color-light
+
+      display flex
+      justify-content center
+
+      p
+        max-width 96rem
+        margin 0
+        font-family "Titillium Web"
+        rhythm 8rem, .6
+
     article
-      max-width 65ch
-      padding 4rem
       font-family "Titillium Web"
       rhythm 6rem, .6
+
+      display flex
+      justify-content center
+
+      section
+        overflow-x scroll
+        padding 3rem
+        width 100%
+        max-width 96rem
 
       a[href="#broken"]
         background-color red
         color black
-
-      h1, & > section > h1
-        font-family "Titillium Web"
-        margin-top 8rem
-        padding-bottom 4rem
-        border-bottom 1px solid silver
-        rhythm 6rem, .9
 
       h1, h2, h3, h4, h5, h6
 
@@ -65,6 +75,7 @@ body
       section
 
         pre
-          //- prism trunmps line-height
-          font-size 2rem
+          //- prism overrides line-height
+          line-height 4rem !important
+          font-size 3rem
           margin-bottom 4rem !important

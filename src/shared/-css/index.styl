@@ -3,6 +3,7 @@
 @require "theme"
 @require "layout"
 @require "table"
+@require "glyphs"
 
 body
   color -color-dark
@@ -45,30 +46,63 @@ body
     background-color white
 
     & > nav
-      menu()
+
+      row nowrap
+      justify-content center
+
+      background-color -color-main
+      border-top 1px solid black
 
       & > ul
-        background-color -color-main
-        border-top 1px solid black
+        row nowrap
+        list-style-type none
+        margin 0
+        // margin-top 2rem
+        // margin-bottom 2rem
+        // margin-left 1rem
+        padding 0
+
 
         & > li
-          rhythm 3, .9
-          border-right 1px solid white
+          flex 1 1 12rem
+          text-align center
 
-          &:last-child
-            border-right none
+          margin-top 1rem
+          margin-bottom 1rem
 
-          &:first-child
-            background-color white
-            flex 0 0 14rem
+          &:not(:last-child)
+            border-right 1px solid silver
             margin-right 1rem
-            padding 1.5rem
 
           & > a
+
+            column nowrap
+            // width needs to be evenly divisible into 48rem
+            // otherwise we'll have little wasted margins
+            // so either 8 or 12 rem ... 12 for now until
+            // we add two more buttons
+            width 12rem
+            height 8rem
+            padding 1rem
+            rhythm 3rem .85
+            text-align center
+            justify-content space-evenly
+            // TODO style this so that it's obviously a link
+            text-decoration none
+
             color white
-            text-transform lowercase
+
             &:hover
               color -color-light
+
+            &[href="/api"]
+              icon api
+
+            &[href="/docs"]
+              icon docs
+
+            &[href$="panda-confidential"]
+              logo git
 
 a
   color -color-main
