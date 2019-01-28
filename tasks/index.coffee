@@ -1,7 +1,9 @@
 import "coffeescript/register"
 
+import Path from "path"
+
 import {define, run, glob, read, write,
-  extension, copy, watch, serve} from "panda-9000"
+  extension, copy, watch} from "panda-9000"
 
 import {rmr} from "panda-quill"
 import {go, map, wait, tee} from "panda-river"
@@ -10,11 +12,12 @@ import {yaml} from "panda-serialize"
 
 import h9 from "haiku9"
 
-import {transform, markdown} from "./helpers"
+import {transform, markdown, serve} from "./helpers"
 import Site from "./site"
 
 import pug from "jstransformer-pug"
-import stylus from "jstransformer-stylus"
+import stylus from "stylus"
+import styles from "panda-style"
 
 process.on 'unhandledRejection', (reason, p) ->
   console.error "Unhandled Rejection:", reason
@@ -56,10 +59,17 @@ define "html", ->
   ]
 
 define "css", ->
+
+  render = ({source, target}) ->
+    target.content = stylus.render source.content,
+      compress: true
+      filename: source.path
+      paths: [ styles().path ]
+
   go [
     glob [ "**/*.styl", "!**/-*/**" ], source
     wait map read
-    map transform stylus, compress: true
+    tee render
     map extension ".css"
     map write target
   ]
@@ -79,7 +89,6 @@ define "server",
   serve target,
     files: extensions: [ "html" ]
     logger: "tiny"
-    rewrite: true
     port: 8001
 
 define "default", [ "build", "watch&", "server&" ]

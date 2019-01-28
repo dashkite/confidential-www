@@ -6,6 +6,14 @@ import {read} from "panda-quill"
 
 import _transform from "jstransformer"
 
+import http from "http"
+import connect from "connect"
+import logger from "morgan"
+import finish from "finalhandler"
+import files from "serve-static"
+
+import {green, red} from "colors/safe"
+
 markdown = do (p = undefined) ->
   p = MarkdownIt
     html: true
@@ -27,4 +35,18 @@ transform = (transformer, options) ->
     result = await adapter.renderAsync source.content, options, data
     target.content = result.body ? ""
 
-export {transform, markdown}
+# TODO backport into P9K
+serve = (path, options) ->
+  ->
+    {port} = options
+    handler = connect()
+    if options.logger?
+      handler.use logger options.logger
+    handler.use files "./build", options.files
+    handler.use finish
+    http.createServer handler
+    .listen port, ->
+      console.log green "p9k: server listening on port #{port}"
+
+
+export {transform, markdown, serve}
