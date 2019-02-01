@@ -1,0 +1,14 @@
+@require panda-style
+reset()
+
+html
+  font-size (6 + 2/3)px
+
+body
+  height 100vh
+  display grid
+  grid-template-columns auto
+  grid-template-rows auto 1fr auto
+
+  & > main
+    overflow-y scroll

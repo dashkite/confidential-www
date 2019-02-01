@@ -1,91 +1,91 @@
-@require "../shared/-css"
-
-body
-
-  & > header
-    padding 8rem
-    background -color-main
-    border none
-    color white
-    h1
-      font-family "Patua One", cursive
-
-      header
-        //- TODO: replace with Blog header once
-        //- we have the top blog nav set up.
-        display none
-
-  & >  main
-
-    article
-      max-width 65ch
-      padding 4rem
-      font-family "Lora", "Georgia", serif
-      rhythm 4rem, .6
-
-      a[href="#broken"]
-        background-color red
-        color black
-
-      h1, & > section > h1
-        font-family "Titillium Web"
-        margin-top 8rem
-        padding-bottom 4rem
-        border-bottom 1px solid silver
-        rhythm 6rem, .9
-
-      h1, h2, h3, h4, h5, h6
-
-        font-family "Titillium Web"
-
-        a
-          color -color-dark
-          text-decoration none
-
-          &::before
-            content "¶ "
-
-      .toc
-        font-family "Titillium Web"
-        rhythm 3rem .9
-
-        h3
-          display inline-block
-          margin-right 1rem
-          &::after
-            content ":"
-          rhythm 3rem .9
-
-        ul
-          display inline-block
-          margin 0
-          padding 0
-          margin-bottom 2rem
-
-          li
-            display inline-block
-            margin 0
-            padding 0
-
-            &:not(:first-child)
-              padding-left 1rem
-
-            &:not(:last-child)
-              padding-right 1rem
-              border-right 1px solid silver
-
-      blockquote
-        h1, h2, h3, h4, h5, h6
-          font-family "Titillium Web"
-          a::before
-            content: ""
-
-        &.signature
-          font-family "Titillium Web", sans-serif
-
-      section
-
-        pre
-          //- prism trunmps line-height
-          font-size 2rem
-          margin-bottom 4rem !important
+// @require "../shared/-css"
+//
+// body
+//
+//   & > header
+//     padding 8rem
+//     background -color-main
+//     border none
+//     color white
+//     h1
+//       font-family "Patua One", cursive
+//
+//       header
+//         //- TODO: replace with Blog header once
+//         //- we have the top blog nav set up.
+//         display none
+//
+//   & >  main
+//
+//     article
+//       max-width 65ch
+//       padding 4rem
+//       font-family "Lora", "Georgia", serif
+//       rhythm 4rem, .6
+//
+//       a[href="#broken"]
+//         background-color red
+//         color black
+//
+//       h1, & > section > h1
+//         font-family "Titillium Web"
+//         margin-top 8rem
+//         padding-bottom 4rem
+//         border-bottom 1px solid silver
+//         rhythm 6rem, .9
+//
+//       h1, h2, h3, h4, h5, h6
+//
+//         font-family "Titillium Web"
+//
+//         a
+//           color -color-dark
+//           text-decoration none
+//
+//           &::before
+//             content "¶ "
+//
+//       .toc
+//         font-family "Titillium Web"
+//         rhythm 3rem .9
+//
+//         h3
+//           display inline-block
+//           margin-right 1rem
+//           &::after
+//             content ":"
+//           rhythm 3rem .9
+//
+//         ul
+//           display inline-block
+//           margin 0
+//           padding 0
+//           margin-bottom 2rem
+//
+//           li
+//             display inline-block
+//             margin 0
+//             padding 0
+//
+//             &:not(:first-child)
+//               padding-left 1rem
+//
+//             &:not(:last-child)
+//               padding-right 1rem
+//               border-right 1px solid silver
+//
+//       blockquote
+//         h1, h2, h3, h4, h5, h6
+//           font-family "Titillium Web"
+//           a::before
+//             content: ""
+//
+//         &.signature
+//           font-family "Titillium Web", sans-serif
+//
+//       section
+//
+//         pre
+//           //- prism trunmps line-height
+//           font-size 2rem
+//           margin-bottom 4rem !important

@@ -1,0 +1,46 @@
+@require panda-style
+
+$panda-blue = #0e83cd
+$panda-light-blue = #5ec1ff
+
+type-copy()
+  font-family "Lora", sans-serif
+
+type-copy-medium()
+  type-copy()
+  font-size 2.8rem
+  line-height 4rem
+
+type-label()
+  font-family "Titillium Web", sans-serif
+
+type-label-small()
+  type-label()
+  font-size 1.8rem
+  line-height 2rem
+
+type-label-medium()
+  type-label()
+  font-size 2.7rem
+  line-height 3rem
+
+type-title-medium()
+  font-family "Patua One", sans-serif
+  font-size 7.2rem
+  line-height 8rem
+
+type-heading()
+  font-family "Titillium Web", sans-serif
+
+type-heading-medium()
+  type-heading()
+  font-size 3.6rem
+  line-height 4rem
+
+type-heading-large()
+  type-heading()
+  font-size 5.4rem
+  line-height 6rem
+
+type(-name, -size = "medium")
+  type-{-name}-{-size}()

@@ -62,7 +62,7 @@ define "css", ->
 
   render = ({source, target}) ->
     target.content = stylus.render source.content,
-      compress: true
+      # compress: true
       filename: source.path
       paths: [ styles().path ]
 
