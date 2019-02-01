@@ -1,0 +1,49 @@
+responsive-padding(-padding)
+  display grid
+  grid-template-columns minmax(3rem, 1fr) minmax(auto,96rem) minmax(3rem, 1fr)
+
+  & > *
+    grid-column 2
+
+
+article
+  responsive-padding 3rem
+  typography standard
+  color black + 15%
+
+  a, a:visited
+    colors panda-blue inherit
+
+    &:hover
+      colors panda-light-blue inherit
+
+  h1, h2, h3, h4, h5, p, blockquote
+    margin-bottom @line-height
+
+  ul, ol
+    margin-bottom @line-height
+    & > li:not(:last-child)
+      margin-bottom (@line-height - 1)
+
+
+  pre
+    //- prism overrides line-height
+    margin-bottom @line-height !important
+
+  h1, h2, h3, h4, h5, h6
+    a
+      &::before
+        content "¶ "
+      &[href="#broken"]
+        color red
+
+
+
+//       blockquote
+//         h1, h2, h3, h4, h5, h6
+//           font-family "Titillium Web"
+//           a::before
+//             content: ""
+//
+//         &.signature
+//           font-family "Titillium Web", sans-serif

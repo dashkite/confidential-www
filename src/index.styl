@@ -1,17 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700,700i")
-@import url('https://fonts.googleapis.com/css?family=Patua+One');
-@import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i');
-
-@require -layout
 @require -theme
+@require -layout
 @require -bottom-nav
-
-responsive-padding(-padding)
-  display grid
-  grid-template-columns minmax(3rem, 1fr) minmax(auto,96rem) minmax(3rem, 1fr)
-
-  & > *
-    grid-column 2
+@require -article
 
 
 header
@@ -34,36 +24,3 @@ header
 
     & > *
       display inline
-
-article
-  responsive-padding 3rem
-  typography standard
-
-  & > pre
-    //- prism overrides line-height
-    line-height 3rem !important
-    font-size 2.4rem
-    margin-bottom 4rem !important
-
-  h1, h2, h3, h4, h5, h6
-    a
-      &::before
-        content "¶ "
-      &[href="#broken"]
-        color red
-
-  li
-    display list-item
-    list-style disc outside
-    margin-left 1em
-
-
-
-//       blockquote
-//         h1, h2, h3, h4, h5, h6
-//           font-family "Titillium Web"
-//           a::before
-//             content: ""
-//
-//         &.signature
-//           font-family "Titillium Web", sans-serif

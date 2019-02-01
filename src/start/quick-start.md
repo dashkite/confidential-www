@@ -17,6 +17,7 @@ import {confidential} from "panda-confidential"
 Because Panda-Confidential is extensible, it uses instantiation to prevent unexpected changes by third parties.  Once you have an instance, you can destructure its properties and get going!
 
 Panda-confidential wraps the TweetNaCl.js interface with pairs of opposing functions:
+
 1. `encrypt` and `decrypt`
 2. `sign` and `verify`
 

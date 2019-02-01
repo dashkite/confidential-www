@@ -1,14 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700,700i")
+@import url('https://fonts.googleapis.com/css?family=Patua+One');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC:400,400i,700,700i');
+
 @require panda-style
 
 $panda-blue = #0e83cd
 $panda-light-blue = #5ec1ff
 
+type-title-medium()
+  font-family "Patua One", sans-serif
+  font-size 7.2rem
+  line-height 8rem
+
+type-heading()
+  font-family "Titillium Web", sans-serif
+
+type-heading-large()
+  type-heading()
+  font-size 5.4rem
+  line-height 6rem
+
+type-heading-medium()
+  type-heading()
+  font-size 3.6rem
+  line-height 4rem
+
+type-heading-small()
+  type-heading()
+  font-size 2.7rem
+  line-height 3rem
+
 type-copy()
-  font-family "Lora", sans-serif
+  font-family "Noto Serif TC", serif
 
 type-copy-medium()
   type-copy()
-  font-size 2.8rem
+  font-size 4rem * 0.7
   line-height 4rem
 
 type-label()
@@ -24,23 +51,14 @@ type-label-medium()
   font-size 2.7rem
   line-height 3rem
 
-type-title-medium()
-  font-family "Patua One", sans-serif
-  font-size 7.2rem
-  line-height 8rem
+type-code()
+  font-family Consolas, Monaco, 'Andale Mono', \
+    'Ubuntu Mono', monospace !important
 
-type-heading()
-  font-family "Titillium Web", sans-serif
-
-type-heading-medium()
-  type-heading()
-  font-size 3.6rem
-  line-height 4rem
-
-type-heading-large()
-  type-heading()
-  font-size 5.4rem
-  line-height 6rem
+type-code-medium()
+  type-code()
+  font-size 2.5rem !important
+  line-height 3rem !important
 
 type(-name, -size = "medium")
   type-{-name}-{-size}()
