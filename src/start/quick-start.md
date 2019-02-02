@@ -1,40 +1,26 @@
 ## Quick Start
 
-Install Panda-Confidential with npm, and use your favorite bundler to get it into the browser.
+Install Panda-Confidential with npm. Use your favorite bundler (Webpack, Rollup, …) to use it in the browser.
 
 ```shell
 $ npm i panda-confidential
 ```
 
-When you import the library into your code, grab the [`confidential`][] submodule directly.
+In your code, import the [`confidential`][] function. Invoking the function gives you access to the library. (Instantiating Confidential within a function helps prevent unexpected changes by third parties.) Grab the parts you want to use and go!
 
 ```coffeescript
 import {confidential} from "panda-confidential"
+{encrypt, SharedKey, Plaintext} = confidential()
 
-# Instantiate Panda-Confidential
-{encrypt, decrypt} = confidential()
+encryptMessage = (sender, reciever, message) ->
+
+  key = SharedKey.create sender.privateKey,
+                         recipient.publicKey
+
+  plaintext = Plaintext.from "utf8", message
+  envelope = await encrypt key, plaintext
+
+  envelope.to "base64"
 ```
-Because Panda-Confidential is extensible, it uses instantiation to prevent unexpected changes by third parties.  Once you have an instance, you can destructure its properties and get going!
 
-Panda-confidential wraps the [TweetNaCl.js][] interface with pairs of opposing functions:
-
-1. [`encrypt`][] and [`decrypt`][]
-2. [`sign`][] and [`verify`][]
-
-These functions are [_generics_][generic function], accepting multiple inputs and deciding what action to take.  But details—like key length, robust randomness, algorithm, and so forth—are all handled by [TweetNaCl.js][].
-
-Panda-Confidential establishes a type system, and the above generics use those to determine your intention in a clear and error-free way.  That is, you can't accidentally a key for an operation it's not designed for.
-
-Here are the key types:
-
-- [`SymmetricKey`][]
-- [`PrivateKey`][]
-- [`PublicKey`][]
-- [`SharedKey`][]
-
-…and the key-pair types:
-
-- [`EncryptionKeyPair`][]
-- [`SignatureKeyPair`][]
-
-_Please see the [full API documentation](/api) for more detailed information._
+Confidential wraps the prescriptive [TweetNaCl.js][] library with pairs of opposing functions: [`encrypt`][] and [`decrypt`][], and [`sign`][] and [`verify`][]. These are [_generic functions_][generic function], allowing Confidential to just do the right thing based on the arguments you pass.

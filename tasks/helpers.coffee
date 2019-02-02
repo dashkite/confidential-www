@@ -16,26 +16,12 @@ import files from "serve-static"
 
 import {green, red} from "colors/safe"
 
-autoLinkFromDictionary = (_dictionary) ->
-
-  dictionary = {}
-  for specifier, href of _dictionary
-    [word, options] = specifier.split "~"
-    dictionary[word] = {href, options: options ? ""}
-
+autolink = (dictionary) ->
   (string) ->
     string.replace /\[([^\]]+)\]\[([^\]]*)\]/g, (match, text, key) ->
-      console.log {text, key}
-      if key == ""
-        key = text
-      if (entry = dictionary[key])?
-        {href, options} = entry
-        "[#{text}](#{href})"
-
-        # if "k" in options
-        #   "`[#{text}](#{link})`"
-        # else
-        #   "[#{text}](#{link})"
+      key = text if key == ""
+      if (url = dictionary[key])?
+        "[#{text}](#{url})"
       else
         match
 
@@ -74,4 +60,4 @@ serve = (path, options) ->
       console.log green "p9k: server listening on port #{port}"
 
 
-export {autoLinkFromDictionary, transform, markdown, serve}
+export {autolink, transform, markdown, serve}

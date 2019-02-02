@@ -5,7 +5,7 @@
 
 # External Links
 
-TweetNaCl.js: https://github.com/dchest/tweetnacl-js
+TweetNaCl.js: https://tweetnacl.js.org/
 
 # Reference Links
 "`Function`": https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
@@ -38,7 +38,7 @@ ed25519: https://ed25519.cr.yp.to/
 
 "`nacl`": /api.html#property-nacl
 
-"`confidential`": /api.html#function-confidential
+"`confidential`": /api/functions#confidential
 "`randomBytes`": /api.html#function-randomBytes
 "`encrypt`": /api.html#function-encrypt
 "`decrypt`": /api.html#function-decrypt

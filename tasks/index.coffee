@@ -13,7 +13,7 @@ import {yaml} from "panda-serialize"
 
 import h9 from "haiku9"
 
-import {transform, autoLinkFromDictionary, markdown, serve} from "./helpers"
+import {transform, autolink, markdown, serve} from "./helpers"
 import Site from "./site"
 
 import pug from "jstransformer-pug"
@@ -46,9 +46,7 @@ define "data", ->
 define "html", ->
 
   do (markdown) ->
-
-    autolink = autoLinkFromDictionary Site.data.links
-    markdown = pipe autolink, markdown
+    markdown = pipe (autolink Site.data.links), markdown
 
     globals =
       $site: Site.data
