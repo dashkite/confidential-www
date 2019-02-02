@@ -1,8 +1,0 @@
-section
-  h2#properties-{{hrefSafe title}}
-    a.header-anchor(href="#properties-{{hrefSafe title}}") {{title}}
-
-  {{#if description}}
-  :markdown
-    {{indent 4 (setLinks description)}}
-  {{/if}}
