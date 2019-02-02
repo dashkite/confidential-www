@@ -1,8 +1,10 @@
+import Path from "path"
 import MarkdownIt from "markdown-it"
 import MarkdownItAnchor from "markdown-it-anchor"
 
 import {tee} from "panda-garden"
 import {read} from "panda-quill"
+import {yaml} from "panda-serialize"
 
 import _transform from "jstransformer"
 
@@ -13,6 +15,29 @@ import finish from "finalhandler"
 import files from "serve-static"
 
 import {green, red} from "colors/safe"
+
+autoLinkFromDictionary = (_dictionary) ->
+
+  dictionary = {}
+  for specifier, href of _dictionary
+    [word, options] = specifier.split "~"
+    dictionary[word] = {href, options: options ? ""}
+
+  (string) ->
+    string.replace /\[([^\]]+)\]\[([^\]]*)\]/g, (match, text, key) ->
+      console.log {text, key}
+      if key == ""
+        key = text
+      if (entry = dictionary[key])?
+        {href, options} = entry
+        "[#{text}](#{href})"
+
+        # if "k" in options
+        #   "`[#{text}](#{link})`"
+        # else
+        #   "[#{text}](#{link})"
+      else
+        match
 
 markdown = do (p = undefined) ->
   p = MarkdownIt
@@ -49,4 +74,4 @@ serve = (path, options) ->
       console.log green "p9k: server listening on port #{port}"
 
 
-export {transform, markdown, serve}
+export {autoLinkFromDictionary, transform, markdown, serve}

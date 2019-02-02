@@ -17,11 +17,14 @@ article
     &:hover
       colors panda-light-blue inherit
 
-  h1, h2, h3, h4, h5, p, blockquote
+  h1, h2, h3, h4, h5, p, li, blockquote
     margin-bottom @line-height
+    & *
+      display inline
 
   ul, ol
     margin-bottom @line-height
+
     & > li:not(:last-child)
       margin-bottom (@line-height - 1)
 

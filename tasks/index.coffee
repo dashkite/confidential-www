@@ -5,6 +5,7 @@ import Path from "path"
 import {define, run, glob, read, write,
   extension, copy, watch} from "panda-9000"
 
+import {pipe} from "panda-garden"
 import {rmr} from "panda-quill"
 import {go, map, wait, tee} from "panda-river"
 import {merge} from "panda-parchment"
@@ -12,7 +13,7 @@ import {yaml} from "panda-serialize"
 
 import h9 from "haiku9"
 
-import {transform, markdown, serve} from "./helpers"
+import {transform, autoLinkFromDictionary, markdown, serve} from "./helpers"
 import Site from "./site"
 
 import pug from "jstransformer-pug"
@@ -44,19 +45,24 @@ define "data", ->
 
 define "html", ->
 
-  globals =
-    $site: Site.data
-    $helpers: {markdown}
+  do (markdown) ->
 
-  go [
-    glob [ "**/*.pug", "!**/-*/**" ], source
-    wait tee read
-    tee (context) ->
-      context.data = merge globals, Site.get context.path
-    tee transform pug, filters: {markdown}, basedir: source
-    tee extension ".html"
-    tee write target
-  ]
+    autolink = autoLinkFromDictionary Site.data.links
+    markdown = pipe autolink, markdown
+
+    globals =
+      $site: Site.data
+      $helpers: {markdown}
+
+    go [
+      glob [ "**/*.pug", "!**/-*/**" ], source
+      wait tee read
+      tee (context) ->
+        context.data = merge globals, Site.get context.path
+      tee transform pug, filters: {markdown}, basedir: source
+      tee extension ".html"
+      tee write target
+    ]
 
 define "css", ->
 
