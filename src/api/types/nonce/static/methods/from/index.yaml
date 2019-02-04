@@ -5,14 +5,14 @@ signatures:
     output: nonce
 variables:
   hint:
-    type: '[`String`]()'
+    type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
   data:
-    type: '[`String`]() | [`Uint8Array`]() | [`Buffer`]()'
+    type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
     description: |
       A data representation of a nonce.
   nonce:
-    type: '[`Nonce`]()'
+    type: '[`Nonce`][]'
     description: |
       Instance of [`Nonce`], hydrated by the input `data`.

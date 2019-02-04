@@ -8,6 +8,6 @@ variables:
     description: |
       A value to be tested.
   is-envelope:
-    type: '[`Boolean`]()'
+    type: '[`Boolean`][]'
     description: |
       `true` if `value` is an instance of `Envelope`, `false` otherwise.

@@ -8,6 +8,6 @@ variables:
     description: |
       A value to be tested.
   is-shared-key:
-    type: '[`Boolean`]()'
+    type: '[`Boolean`][]'
     description: |
-      `true` if `value` is an instance of [`SharedKey`](), `false` otherwise.
+      `true` if `value` is an instance of [`SharedKey`][], `false` otherwise.

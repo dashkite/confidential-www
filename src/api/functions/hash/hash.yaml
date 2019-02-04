@@ -7,10 +7,10 @@ signatures:
       - hash
 variables:
   plaintext:
-    type: '[`Plaintext`]()'
+    type: '[`Plaintext`][]'
     description: |
       Type class for the plaintext to be hashed.
   hash:
-    type: '[`Hash`]()'
+    type: '[`Hash`][]'
     description: |
-      Type class for the [SHA-512]() hash of _plaintext_.
+      Type class for the [SHA-512][] hash of _plaintext_.

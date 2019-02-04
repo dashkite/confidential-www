@@ -1,3 +1,3 @@
 name: EncryptionKeyPair
 fragment: encryption-key-pair
-extends: '[`KeyPair`]()'
+extends: '[`KeyPair`][]'

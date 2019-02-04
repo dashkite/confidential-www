@@ -5,14 +5,14 @@ signatures:
     output: key-pair
 variables:
   hint:
-    type: '[`String`]()'
+    type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
   data:
-    type: '[`String`]() | [`Uint8Array`]() | [`Buffer`]()'
+    type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
     description: |
       A data representation of a signature key pair.
   key-pair:
-    type: '[`SignatureKeyPair`]()'
+    type: '[`SignatureKeyPair`][]'
     description: |
-      Instance of [`SignatureKeyPair`](), hydrated by the input `data`.
+      Instance of [`SignatureKeyPair`][], hydrated by the input `data`.

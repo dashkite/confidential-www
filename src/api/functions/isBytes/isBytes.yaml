@@ -11,6 +11,6 @@ variables:
     description: |
       A value to be tested.
   is-bytes:
-    type: '[`Boolean`]()'
+    type: '[`Boolean`][]'
     description: |
-      `true` if `value` is an instance of [`Uint8Array`](), `false` otherwise.
+      `true` if `value` is an instance of [`Uint8Array`][], `false` otherwise.

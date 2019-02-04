@@ -8,15 +8,15 @@ signatures:
       - output
 variables:
   hint:
-    type: '[`Object`]()'
+    type: '[`Object`][]'
     description: >
       An object with the keys `from` and `to`.  Their values describe the
       conversion to be applied to _input_.
   input:
-    type: '[`Uint8Array`]() | [`String`]()'
+    type: '[`Uint8Array`][] | [`String`][]'
     description: |
       The value to be converted.
   output:
-    type: '[`Uint8Array`]() | [`String`]()'
+    type: '[`Uint8Array`][] | [`String`][]'
     description: |
       The result of the conversion.

@@ -8,7 +8,7 @@ variables:
     description: |
       A value to be tested.
   is-signature-key-pair:
-    type: '[`Boolean`]()'
+    type: '[`Boolean`][]'
     description: >
-      `true` if `value` is an instance of [`SignatureKeyPair`](), `false`
+      `true` if `value` is an instance of [`SignatureKeyPair`][], `false`
       otherwise.

@@ -4,10 +4,10 @@ signatures:
     output: encoded-key-pair
 variables:
   hint:
-    type: '[`String`]()'
+    type: '[`String`][]'
     description: |
       name that specifies the `to` conversion hint.
   encoded-key-pair:
-    type: '[`String`]() | [`Uint8Array`]()'
+    type: '[`String`][] | [`Uint8Array`][]'
     description: |
       A data representation of a key pair

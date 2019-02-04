@@ -4,6 +4,6 @@ signatures:
 variables:
   symmetric-key:
     isPromised: true
-    type: '[`SymmetricKey`]()'
+    type: '[`SymmetricKey`][]'
     description: |
-      Promise that resolves to an instance of [`SymmetricKey`]().
+      Promise that resolves to an instance of [`SymmetricKey`][].

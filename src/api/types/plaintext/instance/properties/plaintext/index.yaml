@@ -1,4 +1,4 @@
-type: '[`Uint8Array`]()'
+type: '[`Uint8Array`][]'
 description: >
-  The plaintext, properly formmated for [`encrypt`](), the counterpart to the
+  The plaintext, properly formmated for [`encrypt`][], the counterpart to the
   ciphertext product.

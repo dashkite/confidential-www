@@ -6,11 +6,11 @@ signatures:
     output: bytes
 variables:
   length:
-    type: '[`Integer`]()'
+    type: '[`Integer`][]'
     description: |
       Length of the desired output, in bytes.
   bytes:
     isPromised: true
-    type: '[`Uint8Array`]()'
+    type: '[`Uint8Array`][]'
     description: |
       Promise that resolves to an array of `length` pseudo-random bytes.

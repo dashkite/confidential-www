@@ -1,6 +1,6 @@
-##### Symmetric Encryption
+### Symmetric Encryption
 
-**Warning**: Private keys should only be accessible to their owners.
+> **Warning**: Private keys should only be accessible to their owners.
 
 ```coffeescript
 import {confidential} from "panda-confidential"

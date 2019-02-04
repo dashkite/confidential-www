@@ -1,22 +1,23 @@
 name: encrypt
+description: Encrypts plaintext with a key and an optional nonce.
 fragment: encrypt
 signatures:
   - arguments: key, [ nonce,] plaintext
     result: envelope
 variables:
   key:
-    type: "[`SymmetricKey`]() | [`SharedKey`]()"
+    type: "[`SymmetricKey`][] | [`SharedKey`][]"
     description: |
       Key to be used in the encryption operation.
   nonce:
-    type: "[`Nonce`]()"
+    type: "[`Nonce`][]"
     description: |
       Optional. Type class that holds a value to be combined with the plaintext before encryption. A random nonce is generated if not supplied.
   plaintext:
-    type: "[`Plaintext`]()"
+    type: "[`Plaintext`][]"
     description: |
       Type class for the plaintext to be encrypted.
   envelope:
-    type: "🤞[`Envelope`]()"
+    type: "🤞[`Envelope`][]"
     description: |
-      Promise that resolves to an [`Envelope`](), a type class for the ciphertext and nonce products of encryption. Suitable for use with decrypt.
+      Promise that resolves to an [`Envelope`][], a type class for the ciphertext and nonce products of encryption. Suitable for use with decrypt.

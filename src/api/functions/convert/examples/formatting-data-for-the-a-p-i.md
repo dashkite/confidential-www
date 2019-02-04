@@ -1,4 +1,4 @@
-The Panda-Confidential generics (ex: [`encrypt`](), [`decrypt`](), [`sign`](), and [`verify`]()) are purposefully agnostic to the content they process, be it text or binary media.  The API always operates on byte arrays, requiring you convert inputs into bytes and then dealing with byte array outputs.
+The Panda-Confidential generics (ex: [`encrypt`][], [`decrypt`][], [`sign`][], and [`verify`][]) are purposefully agnostic to the content they process, be it text or binary media.  The API always operates on byte arrays, requiring you convert inputs into bytes and then dealing with byte array outputs.
 
 Typically, you will not need to use `convert` directly.  Panda-Confidential provides type classes with formatting methods that use `convert` internally.
 

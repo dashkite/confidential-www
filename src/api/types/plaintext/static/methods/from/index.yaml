@@ -5,14 +5,14 @@ signatures:
     output: plaintext
 variables:
   hint:
-    type: '[`String`]()'
+    type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
   data:
-    type: '[`String`]() | [`Uint8Array`]() | [`Buffer`]()'
+    type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
     description: |
       A data representation of a plaintext.
   plaintext:
-    type: '[`Plaintext`]()'
+    type: '[`Plaintext`][]'
     description: |
-      Instance of [`Plaintext`](), hydrated by the input `data`.
+      Instance of [`Plaintext`][], hydrated by the input `data`.

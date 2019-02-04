@@ -1,0 +1,25 @@
+extends ../-layout
+
+include -mixins.pug
+
+block append header
+  section.toc
+    ul
+      each description, _name in $site.api.functions
+        if name == _name
+          li: strong= _name
+        else
+          li: a(href="#function-" + description.fragment)= _name
+
+//- block main
+//- 
+//-   article
+//- 
+//-     +summary($site.api.functions.decrypt)
+//- 
+//-       include:markdown decrypt/description.md
+//- 
+//-       h4 Examples
+//- 
+//-       include:markdown decrypt/examples/symmetric.md
+//-       include:markdown decrypt/examples/asymmetric.md

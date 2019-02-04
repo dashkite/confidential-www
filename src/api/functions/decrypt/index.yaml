@@ -5,14 +5,14 @@ signatures:
     result: plaintext
 variables:
   key:
-    type: "[`SymmetricKey`]() | [`SharedKey`]()"
+    type: "[`SymmetricKey`][] | [`SharedKey`][]"
     description: |
       Key to be used in the decryption operation.
   envelope:
-    type: "[`Envelope`]()"
+    type: "[`Envelope`][]"
     description: |
-      Type class for encryption products: `ciphertext` and `nonce`. Returned by [`encrypt`]().
+      Type class for encryption products: `ciphertext` and `nonce`. Returned by [`encrypt`][].
   plaintext:
-    type: "[`Plaintext`]()"
+    type: "[`Plaintext`][]"
     description: |
       Type class for the plaintext resulting from decryption.

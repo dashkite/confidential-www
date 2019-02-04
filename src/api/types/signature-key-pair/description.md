@@ -1,8 +1,8 @@
-Key pair suitable for [digital signature]().
+Key pair suitable for [digital signature][].
 
 > **Warning:** `SignatureKeyPair` is not suitable for encryption.
 
-`SignatureKeyPair` extends [`KeyPair`](), so it inherits its inteface: (Please see that class for more details.)
+`SignatureKeyPair` extends [`KeyPair`][], so it inherits its inteface: (Please see that class for more details.)
 - `to`: instance method to return formatted internal data.
 - `isKind`: static method providing a boolean prototype chain check for `KeyPair`
 

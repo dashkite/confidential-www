@@ -20,24 +20,24 @@ signatures:
       - declaration
 variables:
   key-pair:
-    type: '[`SignatureKeyPair`]()'
+    type: '[`SignatureKeyPair`][]'
     description: >
       A key pair containing the public and private keys with which to sign
       `data`.
   public-key:
-    type: '[`PublicKey`]()'
+    type: '[`PublicKey`][]'
     description: |
       The public key of the person wishing to sign `data`.
   private-key:
-    type: '[`PrivateKey`]()'
+    type: '[`PrivateKey`][]'
     description: |
       The private key of the person wishing to sign `data`.
   data:
-    type: '[`Plaintext`]() | [`Declaration`]()'
+    type: '[`Plaintext`][] | [`Declaration`][]'
     description: |
       Data to be signed.
   declaration:
-    type: '[`Declaration`]()'
+    type: '[`Declaration`][]'
     description: >
       Type class to organize the products of digital signature.  Contains fields
       `data`, `signatures`, and `signatories`. Suitable for use with `verify`.

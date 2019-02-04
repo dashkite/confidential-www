@@ -1,7 +1,7 @@
 mixin signatures(name, list)
 
-  each signature in list
-    blockquote.signature
+  blockquote.signature
+    each signature in list
       p
         strong= name
         |
@@ -29,13 +29,15 @@ mixin variables(list)
           td!= $helpers.markdown(variable.type)
           td!= $helpers.markdown(variable.description)
 
-mixin summary(description)
-  - var fragment = "function-" + description.fragment
+mixin summary(f)
 
-  h3(id=fragment)
-    a.permalink(href="#" + fragment)= description.name
+  article
+    
+    h1= f.name
 
-  +signatures(description.name, description.signatures)
-  +variables(description.variables)
+    p= f.description
+    
+    +signatures(f.name, f.signatures)
+    +variables(f.variables)
   
-  block
+    block

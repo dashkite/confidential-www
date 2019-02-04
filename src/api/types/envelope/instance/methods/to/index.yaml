@@ -4,10 +4,10 @@ signatures:
     output: encoded-envelope
 variables:
   hint:
-    type: '[`String`]()'
+    type: '[`String`][]'
     description: |
       name that specifies the `to` conversion hint.
   encoded-envelope:
-    type: '[`String`]() | [`Uint8Array`]()'
+    type: '[`String`][] | [`Uint8Array`][]'
     description: |
       A data representation of an envelope.

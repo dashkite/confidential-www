@@ -5,14 +5,14 @@ signatures:
     output: key
 variables:
   hint:
-    type: '[`String`]()'
+    type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
   data:
-    type: '[`String`]() | [`Uint8Array`]() | [`Buffer`]()'
+    type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
     description: |
       A data representation of a symmetric key.
   key:
-    type: '[`SymmetricKey`]()'
+    type: '[`SymmetricKey`][]'
     description: |
-      Instance of [`SymmetricKey`](), hydrated by the input `data`.
+      Instance of [`SymmetricKey`][], hydrated by the input `data`.

@@ -36,6 +36,11 @@ ed25519: https://ed25519.cr.yp.to/
 
 # Internal Links
 
+API: /api
+Functions: /api/functions
+Types: /api/types
+Properties: /api/properties
+
 "`nacl`": /api.html#property-nacl
 
 "`confidential`": /api/functions#confidential

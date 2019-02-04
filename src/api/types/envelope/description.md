@@ -1,8 +1,8 @@
-The return value for [`encrypt`]().
+The return value for [`encrypt`][].
 
 `Envelope` contains the products of encryption: the `ciphertext` and `nonce`.
 
-This class is suitable for [`decrypt`]().
+This class is suitable for [`decrypt`][].
 
 `Envelope` contains helpers methods manage its, summarized below.  Please see the relevant section for more details.
 

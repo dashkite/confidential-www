@@ -1,11 +1,13 @@
-//- extends ../shared/-html/default
+extends ../-layout
 
 block append head
-  link(rel="stylesheet" href="/api/index.css")
+  link(rel = "stylesheet" href = "/api/index.css")
+  +highlighting()
 
-block main
-  article
-    h2 API Reference
     
-    section
-      block section
+block header
+  :markdown
+    Panda Confidential &rtrif; [API][] &rtrif; [Functions][]
+  
+block footer
+  include ../-bottom-nav

@@ -5,14 +5,14 @@ signatures:
     output: key
 variables:
   hint:
-    type: '[`String`]()'
+    type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
   data:
-    type: '[`String`]() | [`Uint8Array`]()'
+    type: '[`String`][] | [`Uint8Array`][]'
     description: |
       A data representation of a private key.
   key:
-    type: '[`PrivateKey`]()'
+    type: '[`PrivateKey`][]'
     description: |
-      Instance of [`PrivateKey`](), hydrated by the input `data`.
+      Instance of [`PrivateKey`][], hydrated by the input `data`.

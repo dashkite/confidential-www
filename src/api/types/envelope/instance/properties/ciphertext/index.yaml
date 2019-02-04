@@ -1,4 +1,4 @@
-type: '[`Uint8Array`]()'
+type: '[`Uint8Array`][]'
 description: >
-  The ciphertext output from [`encrypt`](), the counterpart to the original
+  The ciphertext output from [`encrypt`][], the counterpart to the original
   plaintext.

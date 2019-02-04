@@ -8,7 +8,7 @@ variables:
     description: |
       A value to be tested.
   is-key-pair:
-    type: '[`Boolean`]()'
+    type: '[`Boolean`][]'
     description: >
       true` if `value` has an instance of `KeyPair` in its prototype chain,
       `false` otherwise.

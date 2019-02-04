@@ -10,6 +10,7 @@ table
   border-spacing 0
 
   thead
+    display table-header-group
     font-weight bold
 
     th
@@ -23,7 +24,7 @@ table
 
   thead
   tr:nth-child(2n)
-    background-color silver + 85%
+    background-color white - 5%
 
   th, td
     padding 2rem
@@ -33,7 +34,14 @@ table
     &:first-child
       border-left 1px solid silver
 
+  tr
+    display table-row
+
+    th, td
+      display table-cell
+
   tbody
+    display table-header-group
 
     tr:last-child
 

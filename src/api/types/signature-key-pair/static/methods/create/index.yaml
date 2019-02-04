@@ -4,6 +4,6 @@ signatures:
 variables:
   signature-key-pair:
     isPromised: true
-    type: '[`SignatureKeyPair`]()'
+    type: '[`SignatureKeyPair`][]'
     description: |
-      Promise that resolves to an instance of [`SignatureKeyPair`]().
+      Promise that resolves to an instance of [`SignatureKeyPair`][].

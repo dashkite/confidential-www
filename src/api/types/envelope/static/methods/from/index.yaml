@@ -5,14 +5,14 @@ signatures:
     output: envelope
 variables:
   hint:
-    type: '[`String`]()'
+    type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
   data:
-    type: '[`String`]() | [`Uint8Array`]() | [`Buffer`]()'
+    type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
     description: |
       A data representation of an envelope.
   envelope:
-    type: '[`Envelope`]()'
+    type: '[`Envelope`][]'
     description: |
-      Instance of [`Envelope`](), hydrated by the input `data`.
+      Instance of [`Envelope`][], hydrated by the input `data`.

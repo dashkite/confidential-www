@@ -1,8 +1,8 @@
-Key pair suitable for [asymmetric encryption]().
+Key pair suitable for [asymmetric encryption][].
 
 > **Warning:** `EncryptionKeyPair` is not suitable for signing.
 
-`EncryptionKeyPair` extends [`KeyPair`](), so it inherits its inteface: (Please see that class for more details.)
+`EncryptionKeyPair` extends [`KeyPair`][], so it inherits its inteface: (Please see that class for more details.)
 - `to`: instance method to return formatted internal data.
 - `isKind`: static method providing a boolean prototype chain check for `KeyPair`
 

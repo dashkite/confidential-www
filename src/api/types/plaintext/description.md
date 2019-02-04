@@ -1,4 +1,4 @@
-The return value for [`decrypt`]().
+The return value for [`decrypt`][].
 
 `Plaintext` is a wrapper for plaintext data.
 

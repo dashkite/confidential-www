@@ -1,4 +1,4 @@
-Provide a [`Plaintext`]() instance to the `data` argument and `sign` generates a new [`Declaration`]().
+Provide a [`Plaintext`][] instance to the `data` argument and `sign` generates a new [`Declaration`][].
 
 ```coffeescript
 import {confidential} from "panda-confidential"
