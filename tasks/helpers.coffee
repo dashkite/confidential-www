@@ -23,7 +23,7 @@ autolink = (dictionary) ->
       if (url = dictionary[key])?
         "[#{text}](#{url})"
       else
-        match
+        "[#{text}](#broken)"
 
 markdown = do (p = undefined) ->
   p = MarkdownIt

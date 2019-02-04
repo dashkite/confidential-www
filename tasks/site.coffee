@@ -1,5 +1,9 @@
 import Path from "path"
 
+decorate = (value) ->
+  value.key ?= value.name
+  value
+
 Site =
 
   data: {}
@@ -24,6 +28,6 @@ Site =
 
   set: (path, value) ->
     [keys..., key] = Site.keys path
-    (Site.traverse keys)[key] = value
+    (Site.traverse keys)[key] = decorate value
 
 export default Site

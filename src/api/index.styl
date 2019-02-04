@@ -4,20 +4,24 @@
 @require "../css/-table"
 @require "../-layout"
 
+// TODO where does this belong?
+a[href='#broken']
+  color red
+
 header
   responsive-padding 3rem
+  type heading smallest
+
   margin 0 0 3rem 0
   padding 3rem 0
   border-bottom 1px solid silver
 
   p
-    type heading smallest
-
+    strong
     a
       display inline
 
 .toc
-
   type heading smallest
 
   ul
