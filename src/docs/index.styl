@@ -1,0 +1,57 @@
+@require "../css/-theme"
+@require "../css/-bottom-nav"
+@require "../css/-article"
+@require "../css/-table"
+@require "../-layout"
+
+// TODO where does this belong?
+a[href='#broken']
+  color red
+
+header
+  responsive-padding 3rem
+  type heading smallest
+
+  margin 0 0 3rem 0
+  padding 3rem 0
+  border-bottom 1px solid silver
+
+  p
+    strong
+    a
+      display inline
+
+  ul
+    display inline-block
+    margin-top 2rem
+
+    li
+      display inline-block
+      // clear the margins because we're inside an article
+      margin-left 0
+      margin-bottom 1rem !important
+
+      // &:not(:first-child)
+      //   padding-left 1rem
+
+      &:not(:last-child)
+        padding-right 1rem
+        border-right 1px solid silver
+        margin-right 1rem
+
+article
+
+  h1
+    type heading large
+  h2
+    type heading small
+  h3
+    type heading smaller
+
+  blockquote.signature
+    type label
+
+  blockquote
+    background white - 5%
+    border-left 1rem solid $panda-blue
+    padding 2rem

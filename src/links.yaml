@@ -26,13 +26,20 @@ UTF-8 encoding: https://tools.ietf.org/html/rfc3629
 Base64 encoding: https://tools.ietf.org/html/rfc4648
 URL-Safe Base64 encoding: https://tools.ietf.org/html/rfc4648#section-5
 SHA-512: https://tools.ietf.org/html/rfc4634
-
+symmetric-encryption: https://en.wikipedia.org/wiki/Symmetric-key_algorithm
+pke: https://en.wikipedia.org/wiki/Public-key_cryptography
+digitial-signature: https://en.wikipedia.org/wiki/Digital_signature
 ed25519: https://ed25519.cr.yp.to/
 
 "`nacl.secretbox.keyLength`": https://github.com/dchest/tweetnacl-js#constants-1
 "`nacl.box.sharedKeyLength`": https://github.com/dchest/tweetnacl-js#constants-1
 "`nacl.box.publicKeyLength`": https://github.com/dchest/tweetnacl-js#constants-1
 "`nacl.box.secretKeyLength`": https://github.com/dchest/tweetnacl-js#constants-1
+
+tweetnacl-randombytes: https://github.com/dchest/tweetnacl-js#random-bytes-generation
+tweetnacl-secretbox: https://github.com/dchest/tweetnacl-js#secret-key-authenticated-encryption-secretbox
+tweetnacl-box: https://github.com/dchest/tweetnacl-js#public-key-authenticated-encryption-box
+tweetnacl-sign: https://github.com/dchest/tweetnacl-js#signatures
 
 # Internal Links
 

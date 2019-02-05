@@ -1,0 +1,22 @@
+extends ../-layout
+
+block append head
+  +highlighting()
+  link(rel = "stylesheet" href = "/docs/index.css")
+
+block header
+  :markdown
+    [Panda Confidential](/docs) &rtri; **Symmetric Encryption**
+    
+    - [Obtaining A Key](#obtaining-a-key)
+    - [Encryption](#encryption)
+    - [Serialization](#serialization)
+    - [Deserialization](#deserialization)
+    - [Decryption](#decryption)
+
+block main
+  article
+    include:markdown symmetric-encryption.md
+    
+block footer
+  include ../-bottom-nav

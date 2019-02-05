@@ -1,10 +1,13 @@
 extends ../-layout
 
 block append head
-  link(rel = "stylesheet" href = "/api/index.css")
+  link(rel = "stylesheet" href = "/docs/index.css")
   +highlighting()
 
-      
+block header
+  :markdown
+    **Panda Confidential**
+
 block main
   article
     include:markdown docs.md
