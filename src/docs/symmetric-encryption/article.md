@@ -14,9 +14,11 @@ import {confidential} from "panda-confidential"
 
 ## Obtaining A Key
 
-Since this is symmetric encryption, Alice needs a [`SymmetricKey`][]. If Alice already has a serialized key, she can retrieve it and instantiate a `SymmetricKey` by passing it to the static method `from`.
+Since this is symmetric encryption, Alice needs a [`SymmetricKey`][].
 
-### Case 1: Prexisting Key
+### Case 1: Pre-Existing Key
+
+If Alice already has a serialized key, she can retrieve it and instantiate a `SymmetricKey` by passing it to the static method `from`.
 
 ```coffeescript
 key = SymmetricKey.from "base64", serializedKey
@@ -24,7 +26,9 @@ key = SymmetricKey.from "base64", serializedKey
 
 ### Case 2: New Key
 
-If Alice wants a _new_ key, she can use the static method [`create`][]. She uses `await` because `create` returns a promise. [TweetNaCl.js][] ensures that Alice's key is random, since it provides [robust randomness regardless of platform][tweetnacl-randombytes].
+If Alice wants a _new_ key, she can use the static method [`create`][].
+
+[TweetNaCl.js][] ensures that Alice's key is random by providing [robust randomness regardless of platform][tweetnacl-randombytes]. On some platforms, that's an asynchronous operation, so Confidential returns a promise to provide a consistent interface. Alice uses `await` to wait for the promise to resolve.
 
 ```coffeescript
 key = await SymmetricKey.create()

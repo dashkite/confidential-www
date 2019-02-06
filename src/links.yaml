@@ -28,6 +28,7 @@ URL-Safe Base64 encoding: https://tools.ietf.org/html/rfc4648#section-5
 SHA-512: https://tools.ietf.org/html/rfc4634
 symmetric-encryption: https://en.wikipedia.org/wiki/Symmetric-key_algorithm
 pke: https://en.wikipedia.org/wiki/Public-key_cryptography
+authenticated encryption: https://en.wikipedia.org/wiki/Authenticated_encryption
 digitial-signature: https://en.wikipedia.org/wiki/Digital_signature
 ed25519: https://ed25519.cr.yp.to/
 

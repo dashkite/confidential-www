@@ -1,9 +1,5 @@
 extends ../-layout
 
-block append head
-  +highlighting()
-  link(rel = "stylesheet" href = "/docs/index.css")
-
 block header
   :markdown
     [Panda Confidential](/docs) &rtri; **Symmetric Encryption**
@@ -16,7 +12,4 @@ block header
 
 block main
   article
-    include:markdown symmetric-encryption.md
-    
-block footer
-  include ../-bottom-nav
+    include:markdown article.md

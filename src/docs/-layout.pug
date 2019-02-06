@@ -1,0 +1,8 @@
+extends ../-layout
+
+block append head
+  link(rel = "stylesheet" href = "/docs/index.css")
+  +highlighting()
+
+block footer
+  include ../-bottom-nav
