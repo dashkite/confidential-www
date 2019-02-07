@@ -23,13 +23,13 @@ TweetNaCl.js: https://tweetnacl.js.org/
 
 generic function: https://en.wikipedia.org/wiki/Generic_programming
 UTF-8 encoding: https://tools.ietf.org/html/rfc3629
-Base64 encoding: https://tools.ietf.org/html/rfc4648
+Base64: https://tools.ietf.org/html/rfc4648
 URL-Safe Base64 encoding: https://tools.ietf.org/html/rfc4648#section-5
 SHA-512: https://tools.ietf.org/html/rfc4634
 symmetric-encryption: https://en.wikipedia.org/wiki/Symmetric-key_algorithm
 pke: https://en.wikipedia.org/wiki/Public-key_cryptography
 authenticated encryption: https://en.wikipedia.org/wiki/Authenticated_encryption
-digitial-signature: https://en.wikipedia.org/wiki/Digital_signature
+digitial signature: https://en.wikipedia.org/wiki/Digital_signature
 ed25519: https://ed25519.cr.yp.to/
 
 "`nacl.secretbox.keyLength`": https://github.com/dchest/tweetnacl-js#constants-1
@@ -96,5 +96,5 @@ symmetric encryption: /usage.html#symmetric-encryption-and-decryption
 symmetric decryption: /usage.html#symmetric-encryption-and-decryption
 asymmetric encryption: /usage.html#authenticated-asymmetric-encryption-and-decryption
 asymmetric decryption: /usage.html#authenticated-asymmetric-encryption-and-decryption
-digital signature: usage.html#signing-and-verifying-messages
-digital signing: usage.html#signing-and-verifying-messages
+# digital signature: usage.html#signing-and-verifying-messages
+# digital signing: usage.html#signing-and-verifying-messages

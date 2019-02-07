@@ -7,7 +7,6 @@ She starts by importing Panda-Confidential and instantiating the API.
 ```coffeescript
 import {confidential} from "panda-confidential"
 
-# Instantiate Panda-Confidential
 {SymmetricKey, Plaintext, Envelope,
   encrypt, decrypt} = confidential()
 ```
@@ -34,7 +33,7 @@ If Alice wants a _new_ key, she can use the static method [`create`][].
 key = await SymmetricKey.create()
 ```
 
-## Encryption
+## Encrypting
 
 Now that Alice has her `SymmetricKey`, she needs to prepare a [`Plaintext`][] container for the data she wants to encrypt. She can use its static method `from`, which works the same way as it does for `SymmetricKey`.
 
@@ -50,7 +49,7 @@ envelope = await encrypt key, plaintext
 
 Under the hood, Panda-Confidential uses the [TweetNaCl.js implementation of symmetric encryption][tweetnacl-secretbox], which requires a nonce. Confidential will generate one for you if you don't provide one. `encrypt` returns an [`Envelope`][] instance, which includes both the ciphertext and the nonce.
 
-## Serialization
+## Serializing
 
 The `Envelope` instance supports serialization via the `to` method. Once the envelope is serialized, Alice may store her encrypted data as a string.
 
@@ -58,7 +57,7 @@ The `Envelope` instance supports serialization via the `to` method. Once the env
 string = envelope.to "base64"  
 ```
 
-## Deserialization
+## Deserializing
 
 Later, Alice may restore the envelope with the `from` static method.
 
@@ -66,9 +65,9 @@ Later, Alice may restore the envelope with the `from` static method.
 envelope = Envelope.from "base64", string
 ```
 
-## Decryption
+## Decrypting
 
-[`decrypt`][] and works just as simply as `encrypt`. Alice uses the same key she used to encrypt the plaintext to decrypt the envelope. `decrypt` returns a new `Plaintext` instance, just like the one she passed into `encrypt`.
+[`decrypt`][] works as simply as `encrypt`. Alice uses the same key she used to encrypt the plaintext to decrypt the envelope. `decrypt` returns a new `Plaintext` instance, just like the one she passed into `encrypt`.
 
 ```coffeescript
 plaintext = decrypt key, envelope

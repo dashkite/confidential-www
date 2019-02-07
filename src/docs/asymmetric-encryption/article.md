@@ -79,7 +79,7 @@ Under the hood, Panda-Confidential uses the [TweetNaCl.js implementation of asym
 
 ## Serializing
 
-Alice serializes the envelope so she can send it to Bob more easily.
+Alice uses the `to` method of an `Envelope` to serialize the envelope so she can send it to Bob more easily.
 
 ```coffeescript
 string = envelope.to "base64"
@@ -95,7 +95,7 @@ envelope = Envelope.from "base64", string
 
 ## Decrypting
 
-[`decrypt`][] and works just as simply as `encrypt`. However, Bob must first create a shared key, just as Alice did. Bob's shared key will be constructed from his private key and Alice's public key, the reverse of the way Alice created her shared key.
+[`decrypt`][] and works as simply as `encrypt`. However, Bob must first create a shared key, just as Alice did. Bob's shared key will be constructed from his private key and Alice's public key, the reverse of the way Alice created her shared key.
 
 Thanks to the mathematics underlying public-key cryptography, Bob will still end up with the same shared key, which will allow him to decrypt Alice's message. That is,
 
