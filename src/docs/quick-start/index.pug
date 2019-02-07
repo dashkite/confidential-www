@@ -3,14 +3,12 @@ extends ../-layout
 block append head
   link(rel = "stylesheet" href = "/docs/index.css")
   +highlighting()
-
+    
+      
 block header
   :markdown
-    [Panda Confidential](/)
-
+    [Panda Confidential](/) &rtrif; **Quick Start**
+  
 block main
   article
-    include:markdown docs.md
-    
-block footer
-  include ../-bottom-nav
+    include:markdown quick-start.md

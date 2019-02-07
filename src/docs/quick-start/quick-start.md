@@ -1,4 +1,4 @@
-## Quick Start
+# Quick Start
 
 Install Panda-Confidential with npm. Use your favorite bundler (Webpack, Rollup, …) to use it in the browser.
 
