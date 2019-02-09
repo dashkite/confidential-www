@@ -2,6 +2,7 @@
 @require "../css/-bottom-nav"
 @require "../css/-article"
 @require "../css/-table"
+@require "../css/-inline-list"
 @require "../-layout"
 
 // TODO where does this belong?
@@ -22,22 +23,8 @@ header
       display inline
 
   ul
-    display inline-block
+    inline-list bar
     margin-top 2rem
-
-    li
-      display inline-block
-      // clear the margins because we're inside an article
-      margin-left 0
-      margin-bottom 1rem !important
-
-      // &:not(:first-child)
-      //   padding-left 1rem
-
-      &:not(:last-child)
-        padding-right 1rem
-        border-right 1px solid silver
-        margin-right 1rem
 
 article
 

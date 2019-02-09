@@ -5,21 +5,8 @@ include -mixins.pug
 block append header
   section.toc
     ul
-      each description, _name in $site.api.functions
-        if name == _name
-          li: strong= _name
+      each description, key in $site.api.functions
+        if key == name
+          li: strong= description.name
         else
-          li: a(href="#function-" + description.fragment)= _name
-
-//- block main
-//- 
-//-   article
-//- 
-//-     +summary($site.api.functions.decrypt)
-//- 
-//-       include:markdown decrypt/description.md
-//- 
-//-       h4 Examples
-//- 
-//-       include:markdown decrypt/examples/symmetric.md
-//-       include:markdown decrypt/examples/asymmetric.md
+          li: a(href=`/api/functions/${key}`)= description.name
