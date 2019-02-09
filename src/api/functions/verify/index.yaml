@@ -1,4 +1,4 @@
-title: verify
+name: verify
 signatures:
   - inputs: [ declaration ]
     output: [ is-valid ]

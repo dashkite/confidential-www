@@ -1,4 +1,4 @@
-title: nacl
+name: nacl
 description: |
   The [TweetNaCl.js][] module imported by Confidential. Useful for bypassing the
   Confidential API and accessing TweetNaCl.js directly.

@@ -2,18 +2,25 @@ extends -layout
 
 block header
   :markdown
-    [Panda Confidential][Documentation] &rtrif; **API**
+    [Panda Confidential](/) &rtrif; **API**
 
 block main
   article
+    h1 API Reference
     section.toc
-      h1 Functions
+      h2 Properties
+      ul
+        each description, key in $site.api.properties
+          li: a(href=`/api/properties/${key}`)= description.name
+
+    section.toc
+      h2 Functions
       ul
         each description, key in $site.api.functions
           li: a(href=`/api/functions/${key}`)= description.name
 
     section.toc
-      h1 Types
+      h2 Types
       ul
         each description, key in $site.api.types
           li: a(href=`/api/types/${key}`)= description.name

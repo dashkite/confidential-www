@@ -1,6 +1,6 @@
 # Symmetric Encryption
 
-Alice would like to encrypt her data at rest.  This calls for [symmetric encryption][symmetric-encryption], allowing Alice to encrypt and decrypt private data with the same key.
+Alice would like to encrypt her data at rest. This calls for [symmetric encryption][symmetric-encryption], allowing Alice to encrypt and decrypt private data with the same key.
 
 She starts by importing Panda-Confidential and instantiating the API.
 
@@ -8,7 +8,7 @@ She starts by importing Panda-Confidential and instantiating the API.
 import {confidential} from "panda-confidential"
 
 {SymmetricKey, Plaintext, Envelope,
-  encrypt, decrypt} = confidential()
+ encrypt, decrypt} = confidential()
 ```
 
 ## Obtaining A Key
@@ -54,7 +54,7 @@ Under the hood, Panda-Confidential uses the [TweetNaCl.js implementation of symm
 The `Envelope` instance supports serialization via the `to` method. Once the envelope is serialized, Alice may store her encrypted data as a string.
 
 ```coffeescript
-string = envelope.to "base64"  
+string = envelope.to "base64"
 ```
 
 ## Deserializing

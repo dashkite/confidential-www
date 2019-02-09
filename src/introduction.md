@@ -10,15 +10,16 @@ npm i panda-confidential
 
 ## Usage
 
+In your code, import the [`confidential`][] function. Invoking the function gives you access to the library. (Instantiating Confidential within a function helps prevent unexpected changes by third parties.) Grab the parts you want to use and go!
+
 ```coffeescript
 import {confidential} from "panda-confidential"
 
-# Instantiate an API
 {encrypt, decrypt, sign, verify} = confidential()
 ```
 
 ## Learn More
 
-- [Quick Start](./start)
-- [API Reference](./api)
-- [Introduction](./intro)
+- [Quick Start](/docs/quick-start)
+- [API Reference](/api)
+- [Documentation](/docs)
