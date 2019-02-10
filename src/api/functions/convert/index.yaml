@@ -1,11 +1,8 @@
 name: convert
-fragment: convert
+summary: Manages data format conversion between a variety of targets.
 signatures:
-  - inputs:
-      - hint
-      - input
-    output:
-      - output
+  - arguments: hint, input
+    result: output
 variables:
   hint:
     type: '[`Object`][]'

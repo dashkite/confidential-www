@@ -1,7 +1,8 @@
 name: verify
+summary: Verifies one or more digital signatures on a document.
 signatures:
-  - inputs: [ declaration ]
-    output: [ is-valid ]
+  - arguments: declaration
+    result: is-valid
 variables:
   declaration:
     type: "[`Declaration`][]"
@@ -11,34 +12,3 @@ variables:
     type: "[`Boolean`][]"
     description: |
       `true` if the signatures are valid, `false` otherwise.
-
-prose: |
-  Verifies one or more digital signatures on a document.
-
-  `sign` is a [generic function][] accepting a [`Declaration`] to return a boolean result on its integrity.  `verify` and its counterpart [`sign`][] form a pair of opposing operations.
-
-  `verify` throws without an instance of [`Declaration`][].  You may instanciate one from a serialized form with the static method `Declaration.from`.
-
-  `verify` returns `true` if _all_ [ed25519][] signatures can be verified with their corresponding public keys.  Otherwise, `verify` returns `false`.
-
-  > **Warning:** Everything needed to verify the signatures exists within a [`Declaration`][], but it is up to _you_ to verify the authenticity of the public keys within `signatories`.
-
-
-examples:
-  - title:
-    content: |
-      ```coffeescript
-      import {confidential} from "panda-confidential"
-      {verify, convert, Declaration} = confidential()
-      import {receive, process} from "my-library"
-
-      do ->
-        # You may hydrate a Declaration instance with the static method `from`
-        greeting = Declaration.from "base64", receive "Alice"
-
-        if verify greeting
-          # do something with the verified data.
-          process convert from: "btyes", to: "utf8", greeting.data
-        else
-          throw new Error "Unable to verify data signatures."
-      ```

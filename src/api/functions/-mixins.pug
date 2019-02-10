@@ -1,7 +1,7 @@
 mixin signatures(name, list)
 
-  blockquote.signature
-    each signature in list
+  each signature in list
+    blockquote.signature
       p
         strong= name
         |
@@ -35,7 +35,7 @@ mixin summary(f)
     
     h1= f.name
 
-    p= f.description
+    != $helpers.markdown(f.summary)
     
     +signatures(f.name, f.signatures)
     +variables(f.variables)

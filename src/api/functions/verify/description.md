@@ -1,5 +1,3 @@
-Verifies one or more digital signatures on a document.
-
 `sign` is a [generic function][] accepting a [`Declaration`] to return a boolean result on its integrity.  `verify` and its counterpart [`sign`][] form a pair of opposing operations.
 
 `verify` throws without an instance of [`Declaration`][].  You may instanciate one from a serialized form with the static method `Declaration.from`.

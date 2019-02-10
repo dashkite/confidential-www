@@ -1,9 +1,8 @@
 name: randomBytes
-fragment: random-bytes
+summary: Generates an array of `length` pseudo-random bytes of cryptographic quality.
 signatures:
-  - inputs:
-      - length
-    output: bytes
+  - arguments: length
+    result: bytes
 variables:
   length:
     type: '[`Integer`][]'

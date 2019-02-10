@@ -2,11 +2,16 @@ extends ../-layout
 
 include -mixins.pug
 
-block append header
-  section.toc
-    ul
-      each description, key in $site.api.functions
-        if key == name
-          li: strong= description.name
-        else
-          li: a(href=`/api/functions/${key}`)= description.name
+block header
+  p
+    a(href="/") Panda Confidential
+    |
+    | &rtri;
+    |
+    a(href="/api") API
+    |
+    | &rtri;
+    |
+    strong Functions
+  
+  +function-list(name)

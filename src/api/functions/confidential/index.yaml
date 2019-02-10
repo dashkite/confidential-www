@@ -1,9 +1,9 @@
 name: confidential
-fragment: confidential
+summary: Instantiates the Panda-Confidential API.
 signatures:
-  - inputs:
-      - randomBytes&
-    output: api
+  - arguments:
+      - "[ randomBytes ]"
+    result: api
 variables:
   randomBytes:
     type: '[`Function`][]'

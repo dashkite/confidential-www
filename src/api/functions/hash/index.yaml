@@ -1,10 +1,8 @@
 name: hash
-fragment: hash
+summary: Performs a [SHA-512][] hash of the input plaintext.
 signatures:
-  - inputs:
-      - plaintext
-    output:
-      - hash
+  - arguments: plaintext
+    result: hash
 variables:
   plaintext:
     type: '[`Plaintext`][]'

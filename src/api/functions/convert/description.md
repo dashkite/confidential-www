@@ -1,5 +1,3 @@
-Manages data format conversion between a variety of targets.
-
 A conversion is specified by the fields of `hint`, `from` and `to`.  These identify the current and target format of `input`, respectively.
 
 Typically, you will not need to use `convert` directly.  Panda-Confidential provides type classes (ex: [`Plaintext`][], [`Envelope`][], and [`Declaration`][]) with methods to manage data formatting.  Each class follows a convention to include the methods `from` and `to`, but internally, they all use `convert` to peform the conversion.

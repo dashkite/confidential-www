@@ -20,7 +20,7 @@ article
   h1, h2, h3, h4, h5, p, blockquote
     margin-bottom 4rem
 
-  h1, h2, h3, h4, h5, p, li, blockquote
+  h1, h2, h3, h4, h5, p, li
     & *
       display inline
 
@@ -30,6 +30,9 @@ article
     & > li:not(:last-child)
       margin-bottom 2rem
 
+  blockquote
+    :last-child
+      margin-bottom 0
 
   pre
     //- prism overrides line-height

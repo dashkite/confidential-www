@@ -1,10 +1,8 @@
 name: isBytes
-fragment: is-bytes
+summary: Determines if the argument is a byte array.
 signatures:
-  - inputs:
-      - value
-    output:
-      - is-bytes
+  - arguments: value
+    result: is-bytes
 variables:
   value:
     type: Value

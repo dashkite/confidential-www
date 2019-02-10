@@ -1,5 +1,5 @@
 name: decrypt
-fragment: decrypt
+summary: Decrypts a ciphertext, when provided the correct key.
 signatures:
   - arguments: key, envelope
     result: plaintext

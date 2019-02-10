@@ -1,0 +1,17 @@
+mixin content-list(type, current)
+  ul
+    each key in Object.keys($site.api[type]).sort()
+      - var description = $site.api[type][key]
+      if key == current
+        li: strong= description.name
+      else
+        li: a(href=`/api/${type}/${key}`)= description.name
+
+mixin function-list(current)
+  +content-list("functions", current)
+
+mixin type-list(current)
+  +content-list("types", current)
+
+mixin property-list(current)
+  +content-list("properties", current)

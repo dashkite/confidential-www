@@ -1,23 +1,12 @@
 name: sign
-fragment: sign
+summary: Digitially signs an input with the provided key.
 signatures:
-  - inputs:
-      - public-key
-      - private-key
-      - data
-    output:
-      - declaration
-  - inputs:
-      - private-key
-      - public-key
-      - data
-    output:
-      - declaration
-  - inputs:
-      - key-pair
-      - data
-    output:
-      - declaration
+  - arguments: public-key, private-key, data
+    result: declaration
+  - arguments: private-key, public-key, data
+    result: declaration
+  - arguments: key-pair, data
+    result: declaration
 variables:
   key-pair:
     type: '[`SignatureKeyPair`][]'

@@ -1,6 +1,5 @@
 name: encrypt
-description: Encrypts plaintext with a key and an optional nonce.
-fragment: encrypt
+summary: Encrypts plaintext with a key and an optional nonce.
 signatures:
   - arguments: key, [ nonce,] plaintext
     result: envelope
