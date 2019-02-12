@@ -1,0 +1,17 @@
+extends ../-layout
+
+include -mixins.pug
+
+block header
+  p
+    a(href="/") Panda Confidential
+    |
+    | &rtri;
+    |
+    a(href="/api") API
+    |
+    | &rtri;
+    |
+    strong Types
+  
+  +type-list(name)

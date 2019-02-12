@@ -1,0 +1,25 @@
+extends ../-layout
+
+block main
+  
+  article.toc
+
+    h1= name
+    
+    != $helpers.markdown(summary)
+    
+    h2 Class Properties
+    
+    +properties(key, "static")
+    
+    h2 Class Methods
+    
+    +methods(key, "static")    
+
+    h2 Instance Properties
+    
+    +properties(key, "instance")    
+
+    h2 Instance Methods
+    
+    +methods(key, "instance")    

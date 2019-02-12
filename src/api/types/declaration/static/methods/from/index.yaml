@@ -1,8 +1,8 @@
+name: from
+summary: Hydrates an instance of `Declaration` from given `data`.
 signatures:
-  - inputs:
-      - hint
-      - data
-    output: declaration
+  - arguments: hint, data
+    result: declaration
 variables:
   hint:
     type: '[`String`][]'

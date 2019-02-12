@@ -1,5 +1,3 @@
-The return value for [`sign`][].
-
 `Declaration` contains the products of digital signature: the original `data`, the public keys of the `signatories`, and the [ed25519][] `signatures`.
 
 This class is suitable for [`verify`][].

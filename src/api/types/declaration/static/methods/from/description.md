@@ -1,5 +1,3 @@
-Hydrates an instance of `Declaration` from given `data`.
-
 `hint` informs `from` how convert `data` into `Declaration`'s internal reprentation.
 
 #### Supported Hints

@@ -1,0 +1,73 @@
+mixin signatures(name, list)
+
+  each signature in list
+    blockquote.signature
+      p
+        strong= name
+        |
+        |
+        = signature.arguments
+        |
+        | &rarr;
+        |
+        = signature.result
+  
+
+mixin variables(list)
+
+  table
+    thead
+      tr
+        th name
+        th type
+        th description
+    
+    tbody    
+      each variable, name in list
+        tr
+          td= name
+          td!= $helpers.markdown(variable.type)
+          td!= $helpers.markdown(variable.description)
+
+mixin method(type, scope, name)
+
+  - var m = $site.api.types[type][scope].methods[name]
+
+  section
+    
+    h3= m.name
+
+    != $helpers.markdown(m.summary)
+    
+    +signatures(m.name, m.signatures)
+    +variables(m.variables)
+  
+    block
+
+mixin category-list(type, scope, category, current)
+  - var items = $site.api.types[type][scope][category]
+  if items
+    ul
+      each key in Object.keys(items).sort()
+        - var description = $site.api.types[type][scope][category][key]
+        if key == current
+          li: strong= description.name
+        else
+          li: a(href=`/api/${type}/${scope}/${category}/${key}`)= description.name
+  else
+    p There are no
+      = (scope == "static") ? " class " : " instance "
+      = `${category}.`
+    
+mixin methods(type, scope, current)
+  +category-list(type, scope, "methods", current)
+
+mixin properties(type, scope)
+  - var items = $site.api.types[type][scope].properties
+  if items
+    +variables(items)
+  else
+    p There are no
+      = (scope == "static") ? " class " : " instance "
+      | properties.
+      

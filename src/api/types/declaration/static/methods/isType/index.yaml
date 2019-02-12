@@ -1,7 +1,8 @@
+name: isType
+summary: Returns `true` if the input `value` is an instance of `Declaration`.
 signatures:
-  - inputs:
-      - value
-    output: is-declaration
+  - arguments: value
+    result: is-declaration
 variables:
   value:
     type: Value

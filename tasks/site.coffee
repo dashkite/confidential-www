@@ -1,7 +1,9 @@
 import Path from "path"
+import {camelCase} from "panda-parchment"
 
-decorate = (value) ->
-  value.key ?= value.name
+decorate = (key, value) ->
+  value.name ?= camelCase key
+  value.key ?= key
   value
 
 Site =
@@ -28,6 +30,6 @@ Site =
 
   set: (path, value) ->
     [keys..., key] = Site.keys path
-    (Site.traverse keys)[key] = decorate value
+    (Site.traverse keys)[key] = decorate key, value
 
 export default Site
