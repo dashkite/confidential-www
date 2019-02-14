@@ -1,3 +1,4 @@
+category: property
 type: '[`Uint8Array`][]'
 description: |
   The original data signed by the `signatories`.

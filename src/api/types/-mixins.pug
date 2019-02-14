@@ -1,9 +1,12 @@
-mixin signatures(name, list)
+mixin signatures()
 
-  each signature in list
+  each signature in signatures
     blockquote.signature
       p
-        strong= name
+        if scope == "class"
+          strong= `${type.name}.${name}`
+        else
+          strong= `${type.key}.${name}`
         |
         |
         = signature.arguments
@@ -13,7 +16,7 @@ mixin signatures(name, list)
         = signature.result
   
 
-mixin variables(list)
+mixin method-variables()
 
   table
     thead
@@ -22,52 +25,71 @@ mixin variables(list)
         th type
         th description
     
-    tbody    
-      each variable, name in list
+    tbody   
+      tr
+        td= type.key
+        td: a(href=`/api/types/${type.key}`): code= type.name
+        td An instance of #{type.name}.
+        
+      each variable, _name in variables
         tr
-          td= name
+          td= _name
           td!= $helpers.markdown(variable.type)
           td!= $helpers.markdown(variable.description)
 
-mixin method(type, scope, name)
 
-  - var m = $site.api.types[type][scope].methods[name]
 
-  section
+mixin variables()
+
+  table
+    thead
+      tr
+        th name
+        th type
+        th description
     
-    h3= m.name
+    tbody
+      each variable, _name in variables
+        tr
+          td= _name
+          td!= $helpers.markdown(variable.type)
+          td!= $helpers.markdown(variable.description)
 
-    != $helpers.markdown(m.summary)
-    
-    +signatures(m.name, m.signatures)
-    +variables(m.variables)
+mixin method()
+
+  h1= `${type.key}.${name}`
   
-    block
+  != $helpers.markdown(summary)
+  
+  +signatures()
+  +method-variables()
 
-mixin category-list(type, scope, category, current)
-  - var items = $site.api.types[type][scope][category]
-  if items
-    ul
-      each key in Object.keys(items).sort()
-        - var description = $site.api.types[type][scope][category][key]
-        if key == current
-          li: strong= description.name
-        else
-          li: a(href=`/api/${type}/${scope}/${category}/${key}`)= description.name
-  else
-    p There are no
-      = (scope == "static") ? " class " : " instance "
-      = `${category}.`
+  block
     
-mixin methods(type, scope, current)
-  +category-list(type, scope, "methods", current)
+mixin methods(scope)
+  - var methods = $helpers.getMethods(key, scope)
+  ul
+    each method, _name in methods
+      - var link = $site.links["`"+ name + "`"] + "/" + method.key
+      li: a(href=link)= _name
 
-mixin properties(type, scope)
-  - var items = $site.api.types[type][scope].properties
-  if items
-    +variables(items)
+mixin properties(scope)
+  - variables = $helpers.getProperties(key, scope)
+  if Object.entries(variables).length == 0
+    p There are no #{scope} properties.
   else
-    p There are no
-      = (scope == "static") ? " class " : " instance "
-      | properties.
+    +variables()
       
+mixin interface-list()
+  ul
+    each key in Object.keys(type).sort()
+      if type[key].name
+        - var i = type[key]
+        if i.name == name
+          li: strong= i.name
+        else
+          if i.category == "method"
+            li: a(href=`/api/types/${type.key}/${key}`)= i.name
+          else if i.category == "property"
+            li: a(href=`/api/types/${type.key}#properties`)= i.name
+            

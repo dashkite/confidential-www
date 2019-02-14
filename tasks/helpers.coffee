@@ -15,6 +15,7 @@ import finish from "finalhandler"
 import files from "serve-static"
 
 import {green, red} from "colors/safe"
+import Site from "./site"
 
 autolink = (dictionary) ->
   (string) ->
@@ -59,5 +60,17 @@ serve = (path, options) ->
     .listen port, ->
       console.log green "p9k: server listening on port #{port}"
 
+getInterface = (key, _scope, _category) ->
+  result = {}
+  if (type = Site.data.api.types[key])?
+    for _key, value of type
+      {category, scope} = value
+      scope ?= "instance"
+      if category == _category && scope == _scope
+        result[_key] = value
+  result
 
-export {autolink, transform, markdown, serve}
+getProperties = (key, scope) -> getInterface key, scope, "property"
+getMethods = (key, scope) -> getInterface key, scope, "method"
+
+export {autolink, transform, markdown, serve, getProperties, getMethods}

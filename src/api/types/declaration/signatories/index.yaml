@@ -1,3 +1,4 @@
+category: property
 type: '[`Array`][] of [`Uint8Array`][]'
 description: >
   List of public keys. Each matches the corresponding signature in

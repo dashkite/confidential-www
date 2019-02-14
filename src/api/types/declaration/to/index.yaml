@@ -1,7 +1,9 @@
+category: method
+scope: instance
+summary: Converts this instance's value into the form specified by `hint`.
 signatures:
-  - inputs:
-      - hint
-    output: encoded-declaration
+  - arguments: hint
+    result: encoded-declaration
 variables:
   hint:
     type: '[`String`][]'

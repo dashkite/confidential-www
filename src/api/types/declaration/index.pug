@@ -8,18 +8,18 @@ block main
     
     != $helpers.markdown(summary)
     
-    h2 Class Properties
-    
-    +properties(key, "static")
-    
     h2 Class Methods
     
-    +methods(key, "static")    
-
-    h2 Instance Properties
-    
-    +properties(key, "instance")    
+    +methods("class")    
 
     h2 Instance Methods
     
-    +methods(key, "instance")    
+    +methods("instance")    
+
+    h2 Class Properties
+    
+    +properties("class")
+    
+    h2 Instance Properties
+    
+    +properties("instance")    

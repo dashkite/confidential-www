@@ -1,4 +1,6 @@
 name: from
+category: method
+scope: class
 summary: Hydrates an instance of `Declaration` from given `data`.
 signatures:
   - arguments: hint, data

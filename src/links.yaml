@@ -44,6 +44,7 @@ tweetnacl-sign: https://github.com/dchest/tweetnacl-js#signatures
 
 # Internal Links
 
+Panda Confidential: /
 API: /api
 Functions: /api/functions
 Types: /api/types
@@ -80,7 +81,7 @@ Properties: /api/properties
 
 "`Plaintext`": /api.html#class-Plaintext
 "`Envelope`": /api.html#class-Envelope
-"`Declaration`": /api.html#class-Declaration
+"`Declaration`": /api/types/declaration
 "`Hash`": /api.html#class-Hash
 "`Nonce`": /api.html#class-Nonce
 "`Key`": /api.html#class-Key
