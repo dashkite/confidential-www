@@ -56,15 +56,24 @@ mixin variables()
           td!= $helpers.markdown(variable.description)
 
 mixin method()
+  article
+    h1
+      if scope == "class"
+        = `${type.name}.${name}`
+      else
+        = `${type.key}.${name}`
+      span.tag class method
+    
+    != $helpers.markdown(summary)
+    
+    +signatures()
+    
+    if scope == "class"
+      +variables()
+    else 
+      +method-variables()
 
-  h1= `${type.key}.${name}`
-  
-  != $helpers.markdown(summary)
-  
-  +signatures()
-  +method-variables()
-
-  block
+    block
     
 mixin methods(scope)
   - var methods = $helpers.getMethods(key, scope)
@@ -80,8 +89,9 @@ mixin properties(scope)
   else
     +variables()
       
-mixin interface-list()
-  ul
+mixin interface-toc
+  - var link = $site.links["`"+ type.name + "`"]
+  ul.toc
     each key in Object.keys(type).sort()
       if type[key].name
         - var i = type[key]
@@ -89,7 +99,40 @@ mixin interface-list()
           li: strong= i.name
         else
           if i.category == "method"
-            li: a(href=`/api/types/${type.key}/${key}`)= i.name
+            li: a(href=`${link}/${key}`)= i.name
           else if i.category == "property"
-            li: a(href=`/api/types/${type.key}#properties`)= i.name
+            li: a(href=`${link}#${scope}-properties`)= i.name
             
+mixin type
+
+  article
+  
+    h1= name
+
+    != $helpers.markdown(summary)
+
+    section.toc
+    
+      h2#class-methods Class Methods
+
+      +methods("class")    
+
+      h2#instance-methods Instance Methods
+
+      +methods("instance")    
+
+      h2#class-properties Class Properties
+
+      +properties("class")
+
+      h2#instance-properties Instance Properties
+
+      +properties("instance")    
+
+    block
+
+mixin type-toc(key)
+  - type = $site.api.types[key]
+  +breadcrumbs("Panda Confidential", "API", "Types", type.name)
+
+  +interface-toc()

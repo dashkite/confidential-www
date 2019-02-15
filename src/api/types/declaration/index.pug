@@ -1,25 +1,8 @@
 extends ../-layout
 
 block main
-  
-  article.toc
-
-    h1= name
-    
-    != $helpers.markdown(summary)
-    
-    h2 Class Methods
-    
-    +methods("class")    
-
-    h2 Instance Methods
-    
-    +methods("instance")    
-
-    h2 Class Properties
-    
-    +properties("class")
-    
-    h2 Instance Properties
-    
-    +properties("instance")    
+  +type()  
+    section
+      h2 Description
+      
+      include:markdown description.md

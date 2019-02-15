@@ -1,9 +1,4 @@
 extends ../-layout
 
 block header
-  - var type = $site.api.types.declaration
-
-  :markdown
-    [Panda Confidential][] &rtri; [API][] &rtri; [Types][] &rtri; [Declaration][`Declaration`]
-  
-  +interface-list(type, name)
+  +type-toc("declaration")

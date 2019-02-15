@@ -25,12 +25,20 @@ header
 
     margin-bottom 2rem
 
-  ul
+  ul.toc
     inline-list bar
+
+  ul.breadcrumb
+    inline-list breadcrumb
+
+    & > li
+      font-weight bold
+      & > a
+        font-weight normal
 
 article
 
-  &.toc
+  .toc
     ul
       inline-list bar
       type label

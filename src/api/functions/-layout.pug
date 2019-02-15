@@ -3,15 +3,7 @@ extends ../-layout
 include -mixins.pug
 
 block header
-  p
-    a(href="/") Panda Confidential
-    |
-    | &rtri;
-    |
-    a(href="/api") API
-    |
-    | &rtri;
-    |
-    strong Functions
+  +breadcrumbs("API")
+    li Functions
   
   +function-list(name)
