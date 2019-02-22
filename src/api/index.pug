@@ -1,8 +1,7 @@
 extends -layout
 
 block header
-  :markdown
-    [Panda Confidential](/) &rtrif; **API**
+  .breadcrumbs: +breadcrumbs(["Panda Confidential", "API"])
 
 block main
 
@@ -14,12 +13,15 @@ block main
 
       h2 Properties
       
-      +property-list()
+      .toc
+        +toc($.properties())
 
       h2 Functions
 
-      +function-list()
+      .toc
+        +toc($.functions())
       
       h2 Types
 
-      +type-list()
+      .toc
+        +toc($.types())

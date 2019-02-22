@@ -1,43 +1,13 @@
-mixin signatures(name, list)
-
-  each signature in list
-    blockquote.signature
-      p
-        strong= name
-        |
-        |
-        = signature.arguments
-        |
-        | &rarr;
-        |
-        = signature.result
-  
-
-mixin variables(list)
-
-  table
-    thead
-      tr
-        th name
-        th type
-        th description
-    
-    tbody    
-      each variable, name in list
-        tr
-          td= name
-          td!= $helpers.markdown(variable.type)
-          td!= $helpers.markdown(variable.description)
-
-mixin summary(f)
+mixin function()
 
   article
     
-    h1= f.name
+    h1= name
 
-    != $helpers.markdown(f.summary)
+    != $.markdown(summary)
     
-    +signatures(f.name, f.signatures)
-    +variables(f.variables)
+    +signatures()
+    
+    +variables()
   
     block

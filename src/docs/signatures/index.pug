@@ -1,15 +1,15 @@
 extends ../-layout
 
 block header
-  :markdown
-    [Panda Confidential](/) &rtri; **Signatures**
-    
-    - [Obtaining A Signing Key Pair](#obtaining-a-signing-key-pair)
-    - [Signing](#signing)
-    - [Serializing](#serializing)
-    - [Deserializing](#deserializing)
-    - [Verifying Signatures](#verifying-signatures)
-    - [Adding Signatures](#adding-signatures)
+  .breadcrumbs: +breadcrumbs(["Panda Confidential", "Signatures"])
+  .toc
+    :markdown
+      - [Obtaining A Signing Key Pair](#obtaining-a-signing-key-pair)
+      - [Signing](#signing)
+      - [Serializing](#serializing)
+      - [Deserializing](#deserializing)
+      - [Verifying Signatures](#verifying-signatures)
+      - [Adding Signatures](#adding-signatures)
 
 block main
   article

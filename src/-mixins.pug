@@ -38,13 +38,25 @@ mixin highlighting(theme = "prism")
 mixin icon(name, style = "regular")
   svg: use(xlink:href=`/images/fa/sprites/${style}.svg#${name}`)
 
-mixin autolink(key)
-  - var link = $site.links[key] || $site.links["`" + key + "`"]
-  a(href=link)= key
-
-mixin breadcrumbs(...crumbs)
-  ul.breadcrumb
-    li: +autolink("Panda Confidential")
-    each crumb in crumbs
-      li: +autolink(crumb)
+mixin autolink(parent, child)
+  a(href=$.autolink(parent, child))
     block
+    
+mixin breadcrumbs(crumbs, here=true)
+  ul
+    if here
+      last = crumbs.pop()      
+      each crumb in crumbs
+        li: +autolink(crumb)= crumb
+      li: span= last
+    else
+      each crumb in crumbs
+        li: +autolink(crumb)= crumb
+      
+mixin toc(entries, current)
+  ul
+    each entry in entries
+      if entry.key == current
+        li: span= entry.name
+      else
+        li: +autolink(entry)

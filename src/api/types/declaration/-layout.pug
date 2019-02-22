@@ -1,4 +1,6 @@
 extends ../-layout
 
 block header
-  +type-toc("declaration")
+  .toc
+    - var type = $.type("declaration")
+    +toc(type)

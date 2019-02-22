@@ -17,14 +17,13 @@ import files from "serve-static"
 import {green, red} from "colors/safe"
 import Site from "./site"
 
-autolink = (dictionary) ->
-  (string) ->
-    string.replace /\[([^\]]+)\]\[([^\]]*)\]/g, (match, text, key) ->
-      key = text if key == ""
-      if (url = dictionary[key])?
-        "[#{text}](#{url})"
-      else
-        "[#{text}](#broken)"
+autolink = (string) ->
+  string.replace /\[([^\]]+)\]\[([^\]]*)\]/g, (match, text, key) ->
+    key = text if key == ""
+    if (url = Site.data.links[key])?
+      "[#{text}](#{url})"
+    else
+      "[#{text}](data:,broken)"
 
 markdown = do (p = undefined) ->
   p = MarkdownIt
@@ -35,7 +34,7 @@ markdown = do (p = undefined) ->
     quotes: '“”‘’'
   .use MarkdownItAnchor
 
-  (string) -> p.render string
+  (string) -> p.render autolink string
 
 # TODO backport into P9K
 # (the change is passing the data into the transformer)
@@ -60,17 +59,4 @@ serve = (path, options) ->
     .listen port, ->
       console.log green "p9k: server listening on port #{port}"
 
-getInterface = (key, _scope, _category) ->
-  result = {}
-  if (type = Site.data.api.types[key])?
-    for _key, value of type
-      {category, scope} = value
-      scope ?= "instance"
-      if category == _category && scope == _scope
-        result[_key] = value
-  result
-
-getProperties = (key, scope) -> getInterface key, scope, "property"
-getMethods = (key, scope) -> getInterface key, scope, "method"
-
-export {autolink, transform, markdown, serve, getProperties, getMethods}
+export {autolink, transform, markdown, serve}

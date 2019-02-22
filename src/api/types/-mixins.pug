@@ -1,61 +1,29 @@
-mixin signatures()
-
-  each signature in signatures
-    blockquote.signature
-      p
-        if scope == "class"
-          strong= `${type.name}.${name}`
-        else
-          strong= `${type.key}.${name}`
-        |
-        |
-        = signature.arguments
-        |
-        | &rarr;
-        |
-        = signature.result
-  
-
 mixin method-variables()
 
-  table
-    thead
-      tr
-        th name
-        th type
-        th description
-    
-    tbody   
-      tr
-        td= type.key
-        td: a(href=`/api/types/${type.key}`): code= type.name
-        td An instance of #{type.name}.
-        
-      each variable, _name in variables
+  if variables.length > 0
+    table
+      thead
         tr
-          td= _name
-          td!= $helpers.markdown(variable.type)
-          td!= $helpers.markdown(variable.description)
-
-
-
-mixin variables()
-
-  table
-    thead
-      tr
-        th name
-        th type
-        th description
-    
-    tbody
-      each variable, _name in variables
+          th name
+          th type
+          th description
+      
+      tbody   
         tr
-          td= _name
-          td!= $helpers.markdown(variable.type)
-          td!= $helpers.markdown(variable.description)
+          td= type.key
+          td: +autolink(type): code= type.name
+          td An instance of #{type.name}.
+          
+        each variable in variables
+          tr
+            td= variable.name
+            td!= $.markdown(variable.type)
+            td!= $.markdown(variable.description)
+  else
+    block
 
 mixin method()
+
   article
     h1
       if scope == "class"
@@ -64,7 +32,7 @@ mixin method()
         = `${type.key}.${name}`
       span.tag class method
     
-    != $helpers.markdown(summary)
+    != $.markdown(summary)
     
     +signatures()
     
@@ -75,64 +43,34 @@ mixin method()
 
     block
     
-mixin methods(scope)
-  - var methods = $helpers.getMethods(key, scope)
-  ul
-    each method, _name in methods
-      - var link = $site.links["`"+ name + "`"] + "/" + method.key
-      li: a(href=link)= _name
-
-mixin properties(scope)
-  - variables = $helpers.getProperties(key, scope)
-  if Object.entries(variables).length == 0
-    p There are no #{scope} properties.
-  else
-    +variables()
-      
-mixin interface-toc
-  - var link = $site.links["`"+ type.name + "`"]
-  ul.toc
-    each key in Object.keys(type).sort()
-      if type[key].name
-        - var i = type[key]
-        if i.name == name
-          li: strong= i.name
-        else
-          if i.category == "method"
-            li: a(href=`${link}/${key}`)= i.name
-          else if i.category == "property"
-            li: a(href=`${link}#${scope}-properties`)= i.name
-            
 mixin type
 
   article
   
     h1= name
 
-    != $helpers.markdown(summary)
+    != $.markdown(summary)
 
     section.toc
     
       h2#class-methods Class Methods
 
-      +methods("class")    
+      .toc: +toc($.methods(key, "class"))
 
       h2#instance-methods Instance Methods
 
-      +methods("instance")    
+      .toc: +toc($.methods(key, "instance"))
 
       h2#class-properties Class Properties
 
-      +properties("class")
+      .toc
+        +variables($.properties(key, "class"))
+          p There are no class properties.
 
       h2#instance-properties Instance Properties
 
-      +properties("instance")    
+      .toc
+        +variables($.properties(key, "class"))
+          p There are no instance properties.
 
     block
-
-mixin type-toc(key)
-  - type = $site.api.types[key]
-  +breadcrumbs("Panda Confidential", "API", "Types", type.name)
-
-  +interface-toc()

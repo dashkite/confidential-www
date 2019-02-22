@@ -3,7 +3,8 @@ extends ../-layout
 include -mixins.pug
 
 block header
-  :markdown
-    [Panda Confidential][] &rtri; [API][] &rtri; Types
-  
-  +type-list(name)
+  .breadcrumbs
+    +breadcrumbs(["Confidential", "API", "Types"])
+    
+  .toc
+    +toc($.types(), key)

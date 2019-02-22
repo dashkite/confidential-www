@@ -8,13 +8,13 @@ import {define, run, glob, read, write,
 import {pipe} from "panda-garden"
 import {rmr} from "panda-quill"
 import {go, map, wait, tee} from "panda-river"
-import {merge} from "panda-parchment"
+import {include, isString, isObject} from "panda-parchment"
 import {yaml} from "panda-serialize"
 
 import h9 from "haiku9"
 
-import {transform, autolink, markdown, serve,
-  getProperties, getMethods} from "./helpers"
+import {transform, markdown, serve} from "./helpers"
+import PugHelpers from "./pug-helpers"
 
 import Site from "./site"
 
@@ -47,22 +47,16 @@ define "data", ->
 
 define "html", ->
 
-  do (markdown) ->
+  globals = $: include {markdown}, Site, PugHelpers
 
-    markdown = pipe (autolink Site.data.links), markdown
-
-    globals =
-      $site: Site.data
-      $helpers: {markdown, getProperties, getMethods}
-
-    go [
-      glob [ "**/*.pug", "!**/-*/**" ], source
-      wait tee read
-      tee (context) ->
-        context.data = merge globals, Site.get context.path
-      tee transform pug, filters: {markdown}, basedir: source
-      tee extension ".html"
-      tee write target
+  go [
+    glob [ "**/*.pug", "!**/-*/**" ], source
+    wait tee read
+    tee (context) ->
+      context.data = include globals, Site.get context.path
+    tee transform pug, filters: {markdown}, basedir: source
+    tee extension ".html"
+    tee write target
     ]
 
 define "css", ->

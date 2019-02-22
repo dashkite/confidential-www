@@ -1,17 +1,40 @@
-mixin content-list(type, current)
-  ul.toc
-    each key in Object.keys($site.api[type]).sort()
-      - var description = $site.api[type][key]
-      if key == current
-        li: strong= description.name
+mixin signatures()
+
+  each signature in signatures
+    blockquote.signature
+      p
+      if type
+        if scope == "class"
+          strong= `${type.name}.${name}`
+        else
+          strong= `${type.key}.${name}`
       else
-        li: a(href=`/api/${type}/${key}`)= description.name
+        strong= name
+      |
+      |
+      = signature.arguments
+      |
+      | &rarr;
+      |
+      = signature.result
+  
 
-mixin function-list(current)
-  +content-list("functions", current)
+mixin variables(entries=variables)
 
-mixin type-list(current)
-  +content-list("types", current)
-
-mixin property-list(current)
-  +content-list("properties", current)
+  if entries.length > 0
+    
+    table
+      thead
+        tr
+          th name
+          th type
+          th description
+      
+      tbody
+        each entry in entries
+          tr
+            td= variable.name
+            td!= $.markdown(entry.type)
+            td!= $.markdown(entry.description)
+  else
+    block
