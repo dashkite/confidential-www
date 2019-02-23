@@ -3,24 +3,19 @@ mixin signatures()
   each signature in signatures
     blockquote.signature
       p
-      if type
-        if scope == "class"
-          strong= `${type.name}.${name}`
-        else
-          strong= `${type.key}.${name}`
-      else
-        strong= name
-      |
-      |
-      = signature.arguments
-      |
-      | &rarr;
-      |
-      = signature.result
+        if type
+          if scope == "class"
+            span.scope= type.name
+          else
+            span.scope= type.key
+        
+        span.name= name
+          
+        span.arguments= signature.arguments
+        span.result= signature.result
   
 
 mixin variables(entries=variables)
-
   if entries.length > 0
     
     table
@@ -33,7 +28,7 @@ mixin variables(entries=variables)
       tbody
         each entry in entries
           tr
-            td= variable.name
+            td= entry.name
             td!= $.markdown(entry.type)
             td!= $.markdown(entry.description)
   else

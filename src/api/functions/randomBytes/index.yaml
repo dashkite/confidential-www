@@ -4,11 +4,11 @@ signatures:
   - arguments: length
     result: bytes
 variables:
-  length:
+  - name: length
     type: '[`Integer`][]'
     description: |
       Length of the desired output, in bytes.
-  bytes:
+  - name: bytes
     isPromised: true
     type: '[`Uint8Array`][]'
     description: |

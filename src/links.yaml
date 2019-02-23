@@ -45,6 +45,7 @@ tweetnacl-sign: https://github.com/dchest/tweetnacl-js#signatures
 # Internal Links
 
 Panda Confidential: /
+Confidential: /
 API: /api
 Functions: /api/functions
 Types: /api/types
@@ -52,18 +53,18 @@ Properties: /api/properties
 
 "`nacl`": /api.html#property-nacl
 
-"`confidential`": /api/functions#confidential
-"`randomBytes`": /api.html#function-randomBytes
-"`encrypt`": /api.html#function-encrypt
-"`decrypt`": /api.html#function-decrypt
-"`sign`": /api.html#function-sign
-"`verify`": /api.html#function-verify
-"`convert`": /api.html#function-convert
+"`confidential`": /api/functions/confidential
+"`convert`": /api/functions/convert
+"`decrypt`": /api/functions/decrypt
+"`encrypt`": /api/functions/encrypt
+"`hash`": /api/functions/hash
+"`isBytes`": /api/functions/isBytes
+"`randomBytes`": /api/functions/randomBytes
+"`sign`": /api/functions/sign
+"`verify`": /api/functions/verify
 
-"`hash`": /api.html#function-hash
 "`isDeclaration`": /api.html#function-isDeclaration
 "`isEnvelope`": /api.html#function-isEnvelope
-"`isBytes`": /api.html#function-isBytes
 
 "`key.symmetric`": /api.html#function-key-symmetric
 "`key.isSymmetric`": /api.html#function-key-isSymmetric

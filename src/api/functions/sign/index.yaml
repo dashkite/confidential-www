@@ -8,24 +8,24 @@ signatures:
   - arguments: key-pair, data
     result: declaration
 variables:
-  key-pair:
+  - name: key-pair
     type: '[`SignatureKeyPair`][]'
     description: >
       A key pair containing the public and private keys with which to sign
       `data`.
-  public-key:
+  - name: public-key
     type: '[`PublicKey`][]'
     description: |
       The public key of the person wishing to sign `data`.
-  private-key:
+  - name: private-key
     type: '[`PrivateKey`][]'
     description: |
       The private key of the person wishing to sign `data`.
-  data:
+  - name: data
     type: '[`Plaintext`][] | [`Declaration`][]'
     description: |
       Data to be signed.
-  declaration:
+  - name: declaration
     type: '[`Declaration`][]'
     description: >
       Type class to organize the products of digital signature.  Contains fields

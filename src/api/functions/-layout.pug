@@ -3,8 +3,8 @@ extends ../-layout
 include -mixins.pug
 
 block header
-  .breadcrumb
-    +breadcrumbs(["Panda Confidential", "API", "Functions"])
+  .breadcrumbs
+    +breadcrumbs(["Panda Confidential", "API"], "Functions")
   
   .toc
     +toc($.functions(), key)

@@ -4,11 +4,11 @@ signatures:
   - arguments: value
     result: is-bytes
 variables:
-  value:
+  - name: value
     type: Value
     description: |
       A value to be tested.
-  is-bytes:
+  - name: is-bytes
     type: '[`Boolean`][]'
     description: |
       `true` if `value` is an instance of [`Uint8Array`][], `false` otherwise.

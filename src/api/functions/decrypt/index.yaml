@@ -4,15 +4,15 @@ signatures:
   - arguments: key, envelope
     result: plaintext
 variables:
-  key:
+  - name: key
     type: "[`SymmetricKey`][] | [`SharedKey`][]"
     description: |
       Key to be used in the decryption operation.
-  envelope:
+  - name: envelope
     type: "[`Envelope`][]"
     description: |
       Type class for encryption products: `ciphertext` and `nonce`. Returned by [`encrypt`][].
-  plaintext:
+  - name: plaintext
     type: "[`Plaintext`][]"
     description: |
       Type class for the plaintext resulting from decryption.

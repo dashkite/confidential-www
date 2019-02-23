@@ -5,7 +5,7 @@ signatures:
       - "[ randomBytes ]"
     result: api
 variables:
-  randomBytes:
+  - name: randomBytes
     type: '[`Function`][]'
     description: >
       Optional. Provides a custom implementation for [`randomBytes`][].
@@ -13,7 +13,7 @@ variables:
 
       > **Warning:** Effective encryption requires a robust implementation of
       pseudo-randomness. Replace `randomBytes` with caution.
-  api:
+  - name: api
     type: '[`Object`][]'
     description: |
       An instance of the Confidential API.

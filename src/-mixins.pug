@@ -42,21 +42,17 @@ mixin autolink(parent, child)
   a(href=$.autolink(parent, child))
     block
     
-mixin breadcrumbs(crumbs, here=true)
+mixin breadcrumbs(crumbs, here)
   ul
+    each crumb in crumbs
+      li: +autolink(crumb)= crumb
     if here
-      last = crumbs.pop()      
-      each crumb in crumbs
-        li: +autolink(crumb)= crumb
-      li: span= last
-    else
-      each crumb in crumbs
-        li: +autolink(crumb)= crumb
-      
+      li: span= here
+
 mixin toc(entries, current)
   ul
     each entry in entries
       if entry.key == current
         li: span= entry.name
       else
-        li: +autolink(entry)
+        li: +autolink(entry)= entry.name

@@ -3,7 +3,7 @@ import {wrap, identity} from "panda-garden"
 import {isDefined, isUndefined, isString, isObject, isFunction} from "panda-parchment"
 import Site from "./site"
 
-isURL = (s) -> (isString s) && s.match /^(https?:\/\/)||\//
+isURL = (s) -> (isString s) && s.match /^((https?:\/\/)|\/)/
 isFragmentID = (s) -> (isString s) && s.match /^\#/
 hasLink = (value) -> (isObject value) && value.link?
 hasName = (value) -> (isObject value) && value.name?

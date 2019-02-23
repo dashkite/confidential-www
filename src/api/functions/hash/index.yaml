@@ -4,11 +4,11 @@ signatures:
   - arguments: plaintext
     result: hash
 variables:
-  plaintext:
+  - name: plaintext
     type: '[`Plaintext`][]'
     description: |
       Type class for the plaintext to be hashed.
-  hash:
+  - name: hash
     type: '[`Hash`][]'
     description: |
       Type class for the [SHA-512][] hash of _plaintext_.

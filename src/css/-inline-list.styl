@@ -2,12 +2,16 @@ inline-list(preset)
 
   display inline-block
 
-  li
+  & > li
     display inline-block
     // override margins just in case they've been styled
     // for bulleted lists
     margin-left 0
     margin-bottom 1rem !important
+
+    font-weight bold
+    & > a
+      font-weight normal
 
     *
       display inline

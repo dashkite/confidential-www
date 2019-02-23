@@ -17,31 +17,18 @@ header
   padding 3rem 0
   border-bottom 1px solid silver
 
-  p
-
-    strong
-    a
-      display inline
-
+  .breadcrumbs
     margin-bottom 2rem
 
-  ul.toc
+.toc
+  ul
     inline-list bar
 
-  ul.breadcrumb
+.breadcrumbs
+  ul
     inline-list breadcrumb
 
-    & > li
-      font-weight bold
-      & > a
-        font-weight normal
-
 article
-
-  .toc
-    ul
-      inline-list bar
-      type label
 
   h1
     type heading
@@ -62,8 +49,17 @@ article
 
   blockquote.signature
     type label
+    span.name, span.scope
+      font-weight bold
+    span.name
+      margin-right 1rem
+    span.arguments::after
+      content "\2192"
+      margin-left 1rem
+      margin-right 1rem
 
   blockquote
+    type lift
     background white - 5%
     border-left 1rem solid $panda-blue
     padding 2rem

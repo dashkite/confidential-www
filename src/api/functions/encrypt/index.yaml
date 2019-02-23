@@ -4,19 +4,19 @@ signatures:
   - arguments: key, [ nonce,] plaintext
     result: envelope
 variables:
-  key:
+  - name: key
     type: "[`SymmetricKey`][] | [`SharedKey`][]"
     description: |
       Key to be used in the encryption operation.
-  nonce:
+  - name: nonce
     type: "[`Nonce`][]"
     description: |
       Optional. Type class that holds a value to be combined with the plaintext before encryption. A random nonce is generated if not supplied.
-  plaintext:
+  - name: plaintext
     type: "[`Plaintext`][]"
     description: |
       Type class for the plaintext to be encrypted.
-  envelope:
+  - name: envelope
     type: "🤞[`Envelope`][]"
     description: |
       Promise that resolves to an [`Envelope`][], a type class for the ciphertext and nonce products of encryption. Suitable for use with decrypt.

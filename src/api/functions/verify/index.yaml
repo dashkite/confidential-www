@@ -4,11 +4,11 @@ signatures:
   - arguments: declaration
     result: is-valid
 variables:
-  declaration:
+  - name: declaration
     type: "[`Declaration`][]"
     description: |
       Type class for digital signature products: `data`, `signatures`, and `signatories`. Returned by [`sign`][].
-  is-valid:
+  - name: is-valid
     type: "[`Boolean`][]"
     description: |
       `true` if the signatures are valid, `false` otherwise.
