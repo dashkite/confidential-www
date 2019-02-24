@@ -8,7 +8,7 @@ import {define, run, glob, read, write,
 import {pipe} from "panda-garden"
 import {rmr} from "panda-quill"
 import {go, map, wait, tee} from "panda-river"
-import {include, isString, isObject} from "panda-parchment"
+import {merge, include, isString, isObject} from "panda-parchment"
 import {yaml} from "panda-serialize"
 
 import h9 from "haiku9"
@@ -53,7 +53,7 @@ define "html", ->
     glob [ "**/*.pug", "!**/-*/**" ], source
     wait tee read
     tee (context) ->
-      context.data = include globals, Site.get context.path
+      context.data = merge globals, Site.get context.path
     tee transform pug, filters: {markdown}, basedir: source
     tee extension ".html"
     tee write target

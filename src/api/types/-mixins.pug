@@ -49,7 +49,8 @@ mixin type
   
     h1= name
 
-    != $.markdown(summary)
+    if summary
+      != $.markdown(summary)
 
     .toc
     

@@ -1,3 +1,5 @@
+scope: instance
+category: property
 type: '[`Uint8Array`][]'
 description: >
   The ciphertext output from [`encrypt`][], the counterpart to the original

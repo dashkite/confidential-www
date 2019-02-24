@@ -51,7 +51,7 @@ Functions: /api/functions
 Types: /api/types
 Properties: /api/properties
 
-"`nacl`": /api.html#property-nacl
+"`nacl`": /api/properties/nacl
 
 "`confidential`": /api/functions/confidential
 "`convert`": /api/functions/convert
@@ -80,19 +80,19 @@ Properties: /api/properties
 "`keyPair.signature`": /api.html#function-keyPair-signature
 "`keyPair.isSignature`": /api.html#function-keyPair-isSignature
 
-"`Plaintext`": /api.html#class-Plaintext
-"`Envelope`": /api.html#class-Envelope
+"`Plaintext`": /api/types/plaintext
+"`Envelope`": /api/types/envelope
 "`Declaration`": /api/types/declaration
-"`Hash`": /api.html#class-Hash
-"`Nonce`": /api.html#class-Nonce
-"`Key`": /api.html#class-Key
-"`SymmetricKey`": /api.html#class-SymmetricKey
-"`SharedKey`": /api.html#class-SharedKey
-"`PublicKey`": /api.html#class-PublicKey
-"`PrivateKey`": /api.html#class-PrivateKey
-"`KeyPair`": /api.html#class-KeyPair
-"`EncryptionKeyPair`": /api.html#class-EncryptionKeyPair
-"`SignatureKeyPair`": /api.html#class-SignatureKeyPair
+"`Hash`": /api/types/hash
+"`Nonce`": /api/types/nonce
+"`Key`": /api/types/key
+"`SymmetricKey`": /api/types/symmetric-key
+"`SharedKey`": /api/types/shared-key
+"`PublicKey`": /api/types/public-key
+"`PrivateKey`": /api/types/private-key
+"`KeyPair`": /api/types/key-pair
+"`EncryptionKeyPair`": /api/types/encryption-key-pair
+"`SignatureKeyPair`": /api/types/signature-key-pair
 
 symmetric encryption: /usage.html#symmetric-encryption-and-decryption
 symmetric decryption: /usage.html#symmetric-encryption-and-decryption

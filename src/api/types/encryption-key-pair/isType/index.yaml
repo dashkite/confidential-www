@@ -1,3 +1,6 @@
+name: isType
+scope: class
+category: method
 signatures:
   - inputs:
       - value
