@@ -3,11 +3,11 @@ signatures:
       - value
     output: is-symmetric-key
 variables:
-  value:
+  - name: value
     type: Value
     description: |
       A value to be tested.
-  is-symmetric-key:
+  - name: is-symmetric-key
     type: '[`Boolean`][]'
     description: |
       `true` if `value` is an instance of [`SymmetricKey`][], `false` otherwise.

@@ -4,15 +4,15 @@ signatures:
       - data
     output: envelope
 variables:
-  hint:
+  - name: hint
     type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
-  data:
+  - name: data
     type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
     description: |
       A data representation of an envelope.
-  envelope:
+  - name: envelope
     type: '[`Envelope`][]'
     description: |
       Instance of [`Envelope`][], hydrated by the input `data`.

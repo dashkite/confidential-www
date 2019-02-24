@@ -3,11 +3,11 @@ signatures:
       - hint
     output: encoded-key-pair
 variables:
-  hint:
+  - name: hint
     type: '[`String`][]'
     description: |
       name that specifies the `to` conversion hint.
-  encoded-key-pair:
+  - name: encoded-key-pair
     type: '[`String`][] | [`Uint8Array`][]'
     description: |
       A data representation of a key pair

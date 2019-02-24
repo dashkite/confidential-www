@@ -3,11 +3,11 @@ signatures:
       - value
     output: is-shared-key
 variables:
-  value:
+  - name: value
     type: Value
     description: |
       A value to be tested.
-  is-shared-key:
+  - name: is-shared-key
     type: '[`Boolean`][]'
     description: |
       `true` if `value` is an instance of [`SharedKey`][], `false` otherwise.

@@ -3,11 +3,11 @@ signatures:
       - value
     output: is-signature-key-pair
 variables:
-  value:
+  - name: value
     type: Value
     description: |
       A value to be tested.
-  is-signature-key-pair:
+  - name: is-signature-key-pair
     type: '[`Boolean`][]'
     description: >
       `true` if `value` is an instance of [`SignatureKeyPair`][], `false`

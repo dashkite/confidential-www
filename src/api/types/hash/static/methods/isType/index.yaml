@@ -3,11 +3,11 @@ signatures:
       - value
     output: is-hash
 variables:
-  value:
+  - name: value
     type: Value
     description: |
       A value to be tested.
-  is-hash:
+  - name: is-hash
     type: '[`Boolean`][]'
     description: |
       `true` if `value` is an instance of `Hash`, `false` otherwise.

@@ -3,11 +3,11 @@ signatures:
       - value
     output: is-private-key
 variables:
-  value:
+  - name: value
     type: Value
     description: |
       A value to be tested.
-  is-private-key:
+  - name: is-private-key
     type: '[`Boolean`][]'
     description: |
       `true` if `value` is an instance of [`PrivateKey`][], `false` otherwise.

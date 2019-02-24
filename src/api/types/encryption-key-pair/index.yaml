@@ -1,3 +1,2 @@
 name: EncryptionKeyPair
-fragment: encryption-key-pair
 extends: '[`KeyPair`][]'

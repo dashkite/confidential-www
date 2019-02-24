@@ -3,11 +3,11 @@ signatures:
       - value
     output: is-envelope
 variables:
-  value:
+  - name: value
     type: Value
     description: |
       A value to be tested.
-  is-envelope:
+  - name: is-envelope
     type: '[`Boolean`][]'
     description: |
       `true` if `value` is an instance of `Envelope`, `false` otherwise.

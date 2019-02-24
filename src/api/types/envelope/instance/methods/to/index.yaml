@@ -3,11 +3,11 @@ signatures:
       - hint
     output: encoded-envelope
 variables:
-  hint:
+  - name: hint
     type: '[`String`][]'
     description: |
       name that specifies the `to` conversion hint.
-  encoded-envelope:
+  - name: encoded-envelope
     type: '[`String`][] | [`Uint8Array`][]'
     description: |
       A data representation of an envelope.

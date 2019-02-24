@@ -2,7 +2,7 @@ signatures:
   - inputs: []
     output: signature-key-pair
 variables:
-  signature-key-pair:
+  - name: signature-key-pair
     isPromised: true
     type: '[`SignatureKeyPair`][]'
     description: |

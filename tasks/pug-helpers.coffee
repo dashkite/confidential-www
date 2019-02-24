@@ -47,6 +47,7 @@ Method.define list, isObject, (dictionary) ->
     Object.keys dictionary
     .sort()
     .map (key) -> dictionary[key]
+    .filter isObject
 
 Method.define list, isObject, isFunction, (dictionary, filter) ->
   list dictionary
@@ -65,8 +66,11 @@ properties = Method.create default: (args...) ->
     (invalidArguments "properties")(args...)
 
 Method.define properties, isString, isString, (key, scope) ->
-  list Site.data.api.types[key], (description) ->
-    description.scope == scope && description.category == "property"
+  list Site.data.api.types[key],
+    (description) ->
+      description.scope ?= "instance"
+      description.scope == scope &&
+        description.category == "property"
 
 methods = (key, scope) ->
   list Site.data.api.types[key], (description) ->

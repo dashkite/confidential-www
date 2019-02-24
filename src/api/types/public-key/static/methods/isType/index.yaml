@@ -3,11 +3,11 @@ signatures:
       - value
     output: is-public-key
 variables:
-  value:
+  - name: value
     type: Value
     description: |
       A value to be tested.
-  is-public-key:
+  - name: is-public-key
     type: '[`Boolean`][]'
     description: |
       `true` if `value` is an instance of [`PublicKey`][], `false` otherwise.

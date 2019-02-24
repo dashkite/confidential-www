@@ -4,15 +4,15 @@ signatures:
       - data
     output: plaintext
 variables:
-  hint:
+  - name: hint
     type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
-  data:
+  - name: data
     type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
     description: |
       A data representation of a plaintext.
-  plaintext:
+  - name: plaintext
     type: '[`Plaintext`][]'
     description: |
       Instance of [`Plaintext`][], hydrated by the input `data`.

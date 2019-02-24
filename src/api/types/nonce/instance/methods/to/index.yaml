@@ -3,11 +3,11 @@ signatures:
       - hint
     output: encoded-nonce
 variables:
-  hint:
+  - name: hint
     type: '[`String`][]'
     description: |
       name that specifies the `to` conversion hint.
-  encoded-nonce:
+  - name: encoded-nonce
     type: '[`String`][] | [`Uint8Array`][]'
     description: |
       A data representation of a nonce

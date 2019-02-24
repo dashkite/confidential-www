@@ -4,15 +4,15 @@ signatures:
       - data
     output: hash
 variables:
-  hint:
+  - name: hint
     type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
-  data:
+  - name: data
     type: '[`String`][] | [`Uint8Array`][]'
     description: |
       A data representation of a hash.
-  hash:
+  - name: hash
     type: '[`Hash`][]'
     description: |
       Instance of [`Hash`][], hydrated by the input `data`.

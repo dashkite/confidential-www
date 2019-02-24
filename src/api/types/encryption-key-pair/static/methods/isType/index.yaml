@@ -3,11 +3,11 @@ signatures:
       - value
     output: is-encryption-key-pair
 variables:
-  value:
+  - name: value
     type: Value
     description: |
       A value to be tested.
-  is-encryption-key-pair:
+  - name: is-encryption-key-pair
     type: '[`Boolean`][]'
     description: >
       `true` if `value` is an instance of [`EncryptionKeyPair`][], `false`

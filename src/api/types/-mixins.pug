@@ -51,26 +51,24 @@ mixin type
 
     != $.markdown(summary)
 
-    section.toc
+    .toc
     
       h2#class-methods Class Methods
 
-      .toc: +toc($.methods(key, "class"))
+      +toc($.methods(key, "class"))
 
       h2#instance-methods Instance Methods
 
-      .toc: +toc($.methods(key, "instance"))
+      +toc($.methods(key, "instance"))
 
       h2#class-properties Class Properties
 
-      .toc
-        +variables($.properties(key, "class"))
-          p There are no class properties.
+      +variables($.properties(key, "class"))
+        p There are no class properties.
 
       h2#instance-properties Instance Properties
 
-      .toc
-        +variables($.properties(key, "class"))
-          p There are no instance properties.
+      +variables($.properties(key, "instance"))
+        p There are no instance properties.
 
     block

@@ -3,11 +3,11 @@ signatures:
       - hint
     output: encoded-plaintext
 variables:
-  hint:
+  - name: hint
     type: '[`String`][]'
     description: |
       name that specifies the `to` conversion hint.
-  encoded-plaintext:
+  - name: encoded-plaintext
     type: '[`String`][] | [`Uint8Array`][]'
     description: |
       A data representation of a plaintext

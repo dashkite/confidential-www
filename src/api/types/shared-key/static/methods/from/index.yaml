@@ -4,15 +4,15 @@ signatures:
       - data
     output: key
 variables:
-  hint:
+  - name: hint
     type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
-  data:
+  - name: data
     type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
     description: |
       A data representation of a shared key.
-  key:
+  - name: key
     type: '[`SharedKey`][]'
     description: |
       Instance of [`SharedKey`][], hydrated by the input `data`.

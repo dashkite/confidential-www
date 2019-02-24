@@ -11,20 +11,20 @@ signatures:
       - key-pair
     output: shared-key
 variables:
-  public-key:
+  - name: public-key
     type: '[`PublicKey`][]'
     description: |
       [`PublicKey`][] suitable for encryption.
-  private-key:
+  - name: private-key
     type: '[`PrivateKey`][]'
     description: |
       [`PrivateKey`][] suitable for encryption.
-  key-pair:
+  - name: key-pair
     type: '[`EncryptionKeyPair`][]'
     description: >
       An [`EncryptionKeyPair`][], containing one [`PublicKey`][] and one
       [`PrivateKey`][] suitable for encryption.
-  shared-key:
+  - name: shared-key
     type: '`SharedKey`'
     description: >
       Instance of [`SharedKey`][], derived from either the `public-key` and
