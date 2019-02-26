@@ -46,7 +46,7 @@ define "data", ->
   ]
 
 define "html", ->
-
+  PugHelpers.interface = PugHelpers.schema
   globals = $: include {markdown}, Site, PugHelpers
 
   go [

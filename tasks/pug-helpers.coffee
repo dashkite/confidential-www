@@ -1,3 +1,4 @@
+import {inspect} from "util"
 import {Method} from "panda-generics"
 import {wrap, identity} from "panda-garden"
 import {isDefined, isUndefined, isString, isObject, isFunction} from "panda-parchment"
@@ -12,7 +13,7 @@ invalidArguments = (name) ->
   (args...)->
     args = args
     .map (x) ->
-      if !x? then "undefined" else JSON.stringify x, null, 2
+      if !x? then "undefined" else inspect x, colors: true
     .join ", "
     throw "#{name}: Invalid arguments: (#{args})"
 
@@ -41,41 +42,69 @@ Method.define autolink, hasName, ({name}) -> autolink name
 
 Method.define autolink, isDefined, isUndefined, (x) -> autolink x
 
-list = Method.create default: invalidArguments "list"
-
-Method.define list, isObject, (dictionary) ->
-    Object.keys dictionary
-    .sort()
-    .map (key) -> dictionary[key]
-    .filter isObject
-
-Method.define list, isObject, isFunction, (dictionary, filter) ->
-  list dictionary
-  .filter filter
+list = (dictionary) ->
+  Object.keys dictionary
+  .sort()
+  .map (key) -> dictionary[key]
+  .filter isObject
 
 types = -> list Site.data.api.types
-type = (key) -> list Site.data.api.types[key]
 functions = -> list Site.data.api.functions
 
-properties = Method.create default: (args...) ->
-  if args.length == 0
-    # with no arguments, just return top-level properties
-    # TODO add support for zero-arg entries
-    list Site.data.api.properties
-  else
-    (invalidArguments "properties")(args...)
+type = (key) -> Site.data.api.types[key]
 
-Method.define properties, isString, isString, (key, scope) ->
-  list Site.data.api.types[key],
-    (description) ->
+schema = Method.create default: invalidArguments "schema"
+
+Method.define schema, isString, isFunction,
+  (key, filter) ->
+    schema key
+    .filter filter
+
+Method.define schema, isObject,
+  (type) ->
+    list type
+    .map (description) ->
       description.scope ?= "instance"
-      description.scope == scope &&
-        description.category == "property"
+      description
 
-methods = (key, scope) ->
-  list Site.data.api.types[key], (description) ->
-    description.scope == scope && description.category == "method"
+Method.define schema, isString,
+  (key) ->
+    list type key
+    .map (description) ->
+      description.scope ?= "instance"
+      description
 
-PugHelpers = {autolink, types, type, functions, properties, methods}
+# TODO add zero arg methods to generics
+_properties = Method.create default: invalidArguments "properties"
+
+Method.define _properties, isString, isString,
+  (key, scope) ->
+    schema key, (description) ->
+      description.scope == scope && description.category == "property"
+
+Method.define _properties, isString,
+  (key) ->
+    schema key, (description) ->
+      description.category == "property"
+
+properties = (args...) ->
+  if args.length > 0
+    _properties args...
+  else
+    list Site.data.api.properties
+
+methods = Method.create default: invalidArguments "properties"
+
+Method.define methods, isString, isString,
+  (key, scope) ->
+    schema key, (description) ->
+      description.scope == scope && description.category == "method"
+
+Method.define methods, isString,
+  (key) ->
+    schema key, (description) ->
+      description.category == "method"
+
+PugHelpers = {autolink, types, type, functions, schema, properties, methods}
 
 export default PugHelpers

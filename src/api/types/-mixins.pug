@@ -10,9 +10,9 @@ mixin method-variables()
       
       tbody   
         tr
-          td= type.key
-          td: +autolink(type): code= type.name
-          td An instance of #{type.name}.
+          td= parent.key
+          td: +autolink(parent.name): code= parent.name
+          td An instance of #{parent.name}.
           
         each variable in variables
           tr
@@ -27,20 +27,21 @@ mixin method()
   article
     h1
       if scope == "class"
-        = `${type.name}.${name}`
+        = `${parent.name}.${name}`
       else
-        = `${type.key}.${name}`
+        = `${parent.key}.${name}`
       span.tag class method
-    
-    != $.markdown(summary)
-    
+  
+    if summary
+      != $.markdown(summary)
+  
     +signatures()
-    
+  
     if scope == "class"
       +variables()
     else 
       +method-variables()
-
+  
     block
     
 mixin type

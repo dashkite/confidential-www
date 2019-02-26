@@ -10,6 +10,11 @@ Site =
 
   data: {}
 
+  createEntry: (parent) ->
+    Object.defineProperty {}, "parent",
+      value: parent
+      enumerable: false
+
   key: (name) ->
     extension = Path.extname name
     Path.basename name, extension
@@ -22,7 +27,7 @@ Site =
   traverse: (keys) ->
     data = Site.data
     for key in keys
-      data = (data[key] ?= {})
+      data = (data[key] ?= Site.createEntry data)
     data
 
   get: (path) ->
