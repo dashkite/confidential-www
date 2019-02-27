@@ -50,6 +50,10 @@ mixin type
   
     h1= name
 
+    if $extends
+      .extends
+        +autolink($extends): code= $extends
+      
     if summary
       != $.markdown(summary)
 
