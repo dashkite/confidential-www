@@ -1,19 +1,12 @@
 import Path from "path"
-import {camelCase} from "panda-parchment"
-
-decorate = (key, value) ->
-  value.name ?= camelCase key
-  value.key ?= key
-  value
+import {include, camelCase} from "panda-parchment"
 
 Site =
 
   data: {}
 
-  createEntry: (parent) ->
-    Object.defineProperty {}, "parent",
-      value: parent
-      enumerable: false
+  createEntry: (key, parent) ->
+    {key, name: (camelCase key),  parent}
 
   key: (name) ->
     extension = Path.extname name
@@ -27,7 +20,7 @@ Site =
   traverse: (keys) ->
     data = Site.data
     for key in keys
-      data = (data[key] ?= Site.createEntry data)
+      data = (data[key] ?= {})
     data
 
   get: (path) ->
@@ -35,6 +28,9 @@ Site =
 
   set: (path, value) ->
     [keys..., key] = Site.keys path
-    (Site.traverse keys)[key] = decorate key, value
+    parent = Site.traverse keys
+    parent[key] ?= Site.createEntry key, parent
+    include parent[key], value
+    parent[key]
 
 export default Site

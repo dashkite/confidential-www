@@ -38,8 +38,8 @@ mixin highlighting(theme = "prism")
 mixin icon(name, style = "regular")
   svg: use(xlink:href=`/images/fa/sprites/${style}.svg#${name}`)
 
-mixin autolink(x, y)
-  a(href=$.autolink(x, y))
+mixin autolink(x)
+  a(href=$.autolink(x))
     block
     
 mixin breadcrumbs(crumbs, here)

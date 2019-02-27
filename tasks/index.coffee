@@ -46,7 +46,7 @@ define "data", ->
   ]
 
 define "html", ->
-  PugHelpers.interface = PugHelpers.schema
+  PugHelpers.interface = PugHelpers.typeInterface
   globals = $: include {markdown}, Site, PugHelpers
 
   go [
@@ -57,7 +57,7 @@ define "html", ->
     tee transform pug, filters: {markdown}, basedir: source
     tee extension ".html"
     tee write target
-    ]
+  ]
 
 define "css", ->
 

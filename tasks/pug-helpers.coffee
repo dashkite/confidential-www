@@ -6,44 +6,60 @@ import Site from "./site"
 
 isURL = (s) -> (isString s) && s.match /^((https?:\/\/)|\/)/
 isFragmentID = (s) -> (isString s) && s.match /^\#/
-hasLink = (value) -> (isObject value) && value.link?
-hasName = (value) -> (isObject value) && value.name?
+has = (key) -> (value) -> (isObject value) && value[key]?
+
+truncate = (length, string) ->
+  if string.length > length
+    string[0..length] + "..."
+  else
+    string
 
 invalidArguments = (name) ->
   (args...)->
     args = args
     .map (x) ->
-      if !x? then "undefined" else inspect x, colors: true
+      if !x? then "undefined" else truncate 120, inspect x
     .join ", "
     throw "#{name}: Invalid arguments: (#{args})"
 
 autolink = Method.create default: invalidArguments "autolink"
 
+Method.define autolink, (has "name"), isDefined,
+  (parent, child) -> autolink (autolink parent.name), child
+
+Method.define autolink, (has "link"), isDefined,
+  (parent, child) -> autolink parent.link, child
+
+Method.define autolink, isURL, (has "key"),
+  (url, {key}) -> autolink url, key
+
+Method.define autolink, isURL, (has "link"),
+  (url, {link}) -> autolink url, link
+
 Method.define autolink, isURL, isString,
   (baseURL, path) -> "#{baseURL}/#{path}"
 
 Method.define autolink, isURL, isFragmentID,
-  (url, id) -> "#{url}##{id}"
+  (url, id) -> "#{url}#{id}"
 
-Method.define autolink, hasLink, isDefined,
-  (parent, child) -> autolink parent.link, child
+Method.define autolink, (has "name"), (object) ->
+  (autolink object.name) ?
+    (if object.parent? then autolink object.parent, object)
 
-Method.define autolink, hasName, isDefined,
-  (parent, child) -> autolink (autolink parent.name), child
+Method.define autolink, (has "link"), ({link}) -> link
 
 Method.define autolink, isString,
   (key) -> Site.data.links[key] ? Site.data.links["`#{key}`"]
 
 Method.define autolink, isURL, identity
 
-Method.define autolink, hasLink, ({link}) -> link
 
-Method.define autolink, hasName, ({name}) -> autolink name
 
-Method.define autolink, isDefined, isUndefined, (x) -> autolink x
 
+# TODO add sort to river
 list = (dictionary) ->
   Object.keys dictionary
+  .filter (key) -> key != "parent"
   .sort()
   .map (key) -> dictionary[key]
   .filter isObject
@@ -53,40 +69,40 @@ functions = -> list Site.data.api.functions
 
 type = (key) -> Site.data.api.types[key]
 
-schema = Method.create default: invalidArguments "schema"
+typeInterface = Method.create default: invalidArguments "typeInterface"
 
-Method.define schema, isString, isFunction,
+Method.define typeInterface, isString, isFunction,
   (key, filter) ->
-    schema key
+    typeInterface key
     .filter filter
 
-Method.define schema, isObject,
+Method.define typeInterface, isObject,
   (type) ->
     list type
     .map (description) ->
       description.scope ?= "instance"
       description
 
-Method.define schema, isString,
+Method.define typeInterface, isString,
   (key) ->
     list type key
     .map (description) ->
       description.scope ?= "instance"
       description
 
-# TODO add zero arg methods to generics
 _properties = Method.create default: invalidArguments "properties"
 
 Method.define _properties, isString, isString,
   (key, scope) ->
-    schema key, (description) ->
+    typeInterface key, (description) ->
       description.scope == scope && description.category == "property"
 
 Method.define _properties, isString,
   (key) ->
-    schema key, (description) ->
+    typeInterface key, (description) ->
       description.category == "property"
 
+# TODO add zero arg methods to generics
 properties = (args...) ->
   if args.length > 0
     _properties args...
@@ -97,14 +113,15 @@ methods = Method.create default: invalidArguments "properties"
 
 Method.define methods, isString, isString,
   (key, scope) ->
-    schema key, (description) ->
+    typeInterface key, (description) ->
       description.scope == scope && description.category == "method"
 
 Method.define methods, isString,
   (key) ->
-    schema key, (description) ->
+    typeInterface key, (description) ->
       description.category == "method"
 
-PugHelpers = {autolink, types, type, functions, schema, properties, methods}
+PugHelpers = {autolink, types, type, functions,
+  typeInterface, properties, methods}
 
 export default PugHelpers
