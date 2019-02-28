@@ -1,8 +1,10 @@
 extends ../../-layout
 
 block header
+  .breadcrumbs
+    +breadcrumbs(["Confidential", "API", "Types", parent.name])
   .toc
-    +toc($.interface(parent))
+    +toc($.interface(parent), name)
 
 block main
   +method()

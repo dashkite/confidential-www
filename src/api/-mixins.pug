@@ -28,7 +28,10 @@ mixin variables(entries=variables)
       tbody
         each entry in entries
           tr
-            td= entry.name
+            if entry.fragment
+              td(id=entry.fragment)= entry.name
+            else
+              td= entry.name
             td!= $.markdown(entry.type)
             td!= $.markdown(entry.description)
   else

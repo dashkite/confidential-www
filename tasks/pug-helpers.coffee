@@ -33,8 +33,8 @@ Method.define autolink, (has "link"), isDefined,
 Method.define autolink, isURL, (has "key"),
   (url, {key}) -> autolink url, key
 
-Method.define autolink, isURL, (has "link"),
-  (url, {link}) -> autolink url, link
+Method.define autolink, isURL, (has "fragment"),
+  (url, {fragment}) -> autolink url, "##{fragment}"
 
 Method.define autolink, isURL, isString,
   (baseURL, path) -> "#{baseURL}/#{path}"
