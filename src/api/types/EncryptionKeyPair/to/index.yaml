@@ -1,9 +1,8 @@
-scope: instance
 category: method
+scope: instance
 signatures:
-  - inputs:
-      - hint
-    output: encoded-envelope
+  - arguments: hint
+    result: encoded-envelope
 variables:
   - name: hint
     type: '[`String`][]'

@@ -60,10 +60,20 @@ article
     a, code
       display inline-block
 
+  .toc > ul
+    type heading smaller
+
+  td
+    p, li
+      margin-bottom 1rem
+
   blockquote.signature
     type label
     span.name, span.scope
       font-weight bold
+    span.scope::after
+      content "."
+      
     span.name
       margin-right 1rem
     span.arguments::after

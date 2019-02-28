@@ -1,7 +1,8 @@
+category: method
+scope: class
 signatures:
-  - inputs:
-      - value
-    output: is-hash
+  - arguments: value
+    results: is-hash
 variables:
   - name: value
     type: Value

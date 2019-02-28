@@ -8,7 +8,7 @@ import {define, run, glob, read, write,
 import {pipe} from "panda-garden"
 import {rmr} from "panda-quill"
 import {go, map, wait, tee} from "panda-river"
-import {merge, include, isString, isObject} from "panda-parchment"
+import {merge, include, isString, isObject, dashed} from "panda-parchment"
 import {yaml} from "panda-serialize"
 
 import h9 from "haiku9"
@@ -37,6 +37,7 @@ define "images", ->
   ]
 
 define "data", ->
+  Site.clean()
   go [
     glob [ "**/*.yaml" ], source
     wait tee read
@@ -47,7 +48,7 @@ define "data", ->
 
 define "html", ->
   PugHelpers.interface = PugHelpers.typeInterface
-  globals = $: include {markdown}, Site, PugHelpers
+  globals = $: include {markdown}, Site, PugHelpers, {dashed}
 
   go [
     glob [ "**/*.pug", "!**/-*/**" ], source

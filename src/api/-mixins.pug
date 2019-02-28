@@ -3,11 +3,11 @@ mixin signatures()
   each signature in signatures
     blockquote.signature
       p
-        if type
+        if parent.name
           if scope == "class"
-            span.scope= type.name
+            span.scope= parent.name
           else
-            span.scope= type.key
+            span.scope= $.dashed(parent.name)
         
         span.name= name
           
@@ -29,9 +29,9 @@ mixin variables(entries=variables)
         each entry in entries
           tr
             if entry.fragment
-              td(id=entry.fragment)= entry.name
+              td: p(id=entry.fragment)= entry.name
             else
-              td= entry.name
+              td: p= entry.name
             td!= $.markdown(entry.type)
             td!= $.markdown(entry.description)
   else

@@ -1,12 +1,14 @@
 import Path from "path"
-import {include, camelCase} from "panda-parchment"
+import {include} from "panda-parchment"
 
 Site =
 
   data: {}
 
+  clean: -> Site.data = {}
+
   createEntry: (key, parent) ->
-    {key, name: (camelCase key),  parent}
+    {key, name: key,  parent}
 
   key: (name) ->
     extension = Path.extname name

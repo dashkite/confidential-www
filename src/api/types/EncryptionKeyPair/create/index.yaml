@@ -1,8 +1,8 @@
 scope: class
 category: method
 signatures:
-  - inputs: []
-    output: encryption-key-pair
+  - arguments:
+    result: encryption-key-pair
 variables:
   - name: encryption-key-pair
     isPromised: true

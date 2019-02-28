@@ -43,16 +43,25 @@ mixin autolink(x)
     block
     
 mixin breadcrumbs(crumbs, here)
-  ul
-    each crumb in crumbs
-      li: +autolink(crumb)= crumb
+  if crumbs.length > 0
+    ul
+      each crumb in crumbs
+        li: +autolink(crumb)= crumb
+      if here
+        li: span= here
+  else
     if here
-      li: span= here
+      ul: li: span= here
+    else
+      block
 
 mixin toc(entries, current)
-  ul
-    each entry in entries
-      if entry.key == current
-        li: span= entry.name
-      else
-        li: +autolink(entry)= entry.name
+  if entries.length > 0
+    ul
+      each entry in entries
+        if entry.key == current
+          li: span= entry.name
+        else
+          li: +autolink(entry)= entry.name
+  else
+    block

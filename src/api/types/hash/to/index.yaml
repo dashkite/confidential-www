@@ -1,7 +1,8 @@
+category: method
+scope: instance
 signatures:
-  - inputs:
-      - hint
-    output: encoded-hash
+  - arguments: hint
+    result: encoded-hash
 variables:
   - name: hint
     type: '[`String`][]'

@@ -10,13 +10,13 @@ mixin method-variables()
       
       tbody   
         tr
-          td= parent.key
+          td= $.dashed(parent.name)
           td: +autolink(parent.name): code= parent.name
           td An instance of #{parent.name}.
           
         each variable in variables
           tr
-            td= variable.name
+            td: p= variable.name
             td!= $.markdown(variable.type)
             td!= $.markdown(variable.description)
   else
@@ -28,9 +28,10 @@ mixin method()
     h1
       if scope == "class"
         = `${parent.name}.${name}`
+        span.tag class method
       else
-        = `${parent.key}.${name}`
-      span.tag class method
+        = `${parent.name}::${name}`
+        span.tag instance method
   
     if summary
       != $.markdown(summary)
@@ -62,10 +63,12 @@ mixin type
       h2 Class Methods
 
       +toc($.methods(key, "class"))
+        p There are no class methods.
 
       h2 Instance Methods
 
       +toc($.methods(key, "instance"))
+        p There are no instance methods.
 
       h2 Class Properties
 

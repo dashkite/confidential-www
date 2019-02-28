@@ -1,7 +1,8 @@
+category: method
+scope: class
 signatures:
-  - inputs:
-      - value
-    output: is-envelope
+  - arguments: value
+    result: is-envelope
 variables:
   - name: value
     type: Value

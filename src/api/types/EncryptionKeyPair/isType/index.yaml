@@ -2,9 +2,8 @@ name: isType
 scope: class
 category: method
 signatures:
-  - inputs:
-      - value
-    output: is-encryption-key-pair
+  - arguments: value
+    result: is-encryption-key-pair
 variables:
   - name: value
     type: Value

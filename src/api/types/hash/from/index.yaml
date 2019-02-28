@@ -1,8 +1,8 @@
+category: method
+scope: class
 signatures:
-  - inputs:
-      - hint
-      - data
-    output: hash
+  - arguments: hint, data
+    result: hash
 variables:
   - name: hint
     type: '[`String`][]'

@@ -1,10 +1,8 @@
 scope: class
 category: method
 signatures:
-  - inputs:
-      - hint
-      - data
-    output: key-pair
+  - arguments: hint, data
+    result: data
 variables:
   - name: hint
     type: '[`String`][]'

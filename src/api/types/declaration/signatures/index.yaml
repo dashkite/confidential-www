@@ -1,5 +1,4 @@
-name: signatures
-key: signatures
+fragment: signatures
 category: property
 scope: instance
 type: '[`Array`][] of [`Uint8Array`][]'

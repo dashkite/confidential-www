@@ -82,7 +82,7 @@ Properties: /api/properties
 
 "`Plaintext`": /api/types/plaintext
 "`Envelope`": /api/types/envelope
-"`Declaration`": /api/types/declaration
+"`Declaration`": /api/types/Declaration
 "`Hash`": /api/types/hash
 "`Nonce`": /api/types/nonce
 "`Key`": /api/types/key
@@ -91,7 +91,7 @@ Properties: /api/properties
 "`PublicKey`": /api/types/public-key
 "`PrivateKey`": /api/types/private-key
 "`KeyPair`": /api/types/key-pair
-"`EncryptionKeyPair`": /api/types/encryption-key-pair
+"`EncryptionKeyPair`": /api/types/EncryptionKeyPair
 "`SignatureKeyPair`": /api/types/signature-key-pair
 
 symmetric encryption: /usage.html#symmetric-encryption-and-decryption

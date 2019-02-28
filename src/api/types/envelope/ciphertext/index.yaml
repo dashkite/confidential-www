@@ -1,3 +1,4 @@
+fragment: ciphertext
 scope: instance
 category: property
 type: '[`Uint8Array`][]'
