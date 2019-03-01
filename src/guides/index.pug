@@ -1,15 +1,11 @@
-extends ../-layout
-
-block append head
-  link(rel = "stylesheet" href = "/docs/index.css")
-  +highlighting()
+extends -layout
 
 block header
-  .breadcrumbs: +breadcrumbs(["Panda Confidential"], false)
+  .breadcrumbs: +breadcrumbs(["Confidential"], "Guides")
 
 block main
   article
-    include:markdown docs.md
+    include:markdown index.md
     
 block footer
   include ../-bottom-nav

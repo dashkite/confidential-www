@@ -48,6 +48,9 @@ Panda Confidential: /
 Confidential: /
 API: /api
 
+Guides: /guides
+Quick Start: /guides/quick-start
+
 symmetric encryption: /guides/symmetric-encryption
 symmetric decryption: /guides/symmetric-encryption
 asymmetric encryption: /guides/asymmetric-encryption

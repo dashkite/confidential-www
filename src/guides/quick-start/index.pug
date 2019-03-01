@@ -1,13 +1,8 @@
 extends ../-layout
 
-block append head
-  link(rel = "stylesheet" href = "/docs/index.css")
-  +highlighting()
-    
-      
 block header
-  .breadcrumbs: +breadcrumbs(["Panda Confidential", "Quick Start"])
+  .breadcrumbs: +breadcrumbs(["Confidential"], "Quick Start")
   
 block main
   article
-    include:markdown quick-start.md
+    include:markdown index.md
