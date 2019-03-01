@@ -1,7 +1,8 @@
+category: method
+scope: class
 signatures:
-  - inputs:
-      - value
-    output: is-nonce
+  - arguments: value
+    result: is-nonce
 variables:
   value:
     type: Value

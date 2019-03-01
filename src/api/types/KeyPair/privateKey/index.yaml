@@ -1,3 +1,6 @@
+category: property
+scope: instance
+fragment: privateKey
 type: '[`PrivateKey`][]'
 description: |
   The private key of this key pair.

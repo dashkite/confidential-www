@@ -1,5 +1,3 @@
-The return value for [`encrypt`][].
-
 `Envelope` contains the products of encryption: the `ciphertext` and `nonce`.
 
 This class is suitable for [`decrypt`][].

@@ -1,5 +1,3 @@
-The return value for [`hash`][].
-
 `Hash` is a wrapper for the [SHA-512][] hash of a document.
 
 `Hash` has helper methods to manage its data, summarized below. Please see the relevant section for more details.

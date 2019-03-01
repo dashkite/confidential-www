@@ -1,8 +1,8 @@
+category: method
+scope: class
 signatures:
-  - inputs:
-      - hint
-      - data
-    output: nonce
+  - arguments: hint, data
+    result: nonce
 variables:
   hint:
     type: '[`String`][]'

@@ -1,7 +1,8 @@
+category: method
+scope: class
 signatures:
-  - inputs:
-      - value
-    output: is-key-pair
+  - arguments: value
+    result: is-key-pair
 variables:
   value:
     type: Value

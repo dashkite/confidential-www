@@ -1,5 +1,6 @@
 category: property
 scope: instance
+fragment: value
 type: '[`Uint8Array`][]'
 description: |
-  The value of this hash.
+  The value of this nonce.

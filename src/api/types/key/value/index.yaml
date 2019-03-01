@@ -1,4 +1,5 @@
-name: key
+category: property
+scope: instance
 type: '[`Uint8Array`][]'
 description: |
   The value of this key.

@@ -1,5 +1,5 @@
-fragment: nonce
 scope: instance
+fragment: nonce
 category: property
 type: '[`Uint8Array`][]'
 description: |

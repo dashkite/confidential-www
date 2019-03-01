@@ -1,7 +1,8 @@
+category: method
+scope: instance
 signatures:
-  - inputs:
-      - hint
-    output: encoded-nonce
+  - arguments: hint
+    result: encoded-nonce
 variables:
   - name: hint
     type: '[`String`][]'

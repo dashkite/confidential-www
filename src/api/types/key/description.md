@@ -1,5 +1,3 @@
-Base class for all keys in Panda-Confidential.
-
 `Key` is a wrapper for the given key, formmated to be ready for use in TweetNaCl.js functions, along with a type label to ensure correct application.
 
 `Key` has helper methods to manage its data, summarized below. Please see the relevant section for more details.

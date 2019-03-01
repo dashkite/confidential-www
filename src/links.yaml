@@ -81,18 +81,18 @@ Properties: /api/properties
 "`keyPair.isSignature`": /api.html#function-keyPair-isSignature
 
 "`Plaintext`": /api/types/plaintext
-"`Envelope`": /api/types/envelope
+"`Envelope`": /api/types/Envelope
 "`Declaration`": /api/types/Declaration
-"`Hash`": /api/types/hash
-"`Nonce`": /api/types/nonce
-"`Key`": /api/types/key
-"`SymmetricKey`": /api/types/symmetric-key
-"`SharedKey`": /api/types/shared-key
-"`PublicKey`": /api/types/public-key
-"`PrivateKey`": /api/types/private-key
-"`KeyPair`": /api/types/key-pair
+"`Hash`": /api/types/Hash
+"`Nonce`": /api/types/Nonce
+"`Key`": /api/types/Key
+"`SymmetricKey`": /api/types/SymmetricKey
+"`SharedKey`": /api/types/SharedKey
+"`PublicKey`": /api/types/PublicKey
+"`PrivateKey`": /api/types/PrivateKey
+"`KeyPair`": /api/types/KeyPair
 "`EncryptionKeyPair`": /api/types/EncryptionKeyPair
-"`SignatureKeyPair`": /api/types/signature-key-pair
+"`SignatureKeyPair`": /api/types/SignatureKeyPair
 
 symmetric encryption: /usage.html#symmetric-encryption-and-decryption
 symmetric decryption: /usage.html#symmetric-encryption-and-decryption
