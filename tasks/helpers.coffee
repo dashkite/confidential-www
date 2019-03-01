@@ -23,7 +23,7 @@ autolink = (string) ->
     if (url = Site.data.links[key])?
       "[#{text}](#{url})"
     else
-      "[#{text}](data:,broken)"
+      "[#{text}](#broken)"
 
 markdown = do (p = undefined) ->
   p = MarkdownIt

@@ -7,9 +7,6 @@ Site =
 
   clean: -> Site.data = {}
 
-  createEntry: (key, parent) ->
-    {key, name: key,  parent}
-
   key: (name) ->
     extension = Path.extname name
     Path.basename name, extension
@@ -29,10 +26,15 @@ Site =
     Site.traverse Site.keys path
 
   set: (path, value) ->
-    [keys..., key] = Site.keys path
-    parent = Site.traverse keys
-    parent[key] ?= Site.createEntry key, parent
-    include parent[key], value
+    keys = Site.keys path
+    [ancestors..., key] = keys
+    parent = Site.traverse ancestors
+    entry = (parent[key] ?= {key, name: key,  parent})
+    entry.link = "/#{keys.join '/'}"
+    Site.data.links ?= {}
+    Site.data.links[entry.name] = entry.link
+    Site.data.links["`#{entry.name}`"] = entry.link
+    include entry, value
     parent[key]
 
 export default Site

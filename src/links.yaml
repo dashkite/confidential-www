@@ -47,56 +47,9 @@ tweetnacl-sign: https://github.com/dchest/tweetnacl-js#signatures
 Panda Confidential: /
 Confidential: /
 API: /api
-Functions: /api/functions
-Types: /api/types
-Properties: /api/properties
 
-"`nacl`": /api/properties/nacl
-
-"`confidential`": /api/functions/confidential
-"`convert`": /api/functions/convert
-"`decrypt`": /api/functions/decrypt
-"`encrypt`": /api/functions/encrypt
-"`hash`": /api/functions/hash
-"`isBytes`": /api/functions/isBytes
-"`randomBytes`": /api/functions/randomBytes
-"`sign`": /api/functions/sign
-"`verify`": /api/functions/verify
-
-"`isDeclaration`": /api.html#function-isDeclaration
-"`isEnvelope`": /api.html#function-isEnvelope
-
-"`key.symmetric`": /api.html#function-key-symmetric
-"`key.isSymmetric`": /api.html#function-key-isSymmetric
-"`key.shared`": /api.html#function-key-shared
-"`key.isShared`": /api.html#function-key-isShared
-"`key.public`": /api.html#function-key-public
-"`key.isPublic`": /api.html#function-key-isPublic
-"`key.private`": /api.html#function-key-private
-"`key.isPrivate`": /api.html#function-key-isPrivate
-
-"`keyPair.encryption`": /api.html#function-keyPair-encryption
-"`keyPair.isEncryption`": /api.html#function-keyPair-isEncryption
-"`keyPair.signature`": /api.html#function-keyPair-signature
-"`keyPair.isSignature`": /api.html#function-keyPair-isSignature
-
-"`Plaintext`": /api/types/plaintext
-"`Envelope`": /api/types/Envelope
-"`Declaration`": /api/types/Declaration
-"`Hash`": /api/types/Hash
-"`Nonce`": /api/types/Nonce
-"`Key`": /api/types/Key
-"`SymmetricKey`": /api/types/SymmetricKey
-"`SharedKey`": /api/types/SharedKey
-"`PublicKey`": /api/types/PublicKey
-"`PrivateKey`": /api/types/PrivateKey
-"`KeyPair`": /api/types/KeyPair
-"`EncryptionKeyPair`": /api/types/EncryptionKeyPair
-"`SignatureKeyPair`": /api/types/SignatureKeyPair
-
-symmetric encryption: /usage.html#symmetric-encryption-and-decryption
-symmetric decryption: /usage.html#symmetric-encryption-and-decryption
-asymmetric encryption: /usage.html#authenticated-asymmetric-encryption-and-decryption
-asymmetric decryption: /usage.html#authenticated-asymmetric-encryption-and-decryption
-# digital signature: usage.html#signing-and-verifying-messages
-# digital signing: usage.html#signing-and-verifying-messages
+symmetric encryption: /guides/symmetric-encryption
+symmetric decryption: /guides/symmetric-encryption
+asymmetric encryption: /guides/asymmetric-encryption
+asymmetric decryption: /guides/asymmetric-encryption
+cryptographic signature: /guides/signatures
