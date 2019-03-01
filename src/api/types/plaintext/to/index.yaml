@@ -1,7 +1,8 @@
+category: method
+scope: instance
 signatures:
-  - inputs:
-      - hint
-    output: encoded-plaintext
+  - arguments: hint
+    result: encoded-plaintext
 variables:
   - name: hint
     type: '[`String`][]'

@@ -1,3 +1,0 @@
-name: PublicKey
-fragment: public-key
-extends: '[`Key`][]'

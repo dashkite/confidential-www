@@ -2,13 +2,14 @@ category: method
 scope: class
 signatures:
   - arguments: value
-    result: is-plaintext
+    result: is-signature-key-pair
 variables:
   - name: value
     type: Value
     description: |
       A value to be tested.
-  - name: is-plaintext
+  - name: is-signature-key-pair
     type: '[`Boolean`][]'
-    description: |
-      `true` if `value` is an instance of `Plaintext`, `false` otherwise.
+    description: >
+      `true` if `value` is an instance of [`SignatureKeyPair`][], `false`
+      otherwise.

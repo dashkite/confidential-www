@@ -2,13 +2,13 @@ category: method
 scope: class
 signatures:
   - arguments: value
-    result: is-plaintext
+    result: is-private-key
 variables:
   - name: value
     type: Value
     description: |
       A value to be tested.
-  - name: is-plaintext
+  - name: is-private-key
     type: '[`Boolean`][]'
     description: |
-      `true` if `value` is an instance of `Plaintext`, `false` otherwise.
+      `true` if `value` is an instance of [`PrivateKey`][], `false` otherwise.

@@ -1,3 +1,0 @@
-name: SymmetricKey
-fragment: symmetric-key
-extends: '[`Key`][]'

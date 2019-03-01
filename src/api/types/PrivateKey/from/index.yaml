@@ -2,17 +2,17 @@ category: method
 scope: class
 signatures:
   - arguments: hint, data
-    result: plaintext
+    result: key
 variables:
   - name: hint
     type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
   - name: data
-    type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
+    type: '[`String`][] | [`Uint8Array`][]'
     description: |
-      A data representation of a plaintext.
-  - name: plaintext
-    type: '[`Plaintext`][]'
+      A data representation of a private key.
+  - name: key
+    type: '[`PrivateKey`][]'
     description: |
-      Instance of [`Plaintext`][], hydrated by the input `data`.
+      Instance of [`PrivateKey`][], hydrated by the input `data`.

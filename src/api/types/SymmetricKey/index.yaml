@@ -1,0 +1,5 @@
+$extends: Key
+summary: >
+  The key type used to perform [symmetric encryption][].
+
+  > **Warning:** This key must remain secret for encryption be effective.

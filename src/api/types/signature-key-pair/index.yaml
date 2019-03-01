@@ -1,3 +1,0 @@
-name: SignatureKeyPair
-fragment: signature-key-pair
-extends: '[`KeyPair`][]'

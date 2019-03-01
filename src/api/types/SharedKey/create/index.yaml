@@ -1,0 +1,28 @@
+category: method
+scope: class
+signatures:
+  - arguments: public-key, private-key
+    result: shared-key
+  - arguments: private-key, public-key
+    result: shared-key
+  - arguments: key-pair
+    result: shared-key
+variables:
+  - name: public-key
+    type: '[`PublicKey`][]'
+    description: |
+      [`PublicKey`][] suitable for encryption.
+  - name: private-key
+    type: '[`PrivateKey`][]'
+    description: |
+      [`PrivateKey`][] suitable for encryption.
+  - name: key-pair
+    type: '[`EncryptionKeyPair`][]'
+    description: >
+      An [`EncryptionKeyPair`][], containing one [`PublicKey`][] and one
+      [`PrivateKey`][] suitable for encryption.
+  - name: shared-key
+    type: '`SharedKey`'
+    description: >
+      Instance of [`SharedKey`][], derived from either the `public-key` and
+      `private-key` or from the `key-pair`.

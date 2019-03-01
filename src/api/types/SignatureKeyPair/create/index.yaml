@@ -1,0 +1,11 @@
+category: method
+scope: class
+signatures:
+  - arguments:
+    result: signature-key-pair
+variables:
+  - name: signature-key-pair
+    isPromised: true
+    type: '[`SignatureKeyPair`][]'
+    description: |
+      Promise that resolves to an instance of [`SignatureKeyPair`][].

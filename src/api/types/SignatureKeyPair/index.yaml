@@ -1,0 +1,5 @@
+$extends: KeyPair
+summary: >
+  Key pair suitable for [digital signature][].
+
+  > **Warning:** `SignatureKeyPair` is not suitable for encryption.

@@ -1,3 +1,0 @@
-name: PrivateKey
-fragment: private-key
-extends: '[`Key`][]'

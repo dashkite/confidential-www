@@ -2,7 +2,7 @@ category: method
 scope: class
 signatures:
   - arguments: hint, data
-    result: plaintext
+    result: key
 variables:
   - name: hint
     type: '[`String`][]'
@@ -11,8 +11,8 @@ variables:
   - name: data
     type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
     description: |
-      A data representation of a plaintext.
-  - name: plaintext
-    type: '[`Plaintext`][]'
+      A data representation of a public key.
+  - name: key
+    type: '[`PublicKey`][]'
     description: |
-      Instance of [`Plaintext`][], hydrated by the input `data`.
+      Instance of [`PublicKey`][], hydrated by the input `data`.
