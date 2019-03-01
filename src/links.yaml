@@ -50,9 +50,8 @@ API: /api
 
 Guides: /guides
 Quick Start: /guides/quick-start
-
-symmetric encryption: /guides/symmetric-encryption
-symmetric decryption: /guides/symmetric-encryption
-asymmetric encryption: /guides/asymmetric-encryption
-asymmetric decryption: /guides/asymmetric-encryption
-cryptographic signature: /guides/signatures
+Symmetric Encryption: /guides/symmetric-encryption
+Symmetric Decryption: /guides/symmetric-encryption
+Asymmetric Encryption: /guides/asymmetric-encryption
+Asymmetric Decryption: /guides/asymmetric-encryption
+Cryptographic Signatures: /guides/signatures

@@ -1,14 +1,16 @@
 extends ../-layout
 
 block header
-  :markdown
-    [Panda Confidential](/) &rtri; **Symmetric Encryption**
+  .breadcrumbs
+    +breadcrumbs(["Confidential", "Guides"], "Symmetric Encryption")
     
-    - [Obtaining A Key](#obtaining-a-key)
-    - [Encryption](#encrypting)
-    - [Serialization](#serializing)
-    - [Deserialization](#deserializing)
-    - [Decryption](#decrypting)
+  .toc
+    :markdown
+      - [Obtaining A Key](#obtaining-a-key)
+      - [Encrypting](#encrypting)
+      - [Serializing](#serializing)
+      - [Deserializing](#deserializing)
+      - [Decrypting](#decrypting)
 
 block main
   article

@@ -59,9 +59,14 @@ mixin toc(entries, current)
   if entries.length > 0
     ul
       each entry in entries
-        if entry.key == current
+        if current && entry.key == current
           li: span= entry.name
         else
-          li: +autolink(entry)= entry.name
+          li
+            +autolink(entry)
+              if entry.constructor == String
+                = entry
+              else
+                = entry.name
   else
     block

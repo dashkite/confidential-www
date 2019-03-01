@@ -5,7 +5,9 @@ block header
 
 block main
   article
-    include:markdown index.md
+    .toc
+      +toc(["Quick Start", "Symmetric Encryption", "Asymmetric Encryption", 
+        "Cryptographic Signatures"])
     
 block footer
   include ../-bottom-nav

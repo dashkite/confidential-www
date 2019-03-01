@@ -1,14 +1,16 @@
 extends ../-layout
 
 block header
-  :markdown
-    [Panda Confidential](/) &rtri; **Authenticated Asymmetric Encryption**
+  .breadcrumbs
+    +breadcrumbs(["Confidential", "Guides"], "Asymmetric Encryption")
     
-    - [Obtaining A Shared Key](#obtaining-a-shared-key)
-    - [Encrypting](#encrypting)
-    - [Serializing](#serializing)
-    - [Deserializing](#deserializing)
-    - [Decrypting](#decrypting)
+  .toc
+    :markdown
+      - [Obtaining A Key](#obtaining-a-shared-key)
+      - [Encrypting](#encrypting)
+      - [Serializing](#serializing)
+      - [Deserializing](#deserializing)
+      - [Decrypting](#decrypting)
 
 block main
   article
