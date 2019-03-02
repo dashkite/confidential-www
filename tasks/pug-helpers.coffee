@@ -107,7 +107,7 @@ properties = (args...) ->
   if args.length > 0
     _properties args...
   else
-    list Site.data.api.properties
+    list Site.data.api.properties.variables
 
 methods = Method.create default: invalidArguments "properties"
 

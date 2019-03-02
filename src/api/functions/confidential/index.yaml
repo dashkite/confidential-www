@@ -11,7 +11,7 @@ variables:
       Optional. Provides a custom implementation for [`randomBytes`][].
 
 
-      > **Warning:** Effective encryption requires a robust implementation of
+      > **Warning** Effective encryption requires a robust implementation of
       pseudo-randomness. Replace `randomBytes` with caution.
   - name: api
     type: '[`Object`][]'
