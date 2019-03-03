@@ -1,11 +1,13 @@
 name: decrypt
-summary: Decrypts a ciphertext, when provided the correct key.
+summary: Decrypts a ciphertext given a corresponding key.
 signatures:
   - arguments: key, envelope
     result: plaintext
 variables:
   - name: key
-    type: "[`SymmetricKey`][] | [`SharedKey`][]"
+    type: |
+      - [`SymmetricKey`][]
+      - [`SharedKey`][]
     description: |
       Key to be used in the decryption operation.
   - name: envelope

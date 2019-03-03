@@ -7,6 +7,14 @@ Site =
 
   clean: -> Site.data = {}
 
+  autolink: (key) ->
+    key = key.toLowerCase()
+    if key.match /^[a-z]/
+      Site.data.links?[key]
+    else
+      key = key[1...-1]
+      Site.data.links?[key]
+
   key: (name) ->
     extension = Path.extname name
     Path.basename name, extension
@@ -32,8 +40,7 @@ Site =
     entry = (parent[key] ?= {key, name: key,  parent})
     entry.link = "/#{keys.join '/'}"
     Site.data.links ?= {}
-    Site.data.links[entry.name] = entry.link
-    Site.data.links["`#{entry.name}`"] = entry.link
+    Site.data.links[entry.name.toLowerCase()] = entry.link
     include entry, value
     parent[key]
 

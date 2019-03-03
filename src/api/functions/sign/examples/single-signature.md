@@ -1,3 +1,5 @@
+### Single Signature
+
 Provide a [`Plaintext`][] instance to the `data` argument and `sign` generates a new [`Declaration`][].
 
 ```coffeescript

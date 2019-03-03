@@ -48,13 +48,9 @@ Method.define autolink, (has "name"), (object) ->
 
 Method.define autolink, (has "link"), ({link}) -> link
 
-Method.define autolink, isString,
-  (key) -> Site.data.links[key] ? Site.data.links["`#{key}`"]
+Method.define autolink, isString, (key) -> Site.autolink key
 
 Method.define autolink, isURL, identity
-
-
-
 
 # TODO add sort to river
 list = (dictionary) ->

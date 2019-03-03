@@ -35,6 +35,13 @@ article
     :last-child
       margin-bottom 0
 
+  p, li, blockquote
+    code
+      background-color white - 7.5%
+      padding 0.5rem
+      border-radius 0.5rem
+
+
   pre
     //- prism overrides line-height
     margin-bottom @line-height !important
@@ -47,14 +54,3 @@ article
         content "¶ "
       &[href="#broken"]
         color red
-
-
-
-//       blockquote
-//         h1, h2, h3, h4, h5, h6
-//           font-family "Titillium Web"
-//           a::before
-//             content: ""
-//
-//         &.signature
-//           font-family "Titillium Web", sans-serif

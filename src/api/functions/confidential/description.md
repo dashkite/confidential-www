@@ -1,3 +1,1 @@
-Because Panda-Confidential is extensible, it uses instantiation to prevent unexpected changes by third parties. Once you have an instance, you can destructure its functions and types to use them directly.
-
-`randomBytes` is an optional argument to replace the default [`randomBytes`][] implementation. Please use caution when replacing `randomBytes`.  Inadequate sources of psuedo-randomness compromise encryption.
+Panda-Confidential reduces the risk of unexpected changes by third parties by exporting only a single function that creates a new instance of the library. Presuming all access to Confidential is done this way (and not, for example, via exporting individual functions), any changes will be contained to the scope of the importing module.

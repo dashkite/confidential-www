@@ -5,7 +5,9 @@ signatures:
     result: envelope
 variables:
   - name: key
-    type: "[`SymmetricKey`][] | [`SharedKey`][]"
+    type: |
+      - [`SymmetricKey`][]
+      - [`SharedKey`][]
     description: |
       Key to be used in the encryption operation.
   - name: nonce
@@ -17,6 +19,6 @@ variables:
     description: |
       Type class for the plaintext to be encrypted.
   - name: envelope
-    type: "🤞[`Envelope`][]"
+    type: "&#8674;[`Envelope`][]"
     description: |
       Promise that resolves to an [`Envelope`][], a type class for the ciphertext and nonce products of encryption. Suitable for use with decrypt.

@@ -1,8 +1,8 @@
 `decrypt` is a [generic function][], accepting an encryption key and ciphertext to return a plaintext.  `decrypt` and its counterpart [`encrypt`][] form a pair of opposing operations.
 
 Panda-Confidential establishes a type system to determine your intention in a clear and error-free way.  That allows `decrypt` behavior to depend on the input key:
- - When given a [`SymmetricKey`][], `decrypt` uses [symmetric decryption][].
- - When given a [`SharedKey`][], `decrypt` uses authenticated, [asymmetric decryption][].
+ - When given a [`SymmetricKey`][], `decrypt` uses [symmetric decryption][symmetric encryption].
+ - When given a [`SharedKey`][], `decrypt` uses authenticated, [asymmetric decryption][asymmetric encryption].
 
 Ciphertext is enclosed in the type class [`Envelope`][], returned by [`encrypt`][].  If you wish to hydrate an `Envelope` from a serialized form, use the static method `Envelope.from` to do so.
 

@@ -1,3 +1,5 @@
+### Multiple Signatures
+
 `sign` supports multiple signatories.  Provide a [`Declaration`][] instance to the `data` argument and `sign` appends the signature to the existing list.
 
 ```coffeescript

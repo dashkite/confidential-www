@@ -1,5 +1,5 @@
 name: verify
-summary: Verifies one or more digital signatures on a document.
+summary: Verifies one or more cryptographic signatures on a document.
 signatures:
   - arguments: declaration
     result: is-valid

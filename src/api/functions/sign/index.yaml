@@ -1,5 +1,5 @@
 name: sign
-summary: Digitially signs an input with the provided key.
+summary: Cryptographically signs an input with the provided key.
 signatures:
   - arguments: public-key, private-key, data
     result: declaration
