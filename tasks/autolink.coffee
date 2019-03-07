@@ -4,15 +4,14 @@ import {method, has} from "./generics"
 
 isURL = (s) -> (isString s) && s.match /^((https?:\/\/)|\/)/
 
+
+# autolink lookups first strip any markdown formatting
 strip = (key) ->
   key
   .replace /[`_\*]/g, ""
 
-
-# autolink lookups are normalized by converting to lowercase,
-# removing any markdown formatting, and replacing any delimiters
-# ex: `Declaration::to` => declaration/to
-
+# if necessary, we do second lookup by converting to lowercase
+# and replacing any delimiters, ex: `Declaration::to` => declaration/to
 normalize = (key) ->
   key
   .toLowerCase()
@@ -38,7 +37,8 @@ add.define isObject, isString, (has "link"),
   (dictionary, key, entry) -> add dictionary, key, entry.link
 
 # converting the entry to a link will give us the key and the link,
-# so this is where we add it to the dictionary
+# so this is where we add it to the dictionary. if there's already
+# an entry for that key, we skip it, first entry wins
 add.define isObject, isString, isString, (dictionary, key, link) ->
   dictionary[key] ?= link
 
@@ -53,16 +53,17 @@ add.define isObject, isObject, (dictionary, entry) ->
 # to a value, either a string or an object
 lookup = method "Autolink.lookup"
 
-# if the object has a reference (all of are supposed to, see below),
+# if the object has a reference (they all should, see below),
 # do the lookup using the reference. we don't need to normalize because
 # references are already normalized. this is mostly useful for PugHelpers,
-# ex when you have an object and want to do the lookup
+# ex when you have an object and want to do the lookup with that
 lookup.define isObject, (has "reference"),
   (dictionary, {reference}) -> dictionary[reference]
 
-# if we just get a string, normalize that and try the lookup. this is
-# used within Pug (ex breadcrumbs) and also markdown, so we need to normalize
-# the key before we do the lookup. if we don't find an entry, use #broken
+# if we just get a string, first try the stripped key, and if that fails,
+# normalize it and try again, and if that fails, it's an error. this
+# allows us to differentiate with case, but fall back to case insensitive
+# ex: Hash (type) versus hash (function), instead of `type/hash`
 lookup.define isObject, isString, (dictionary, key) ->
   key = strip key
   dictionary[key] ? dictionary[normalize key] ? do ->
@@ -70,7 +71,7 @@ lookup.define isObject, isString, (dictionary, key) ->
     "#broken"
 
 # in case we get a URL somehow ... this is useful if we want to use a Pug
-# helper that calls autolink but we already have a URL
+# helper that calls autolink but we already have a URL, i guess?
 lookup.define isObject, isURL, (dictionary, url) -> url
 
 Autolink = {add, lookup, normalize}
