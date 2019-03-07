@@ -1,6 +1,6 @@
 # Symmetric Encryption
 
-Alice would like to encrypt her data at rest. This calls for [symmetric encryption][symmetric-encryption], allowing Alice to encrypt and decrypt private data with the same key.
+Alice would like to encrypt her data at rest. This calls for [symmetric encryption][], allowing Alice to encrypt and decrypt private data with the same key.di
 
 She starts by importing Panda-Confidential and instantiating the API.
 

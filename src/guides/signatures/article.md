@@ -1,6 +1,6 @@
 # Signatures
 
-Alice wishes to share a document so that it can be reliably attributed to her, much like the signature on a physical document. This calls for a [digitial signature][digitial signature], which imbues a document with authentication (we know who signed it), non-repudiation (they can't later pretend they didn't sign it), and integrity (we know the document hasn't been changed since it was signed).
+Alice wishes to share a document so that it can be reliably attributed to her, much like the signature on a physical document. This calls for [cryptographic signatures][], which imbues a document with authentication (we know who signed it), non-repudiation (they can't later pretend they didn't sign it), and integrity (we know the document hasn't been changed since it was signed).
 
 Alice begins by importing Panda-Confidential and instantiating the API.
 

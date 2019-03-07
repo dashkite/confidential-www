@@ -1,4 +1,4 @@
-Panda Confidential wraps the [TweetNaCl.js][] cryptography library to provide a simple, sound interface for symmetric and asymmetric encryption, hashing, and digital signatures.
+Panda Confidential wraps the [TweetNaCl.js][] cryptography library to provide a simple, sound interface for symmetric and asymmetric encryption, hashing, and cryptographic signatures.
 
 ## Installation
 

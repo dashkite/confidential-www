@@ -1,8 +1,13 @@
 import {identity} from "panda-garden"
-import {isString, isObject} from "panda-parchment"
+import {isString, isObject, isArray} from "panda-parchment"
 import {method, has} from "./generics"
 
 isURL = (s) -> (isString s) && s.match /^((https?:\/\/)|\/)/
+
+strip = (key) ->
+  key
+  .replace /[`_\*]/g, ""
+
 
 # autolink lookups are normalized by converting to lowercase,
 # removing any markdown formatting, and replacing any delimiters
@@ -11,7 +16,6 @@ isURL = (s) -> (isString s) && s.match /^((https?:\/\/)|\/)/
 normalize = (key) ->
   key
   .toLowerCase()
-  .replace /[`_\*]/g, ""
   .replace /(\.|::)/, "/"
 
 # link is the function that takes an object and adds a corresponding
@@ -36,15 +40,7 @@ add.define isObject, isString, (has "link"),
 # converting the entry to a link will give us the key and the link,
 # so this is where we add it to the dictionary
 add.define isObject, isString, isString, (dictionary, key, link) ->
-
-  key = normalize key
-
-  # if we already have a link for this key, we have an ambiguous key
-  # which, if used, should return a fragment indicating a broken link
-  if dictionary[key]?
-    dictionary[key] = "#broken"
-  else
-    dictionary[key] = link
+  dictionary[key] ?= link
 
 # we can also just take an object and extract out the dictionary keys...
 # we attempt to add links using both the key and the reference, so that
@@ -67,8 +63,11 @@ lookup.define isObject, (has "reference"),
 # if we just get a string, normalize that and try the lookup. this is
 # used within Pug (ex breadcrumbs) and also markdown, so we need to normalize
 # the key before we do the lookup. if we don't find an entry, use #broken
-lookup.define isObject, isString,
-  (dictionary, key) -> dictionary[normalize key] ? "#broken"
+lookup.define isObject, isString, (dictionary, key) ->
+  key = strip key
+  dictionary[key] ? dictionary[normalize key] ? do ->
+    console.warn "Autolink.lookup: missing key [#{key}]"
+    "#broken"
 
 # in case we get a URL somehow ... this is useful if we want to use a Pug
 # helper that calls autolink but we already have a URL

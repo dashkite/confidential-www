@@ -1,4 +1,4 @@
-`sign` is a [generic function][] accepting signing keys and data to return a digital signature.  `sign` and its counterpart [`verify`][] form a pair of opposing operations.
+`sign` is a [generic function][] accepting signing keys and data to return a cryptographic signature.  `sign` and its counterpart [`verify`][] form a pair of opposing operations.
 
 Panda-Confidential establishes a type system to determine your intention in a clear and error-free way.  That allows `sign` to accept either a [`SignatureKeyPair`][] or keys as individual arguments.
 
