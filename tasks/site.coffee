@@ -8,7 +8,7 @@ Site =
   clean: -> Site.data = {}
 
   # export autolinking
-  autolink: (key) -> Autolink.lookup key
+  autolink: (key) -> Autolink.lookup Site.data.links, key
 
   key: (name) ->
     extension = Path.extname name
@@ -49,6 +49,6 @@ Site =
     # save entry in the Site data
     parent[key] ?= entry
     # add entry to the dictionary
-    Autolink.add entry
+    Autolink.add Site.data.links, entry
 
 export default Site

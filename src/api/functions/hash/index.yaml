@@ -1,4 +1,5 @@
 name: hash
+reference: functions/hash
 summary: Performs a [SHA-512][] hash of the input plaintext.
 signatures:
   - arguments: plaintext
