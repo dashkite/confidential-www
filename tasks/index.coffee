@@ -42,8 +42,7 @@ define "data", ->
     glob [ "**/*.yaml" ], source
     wait tee read
     tee ({path, source}) ->
-      Site.set path,
-        yaml source.content
+      Site.set path, yaml source.content
   ]
 
 define "html", ->

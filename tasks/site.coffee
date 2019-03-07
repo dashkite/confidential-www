@@ -1,5 +1,5 @@
 import Path from "path"
-import {include} from "panda-parchment"
+import Autolink from "./autolink"
 
 Site =
 
@@ -7,13 +7,8 @@ Site =
 
   clean: -> Site.data = {}
 
-  autolink: (key) ->
-    key = key.toLowerCase()
-    if key.match /^[a-z]/
-      Site.data.links?[key]
-    else
-      key = key[1...-1]
-      Site.data.links?[key]
+  # export autolinking
+  autolink: (key) -> Autolink.lookup key
 
   key: (name) ->
     extension = Path.extname name
@@ -33,15 +28,27 @@ Site =
   get: (path) ->
     Site.traverse Site.keys path
 
-  set: (path, value) ->
+  set: (path, entry) ->
     keys = Site.keys path
     [ancestors..., key] = keys
     parent = Site.traverse ancestors
-    entry = (parent[key] ?= {key, name: key,  parent})
-    entry.link = "/#{keys.join '/'}"
-    Site.data.links ?= {}
-    Site.data.links[entry.name.toLowerCase()] = entry.link
-    include entry, value
-    parent[key]
+    # an object can override the key, altho i'm unsure of a scenario
+    # where that's necessary ...
+    entry.key ?= key
+    # overriding the name is probably more common, if the name doesn't
+    # match the path for some reason. again, don't have a scenario for this,
+    # but kept it just in case ...
+    entry.name ?= key
+    # parent object reference, which will be empty for things with no
+    # explicitly defined parent (without a YAML file in the parent directory)
+    entry.parent = parent
+    # the logical path as an array of keys
+    entry.path = keys
+    # normalized reference, mainly useful for dictionary lookups
+    entry.reference ?= Autolink.normalize "#{parent.key}/#{entry.key}"
+    # save entry in the Site data
+    parent[key] ?= entry
+    # add entry to the dictionary
+    Autolink.add entry
 
 export default Site

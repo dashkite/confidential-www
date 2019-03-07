@@ -19,11 +19,9 @@ import Site from "./site"
 
 autolink = (string) ->
   string.replace /\[([^\]]+)\]\[([^\]]*)\]/g, (match, text, key) ->
-    key = text if key == ""
-    if (url = Site.autolink(key))?
-      "[#{text}](#{url})"
-    else
-      "[#{text}](#broken)"
+    key = text if !key? || key == ""
+    url = Site.autolink key
+    "[#{text}](#{url})"
 
 markdown = do (p = undefined) ->
   p = MarkdownIt
