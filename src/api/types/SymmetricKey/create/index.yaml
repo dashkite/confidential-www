@@ -7,8 +7,7 @@ signatures:
   - arguments:
     result: symmetric-key
 variables:
-  symmetric-key:
-    isPromised: true
-    type: '[`SymmetricKey`][]'
+  - name: symmetric-key
+    type: '[`Promise`][] for a [`SymmetricKey`][]'
     description: |
       Promise that resolves to an instance of [`SymmetricKey`][].

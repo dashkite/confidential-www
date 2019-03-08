@@ -27,19 +27,42 @@ h2 Description
 
 ### Generating Links
 
-The `autolink` helper generates a link based on a string or an object.
+The `Site.autolink` helper generates a link based on a string or an object.
+
+> **Site.autolink** value &rarr; link
+
+| variable | type                 | description                                                 |
+| -------- | -------------------- | ----------------------------------------------------------- |
+| value    | `String` or `Object` | The value for which we want to find the corresponding link. |
+| link     | URL                  | The link corresponding to the value.                        |
+
+Links may come from two sources:
+
+- The `links.yaml` file, which has precedence.
+- The YAML files corresponding to content objects.
+
+Each content object is added to the link dictionary at least once using it's *canonical reference* as the key. It will also be added using it's name as a key, if an entry doesn't already exist for that key. Thus, you may look up the link to a content object using either name or reference.
+
+The canonical reference is determined by either setting it explicitly within the YAML file or deriving it from the last two components for the corresponding _logical_, or destination path. For example, for the content object for the `encrypt` function, this would be `functions/encrypt` because these are the last two components of the destination path.
+
+
+
+| If the content object has… | the key |      |
+| -------------------------- | ------- | ---- |
+| a `fragment` property      |         |      |
+|                            |         |      |
+
+
 
 #### Converting a value to a link …
 
-| If the value is a … | and …                                                        | return …                                               |
-| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------ |
-| string              | is a URL (begins with a `/` or with `http://` or `https://`) | the value itself                                       |
-|                     | has an entry in the link dictionary                          | the dictionary entry                                   |
-|                     |                                                              | the entry                                              |
-| object              | has a `link` property,                                       | the `link` property                                    |
-|                     | has a `name` property                                        | the return value of `autolink` for the `name` property |
+| If the value is a … | and …                                                        | return …                           |
+| ------------------- | ------------------------------------------------------------ | ---------------------------------- |
+| string              | is a URL (begins with a `/` or with `http://` or `https://`) | the value itself                   |
+|                     | has an entry in the link dictionary                          | the dictionary entry               |
+| object              | with a `reference` property                                  | the corresponding dictionary entry |
 
-If no rules apply, `autolink` returns `#`.
+If no rules apply, `autolink` returns `#broken`.
 
 #### Combining a value with a base URL …
 

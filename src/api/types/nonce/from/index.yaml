@@ -4,18 +4,18 @@ signatures:
   - arguments: hint, data
     result: nonce
 variables:
-  hint:
+  - name: hint
     type: '[`String`][]'
     description: |
       name that specifies the `from` conversion hint.
-  data:
+  - name: data
     type: |
       - [`String`][]
       - [`Uint8Array`][]
       - [`Buffer`][]
     description: |
       A data representation of a nonce.
-  nonce:
+  - name: nonce
     type: '[`Nonce`][]'
     description: |
       Instance of [`Nonce`], hydrated by the input `data`.

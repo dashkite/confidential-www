@@ -4,11 +4,11 @@ signatures:
   - arguments: value
     result: is-key-pair
 variables:
-  value:
+  - name: value
     type: Value
     description: |
       A value to be tested.
-  is-key-pair:
+  - name: is-key-pair
     type: '[`Boolean`][]'
     description: >
       true` if `value` has an instance of `KeyPair` in its prototype chain,
