@@ -9,7 +9,10 @@ variables:
     description: |
       name that specifies the `from` conversion hint.
   - name: data
-    type: '[`String`][] | [`Uint8Array`][] | [`Buffer`][]'
+    type: |
+      - [`String`][]
+      - [`Uint8Array`][]
+      - [`Buffer`][]
     description: |
       A data representation of a encryption key pair.
   - name: key-pair

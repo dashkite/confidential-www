@@ -11,7 +11,9 @@ variables:
     description: |
       name that specifies the `from` conversion hint.
   - name: data
-    type: '[`String`][] | [`Uint8Array`][]'
+    type: |
+      - [`String`][]
+      - [`Uint8Array`][]
     description: |
       A data representation of a declaration.
   - name: declaration

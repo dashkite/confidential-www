@@ -27,15 +27,15 @@ h2 Description
 
 ### Generating Links
 
-The `autolink` helper generates a based on a given value and optional parent. If a parent value is provided, the parent is first converted to a link which is used as a base URL. This is combined with the value to produce the return value. If no parent is provided, the value is simply converted directly into a link.
+The `autolink` helper generates a link based on a string or an object.
 
 #### Converting a value to a link …
 
 | If the value is a … | and …                                                        | return …                                               |
 | ------------------- | ------------------------------------------------------------ | ------------------------------------------------------ |
 | string              | is a URL (begins with a `/` or with `http://` or `https://`) | the value itself                                       |
-|                     | has an entry in the link dictionary                          | the entry                                              |
-|                     | has a backquoted entry in the link dictionary                | the entry                                              |
+|                     | has an entry in the link dictionary                          | the dictionary entry                                   |
+|                     |                                                              | the entry                                              |
 | object              | has a `link` property,                                       | the `link` property                                    |
 |                     | has a `name` property                                        | the return value of `autolink` for the `name` property |
 

@@ -10,6 +10,6 @@ variables:
       Length of the desired output, in bytes.
   - name: bytes
     isPromised: true
-    type: '[`Uint8Array`][]'
+    type: '[`Promise`][] for a [`Uint8Array`][]'
     description: |
       Promise that resolves to an array of `length` pseudo-random bytes.

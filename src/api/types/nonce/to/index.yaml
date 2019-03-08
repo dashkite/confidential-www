@@ -9,6 +9,8 @@ variables:
     description: |
       name that specifies the `to` conversion hint.
   - name: encoded-nonce
-    type: '[`String`][] | [`Uint8Array`][]'
+    type: |
+      - [`String`][]
+      - [`Uint8Array`][]
     description: |
       A data representation of a nonce

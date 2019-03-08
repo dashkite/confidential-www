@@ -10,6 +10,8 @@ variables:
     description: |
       name that specifies the `to` conversion hint.
   encoded-declaration:
-    type: '[`String`][] | [`Uint8Array`][]'
+    type: |
+      - [`String`][]
+      - [`Uint8Array`][]
     description: |
       A data representation of a declaration.

@@ -53,7 +53,7 @@ add.define isObject, isObject, (dictionary, entry) ->
 # to a value, either a string or an object
 lookup = method "Autolink.lookup"
 
-# if the object has a reference (they all should, see below),
+# if the object has a reference (they all should, see site.coffee),
 # do the lookup using the reference. we don't need to normalize because
 # references are already normalized. this is mostly useful for PugHelpers,
 # ex when you have an object and want to do the lookup with that

@@ -22,7 +22,9 @@ variables:
     description: |
       The private key of the person wishing to sign `data`.
   - name: data
-    type: '[`Plaintext`][] | [`Declaration`][]'
+    type: |
+      - [`Plaintext`][]
+      - [`Declaration`][]
     description: |
       Data to be signed.
   - name: declaration

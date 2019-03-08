@@ -19,6 +19,6 @@ variables:
     description: |
       Type class for the plaintext to be encrypted.
   - name: envelope
-    type: "&#8674;[`Envelope`][]"
+    type: "[`Promise`][] for an [`Envelope`][]"
     description: |
-      Promise that resolves to an [`Envelope`][], a type class for the ciphertext and nonce products of encryption. Suitable for use with decrypt.
+      Wrapper for the ciphertext and nonce products of encryption. Suitable for use with decrypt.

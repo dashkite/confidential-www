@@ -38,9 +38,8 @@ tweetnacl-sign: https://github.com/dchest/tweetnacl-js#signatures
 
 # Internal Links
 
-panda confidential: /
-confidential: /
-api: /api
+Confidential: /
+API: /api
 
 guides: /guides
 quick start: /guides/quick-start
