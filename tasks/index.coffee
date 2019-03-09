@@ -13,7 +13,7 @@ import {yaml} from "panda-serialize"
 
 import h9 from "haiku9"
 
-import {transform, markdown, serve} from "./helpers"
+import {transform, markdown, template, serve} from "./helpers"
 import PugHelpers from "./pug-helpers"
 
 import Site from "./site"
@@ -47,7 +47,7 @@ define "data", ->
 
 define "html", ->
   PugHelpers.interface = PugHelpers.typeInterface
-  globals = $: include {markdown}, Site, PugHelpers, {dashed}
+  globals = $: include {markdown, template}, Site, PugHelpers, {dashed}
 
   go [
     glob [ "**/*.pug", "!**/-*/**" ], source

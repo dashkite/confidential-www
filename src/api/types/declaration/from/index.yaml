@@ -9,14 +9,14 @@ variables:
   - name: hint
     type: '[`String`][]'
     description: |
-      name that specifies the `from` conversion hint.
+      Conversion hint. See [`convert`][].
   - name: data
     type: |
       - [`String`][]
       - [`Uint8Array`][]
     description: |
-      A data representation of a declaration.
-  - name: declaration
-    type: '[`Declaration`][]'
+      A representation for a declaration.
+  - name: '{{name}}'
+    type: '[`{{type}}`][]'
     description: |
-      Instance of [`Declaration`][], hydrated by the input `data`.
+      [`{{type}}`][] instance corresponding to `data`.

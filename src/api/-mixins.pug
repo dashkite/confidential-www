@@ -31,8 +31,16 @@ mixin variables(entries=variables)
             if entry.fragment
               td: p(id=entry.fragment)= entry.name
             else
-              td: p= entry.name
-            td!= $.markdown(entry.type)
-            td!= $.markdown(entry.description)
+              if parent && parent.name
+                td: p= $.template(entry.name, {name: parent.name.toLowerCase()})
+              else
+                td: p= entry.name
+            if parent
+              td!= $.markdown($.template(entry.type, {type: parent.name}))
+              td!= $.markdown($.template(entry.description, {type: parent.name}))
+            else
+              td!= $.markdown(entry.type)
+              td!= $.markdown(entry.description)
+              
   else
     block

@@ -1,6 +1,7 @@
 import Path from "path"
 import MarkdownIt from "markdown-it"
 import MarkdownItAnchor from "markdown-it-anchor"
+import * as Sqrl from "squirrelly"
 
 import {tee} from "panda-garden"
 import {read} from "panda-quill"
@@ -34,6 +35,8 @@ markdown = do (p = undefined) ->
 
   (string) -> p.render autolink string
 
+template = (string, locals) -> Sqrl.Render string, locals
+
 # TODO backport into P9K
 # (the change is passing the data into the transformer)
 transform = (transformer, options) ->
@@ -57,4 +60,4 @@ serve = (path, options) ->
     .listen port, ->
       console.log green "p9k: server listening on port #{port}"
 
-export {autolink, transform, markdown, serve}
+export {autolink, transform, markdown, template, serve}
