@@ -1,6 +1,7 @@
 import "coffeescript/register"
 
 import Path from "path"
+import Crypto from "crypto"
 
 import {define, run, glob, read, write,
   extension, copy, watch} from "panda-9000"
@@ -42,19 +43,40 @@ define "data", ->
     glob [ "**/*.yaml" ], source
     wait tee read
     tee ({path, source}) ->
-      Site.set path, yaml source.content
+      # TODO we end up getting the parent twice
+      #      once here and once in set
+      #      not sure if there's a way to avoid that
+      [ancestors..., _] = Site.keys path
+      parent = Site.traverse ancestors
+      Site.set path, yaml template source.content, parent
+  ]
+
+hash = (string) ->
+  Crypto
+    .createHash "md5"
+    .update string
+    .digest "base64"
+
+define "md", ->
+  Site.data.content ?= {}
+  go [
+    glob [ "**/*.md" ], source
+    wait tee read
+    tee ({path, source}) ->
+      Site.data.content[hash source.content] =
+        markdown template source.content, Site.get path
   ]
 
 define "html", ->
   PugHelpers.interface = PugHelpers.typeInterface
   globals = $: include {markdown, template}, Site, PugHelpers, {dashed}
-
+  filters = markdown: (string) -> Site.data.content[hash string] ? ""
   go [
     glob [ "**/*.pug", "!**/-*/**" ], source
     wait tee read
     tee (context) ->
       context.data = merge globals, Site.get context.path
-    tee transform pug, filters: {markdown}, basedir: source
+    tee transform pug, {filters}, basedir: source
     tee extension ".html"
     tee write target
   ]
@@ -82,7 +104,7 @@ define "h9:publish:staging", -> h9.publish "staging"
 
 define "h9:publish:production", -> h9.publish "production"
 
-define "build", [ "clean", "data", "html&", "css&", "js&", "images&" ]
+define "build", [ "clean", "data", "md", "html&", "css&", "js&", "images&" ]
 
 define "watch", watch source, -> run "build"
 

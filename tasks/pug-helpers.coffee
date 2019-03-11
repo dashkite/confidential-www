@@ -25,6 +25,7 @@ typeInterface.define isString, isFunction,
 typeInterface.define isObject,
   (type) ->
     list type
+    .filter ({category}) -> category?
     .map (description) ->
       description.scope ?= "instance"
       description
@@ -32,6 +33,7 @@ typeInterface.define isObject,
 typeInterface.define isString,
   (key) ->
     list type key
+    .filter ({category}) -> category?
     .map (description) ->
       description.scope ?= "instance"
       description

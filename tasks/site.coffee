@@ -22,7 +22,7 @@ Site =
   traverse: (keys) ->
     data = Site.data
     for key in keys
-      data = (data[key] ?= {})
+      data = (data[key] ?= {key})
     data
 
   get: (path) ->
@@ -45,9 +45,12 @@ Site =
     # the logical path as an array of keys
     entry.path = keys
     # normalized reference, mainly useful for dictionary lookups
-    entry.reference ?= Autolink.normalize "#{parent.key}/#{entry.key}"
+    entry.reference ?= if parent.key?
+      Autolink.normalize "#{parent.key}/#{entry.key}"
+    else
+      Autolink.normalize entry.key
     # save entry in the Site data
-    parent[key] ?= entry
+    parent[key] = entry
     # add entry to the dictionary
     Autolink.add Site.data.links, entry
 

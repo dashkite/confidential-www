@@ -1,8 +1,9 @@
 import Path from "path"
 import MarkdownIt from "markdown-it"
 import MarkdownItAnchor from "markdown-it-anchor"
-import * as Sqrl from "squirrelly"
+import Mark from "markup-js"
 
+import {dashed} from "panda-parchment"
 import {tee} from "panda-garden"
 import {read} from "panda-quill"
 import {yaml} from "panda-serialize"
@@ -35,7 +36,7 @@ markdown = do (p = undefined) ->
 
   (string) -> p.render autolink string
 
-template = (string, locals) -> Sqrl.Render string, locals
+template = (string, locals) -> Mark.up string, locals, pipes: {dashed}
 
 # TODO backport into P9K
 # (the change is passing the data into the transformer)
