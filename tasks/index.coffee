@@ -135,8 +135,8 @@ define "link", ->
   link.define isString, isString, (file, target) ->
     # point file to target
     console.log "In [#{process.cwd()}], link [#{file}] to [#{target}]."
-    # FS.unlinkSync file
-    # FS.symlinkSync target, file
+    FS.unlinkSync file
+    FS.symlinkSync target, file
 
   go [
     glob "symlinks.yaml", "."

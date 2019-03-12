@@ -1,11 +1,1 @@
-extends ../../-layout
-
-block header
-  .breadcrumbs
-    +breadcrumbs(["Confidential", "API", parent.name])
-  .toc
-    +toc($.interface(parent), name)
-
-block main
-  +method()
-    include:markdown index.md
+../-method.pug
