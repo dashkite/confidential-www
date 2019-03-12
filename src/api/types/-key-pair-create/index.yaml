@@ -1,0 +1,10 @@
+scope: class
+category: method
+signatures:
+  - arguments:
+    result: {{name|dashed}}
+variables:
+  - name: {{name|dashed}}
+    type: '[`Promise`][] for an [`{{name}}`][]'
+    description: |
+      Promise that resolves to an instance of [`{{name}}`][].

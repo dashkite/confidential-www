@@ -22,7 +22,7 @@ variables:
       An [`EncryptionKeyPair`][], containing one [`PublicKey`][] and one
       [`PrivateKey`][] suitable for encryption.
   - name: shared-key
-    type: '`SharedKey`'
+    type: '[`SharedKey`][]'
     description: >
       Instance of [`SharedKey`][], derived from either the `public-key` and
       `private-key` or from the `key-pair`.

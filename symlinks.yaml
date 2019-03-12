@@ -1,0 +1,55 @@
+src:
+  api:
+    types:
+      '-from':
+        index.pug: ../-method-without-description.pug
+      '-to':
+        index.pug: ../-method-without-description.pug
+      '-isType':
+        index.pug: ../-method-without-description.pug
+      '-key-pair-create':
+        index.pug: ../-method.pug
+      Declaration:
+        from: ../-from
+        to: ../-to
+        isType: ../-isType
+      EncryptionKeyPair:
+        create: ../-key-pair-create
+        from: ../-from
+        to: ../-to
+        isType: ../-isType
+      Envelope:
+        from: ../-from
+        isType: ../-isType
+      Hash:
+        from: ../-from
+        to: ../-to
+        isType: ../-isType
+      Key:
+        to: ../-to
+      KeyPair:
+        to: ../-to
+      Nonce:
+        from: ../-from
+        to: ../-to
+        isType: ../-isType
+      Plaintext:
+        from: ../-from
+        to: ../-to
+        isType: ../-isType
+      PrivateKey:
+        from: ../-from
+        isType: ../-isType
+      PublicKey:
+        from: ../-from
+        isType: ../-isType
+      SharedKey:
+        from: ../-from
+        isType: ../-isType
+      SignatureKeyPair:
+        create: ../-key-pair-create
+        from: ../-from
+        isType: ../-isType
+      SymmetricKey:
+        from: ../-from
+        isType: ../-isType

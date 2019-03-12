@@ -1,8 +1,7 @@
 category: method
 scope: class
-summary: >
-  Generates a new `SymmetricKey`.  Randomly generates a key
-  using the [`randomBytes`][] interface.
+summary: |
+  Generates a new [`SymmetricKey`][] using the [`randomBytes`][] interface.
 signatures:
   - arguments:
     result: symmetric-key

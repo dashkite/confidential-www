@@ -15,6 +15,7 @@ import {yaml} from "panda-serialize"
 
 import h9 from "haiku9"
 
+import {method, has} from "./generics"
 import {transform, markdown, template, serve} from "./helpers"
 import PugHelpers from "./pug-helpers"
 
@@ -118,8 +119,27 @@ define "server",
 define "default", [ "build", "watch&", "server&" ]
 
 define "link", ->
-  {from, to} = process.env
-  directory = Path.dirname to
-  filename = Path.basename to
-  process.chdir directory
-  FS.symlinkSync (Path.relative directory, from), filename
+  link = method "link"
+
+  link.define isObject, (dictionary) ->
+    for directory, description of dictionary
+      link directory, description
+
+  link.define isString, isObject, (directory, dictionary) ->
+    cwd = process.cwd()
+    process.chdir directory
+    for directory, description of dictionary
+      link directory, description
+    process.chdir cwd
+
+  link.define isString, isString, (file, target) ->
+    # point file to target
+    console.log "In [#{process.cwd()}], link [#{file}] to [#{target}]."
+    # FS.unlinkSync file
+    # FS.symlinkSync target, file
+
+  go [
+    glob "symlinks.yaml", "."
+    wait tee read
+    tee ({source}) -> link yaml source.content
+  ]
