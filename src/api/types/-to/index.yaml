@@ -1,10 +1,9 @@
-name: from
 category: method
-scope: class
-summary: Hydrates an instance of `{{name}}` from given `data`.
+scope: instance
+summary: Converts this instance's value into the form specified by `hint`.
 signatures:
-  - arguments: hint, encoded-{{name|dashed}}
-    result: {{name|dashed}}
+  - arguments: hint
+    result: encoded-{{name|dashed}}
 variables:
   - name: hint
     type: '[`String`][]'
@@ -16,7 +15,3 @@ variables:
       - [`Uint8Array`][]
     description: |
       Data representation of a [`{{name}}`][] instance.
-  - name: '{{name|dashed}}'
-    type: '[`{{name}}`][]'
-    description: |
-      [`{{name}}`][] instance corresponding to `data`.

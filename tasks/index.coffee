@@ -1,5 +1,6 @@
 import "coffeescript/register"
 
+import FS from "fs"
 import Path from "path"
 import Crypto from "crypto"
 
@@ -40,7 +41,7 @@ define "images", ->
 define "data", ->
   Site.clean()
   go [
-    glob [ "**/*.yaml" ], source
+    glob [ "**/*.yaml", "!**/-*/**" ], source
     wait tee read
     tee ({path, source}) ->
       # TODO we end up getting the parent twice
@@ -60,7 +61,7 @@ hash = (string) ->
 define "md", ->
   Site.data.content ?= {}
   go [
-    glob [ "**/*.md" ], source
+    glob [ "**/*.md", , "!**/-*/**" ], source
     wait tee read
     tee ({path, source}) ->
       Site.data.content[hash source.content] =
@@ -115,3 +116,10 @@ define "server",
     port: 8001
 
 define "default", [ "build", "watch&", "server&" ]
+
+define "link", ->
+  {from, to} = process.env
+  directory = Path.dirname to
+  filename = Path.basename to
+  process.chdir directory
+  FS.symlinkSync (Path.relative directory, from), filename
