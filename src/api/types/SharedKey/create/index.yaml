@@ -1,5 +1,7 @@
 category: method
 scope: class
+summary: |
+  Generates a new instance of [`SharedKey`][], algorithmically deriving a new key from its arguments.
 signatures:
   - arguments: public-key, private-key
     result: shared-key

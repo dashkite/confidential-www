@@ -1,5 +1,8 @@
+# key-pair create - other create methods are unique to each type
 scope: class
 category: method
+summary: |
+  Generates a new instance of [`{{name}}`][] containing a pair of algorithmically related keys using the [`randomBytes`][] interface.
 signatures:
   - arguments:
     result: {{name|dashed}}

@@ -2,19 +2,21 @@ src:
   api:
     types:
       '-from':
-        index.pug: ../-method-without-description.pug
+        index.pug: ../-method.pug
       '-to':
-        index.pug: ../-method-without-description.pug
+        index.pug: ../-method.pug
       '-isType':
-        index.pug: ../-method-without-description.pug
-      '-key-pair-create':
+        index.pug: ../-method.pug
+      '-isKind':
+        index.pug: ../-method.pug
+      '-create':
         index.pug: ../-method.pug
       Declaration:
         from: ../-from
         to: ../-to
         isType: ../-isType
       EncryptionKeyPair:
-        create: ../-key-pair-create
+        create: ../-create
         from: ../-from
         to: ../-to
         isType: ../-isType
@@ -27,8 +29,10 @@ src:
         isType: ../-isType
       Key:
         to: ../-to
+        isKind: ../-isKind
       KeyPair:
         to: ../-to
+        isKind: ../-isKind
       Nonce:
         from: ../-from
         to: ../-to
@@ -46,10 +50,14 @@ src:
       SharedKey:
         from: ../-from
         isType: ../-isType
+        create:
+          index.pug: ../../-method.pug
       SignatureKeyPair:
-        create: ../-key-pair-create
+        create: ../-create
         from: ../-from
         isType: ../-isType
       SymmetricKey:
         from: ../-from
         isType: ../-isType
+        create:
+          index.pug: ../../-method.pug

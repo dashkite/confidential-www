@@ -8,7 +8,7 @@ import {define, run, glob, read, write,
   extension, copy, watch} from "panda-9000"
 
 import {pipe} from "panda-garden"
-import {rmr} from "panda-quill"
+import {exist, rmr} from "panda-quill"
 import {go, map, wait, tee} from "panda-river"
 import {merge, include, isString, isObject, dashed} from "panda-parchment"
 import {yaml} from "panda-serialize"
@@ -135,8 +135,11 @@ define "link", ->
   link.define isString, isString, (file, target) ->
     # point file to target
     console.log "In [#{process.cwd()}], link [#{file}] to [#{target}]."
-    FS.unlinkSync file
-    FS.symlinkSync target, file
+    if process.env.force?
+      try
+        FS.unlinkSync file
+    try
+      FS.symlinkSync target, file
 
   go [
     glob "symlinks.yaml", "."
