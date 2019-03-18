@@ -40,6 +40,8 @@ tweetnacl-sign: https://github.com/dchest/tweetnacl-js#signatures
 
 Confidential: /
 API: /api
+# point to the first type in the list
+types: /api/types/Declaration
 
 guides: /guides
 quick start: /guides/quick-start
