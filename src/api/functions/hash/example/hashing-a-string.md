@@ -1,11 +1,11 @@
 ```coffeescript
 import assert from "assert"
 import {confidential} from "panda-confidential"
-{hash, Plaintext} = confidential()
+{hash, Message} = confidential()
 
 do ->
-  # Instanciate a Plaintext with the input value
-  plaintext = Plaintext.from "utf8", "Hello, World!"
+  # Instanciate a Message with the input value
+  plaintext = Message.from "utf8", "Hello, World!"
 
   myHash = hash plaintext
 

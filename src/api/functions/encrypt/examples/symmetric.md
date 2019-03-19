@@ -4,13 +4,13 @@
 
 ```coffeescript
 import {confidential} from "panda-confidential"
-{encrypt, Plaintext} = confidential()
+{encrypt, Message} = confidential()
 import {keyLookup, write} from "my-library"
 
 do ->
   alice = keyLookup "Alice/private"
 
-  plaintext = Plaintext.from "utf8", "Hello, Alice!"
+  plaintext = Message.from "utf8", "Hello, Alice!"
 
   envelope = await encrypt alice, plaintext
 

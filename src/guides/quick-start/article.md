@@ -10,14 +10,14 @@ In your code, import the [`confidential`][] function. Invoking the function give
 
 ```coffeescript
 import {confidential} from "panda-confidential"
-{encrypt, SharedKey, Plaintext} = confidential()
+{encrypt, SharedKey, Message} = confidential()
 
 encryptMessage = (sender, reciever, message) ->
 
   key = SharedKey.create sender.privateKey,
                          recipient.publicKey
 
-  plaintext = Plaintext.from "utf8", message
+  plaintext = Message.from "utf8", message
   envelope = await encrypt key, plaintext
 
   envelope.to "base64"

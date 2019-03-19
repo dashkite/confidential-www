@@ -7,7 +7,7 @@ She starts by importing Panda-Confidential and instantiating the API.
 ```coffeescript
 import {confidential} from "panda-confidential"
 
-{SymmetricKey, Plaintext, Envelope,
+{SymmetricKey, Message, Envelope,
  encrypt, decrypt} = confidential()
 ```
 
@@ -35,13 +35,13 @@ key = await SymmetricKey.create()
 
 ## Encrypting
 
-Now that Alice has her `SymmetricKey`, she needs to prepare a [`Plaintext`][] container for the data she wants to encrypt. She can use its static method `from`, which works the same way as it does for `SymmetricKey`.
+Now that Alice has her `SymmetricKey`, she needs to prepare a [`Message`][] container for the data she wants to encrypt. She can use its static method `from`, which works the same way as it does for `SymmetricKey`.
 
 ```coffeescript
-plaintext = Plaintext.from "utf8", "Hello, Alice!"
+plaintext = Message.from "utf8", "Hello, Alice!"
 ```
 
-Alice may now [`encrypt`][] the `Plaintext` object. She uses `await` because `encrypt` returns a promise.
+Alice may now [`encrypt`][] the `Message` object. She uses `await` because `encrypt` returns a promise.
 
 ```coffeescript
 envelope = await encrypt key, plaintext
@@ -67,7 +67,7 @@ envelope = Envelope.from "base64", string
 
 ## Decrypting
 
-[`decrypt`][] works as simply as `encrypt`. Alice uses the same key she used to encrypt the plaintext to decrypt the envelope. `decrypt` returns a new `Plaintext` instance, just like the one she passed into `encrypt`.
+[`decrypt`][] works as simply as `encrypt`. Alice uses the same key she used to encrypt the plaintext to decrypt the envelope. `decrypt` returns a new `Message` instance, just like the one she passed into `encrypt`.
 
 ```coffeescript
 plaintext = decrypt key, envelope

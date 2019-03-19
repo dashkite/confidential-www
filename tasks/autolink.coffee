@@ -8,14 +8,26 @@ isURL = (s) -> (isString s) && s.match /^((https?:\/\/)|\/)/
 # autolink lookups first strip any markdown formatting
 strip = (key) ->
   key
-  .replace /[`_\*]/g, ""
 
-# if necessary, we do second lookup by converting to lowercase
+# if necessary, we do second lookup by converting to lowercase,
+# removing any punctuation (ex: period, comma, or question mark),
 # and replacing any delimiters, ex: `Declaration::to` => declaration/to
-normalize = (key) ->
+normalize = method "Autolink.normalize"
+
+normalize.define isString, (key) ->
   key
   .toLowerCase()
-  .replace /(\.|::)/, "/"
+  .replace /[`_\*]/g, ""
+  .replace /[\.\,\?]/g, ""
+  .replace /\s+/g, "-"
+  .replace /(\.|::)/g, "/"
+
+normalize.define isObject, do (normalized = false) ->
+  (dictionary) ->
+    if !normalized
+      for key, value of dictionary
+        dictionary[normalize key] = value
+    dictionary
 
 # link is the function that takes an object and adds a corresponding
 # entry to the site's link dictionary
@@ -40,7 +52,7 @@ add.define isObject, isString, (has "link"),
 # so this is where we add it to the dictionary. if there's already
 # an entry for that key, we skip it, first entry wins
 add.define isObject, isString, isString, (dictionary, key, link) ->
-  dictionary[key] ?= link
+  dictionary[normalize key] ?= link
 
 # we can also just take an object and extract out the dictionary keys...
 # we attempt to add links using both the key and the reference, so that
@@ -58,16 +70,15 @@ lookup = method "Autolink.lookup"
 # references are already normalized. this is mostly useful for PugHelpers,
 # ex when you have an object and want to do the lookup with that
 lookup.define isObject, (has "reference"),
-  (dictionary, {reference}) -> dictionary[reference]
+  (dictionary, {reference}) -> (normalize dictionary)[reference]
 
 # if we just get a string, first try the stripped key, and if that fails,
 # normalize it and try again, and if that fails, it's an error. this
 # allows us to differentiate with case, but fall back to case insensitive
 # ex: Hash (type) versus hash (function), instead of `type/hash`
 lookup.define isObject, isString, (dictionary, key) ->
-  key = strip key
-  dictionary[key] ? dictionary[normalize key] ? do ->
-    console.warn "Autolink.lookup: missing key [#{key}]"
+  (normalize dictionary)[normalize key] ? do ->
+    console.warn "Autolink.lookup: missing key [#{normalize key}]"
     "#broken"
 
 # in case we get a URL somehow ... this is useful if we want to use a Pug

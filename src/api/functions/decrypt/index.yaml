@@ -15,6 +15,6 @@ variables:
     description: |
       Type class for encryption products: `ciphertext` and `nonce`. Returned by [`encrypt`][].
   - name: plaintext
-    type: "[`Plaintext`][]"
+    type: "[`Message`][]"
     description: |
       Type class for the plaintext resulting from decryption.

@@ -15,7 +15,7 @@ variables:
     description: |
       Optional. Type class that holds a value to be combined with the plaintext before encryption. A random nonce is generated if not supplied.
   - name: plaintext
-    type: "[`Plaintext`][]"
+    type: "[`Message`][]"
     description: |
       Type class for the plaintext to be encrypted.
   - name: envelope

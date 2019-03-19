@@ -6,7 +6,7 @@ Panda-Confidential establishes a type system to determine your intention in a cl
 
 > **Warning**: Signing key pairs are incompatible with `encrypt` and causes `encrypt` to throw.
 
-Plaintext is enclosed in the type class [`Plaintext`][]. To create a new `Plaintext` from a given format, use the static method `Plaintext.from`.
+Message is enclosed in the type class [`Message`][]. To create a new `Message` from a given format, use the static method `Message.from`.
 
 `nonce` is an optional argument, an instance of the type class [`Nonce`][].  To create a new `Nonce` from a given format, use the static method `Nonce.from`.  If you omit this arugment, `encrypt` automatically generates one from the [`randomBytes`][] interface.
 

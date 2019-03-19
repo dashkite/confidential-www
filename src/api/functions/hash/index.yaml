@@ -6,7 +6,7 @@ signatures:
     result: hash
 variables:
   - name: plaintext
-    type: '[`Plaintext`][]'
+    type: '[`Message`][]'
     description: |
       Type class for the plaintext to be hashed.
   - name: hash

@@ -6,6 +6,6 @@ Panda-Confidential establishes a type system to determine your intention in a cl
 
 Ciphertext is enclosed in the type class [`Envelope`][], returned by [`encrypt`][].  If you wish to hydrate an `Envelope` from a serialized form, use the static method `Envelope.from` to do so.
 
-`decrypt` returns an instance of [`Plaintext`][], a type class that holds the plaintext product of decryption.  You may format the data of a `Plaintext` via the instance method `Plaintext.to`.
+`decrypt` returns an instance of [`Message`][], a type class that holds the plaintext product of decryption.  You may format the data of a `Message` via the instance method `Message.to`.
 
 If `decrypt` cannot decrypt a ciphertext (ex: the incorrect key is provided), it throws.

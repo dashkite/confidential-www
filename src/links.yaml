@@ -1,5 +1,6 @@
 # External Links
-
+nacl: https://nacl.cr.yp.to/
+TweetNaCl: https://tweetnacl.cr.yp.to/
 TweetNaCl.js: https://tweetnacl.js.org/
 
 # Reference Links
@@ -44,7 +45,9 @@ API: /api
 types: /api/types/Declaration
 
 guides: /guides
-quick start: /guides/quick-start
-symmetric encryption: /guides/symmetric-encryption
-asymmetric encryption: /guides/asymmetric-encryption
+Quick Start: /guides/quick-start
+Symmetric Encryption: /guides/symmetric-encryption
+Asymmetric Encryption: /guides/asymmetric-encryption
 cryptographic signatures: /guides/signatures
+motivation: /guides/motivation
+Why NaCl: /guides/why-nacl

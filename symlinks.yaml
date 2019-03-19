@@ -37,7 +37,7 @@ src:
         from: ../-from
         to: ../-to
         isType: ../-isType
-      Plaintext:
+      Message:
         from: ../-from
         to: ../-to
         isType: ../-isType

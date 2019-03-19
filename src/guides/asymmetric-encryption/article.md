@@ -8,7 +8,7 @@ Alice begins by importing Panda-Confidential and instantiating the API.
 import {confidential} from "panda-confidential"
 
 # Instantiate Panda-Confidential
-{EncryptionKeyPair, SharedKey, Plaintext,
+{EncryptionKeyPair, SharedKey, Message,
   Envelope, encrypt} = confidential()
 ```
 
@@ -63,13 +63,13 @@ key = SharedKey.create alice.privateKey, bob.publicKey
 
 ## Encrypting
 
-Alice prepares a [`Plaintext`][] container for the data she wants to encrypt. She can use the static method `from`, which works the same way as it does for `EncryptedKeyPair` and `PublicKey`.
+Alice prepares a [`Message`][] container for the data she wants to encrypt. She can use the static method `from`, which works the same way as it does for `EncryptedKeyPair` and `PublicKey`.
 
 ```coffeescript
-plaintext = Plaintext.from "utf8", "Hello, Bob!"
+plaintext = Message.from "utf8", "Hello, Bob!"
 ```
 
-Alice may now [`encrypt`][] the `Plaintext` object. She uses `await` because `encrypt` returns a promise.
+Alice may now [`encrypt`][] the `Message` object. She uses `await` because `encrypt` returns a promise.
 
 ```coffeescript
 envelope = await encrypt key, plaintext

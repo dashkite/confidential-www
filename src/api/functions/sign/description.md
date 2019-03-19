@@ -6,8 +6,8 @@ Panda-Confidential establishes a type system to determine your intention in a cl
 
 `sign` returns an instance of [`Declaration`][], a type class that holds the holds the original data, the public keys of the `signatories`, and the [ed25519][] `signatures`.  This class is suitable for [`verify`][].
 
-`sign` expects `data` to be either an instance of [`Plaintext`][] or [`Declaration`][]:
+`sign` expects `data` to be either an instance of [`Message`][] or [`Declaration`][]:
   - When given a `Declaration`, `sign` appends a signature to the existing lists.
-  - When given a `Plaintext`, `sign` generates a new `Declaration`.
+  - When given a `Message`, `sign` generates a new `Declaration`.
 
 You may format the data of a `Declaration` via the instance method `Declaration.to`.

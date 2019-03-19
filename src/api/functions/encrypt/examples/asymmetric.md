@@ -4,7 +4,7 @@
 
 ```coffeescript
 import {confidential} from "panda-confidential"
-{SharedKey, encrypt, Plaintext} = confidential()
+{SharedKey, encrypt, Message} = confidential()
 import {keyLookup, send} from "my-library"
 
 do ->
@@ -12,7 +12,7 @@ do ->
   bob = keyLookup "Bob/public"
   fromAliceToBob = sharedKey.create alice, bob
 
-  plaintext = Plaintext.from "utf8", "Hello, Bob!"
+  plaintext = Message.from "utf8", "Hello, Bob!"
 
   envelope = await encrypt fromAliceToBob, plaintext
 
