@@ -9,8 +9,9 @@ table
   border-collapse separate
   border-spacing 0
 
-  li
-    margin-bottom 0 !important
+  p, ul, blockquote, li
+    &:last-child
+      margin-bottom 0 !important
 
   blockquote
     // override article type

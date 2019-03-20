@@ -13,8 +13,8 @@ variables:
   - name: envelope
     type: "[`Envelope`][]"
     description: |
-      Type class for encryption products: `ciphertext` and `nonce`. Returned by [`encrypt`][].
+      Wrapper for the ciphertext and nonce.
   - name: plaintext
     type: "[`Message`][]"
     description: |
-      Type class for the plaintext resulting from decryption.
+      Wrapper for the plaintext resulting from decrypting the envelope.

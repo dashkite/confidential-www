@@ -32,3 +32,8 @@ inline-list(preset)
         &::after
           margin 0 1rem
           content "\25b8"
+
+    else if preset is whitespace
+
+      &:not(:last-child)
+        padding-right 1rem

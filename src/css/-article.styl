@@ -12,15 +12,16 @@ article
   color black + 15%
 
   a, a:visited
+    color @color + 25%
     text-decoration none
     display inline-block
     padding-left 0.25rem
     padding-right 0.25rem
     padding-bottom 1px
-
     border-bottom 1px dashed @color
 
     &:hover
+      color @color - 25%
       border-bottom 1px dashed (@color + 50%)
 
   h1, h2, h3, h4, h5, p, blockquote
