@@ -1,13 +1,15 @@
-`encrypt` is a [generic function][], accepting an encryption key and plaintext to return a ciphertext.  `encrypt` and its counterpart [`decrypt`][] form a pair of opposing operations.
+`encrypt` is a [generic function][], accepting an encryption key and plaintext to return a ciphertext wrapper that can be decrypted with [`decrypt`][].
 
-Panda-Confidential establishes a type system to determine your intention in a clear and error-free way.  That allows `encrypt` behavior to depend on the input key:
- - When given a [`SymmetricKey`][], `encrypt` uses [symmetric encryption][]. If you pass in a `nonce`, it must be `nacl.secretbox.nonceLength` bytes long.
- - When given a [`SharedKey`][], `encrypt` uses authenticated, [asymmetric encryption][]. If you pass in a `nonce`, it must be `nacl.box.nonceLength` bytes long.
+ - When given a [`SymmetricKey`][], `encrypt` uses [symmetric encryption][].
+
+ - When given a [`SharedKey`][], `encrypt` uses authenticated, [asymmetric encryption][].
 
 > **Warning**: Signing key pairs are incompatible with `encrypt` and causes `encrypt` to throw.
 
-Message is enclosed in the type class [`Message`][]. To create a new `Message` from a given format, use the static method `Message.from`.
+You may use an existing nonce (such as a counter), using [`Nonce.from`][]. The nonce must be `nacl.box.nonceLength` bytes long.
 
-`nonce` is an optional argument, an instance of the type class [`Nonce`][].  To create a new `Nonce` from a given format, use the static method `Nonce.from`.  If you omit this arugment, `encrypt` automatically generates one from the [`randomBytes`][] interface.
+> **Warning**: Re-using a nonce can compromise your private keys.
 
-`encrypt` returns a promise that yields [`Envelope`][], a type class to hold the ciphertext and nonce products of encryption. This container is suitable for [`decrypt`][].  You may format the value of an `Envelope` via the instance method `Envelope.to`.
+The plaintext must be first placed in a [`Message`][] container using the [`Message.from`][] class method.
+
+`encrypt` returns a [`Promise`][] that yields [`Envelope`][], which encapsulates the ciphertext and nonce. This container may be passed to [`decrypt`][] to recover the original plaintext. You may format the envelope using [`Envelope::to`][].

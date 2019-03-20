@@ -18,9 +18,11 @@ normalize.define isString, (key) ->
   key
   .toLowerCase()
   .replace /[`_\*]/g, ""
+  .replace /(\.|::)/g, "/"
+  # TODO distinguish between punctuation and formatting
+  #      ex: "encryption." vs "Hash.to"
   .replace /[\.\,\?]/g, ""
   .replace /\s+/g, "-"
-  .replace /(\.|::)/g, "/"
 
 normalize.define isObject, do (normalized = false) ->
   (dictionary) ->
