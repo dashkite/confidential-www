@@ -2,14 +2,14 @@ name: hash
 reference: functions/hash
 summary: Performs a [SHA-512][] hash of the input plaintext.
 signatures:
-  - arguments: plaintext
+  - arguments: data
     result: hash
 variables:
-  - name: plaintext
+  - name: data
     type: '[`Message`][]'
     description: |
-      Type class for the plaintext to be hashed.
+      Value wrapper for the data to be hashed.
   - name: hash
     type: '[`Hash`][]'
     description: |
-      Type class for the [SHA-512][] hash of _plaintext_.
+      Value wrapper for the hashed data.

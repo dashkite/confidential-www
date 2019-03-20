@@ -6,13 +6,13 @@ NaCl is a state-of-the-art cryptography library that:
 
 - Is prescriptive: the library's authors have made all the algorithmic decisions for you, which is helpful, since this is a thing you probably [shouldn't want to do](https://tonyarcieri.com/all-the-crypto-code-youve-ever-written-is-probably-broken).
 
-- Has a provenance is both [well-known](https://nsf.gov/awardsearch/showAward?AWD_ID=1018836) and reassuring: one of its authors, Daniel J. Bernstein, developed [Curve25519][], which has since [become a de facto standard cryptographic elliptic curve](https://ianix.com/pub/curve25519-deployment.html), used in TLS (SSL), HTTP/3 (QUICK), iOS and Android operating systems, the Signal messaging app, and, of course, NaCl, among many other uses.
+- Has a provenance that is both [well-known](https://nsf.gov/awardsearch/showAward?AWD_ID=1018836) and reassuring: one of its authors, Daniel J. Bernstein, developed [Curve25519][], which has since [become a de facto standard cryptographic elliptic curve](https://ianix.com/pub/curve25519-deployment.html), used in TLS (SSL), HTTP/3 (QUIC), iOS and Android operating systems, the Signal messaging app, and, of course, NaCl, among many other uses.
 
 In addition, Bernstein has a long history of [advocating for open access to strong encryption](https://en.wikipedia.org/wiki/Bernstein_v._United_States), which is reassuring in light of [questions about other elliptic curves](https://www.schneier.com/blog/archives/2013/09/the_nsa_is_brea.html#c1675929). While this is [hardly a guarantee](https://twitter.com/bascule/status/874626482806575104), taken as a whole, NaCl is as good a bet as you could make without spending years studying advanced cryptography.
 
 ## Why TweetNaCl?
 
-[TweetNaCl][] builds upon NaCl by implementing it concisely enough to be published via Twitter. This aids in auditability, or how easy (and therefore likely) the code is to verify. TweetNaCl accomplishes this without compromising on security, reliability, portability, or speed. [Per Bernstein, et al](https://tweetnacl.cr.yp.to/tweetnacl-20140917.pdf):
+[TweetNaCl][] builds upon NaCl by implementing it concisely enough to be published via Twitter. This aids in auditability, or how easy the code is to verify. TweetNaCl accomplishes this without compromising on security, reliability, portability, or speed. [Per Bernstein, et al](https://tweetnacl.cr.yp.to/tweetnacl-20140917.pdf):
 
 > TweetNaCl is not merely readable; we claim that it is auditable. TweetNaCl is short enough and simple enough to be audited against a mathematical description of the functionality… TweetNaCl makes it possible to comprehensively audit the complete cryptographic portion of the trusted code base of a computer system…
 >
@@ -34,7 +34,7 @@ TweetNaCl is auditable, portable, and prescriptive, whereas the WebCrypto API is
 
 Developers must have considerable cryptographic expertise to use the WebCrypto API effectively. For example, the [`encrypt` method](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt) requires the specification of an algorithm, which is exactly the kind of choice developers often get wrong, and that make implementing cryptographic features difficult.
 
-TweetNaCl.js _will_ use the WebCrypto [`getRandomValues`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) method if available as the basis for [`randomBytes`].
+TweetNaCl.js _will_ use the WebCrypto [`getRandomValues`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) method if available as the basis for [`randomBytes`][].
 
 ##### Comparison of WebCrypto and TweetNaCl
 

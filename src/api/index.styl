@@ -5,6 +5,17 @@
 @require "../css/-inline-list"
 @require "../-layout"
 
+tag(preset)
+  display inline-block
+  vertical-align top
+  borders round
+  margin-left 2rem
+  padding 1rem
+  color black + 25%
+  background-color white - 15%
+  type label small
+
+
 // TODO where does this belong?
 a[href='#broken']
   color red
@@ -36,14 +47,7 @@ article
     type heading smaller
 
   .tag
-    display inline-block
-    vertical-align top
-    borders round
-    margin-left 2rem
-    padding 1rem
-    color black + 25%
-    background-color white - 15%
-    type label small
+    tag _
 
   .extends
     margin-top -1rem
