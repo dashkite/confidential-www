@@ -1,6 +1,3 @@
-summary: |-
-  One of the two key types in a [`KeyPair`][], used to perform public-key cryptography.
-
-  > Note: This key serves to identify the holder and may be shared.
-
+summary: |
+  The public key in a [`KeyPair`][], used to perform public-key cryptography.
 $extends: Key

@@ -45,6 +45,9 @@ API: /api
 # point to the first type in the list
 types: /api/types/Declaration
 
+# hack to allow key to resolve correctly
+key: /api/types/Key
+
 guides: /guides
 Quick Start: /guides/quick-start
 Symmetric Encryption: /guides/symmetric-encryption

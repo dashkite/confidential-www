@@ -1,6 +1,5 @@
 category: property
 scope: instance
-fragment: value
 type: '[`Uint8Array`][]'
 description: |
-  The value of this hash.
+  The data encapsulated by an instance of `Message`.

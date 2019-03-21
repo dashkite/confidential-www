@@ -1,3 +1,3 @@
 $extends: Key
-summary: >
-  A special key type used to perform [asymmetric encryption][].
+summary: |
+  Encapsulates a key for use with [asymmetric encryption][].

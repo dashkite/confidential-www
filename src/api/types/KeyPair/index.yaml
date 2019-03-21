@@ -1,1 +1,2 @@
-summary: Base class for all key pairs in Panda-Confidential.
+summary: |
+  Base class for key pair types, ex: [`EncryptionKeyPair`][].

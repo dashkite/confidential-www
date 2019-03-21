@@ -1,1 +1,1 @@
-`Message` is a wrapper for plaintext data. It's use is not restricted to encryption in transit, or even encryption—in Confidential, a `Message` instance can be signed, encrypted, or be the result of a decryption operation.
+`Message` encapsulates data for use with Confidential functions, ex: [`sign`][] or [`encrypt`][].

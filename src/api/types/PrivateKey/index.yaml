@@ -1,5 +1,3 @@
-summary: |-
-  One of the two key types in a [`KeyPair`][], used to perform public-key cryptography.
-
-  > **Warning:** This key must remain secret for the public-key cryptography to be effective.
+summary: |
+  The private key in a [`KeyPair`][], used to perform public-key cryptography.
 $extends: Key

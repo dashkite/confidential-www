@@ -1,5 +1,3 @@
 $extends: KeyPair
-summary: >
-  Key pair suitable for [cryptographic signatures][].
-
-  > **Warning:** `SignatureKeyPair` is not suitable for encryption.
+summary: |
+  Encapsulates a key pair for use with [cryptographic signatures][].

@@ -1,1 +1,1 @@
-summary: The return value for [`hash`][].
+summary: Encapsulates the [SHA-512][] hash of a document.
