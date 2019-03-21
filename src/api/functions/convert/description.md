@@ -1,6 +1,6 @@
 Behind the scenes, Confidential generics, like [`encrypt`][] operate on byte arrays. The purpose of `convert` is to make it easier to convert between byte arrays and other formats, like UTF-8 strings.
 
-However, you will not typically need to use `convert` directly because Confidential also provides type classes, like [`Envelope`][], with `from` and `to` convenience methods that call `convert` for you.
+However, you will not typically need to use `convert` directly because Confidential also provides `from` and `to` convenience methods for most classes, which call `convert` for you behind the scenes.
 
 A conversion is specified by the fields of `hint`, `from` and `to`. These identify the current and target format of `input`, respectively.
 

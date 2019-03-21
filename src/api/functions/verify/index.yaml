@@ -7,7 +7,7 @@ variables:
   - name: declaration
     type: "[`Declaration`][]"
     description: |
-      Type class for digital signature products: `data`, `signatures`, and `signatories`. Returned by [`sign`][].
+      Wrapper for a digital signature.
   - name: is-valid
     type: "[`Boolean`][]"
     description: |

@@ -27,6 +27,7 @@ pke: https://en.wikipedia.org/wiki/Public-key_cryptography
 authenticated encryption: https://en.wikipedia.org/wiki/Authenticated_encryption
 digitial signature: https://en.wikipedia.org/wiki/Digital_signature
 Curve25519: https://en.wikipedia.org/wiki/Curve25519
+ed25519: https://ed25519.cr.yp.to/
 
 tweetnacl-secretbox-keylength: https://github.com/dchest/tweetnacl-js#constants-1
 tweetnacl-box-sharedkeylength: https://github.com/dchest/tweetnacl-js#constants-1

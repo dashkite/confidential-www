@@ -30,5 +30,5 @@ variables:
   - name: declaration
     type: '[`Declaration`][]'
     description: >
-      Type class to organize the products of digital signature.  Contains fields
-      `data`, `signatures`, and `signatories`. Suitable for use with `verify`.
+      Encapsulates the elements of a digital signature.  Contains fields
+      `data`, `signatures`, and `signatories`. Use with `verify`.

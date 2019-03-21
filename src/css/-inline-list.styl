@@ -22,9 +22,9 @@ inline-list(preset)
     if preset is bar
 
       &:not(:last-child)
-        padding-right 1rem
-        border-right 1px solid silver
-        margin-right 1rem
+        &::after
+          margin 0 1rem
+          content "\2237"
 
     else if preset is breadcrumb
 

@@ -8,7 +8,7 @@ do ->
 
   assert.equal (isBytes Buffer.from "Hello, World!"), true
 
-  # Type classes can return byte arrays with the hint `bytes`
+  # to method will return a byte array with the hint `bytes`
   plaintext = Message.from "utf8", "Hello, World!"
   assert.equal (isBytes plaintext.to "bytes"), true
 ```
