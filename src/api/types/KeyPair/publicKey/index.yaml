@@ -1,0 +1,6 @@
+category: property
+scope: instance
+fragment: publicKey
+type: '[`PublicKey`][]'
+description: |
+  The public key of this key pair.

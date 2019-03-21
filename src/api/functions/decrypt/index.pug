@@ -1,0 +1,12 @@
+extends ../-layout
+
+block main
+  
+  +function()
+
+    include:markdown description.md
+      
+    h2 Examples
+
+    include:markdown examples/symmetric.md
+    include:markdown examples/asymmetric.md

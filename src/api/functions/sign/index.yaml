@@ -1,0 +1,34 @@
+name: sign
+summary: Cryptographically signs an input with the provided key.
+signatures:
+  - arguments: public-key, private-key, data
+    result: declaration
+  - arguments: private-key, public-key, data
+    result: declaration
+  - arguments: key-pair, data
+    result: declaration
+variables:
+  - name: key-pair
+    type: '[`SignatureKeyPair`][]'
+    description: >
+      A key pair containing the public and private keys with which to sign
+      `data`.
+  - name: public-key
+    type: '[`PublicKey`][]'
+    description: |
+      The public key of the person wishing to sign `data`.
+  - name: private-key
+    type: '[`PrivateKey`][]'
+    description: |
+      The private key of the person wishing to sign `data`.
+  - name: data
+    type: |
+      - [`Message`][]
+      - [`Declaration`][]
+    description: |
+      Data to be signed.
+  - name: declaration
+    type: '[`Declaration`][]'
+    description: >
+      Type class to organize the products of digital signature.  Contains fields
+      `data`, `signatures`, and `signatories`. Suitable for use with `verify`.

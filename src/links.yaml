@@ -1,0 +1,53 @@
+# External Links
+nacl: https://nacl.cr.yp.to/
+TweetNaCl: https://tweetnacl.cr.yp.to/
+TweetNaCl.js: https://tweetnacl.js.org/
+
+# Reference Links
+function: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
+array: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+object: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+number: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
+integer: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
+boolean: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+string: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+date: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+uint8array: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array
+buffer: https://nodejs.org/api/buffer.html
+json: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON
+promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+generic function: https://en.wikipedia.org/wiki/Generic_programming
+utf-8 encoding: https://tools.ietf.org/html/rfc3629
+base64 encoding: https://tools.ietf.org/html/rfc4648
+url-safe base64 encoding: https://tools.ietf.org/html/rfc4648#section-5
+sha-512: https://tools.ietf.org/html/rfc4634
+symmetric encryption (wikipedia): https://en.wikipedia.org/wiki/Symmetric-key_algorithm
+pke: https://en.wikipedia.org/wiki/Public-key_cryptography
+authenticated encryption: https://en.wikipedia.org/wiki/Authenticated_encryption
+digitial signature: https://en.wikipedia.org/wiki/Digital_signature
+Curve25519: https://en.wikipedia.org/wiki/Curve25519
+
+tweetnacl-secretbox-keylength: https://github.com/dchest/tweetnacl-js#constants-1
+tweetnacl-box-sharedkeylength: https://github.com/dchest/tweetnacl-js#constants-1
+tweetnacl-box-publickeylength: https://github.com/dchest/tweetnacl-js#constants-1
+tweetnacl-box-secretkeylength: https://github.com/dchest/tweetnacl-js#constants-1
+tweetnacl-randombytes: https://github.com/dchest/tweetnacl-js#random-bytes-generation
+tweetnacl-secretbox: https://github.com/dchest/tweetnacl-js#secret-key-authenticated-encryption-secretbox
+tweetnacl-box: https://github.com/dchest/tweetnacl-js#public-key-authenticated-encryption-box
+tweetnacl-sign: https://github.com/dchest/tweetnacl-js#signatures
+
+# Internal Links
+
+Confidential: /
+API: /api
+# point to the first type in the list
+types: /api/types/Declaration
+
+guides: /guides
+Quick Start: /guides/quick-start
+Symmetric Encryption: /guides/symmetric-encryption
+Asymmetric Encryption: /guides/asymmetric-encryption
+cryptographic signatures: /guides/signatures
+motivation: /guides/motivation
+Why NaCl: /guides/why-nacl

@@ -1,0 +1,15 @@
+name: hash
+reference: functions/hash
+summary: Performs a [SHA-512][] hash of the input plaintext.
+signatures:
+  - arguments: data
+    result: hash
+variables:
+  - name: data
+    type: '[`Message`][]'
+    description: |
+      Value wrapper for the data to be hashed.
+  - name: hash
+    type: '[`Hash`][]'
+    description: |
+      Value wrapper for the hashed data.

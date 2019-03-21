@@ -1,0 +1,15 @@
+category: method
+scope: class
+summary: |
+  Predicate to see if a value has an intance of [`{{name}}`][] in its prototype chain.
+signatures:
+  - arguments: value
+    result: is-{{name|dashed}}
+variables:
+  - name: value
+    type: any
+    description: A value to be tested.
+  - name: is-{{name|dashed}}
+    type: '[`Boolean`][]'
+    description: |
+      `true` if `value` has an intance of [`{{name}}`][] in its prototype chain, `false` otherwise.

@@ -1,0 +1,15 @@
+category: method
+scope: class
+summary: Returns `true` if the input `value` is an instance of [`{{name}}`][].
+signatures:
+  - arguments: value
+    result: is-{{name|dashed}}
+variables:
+  - name: value
+    type: any
+    description: |
+      A value to be tested.
+  - name: is-{{name|dashed}}
+    type: '[`Boolean`][]'
+    description: |
+      `true` if `value` is an instance of [`{{name}}`][], `false` otherwise.

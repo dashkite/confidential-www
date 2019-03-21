@@ -1,0 +1,17 @@
+extends ../-layout
+
+block header
+  .breadcrumbs
+    +breadcrumbs(["Confidential", "Guides"], "Symmetric Encryption")
+    
+  .toc
+    :markdown
+      - [Obtaining A Key](#obtaining-a-key)
+      - [Encrypting](#encrypting)
+      - [Serializing](#serializing)
+      - [Deserializing](#deserializing)
+      - [Decrypting](#decrypting)
+
+block main
+  article
+    include:markdown article.md

@@ -1,0 +1,15 @@
+name: randomBytes
+summary: Generates an array of `length` pseudo-random bytes of cryptographic quality.
+signatures:
+  - arguments: length
+    result: bytes
+variables:
+  - name: length
+    type: '[`Integer`][]'
+    description: |
+      Length of the desired output, in bytes.
+  - name: bytes
+    isPromised: true
+    type: '[`Promise`][] for a [`Uint8Array`][]'
+    description: |
+      Promise that resolves to an array of `length` pseudo-random bytes.

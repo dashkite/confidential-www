@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700,700i")
+@import url('https://fonts.googleapis.com/css?family=Patua+One');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC:400,400i,700,700i');
+
+@require panda-style
+reset()
+
+html
+  font-size (6 + 2/3)px
+
+$panda-blue = #0e83cd
+$panda-light-blue = #5ec1ff
+
+type-title-medium()
+  font-family "Patua One", sans-serif
+  font-size 7.2rem
+  line-height 8rem
+
+type-heading()
+  font-family "Titillium Web", sans-serif
+
+type-heading-large()
+  type-heading()
+  font-size 5.4rem
+  line-height 6rem
+
+type-heading-medium()
+  type-heading()
+  font-size 4.5rem
+  line-height 5rem
+
+type-heading-small()
+  type-heading()
+  font-size 3.6rem
+  line-height 4rem
+
+type-heading-smaller()
+  type-heading()
+  font-size 3rem
+  line-height 4rem
+
+type-heading-smallest()
+  type-heading()
+  font-size 2.4rem
+  line-height 3rem
+
+type-copy()
+  font-family "Noto Serif TC", serif
+
+type-copy-medium()
+  type-copy()
+  font-size 5rem * (3/5)
+  line-height 5rem
+
+type-lift-medium()
+  font-family "Titillium Web", sans-serif
+  font-size 5rem * (3/5)
+  line-height 5rem
+
+type-lift-small()
+  font-family "Titillium Web", sans-serif
+  font-size 4rem * (2/3)
+  line-height 4rem
+
+type-label()
+  font-family "Titillium Web", sans-serif
+
+type-label-small()
+  type-label()
+  font-size 2rem
+  line-height 2rem
+
+type-label-medium()
+  type-label()
+  font-size 2.7rem
+  line-height 3rem
+
+type-code()
+  font-family Consolas, Monaco, 'Andale Mono', \
+    'Ubuntu Mono', monospace !important
+
+type-code-medium()
+  type-code()
+  font-size 2.5rem !important
+  line-height 3rem !important
+
+type-code-small()
+  type-code()
+  font-size 2rem !important
+  line-height 2rem !important
+
+type(-name, -size = "medium")
+  type-{-name}-{-size}()

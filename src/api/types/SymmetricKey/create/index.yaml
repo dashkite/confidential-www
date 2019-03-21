@@ -1,0 +1,12 @@
+category: method
+scope: class
+summary: |
+  Generates a new [`SymmetricKey`][] using the [`randomBytes`][] interface.
+signatures:
+  - arguments:
+    result: symmetric-key
+variables:
+  - name: symmetric-key
+    type: '[`Promise`][] for a [`SymmetricKey`][]'
+    description: |
+      Promise that resolves to an instance of [`SymmetricKey`][].

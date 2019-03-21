@@ -1,0 +1,7 @@
+variables:
+  - name: nacl
+    type: "[`Object`][]"
+    description: |
+      The [TweetNaCl.js][] module imported by Confidential. Useful for bypassing the Confidential API and accessing TweetNaCl.js directly.
+
+      > **Important** This interface is provided as a convenience, but changing this property will not affect the behavior of an API instance.

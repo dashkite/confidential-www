@@ -1,59 +1,25 @@
-@require "shared/-css"
+@require "css/-theme"
+@require "css/-bottom-nav"
+@require "css/-article"
+@require -layout
 
-body
+header
+  colors white panda-blue
+  responsive-padding 3rem
 
-  & > header
-    padding 8rem
-    background -color-main
-    border none
-    color white
-    h1
-      font-family "Patua One", cursive
+  h1
+    type title
+    padding 3rem 0
 
-      header
-        //- TODO: replace with Blog header once
-        //- we have the top blog nav set up.
-        display none
 
-  & >  main
-    article
-      max-width 65ch
-      padding 4rem
-      font-family "Lora", "Georgia", serif
-      rhythm 4rem, .6
+.promo
+  responsive-padding 3rem
+  colors white panda-light-blue
+  margin-bottom 6rem
 
-      a[href="#broken"]
-        background-color red
-        color black
+  p
+    type heading medium
+    padding 6rem 0
 
-      h1, & > section > h1
-        font-family "Titillium Web"
-        margin-top 8rem
-        padding-bottom 4rem
-        border-bottom 1px solid silver
-        rhythm 6rem, .9
-
-      h1, h2, h3, h4, h5, h6
-        font-family "Titillium Web"
-        a::before
-          content: "🔗 "
-        a
-          color -color-dark
-          text-decoration none
-
-      blockquote
-        h1, h2, h3, h4, h5, h6
-          font-family "Titillium Web"
-          a::before
-            content: ""
-
-      section
-
-        pre
-          //- prism trunmps line-height
-          font-size 2rem
-          margin-bottom 4rem !important
-
-        table, th, td
-          border solid 1px black
-          padding 1rem
+    & > *
+      display inline

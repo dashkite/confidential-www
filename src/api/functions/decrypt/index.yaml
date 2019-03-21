@@ -1,0 +1,20 @@
+name: decrypt
+summary: Decrypts a ciphertext given a corresponding key.
+signatures:
+  - arguments: key, envelope
+    result: plaintext
+variables:
+  - name: key
+    type: |
+      - [`SymmetricKey`][]
+      - [`SharedKey`][]
+    description: |
+      Key to be used in the decryption operation.
+  - name: envelope
+    type: "[`Envelope`][]"
+    description: |
+      Wrapper for the ciphertext and nonce.
+  - name: plaintext
+    type: "[`Message`][]"
+    description: |
+      Wrapper for the plaintext resulting from decrypting the envelope.

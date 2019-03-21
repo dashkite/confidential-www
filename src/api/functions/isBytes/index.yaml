@@ -1,0 +1,14 @@
+name: isBytes
+summary: Determines if the argument is a byte array.
+signatures:
+  - arguments: value
+    result: is-bytes
+variables:
+  - name: value
+    type: Value
+    description: |
+      A value to be tested.
+  - name: is-bytes
+    type: '[`Boolean`][]'
+    description: |
+      `true` if `value` is an instance of [`Uint8Array`][], `false` otherwise.

@@ -1,0 +1,18 @@
+extends ../-layout
+include -mixins.pug
+
+block append head
+  title 
+    | Panda Confidential
+    |
+    if parent && parent.name
+      | &#9656; #{parent.name}
+      |
+    if name
+      | &#9656; #{name}
+  link(rel = "stylesheet" href = "/api/index.css")
+  +highlighting()
+
+      
+block footer
+  include ../-bottom-nav

@@ -1,0 +1,13 @@
+mixin function()
+
+  article
+    
+    h1= name
+
+    != $.markdown(summary)
+    
+    +signatures()
+    
+    +variables()
+  
+    block

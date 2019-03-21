@@ -1,0 +1,6 @@
+scope: instance
+fragment: nonce
+category: property
+type: '[`Uint8Array`][]'
+description: |
+  nonce used to encrypt the plaintext

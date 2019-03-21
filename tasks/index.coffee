@@ -1,123 +1,148 @@
 import "coffeescript/register"
-import fs from "fs"
-import Path from "path"
 
-import pug from "jstransformer-pug"
-import stylus from "jstransformer-stylus"
-import webpack from "webpack"
+import FS from "fs"
+import Path from "path"
+import Crypto from "crypto"
+
 import {define, run, glob, read, write,
-  extension, copy, transform, watch, serve} from "panda-9000"
-import {read as _read, rmr, mkdirp} from "panda-quill"
-import {go, map, wait, tee, reject} from "panda-river"
-import {match, merge} from "panda-parchment"
+  extension, copy, watch} from "panda-9000"
+
+import {pipe} from "panda-garden"
+import {exist, rmr} from "panda-quill"
+import {go, map, wait, tee} from "panda-river"
+import {merge, include, isString, isObject, dashed} from "panda-parchment"
+import {yaml} from "panda-serialize"
+
 import h9 from "haiku9"
 
-import Biscotti from "./biscotti"
-import markdown from "./markdown"
-import {source, intermediate, target, imagePattern} from "./constants"
+import {method, has} from "./generics"
+import {transform, markdown, template, serve} from "./helpers"
+import PugHelpers from "./pug-helpers"
 
-define "clean", ->
-  rmr target
-  rmr intermediate
+import Site from "./site"
 
-define "biscotti", Biscotti source, intermediate, target
+import pug from "jstransformer-pug"
+import stylus from "stylus"
+import styles from "panda-style"
+
+process.on 'unhandledRejection', (reason, p) ->
+  console.error "Unhandled Rejection:", reason
+
+source = "src"
+target = "build"
+
+define "clean", -> rmr target
 
 define "images", ->
   go [
-    glob "**/*.{#{imagePattern}}", source
+    glob "**/*.{jpg,png,svg,ico,gif}", source
     map copy target
   ]
 
-define "html", ->
+define "data", ->
+  Site.clean()
   go [
-    glob [ "**/*.pug", "!**/components" ], intermediate
-    wait map read
-    map transform pug, filters: {markdown}, basedir: source
-    map extension ".html"
-    map write target
+    glob [ "**/*.yaml", "!**/-*/**" ], source
+    wait tee read
+    tee ({path, source}) ->
+      # TODO we end up getting the parent twice
+      #      once here and once in set
+      #      not sure if there's a way to avoid that
+      [ancestors..., _] = Site.keys path
+      parent = Site.traverse ancestors
+      Site.set path, yaml template source.content, parent
+  ]
+
+hash = (string) ->
+  Crypto
+    .createHash "md5"
+    .update string
+    .digest "base64"
+
+define "md", ->
+  Site.data.content ?= {}
+  go [
+    glob [ "**/*.md", , "!**/-*/**" ], source
+    wait tee read
+    tee ({path, source}) ->
+      Site.data.content[hash source.content] =
+        markdown template source.content, Site.get path
+  ]
+
+define "html", ->
+  PugHelpers.interface = PugHelpers.typeInterface
+  globals = $: include {markdown, template}, Site, PugHelpers, {dashed}
+  filters = markdown: (string) -> Site.data.content[hash string] ? ""
+  go [
+    glob [ "**/*.pug", "!**/-*/**" ], source
+    wait tee read
+    tee (context) ->
+      context.data = merge globals, Site.get context.path
+    tee transform pug, {filters}, basedir: source
+    tee extension ".html"
+    tee write target
   ]
 
 define "css", ->
+
+  render = ({source, target}) ->
+    target.content = stylus.render source.content,
+      # compress: true
+      filename: source.path
+      paths: [ styles().path ]
+
   go [
-    glob [ "**/*.styl", "!**/components" ], intermediate
+    glob [ "**/*.styl", "!**/-*/**" ], source
     wait map read
-    map transform stylus, compress: true
+    tee render
     map extension ".css"
     map write target
   ]
 
+# TODO add back CS compilation
 define "js", ->
-  new Promise (yay, nay) ->
-    webpack
-      entry: Path.resolve intermediate, "index.coffee"
-      mode: "development"
-      devtool: "inline-source-map"
-      output:
-        path: target
-        filename: "index.js"
-        devtoolModuleFilenameTemplate: (info, args...) ->
-          {namespace, resourcePath} = info
-          "webpack://#{namespace}/#{resourcePath}"
-      module:
-        rules: [
-          test: /\.coffee$/
-          use: [ 'coffee-loader' ]
-        ,
-          test: /\.js$/
-          use: [ "source-map-loader" ]
-          enforce: "pre"
-        ,
-          test: /\.styl$/
-          exclude: /styles/
-          use: [ "raw-loader", "stylus-loader" ]
-        ,
-          test: /\.pug$/
-          use: [
-            loader: "pug-loader"
-            options:
-              filters: {markdown}
-              globals: {markdown}
-          ]
-        ]
-      resolve:
-        modules: [
-          Path.resolve "node_modules"
-        ]
-        extensions: [ ".js", ".json", ".coffee" ]
-      plugins: [
 
-      ]
-      (error, result) ->
-        console.error result.toString colors: true
-        if error? || result.hasErrors()
-          nay error
-        else
-          fs.writeFileSync "webpack-stats.json",
-            JSON.stringify result.toJson()
-          yay()
+define "h9:publish:staging", -> h9.publish "staging"
 
-define "h9:publish:staging", ->
-  h9.publish "staging"
+define "h9:publish:production", -> h9.publish "production"
 
-define "h9:publish:production", ->
-  h9.publish "production"
+define "build", [ "clean", "data", "md", "html&", "css&", "js&", "images&" ]
 
-define "build", [ "clean", "biscotti", "html&", "css&", "js&", "images&" ]
-
-define "watch:source",
-  watch source, -> run "build"
-define "watch:templates",
-  watch (Path.resolve process.cwd(), "templates"), -> run "build"
-define "watch:content",
-  watch (Path.resolve process.cwd(), "content"), -> run "build"
-
-define "watch", ["watch:source&", "watch:templates&", "watch:content&"]
+define "watch", watch source, -> run "build"
 
 define "server",
   serve target,
     files: extensions: [ "html" ]
     logger: "tiny"
-    rewrite: true
-    port: 8000
+    port: 8001
 
 define "default", [ "build", "watch&", "server&" ]
+
+define "link", ->
+  link = method "link"
+
+  link.define isObject, (dictionary) ->
+    for directory, description of dictionary
+      link directory, description
+
+  link.define isString, isObject, (directory, dictionary) ->
+    cwd = process.cwd()
+    process.chdir directory
+    for directory, description of dictionary
+      link directory, description
+    process.chdir cwd
+
+  link.define isString, isString, (file, target) ->
+    # point file to target
+    console.log "In [#{process.cwd()}], link [#{file}] to [#{target}]."
+    if process.env.force?
+      try
+        FS.unlinkSync file
+    try
+      FS.symlinkSync target, file
+
+  go [
+    glob "symlinks.yaml", "."
+    wait tee read
+    tee ({source}) -> link yaml source.content
+  ]

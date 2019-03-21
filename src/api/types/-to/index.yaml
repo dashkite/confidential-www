@@ -1,0 +1,17 @@
+category: method
+scope: instance
+summary: Converts this instance's value into the form specified by `hint`.
+signatures:
+  - arguments: hint
+    result: encoded-{{name|dashed}}
+variables:
+  - name: hint
+    type: '[`String`][]'
+    description: |
+      Conversion hint. See [`convert`][].
+  - name: encoded-{{name|dashed}}
+    type: |
+      - [`String`][]
+      - [`Uint8Array`][]
+    description: |
+      Data representation of a [`{{name}}`][] instance.

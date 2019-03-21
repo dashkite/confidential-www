@@ -1,0 +1,24 @@
+name: encrypt
+summary: Encrypts plaintext with a key and an optional nonce.
+signatures:
+  - arguments: key, [ nonce,] plaintext
+    result: envelope
+variables:
+  - name: key
+    type: |
+      - [`SymmetricKey`][]
+      - [`SharedKey`][]
+    description: |
+      Key to be used in the encryption operation.
+  - name: nonce
+    type: "[`Nonce`][]"
+    description: |
+      Helps to prevent replay attacks. If you don't provide a nonce, Confidential generates one for you.
+  - name: plaintext
+    type: "[`Message`][]"
+    description: |
+      Value wrapper for the plaintext to be encrypted.
+  - name: envelope
+    type: "[`Promise`][] for an [`Envelope`][]"
+    description: |
+      Wrapper for the ciphertext and nonce products of encryption. Suitable for use with decrypt.

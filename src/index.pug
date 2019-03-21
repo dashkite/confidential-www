@@ -1,14 +1,19 @@
-extends /shared/-html/default
+extends -layout
 
 block append head
-  +google-font("Patua One")
   link(rel="stylesheet" href="./index.css")
+  +highlighting()
 
 block header
-  a(href = "/"): h1 Panda Confidential
+  h1 Panda Confidential
   
 block main
-  article
-    section
-      include:markdown ../content/other-pages/index.md
         
+  .promo
+    p Cryptography is hard. Confidential makes it <del>easy</del> easier.
+
+  article
+    include:markdown index.md
+
+block footer
+  include -bottom-nav

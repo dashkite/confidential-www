@@ -1,0 +1,37 @@
+include -mixins
+
+doctype html
+html
+  head
+    
+    block head
+    
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+      meta(property='og:url', content= "https://confidential.pandastrike.com")
+      meta(property='og:type', content='article')
+      meta(property='og:title', content= "Panda Confidential")
+      meta(property='og:description', 
+        content= "Cryptography is hard. Confidential makes it easier.")
+      meta(property='og:image',
+        content= "https://confidential.pandastrike.com/shared/images/logo.png")
+      meta(name='twitter:card', content='summary_large_image')
+      meta(name='twitter:site', content='@deliciousbamboo')
+      meta(name='twitter:title', content= "Panda Confidential")
+      meta(name='twitter:text:description', 
+        content= "Cryptography is hard. Confidential makes it easier.")
+
+      link(rel='shortcut icon', href='/images/favicon.ico')
+        
+  body
+
+    header
+      block header
+      
+    main
+      block main
+    
+    footer
+      block footer
+        

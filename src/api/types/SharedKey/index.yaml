@@ -1,0 +1,3 @@
+$extends: Key
+summary: >
+  A special key type used to perform [asymmetric encryption][].

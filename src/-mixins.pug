@@ -1,0 +1,72 @@
+mixin css(source, repo, version, path)
+  if source == "jsdelivr"
+    link(
+      rel = "stylesheet"
+      href = `//cdn.jsdelivr.net/npm/${repo}@${version}/${path}` 
+    )
+
+mixin js(source, repo, version, path)
+  if source == "jsdelivr"
+    script(
+      type = "application/javascript"
+      src = `//cdn.jsdelivr.net/npm/${repo}@${version}/${path}`
+    )
+
+mixin embed(title, url, description)
+  meta(property ='og:url' content= url)
+  meta(property ='og:type' content='article')
+  meta(property ='og:title' content= title)
+  meta(
+    property = 'og:description'
+    content = description)
+  meta(property = 'og:image' content= "https://confidential.pandastrike.com/images/logo.png")
+  meta(name = 'twitter:card' content = 'summary_large_image')
+  meta(name = 'twitter:site' content = url)
+  meta(name = 'twitter:title' content = title)
+  meta(
+    name = 'twitter:text:description', 
+    content = description)
+
+mixin highlighting(theme = "prism")
+  +js("jsdelivr", "prismjs", "1.15.0", "prism.min.js")
+  +js("jsdelivr", "prismjs", "1.15.0", "components/prism-core.min.js")
+  +js("jsdelivr", "prismjs", "1.15.0", "components/prism-clike.min.js")
+  +js("jsdelivr", "prismjs", "1.15.0", "components/prism-javascript.min.js")
+  +js("jsdelivr", "prismjs", "1.15.0", "components/prism-coffeescript.min.js")
+  +css("jsdelivr", "prismjs", "1.15.0", `themes/${theme}.min.css`)
+
+mixin icon(name, style = "regular")
+  svg: use(xlink:href=`/images/fa/sprites/${style}.svg#${name}`)
+
+mixin autolink(x)
+  a(href=$.autolink(x))
+    block
+    
+mixin breadcrumbs(crumbs, here)
+  if crumbs.length > 0
+    ul
+      each crumb in crumbs
+        li: +autolink(crumb)= crumb
+      if here
+        li: span= here
+  else
+    if here
+      ul: li: span= here
+    else
+      block
+
+mixin toc(entries, current)
+  if entries.length > 0
+    ul
+      each entry in entries
+        if current && entry.key == current
+          li: span= entry.name
+        else
+          li
+            +autolink(entry)
+              if entry.constructor == String
+                = entry
+              else
+                = entry.name
+  else
+    block

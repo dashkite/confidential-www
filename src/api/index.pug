@@ -1,0 +1,27 @@
+extends -layout
+
+block header
+  .breadcrumbs: +breadcrumbs(["Confidential"], "API")
+
+block main
+
+  article
+    
+    h1 API Reference
+
+    :markdown
+      The Confidential module exports a single function, [`confidential`][]. All other properties, functions, and types are accessible via the API instance it returns.
+    
+    section.toc
+
+      h2 Functions
+
+      +toc($.functions())
+      
+      h2 Types
+
+      +toc($.types())
+
+      h2 Properties
+      
+      +variables($.properties())

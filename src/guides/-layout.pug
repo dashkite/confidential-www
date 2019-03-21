@@ -1,0 +1,9 @@
+extends ../-layout
+
+block append head
+  title Panda Confidential &#9656; #{title}
+  link(rel = "stylesheet" href = "/guides/index.css")
+  +highlighting()
+
+block footer
+  include ../-bottom-nav

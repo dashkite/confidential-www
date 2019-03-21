@@ -1,0 +1,10 @@
+extends ../-layout
+
+include -mixins.pug
+
+block header
+  .breadcrumbs
+    +breadcrumbs(["Confidential", "API"], "Types")
+    
+  .toc
+    +toc($.types(), key)

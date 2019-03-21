@@ -1,0 +1,63 @@
+responsive-padding(-padding)
+  display grid
+  grid-template-columns minmax(3rem, 1fr) minmax(auto,96rem) minmax(3rem, 1fr)
+
+  & > *
+    grid-column 2
+
+
+article
+  responsive-padding 3rem
+  typography standard
+  color black + 15%
+
+  a, a:visited
+    color @color + 25%
+    text-decoration none
+    display inline-block
+    padding-left 0.25rem
+    padding-right 0.25rem
+    padding-bottom 0.25rem
+    border-bottom 1px dashed @color
+
+    &:hover
+      color @color - 25%
+      border-bottom 1px dashed (@color + 50%)
+
+  h1, h2, h3, h4, h5, p, blockquote
+    margin-bottom 4rem
+
+  h1, h2, h3, h4, h5, p, li
+    & *
+      display inline
+
+  ul, ol, table
+    margin-bottom 4rem
+
+    & > li:not(:last-child)
+      margin-bottom 2rem
+
+  blockquote
+    type lift
+    :last-child
+      margin-bottom 0
+
+  p, li, blockquote
+    code
+      background-color white - 7.5%
+      padding 0.5rem
+      border-radius 0.5rem
+
+
+  pre
+    //- prism overrides line-height
+    margin-bottom @line-height !important
+    // type code
+
+
+  h1, h2, h3, h4, h5, h6
+    a
+      &::before
+        content "¶ "
+      &[href="#broken"]
+        color red

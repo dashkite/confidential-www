@@ -1,0 +1,7 @@
+category: property
+fragment: signatories
+type: '[`Array`][] of [`Uint8Array`][]'
+description: >
+  List of public keys. Each matches the corresponding signature in
+  `signatures`.  These keys identify the signatories who used their private key
+  to sign `data` and can be used to validate the corresponding signature.

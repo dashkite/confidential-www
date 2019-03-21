@@ -1,0 +1,14 @@
+name: verify
+summary: Verifies one or more cryptographic signatures on a document.
+signatures:
+  - arguments: declaration
+    result: is-valid
+variables:
+  - name: declaration
+    type: "[`Declaration`][]"
+    description: |
+      Type class for digital signature products: `data`, `signatures`, and `signatories`. Returned by [`sign`][].
+  - name: is-valid
+    type: "[`Boolean`][]"
+    description: |
+      `true` if the signatures are valid, `false` otherwise.

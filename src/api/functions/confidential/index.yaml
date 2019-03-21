@@ -1,0 +1,19 @@
+name: confidential
+summary: Instantiates the Panda-Confidential API.
+signatures:
+  - arguments:
+      - "[ randomBytes ]"
+    result: api
+variables:
+  - name: randomBytes
+    type: '[`Function`][]'
+    description: >
+      Optional. Provides a custom implementation for [`randomBytes`][].
+
+
+      > **Warning** Effective encryption requires a robust implementation of
+      pseudo-randomness. Replace `randomBytes` with caution.
+  - name: api
+    type: '[`Object`][]'
+    description: |
+      An instance of the Confidential API.

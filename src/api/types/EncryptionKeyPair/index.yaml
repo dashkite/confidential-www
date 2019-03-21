@@ -1,0 +1,5 @@
+$extends: KeyPair
+summary: |-
+  Key pair suitable for [asymmetric encryption][].
+
+  > **Warning:** `EncryptionKeyPair` is not suitable for signing.

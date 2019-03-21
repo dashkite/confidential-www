@@ -1,0 +1,64 @@
+src:
+  api:
+    types:
+      '-from':
+        index.pug: ../-method.pug
+      '-to':
+        index.pug: ../-method.pug
+      '-isType':
+        index.pug: ../-method.pug
+      '-isKind':
+        index.pug: ../-method.pug
+      '-create':
+        index.pug: ../-method.pug
+      Declaration:
+        from: ../-from
+        to: ../-to
+        isType: ../-isType
+      EncryptionKeyPair:
+        create: ../-create
+        from: ../-from
+        to: ../-to
+        isType: ../-isType
+      Envelope:
+        from: ../-from
+        isType: ../-isType
+        to: ../-to
+      Hash:
+        from: ../-from
+        to: ../-to
+        isType: ../-isType
+      Key:
+        to: ../-to
+        isKind: ../-isKind
+      KeyPair:
+        to: ../-to
+        isKind: ../-isKind
+      Nonce:
+        from: ../-from
+        to: ../-to
+        isType: ../-isType
+      Message:
+        from: ../-from
+        to: ../-to
+        isType: ../-isType
+      PrivateKey:
+        from: ../-from
+        isType: ../-isType
+      PublicKey:
+        from: ../-from
+        isType: ../-isType
+      SharedKey:
+        from: ../-from
+        isType: ../-isType
+        create:
+          index.pug: ../../-method.pug
+      SignatureKeyPair:
+        create: ../-create
+        from: ../-from
+        isType: ../-isType
+      SymmetricKey:
+        from: ../-from
+        isType: ../-isType
+        create:
+          index.pug: ../../-method.pug

@@ -1,6 +1,0 @@
-::
-$fragments.example = ({title, note, content}) ->
-  $fragments.linkedHeader 3, "Example: #{title ? ""}"
-  $fragments.prose content
-  $fragments.blockquote note if note?
-::
