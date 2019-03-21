@@ -49,11 +49,12 @@ mixin type
 
   article
   
-    h1= name
+    h1
+      = name
 
-    if $extends
-      .extends
-        +autolink($extends): code= $extends
+      if $extends
+        span.extends
+          +autolink($extends): code= $extends
       
     if summary
       != $.markdown(summary)

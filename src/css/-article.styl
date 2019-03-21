@@ -47,11 +47,8 @@ article
     :last-child
       margin-bottom 0
 
-  p, li, blockquote
+  :not(pre)
     code
-      // background-color white - 7.5%
-      // padding 0.5rem
-      // border-radius 0.5rem
       &::before
         content "\22d6"
       &::after
@@ -66,7 +63,5 @@ article
 
   h1, h2, h3, h4, h5, h6
     a
-      &::before
-        content "¶ "
       &[href="#broken"]
         color red

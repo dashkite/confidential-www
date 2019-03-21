@@ -14,6 +14,7 @@ tag(preset)
   color black + 25%
   background-color white - 15%
   type label small
+  font-weight normal
 
 
 // TODO where does this belong?
@@ -46,21 +47,16 @@ article
   h3
     type heading smaller
 
-  .tag
+  .tag, .extends
     tag _
 
   .extends
-    margin-top -1rem
-    margin-bottom 2rem
-    type label
-    font-style italic
-
     &::before
       content "Extends"
       margin-right 1rem
-
-    a, code
-      display inline-block
+    //
+    // a, code
+    //   display inline-block
 
   .toc > ul
     type heading smaller
