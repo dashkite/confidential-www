@@ -10,19 +10,24 @@ article
   responsive-padding 3rem
   typography standard
   color black + 15%
+  background-color white
 
   a, a:visited
+    transition background-color 500ms ease,
+               color 250ms ease
     color @color + 25%
     text-decoration none
     display inline-block
     padding-left 0.25rem
     padding-right 0.25rem
-    padding-bottom 0.25rem
+    padding-bottom 1px
     border-bottom 1px dashed @color
 
     &:hover
-      color @color - 25%
+      background-color @color + 25%
       border-bottom 1px dashed (@color + 50%)
+      // this must go last so we can use @color
+      color white
 
   h1, h2, h3, h4, h5, p, blockquote
     margin-bottom 4rem
@@ -44,9 +49,13 @@ article
 
   p, li, blockquote
     code
-      background-color white - 7.5%
-      padding 0.5rem
-      border-radius 0.5rem
+      // background-color white - 7.5%
+      // padding 0.5rem
+      // border-radius 0.5rem
+      &::before
+        content "\22d6"
+      &::after
+        content "\22d7"
 
 
   pre
