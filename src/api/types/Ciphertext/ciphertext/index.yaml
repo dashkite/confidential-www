@@ -1,0 +1,5 @@
+category: property
+scope: instance
+type: '[`Uint8Array`][]'
+description: |
+  The data encapsulated by an instance of `Ciphertext`.
