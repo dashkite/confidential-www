@@ -1,4 +1,4 @@
-import {isString, isObject, isFunction} from "panda-parchment"
+import {isString, isObject, isFunction, include} from "panda-parchment"
 import {method} from "./generics"
 import Site from "./site"
 
@@ -13,7 +13,10 @@ list = (dictionary) ->
 types = -> list Site.data.api.types
 functions = -> list Site.data.api.functions
 
-type = (key) -> Site.data.api.types[key]
+type = (key) ->
+  # base = Site.data.api.types[key].$extends
+  # include (Site.data.api.types[base] ? {}),
+    Site.data.api.types[key]
 
 typeInterface = method "typeInterface"
 

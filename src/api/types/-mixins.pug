@@ -45,6 +45,15 @@ mixin method()
   
     block
     
+mixin inherited(key, category)
+  if key && $.methods(key, category).length > 0
+    h3
+      | Inherited From
+      |
+      +autolink($extends): code= $extends
+    
+    +toc($.methods(key, category))
+      
 mixin type
 
   article
@@ -65,11 +74,23 @@ mixin type
 
       +toc($.methods(key, "class"))
         p There are no class methods.
-
+        
       h2 Instance Methods
 
       +toc($.methods(key, "instance"))
-        p There are no instance methods.
+        p 
+          | There are no instance methods defined directly on
+          |
+          code= name
+          | .
+
+      if $extends && $.methods($extends, "instance").length > 0
+        h3
+          | Inherited From
+          |
+          +autolink($extends): code= $extends
+        
+        +toc($.methods($extends, "instance"))
 
       h2 Class Properties
 
