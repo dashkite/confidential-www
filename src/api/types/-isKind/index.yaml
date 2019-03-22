@@ -1,7 +1,7 @@
 category: method
 scope: class
 summary: |
-  Predicate to see if a value has an intance of [`{{name}}`][] in its prototype chain.
+  Predicate to see if a value has an instance of [`{{name}}`][] in its prototype chain.
 signatures:
   - arguments: value
     result: is-{{name|dashed}}

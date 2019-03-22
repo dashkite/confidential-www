@@ -7,7 +7,11 @@ src:
         index.pug: ../-method.pug
       '-isType':
         index.pug: ../-method.pug
+      '-areType':
+        index.pug: ../-method.pug
       '-isKind':
+        index.pug: ../-method.pug
+      '-areKind':
         index.pug: ../-method.pug
       '-create':
         index.pug: ../-method.pug
@@ -15,50 +19,63 @@ src:
         from: ../-from
         to: ../-to
         isType: ../-isType
+        areType: ../-areType
       EncryptionKeyPair:
         create: ../-create
         from: ../-from
         to: ../-to
         isType: ../-isType
+        areType: ../-areType
       Envelope:
         from: ../-from
         isType: ../-isType
+        areType: ../-areType
         to: ../-to
       Hash:
         from: ../-from
         to: ../-to
         isType: ../-isType
+        areType: ../-areType
       Key:
         to: ../-to
         isKind: ../-isKind
+        areKind: ../-areKind
       KeyPair:
         to: ../-to
         isKind: ../-isKind
+        areKind: ../-areKind
       Nonce:
         from: ../-from
         to: ../-to
         isType: ../-isType
+        areType: ../-areType
       Message:
         from: ../-from
         to: ../-to
         isType: ../-isType
+        areType: ../-areType
       PrivateKey:
         from: ../-from
         isType: ../-isType
+        areType: ../-areType
       PublicKey:
         from: ../-from
         isType: ../-isType
+        areType: ../-areType
       SharedKey:
         from: ../-from
         isType: ../-isType
+        areType: ../-areType
         create:
           index.pug: ../../-method.pug
       SignatureKeyPair:
         create: ../-create
         from: ../-from
         isType: ../-isType
+        areType: ../-areType
       SymmetricKey:
         from: ../-from
         isType: ../-isType
+        areType: ../-areType
         create:
           index.pug: ../../-method.pug

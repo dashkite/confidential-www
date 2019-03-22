@@ -1,0 +1,17 @@
+category: method
+scope: class
+summary: |
+  Returns `true` if all the values in _collection_ have an instance of [`{{name}}`][] in their prototype chain.
+signatures:
+  - arguments: collection
+    result: are-{{name|dashed}}-instances
+variables:
+  - name: collection
+    type: |
+      [`Array`][]-like value.
+    description: |
+      A list of values to be tested.
+  - name: are-{{name|dashed}}-instances
+    type: '[`Boolean`][]'
+    description: |
+      `true` if all the values in _collection_ have an instance of [`{{name}}`][] in their prototype chain, `false` otherwise.
