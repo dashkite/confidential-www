@@ -1,5 +1,0 @@
-category: property
-fragment: signatories
-type: '[`Uint8Array`][]'
-description: |
-  The original data signed by the `signatories`.

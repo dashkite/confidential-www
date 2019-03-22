@@ -1,0 +1,9 @@
+category: method
+summary: Converts the encapsulated value into a JavaScript value.
+signatures:
+  - result: value
+variables:
+  - name: value
+    type: any
+    description: |
+      Encapsulated value.

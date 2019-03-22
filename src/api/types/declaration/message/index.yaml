@@ -1,0 +1,4 @@
+category: property
+type: '[`Message`][]'
+description: |
+  The data signed by the `signatories`.

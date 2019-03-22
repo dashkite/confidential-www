@@ -52,6 +52,8 @@ src:
       Message:
         from: ../-from
         to: ../-to
+        json:
+          index.pug: ../../-method.pug
         isType: ../-isType
         areType: ../-areType
       PrivateKey:
