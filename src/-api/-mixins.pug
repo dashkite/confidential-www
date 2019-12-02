@@ -1,0 +1,39 @@
+mixin signatures()
+
+  //- each signature in signatures
+  //-   blockquote.signature
+  //-     p
+  //-       if parent.name
+  //-         if scope == "class"
+  //-           span.scope= parent.name
+  //-         else
+  //-           span.scope= $.dashed(parent.name)
+  //- 
+  //-       span.name= name
+  //- 
+  //-       span.arguments= signature.arguments
+  //-       span.result= signature.result
+  //- 
+
+mixin variables(entries=variables)
+  //- if entries.length > 0
+  //- 
+  //-   table
+  //-     thead
+  //-       tr
+  //-         th name
+  //-         th type
+  //-         th description
+  //- 
+  //-     tbody
+  //-       each entry in entries
+  //-         tr
+  //-           if entry.fragment
+  //-             td: p(id=entry.fragment)= entry.name
+  //-           else
+  //-             td: p= entry.name
+  //-           td!= $.markdown(entry.type)
+  //-           td!= $.markdown(entry.description)
+  //- 
+  //- else
+  //-   block

@@ -18,20 +18,31 @@
   "homepage": "https://github.com/pandastrike/panda-confidential-www#readme",
   "dependencies": {
     "colors": "^1.3.3",
-    "markup-js": "^1.5.21"
+    "dayjs": "^1.8.17",
+    "markup-js": "^1.5.21",
+    "panda-play": "^2.0.1",
+    "panda-river-esm": "^6.0.0",
+    "panda-router": "^2.1.0",
+    "source-map-loader": "^0.2.4",
+    "url-template": "^2.0.8"
   },
   "devDependencies": {
+    "coffee-loader": "^0.9.0",
     "coffeescript": "^2.3.2",
     "haiku9": "^3.0.0",
     "jstransformer": "^1.0.0",
     "jstransformer-pug": "^0.3.0",
+    "jstransformer-stylus": "^1.5.0",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.0.0",
+    "markdown-it-emoji": "^1.4.0",
+    "markdown-it-implicit-figures": "^0.9.0",
     "panda-9000": "^4.4.0",
     "panda-parchment": "^4.2.0",
     "panda-quill": "^3.4.5",
     "panda-river": "^4.4.2",
     "panda-serialize": "^0.4.0",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "webpack": "^4.41.2"
   }
 }

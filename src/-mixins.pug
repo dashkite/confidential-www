@@ -39,7 +39,7 @@ mixin icon(name, style = "regular")
   svg: use(xlink:href=`/images/fa/sprites/${style}.svg#${name}`)
 
 mixin autolink(x)
-  a(href=$.autolink(x))
+  kite-autolink(data-key = x)
     block
     
 mixin breadcrumbs(crumbs, here)

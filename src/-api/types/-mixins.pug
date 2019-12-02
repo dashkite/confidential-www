@@ -1,0 +1,105 @@
+mixin method-variables()
+
+  //- if variables.length > 0
+  //-   table
+  //-     thead
+  //-       tr
+  //-         th name
+  //-         th type
+  //-         th description
+  //- 
+  //-     tbody   
+  //-       tr
+  //-         td= $.dashed(parent.name)
+  //-         td: +autolink(parent.name): code= parent.name
+  //-         td An instance of #{parent.name}.
+  //- 
+  //-       each variable in variables
+  //-         tr
+  //-           td: p= variable.name
+  //-           td!= $.markdown(variable.type)
+  //-           td!= $.markdown(variable.description)
+  //- else
+  //-   block
+
+mixin method()
+
+  //- article
+  //-   h1
+  //-     if scope == "class"
+  //-       = `${parent.name}.${name}`
+  //-       span.tag class method
+  //-     else
+  //-       = `${parent.name}::${name}`
+  //-       span.tag instance method
+  //- 
+  //-   if summary
+  //-     != $.markdown(summary)
+  //- 
+  //-   +signatures()
+  //- 
+  //-   if scope == "class"
+  //-     +variables()
+  //-   else 
+  //-     +method-variables()
+  //- 
+  //-   block
+    
+mixin inherited(key, category)
+  //- if key && $.methods(key, category).length > 0
+  //-   h3
+  //-     | Inherited From
+  //-     |
+  //-     +autolink($extends): code= $extends
+  //- 
+  //-   +toc($.methods(key, category))
+      
+mixin type
+
+  //- article
+  //- 
+  //-   h1
+  //-     = name
+  //- 
+  //-     if $extends
+  //-       span.extends
+  //-         +autolink($extends): code= $extends
+  //- 
+  //-   if summary
+  //-     != $.markdown(summary)
+  //- 
+  //-   .toc
+  //- 
+  //-     h2 Class Methods
+  //- 
+  //-     +toc($.methods(key, "class"))
+  //-       p There are no class methods.
+  //- 
+  //-     h2 Instance Methods
+  //- 
+  //-     +toc($.methods(key, "instance"))
+  //-       p 
+  //-         | There are no instance methods defined directly on
+  //-         |
+  //-         code= name
+  //-         | .
+  //- 
+  //-     if $extends && $.methods($extends, "instance").length > 0
+  //-       h3
+  //-         | Inherited From
+  //-         |
+  //-         +autolink($extends): code= $extends
+  //- 
+  //-       +toc($.methods($extends, "instance"))
+  //- 
+  //-     h2 Class Properties
+  //- 
+  //-     +variables($.properties(key, "class"))
+  //-       p There are no class properties.
+  //- 
+  //-     h2 Instance Properties
+  //- 
+  //-     +variables($.properties(key, "instance"))
+  //-       p There are no instance properties.
+  //- 
+  //-   block

@@ -1,0 +1,32 @@
+extends -layout
+
+block header
+  .breadcrumbs
+    ul
+      li: kite-autolink(data-key = "confidential")
+      li: kite-autolink(data-key = "guides")
+
+block main
+  
+  article
+
+    h1 Guides
+    
+    h2 Scenarios
+    
+    .toc
+      ul
+        li: kite-autolink(data-key = "quick-start")
+        li: kite-autolink(data-key = "symmetric-encryption")
+        li: kite-autolink(data-key = "asymmetric-encryption")
+        li: kite-autolink(data-key = "cryptographic-signatures")
+            
+    h2 Background
+    
+    .toc
+      ul
+        li: kite-autolink(data-key = "motivation")
+        li: kite-autolink(data-key = "why-nacl")
+        
+block footer
+  include ../-bottom-nav
