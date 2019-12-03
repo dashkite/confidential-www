@@ -1,0 +1,66 @@
+reset()
+  for preset in arguments
+    reset-{preset}()
+
+reset-block()
+  box-sizing border-box
+  display block
+
+  margin 0
+  padding 0
+  borders 0
+
+  font-family inherit
+  font-size inherit
+  line-height inherit
+
+  &:before, &:after
+    box-sizing inherit
+
+reset-inline-block()
+  reset-block()
+  display inline-block
+
+reset-links()
+  a, a:visited, a:hover
+    text-decoration none
+    color inherit
+
+reset-link()
+  &, &:visited, &:hover
+    text-decoration none
+    color inherit
+
+reset-tables()
+  table
+    border-collapse collapse
+    border-spacing 0
+
+reset-lists()
+  ol, ul
+    list-style none
+
+reset-media()
+  img, video
+    max-width 100%
+
+  img
+    border-style none
+
+reset-quotes()
+  blockquote, q
+    quotes none
+
+    &:after, &:before
+      content ""
+      content none
+
+reset-fields()
+  [hidden]
+    display none !important
+
+  [disabled]
+    cursor not-allowed
+
+  :focus:not(:focus-visible)
+      outline none

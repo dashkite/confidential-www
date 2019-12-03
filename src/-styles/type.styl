@@ -1,0 +1,132 @@
+rhythm(-lh, -ratio)
+  line-height -lh
+  font-size -lh * -ratio
+
+type-body()
+    font-family system-ui
+
+type-body-medium()
+  type-body()
+  rhythm 4rem (2/3)
+
+type-body-small()
+  type-body()
+  rhythm 3rem (2/3)
+
+type-body-very-small()
+  type-body()
+  rhythm 2rem (3/4)
+
+type-heading()
+  type-body()
+
+type-heading-very-large()
+  type-heading()
+  rhythm 7rem (7/8)
+  font-weight bold
+
+type-heading-large()
+  type-heading()
+  rhythm 5rem (7/8)
+  font-weight bold
+
+type-heading-medium()
+  type-heading()
+  rhythm 4rem (7/8)
+  font-weight bold
+
+type-heading-small()
+  type-heading()
+  rhythm 4rem (3/4)
+  font-weight bold
+
+type-heading-smaller()
+  type-heading()
+  rhythm 4rem (2/3)
+  font-weight bold
+
+type-banner-medium()
+  rhythm 7rem (3/4)
+  type-body()
+  font-weight bold
+
+
+type-copy()
+  type-body()
+
+//- TODO make this larger after update templates that use it
+//-      where they were meant to be using medium
+type-copy-large()
+  type-copy()
+  rhythm 4rem (2/3)
+
+type-copy-medium()
+  type-copy()
+  //- roughly halfway between 3/5 and 2/3
+  rhythm 5rem (2/3)
+
+type-copy-small()
+  type-heading()
+  rhythm 3rem (3/4)
+
+type-copy-smaller()
+  type-heading()
+  rhythm 3rem (2/3)
+
+type-label()
+  type-body()
+
+type-label-medium()
+  type-label()
+  rhythm 4rem (2/3)
+
+type-label-small()
+  type-label()
+  rhythm 3rem (3/4)
+
+type-label-smaller()
+  type-label()
+  rhythm 2rem (4/5)
+
+type-caption-medium()
+  type-body()
+  rhythm 3rem (3/4)
+
+type-caption-small()
+  type-body()
+  rhythm 2rem (5/6)
+
+type-monospace()
+  font-family SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace !important
+
+//- don't use this for inputs or we get mobile auto-zoom
+type-monospace-small()
+  type-editor()
+  rhythm 3rem (3/5)
+
+type-monospace-medium()
+  type-monospace()
+  rhythm 4rem (3/5)
+
+type-monospace-large()
+  type-monospace()
+  rhythm 5rem (3/5)
+
+type-editor()
+  type-monospace()
+
+type-editor-medium()
+  type-monospace-medium()
+
+type-editor-small()
+  type-monospace-small()
+
+type(-name, -size = "medium")
+  type-{-name}-{-size}()
+
+elide(-width)
+  display inline-block
+  max-width -width
+  overflow hidden
+  white-space nowrap
+  text-overflow ellipsis

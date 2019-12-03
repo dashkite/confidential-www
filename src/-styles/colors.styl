@@ -1,0 +1,27 @@
+kite-blue = #61d3ff
+dark-kite-blue = kite-blue - 25%
+light-kite-blue = kite-blue + 25%
+// darker-kite-blue = #40B2de
+darker-kite-blue = dark-kite-blue - 25%
+darkest-kite-blue = darker-kite-blue - 25%
+lighter-kite-blue = light-kite-blue + 25%
+lightest-kite-blue = lighter-kite-blue + 25%
+
+kite-gray = #c5c6c8
+dark-kite-gray = kite-gray - 25%
+light-kite-gray = kite-gray + 25%
+darker-kite-gray = dark-kite-gray - 25%
+darkest-kite-gray = darker-kite-gray - 25%
+lighter-kite-gray = light-kite-gray + 25%
+lightest-kite-gray = lighter-kite-gray + 25%
+
+kite-red = #e76
+light-kite-green = #7c8
+
+
+colors(-fg, -bg)
+  _fg = lookup("" + -fg)
+  _bg = lookup("" + -bg)
+
+  color _fg is null ? -fg : _fg
+  background-color _bg is null ? -bg : _bg

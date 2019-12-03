@@ -1,0 +1,144 @@
+dashkite()
+  for preset in arguments
+    dashkite-{preset}()
+
+dashkite-form()
+  dashkite-button()
+  dashkite-link()
+
+  input
+    dashkite-focus-glow()
+
+  nav
+    dashkite-nav()
+
+dashkite-focus-glow()
+  &:focus
+    // for some reason, i can't use shorthand w/negative offset
+    outline-offset -0.5rem
+    outline-color lighter-kite-blue
+    outline-style dotted
+    outline-width 0.25rem
+
+dashkite-focus-wide()
+  &:focus
+    outline-offset 1.25rem
+    outline-color lighter-kite-blue
+    outline-style dotted
+    outline-width 0.5rem
+
+dashkite-link()
+  a
+    display inline-block
+    text-align center
+    width available
+    padding 0.5rem 1rem
+    text-decoration none
+    border-bottom 2px solid darker-kite-blue
+    colors inherit lightest-kite-blue
+    &:visited
+      colors inherit lightest-kite-blue
+    &:focus
+      outline none
+      colors inherit light-kite-blue
+
+dashkite-nav()
+  & > *
+    min-width 15rem
+    &:not(:last-child)
+      margin-right 3rem
+
+dashkite-button()
+  button
+    display inline-block
+    padding 1rem
+
+    type label
+
+    colors darkest-kite-blue white
+
+
+    border-radius 0.5rem
+    borders 1px solid darkest-kite-blue
+
+    cursor auto
+
+    &:focus
+      // for some reason, i can't use shorthand w/negative offset
+      outline-offset -0.5rem
+      outline-color lightest-kite-blue
+      outline-style solid
+      outline-width 0.25rem
+
+    &:disabled
+      colors kite-silver white
+
+      & > svg
+        fill @color
+
+
+dashkite-table()
+  // The shenanigans in what follows WRT to borders
+  // is due to the fact that there's apparently (?)
+  // no simple way to give a table rounded borders
+  // — you have to select each of the corner cells
+  // of the table and round each corner individually
+
+  table
+    type copy small
+    border-collapse separate
+    border-spacing 0
+    margin-bottom 2rem
+
+    p, ul, blockquote, li
+      &:last-child
+        margin-bottom 0 !important
+
+    blockquote
+      // override article type
+      type copy small
+
+    thead
+      display table-header-group
+      font-weight bold
+
+      th
+        border-top 1px solid silver
+
+        &:first-child
+          border-top-left-radius 0.5rem
+
+        &:last-child
+          border-top-right-radius 0.5rem
+
+    thead
+    tr:nth-child(2n)
+      background-color white - 5%
+
+    th, td
+      min-width 16rem
+      padding 2rem
+      border-right 1px solid silver
+      border-bottom 1px solid silver
+
+      &:first-child
+        border-left 1px solid silver
+
+    tr
+      display table-row
+
+      th, td
+        display table-cell
+
+    tbody
+      display table-header-group
+
+      tr:last-child
+
+        td
+
+          &:first-child
+            border-bottom-left-radius 0.5rem
+
+          &:last-child
+            border-bottom-right-radius 0.5rem

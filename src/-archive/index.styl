@@ -14,8 +14,51 @@ body
   type body
   colors darkest-kite-gray white
 
+header
+  row nowrap middle
+  margin-top 1rem
+  padding 1rem
+  padding-left 2rem
+  padding-bottom 3rem
+  borders bottom
+
+  & > a
+    & > h1
+      reset block
+      type heading
+      colors darker-kite-blue white
+      margin-right 2rem
+
+  & > raven-messages
+    flex 1
+
 main
+
   overflow-y scroll
+  background white
+
+  & > .page
+    flex 1
+
+    & > .view
+      &:not(.active)
+        display none
+
+      row wrap
+      justify-content center
+
+      // TODO is there a better way to do this?
+      & > raven-banner
+        width 100%
+        margin-bottom 2rem
+
+      & > raven-article
+      & > raven-register
+      & > raven-login
+      & > raven-team
+      & > raven-profile
+        padding 3rem
+
 
 
 footer

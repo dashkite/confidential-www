@@ -1,0 +1,73 @@
+article()
+  for preset in arguments
+    article-{preset}()
+
+article-block()
+  reset block
+  margin-bottom 2rem
+
+article-h1()
+  h1
+    article-block()
+    type heading very-large
+
+
+article-h2()
+  h2
+    article-block()
+
+article-h3()
+  h3
+    article-block()
+
+article-h4()
+  h4
+    article-block()
+
+article-h5()
+  h5
+    article-block()
+
+article-p()
+  p
+    article-block()
+
+article-ul()
+  ul
+    article-block()
+
+article-li()
+  li
+    article-block()
+    display list-item
+    list-style disc outside
+    margin-left 4rem
+    margin-bottom 1rem
+
+article-blockquote()
+  blockquote
+    article-block()
+
+article-code()
+  pre
+    padding 3rem
+    overflow scroll
+    colors darkest-kite-gray lightest-kite-gray
+    borders round
+  code
+    type monospace
+
+article-a()
+  a
+    display inline-block
+    text-align center
+    width available
+    padding 0.5rem 1rem
+    text-decoration none
+    border-bottom 2px solid darker-kite-blue
+    colors inherit lightest-kite-blue
+    &:visited
+      colors inherit lightest-kite-blue
+    &:focus
+      outline none
+      colors inherit light-kite-blue

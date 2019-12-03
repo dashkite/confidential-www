@@ -74,7 +74,12 @@ bundle = (entry, target) ->
           use: [ "html-loader", "markdown-loader" ]
         ]
       resolve:
-        modules: [ Path.resolve "node_modules" ]
+        modules: [
+          Path.resolve "node_modules"
+          # local dev
+          # TODO seems like webpack should be able to infer this?
+          Path.resolve "..", "page-graph", "node_modules"
+        ]
         extensions: [ ".js", ".json", ".coffee" ]
       plugins: []
 
