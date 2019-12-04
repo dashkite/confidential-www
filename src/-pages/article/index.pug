@@ -1,2 +1,4 @@
-.view(data-hash = hash)
-  raven-article(data-path = path || meta.name)
+if meta.name == "home"
+  site-banner
+
+raven-article(data-path = path || meta.name)

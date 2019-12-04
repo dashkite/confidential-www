@@ -6,26 +6,26 @@ import render from "./index.pug"
 path = curry (key, context) ->
   context.bindings[key] = context.bindings[key].join "/"
 
+# TODO need combinator hide/show header?
 route "/",
   name: "home"
-  -> console.log "hello"
-  # flow [
-  #   hash
-  #   meta
-  #   root "main"
-  #   page
-  #   view render
-  #   activate [ "raven-article" ]
-  #   show
-  # ]
-
-route "{/path*}",
-  name: "view article"
   flow [
-    page
-    tee path "path"
+    hash
+    meta
     root "main"
+    page
     view render
     activate [ "raven-article" ]
     show
   ]
+
+# route "{/path*}",
+#   name: "view article"
+#   flow [
+#     page
+#     tee path "path"
+#     root "main"
+#     view render
+#     activate [ "raven-article" ]
+#     show
+#   ]

@@ -1,0 +1,37 @@
+@require "../../-styles"
+
+:host
+  display block
+
+  &(.no-title) h1
+    display none
+
+article
+  type copy
+  min-width 36rem
+  max-width 96rem
+
+  article h1 h2 h3 h4 h5 p ul li blockquote code
+
+  h1
+    type heading very-large
+  h2
+    type heading large
+
+  dashkite link
+
+  figure
+    float right
+    borders round
+    width 36rem
+    padding 1rem
+    & > img
+      width 100%
+      object-fit contain
+    & > figcaption
+      margin-top 1rem
+      borders top
+      padding-top 1rem
+      type body small
+
+  dashkite table
