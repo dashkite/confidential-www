@@ -18,7 +18,8 @@ type-body-very-small()
   rhythm 2rem (3/4)
 
 type-heading()
-  type-body()
+  font-weight 700
+  font-family quatro
 
 type-heading-very-large()
   type-heading()
@@ -45,20 +46,30 @@ type-heading-smaller()
   rhythm 4rem (2/3)
   font-weight bold
 
-type-banner-medium()
-  rhythm 7rem (3/4)
-  type-body()
-  font-weight bold
+type-banner()
+  font-family factoria
 
+type-banner-large()
+  type-banner()
+  font-weight 800
+  font-style italic
+  rhythm 8rem (7/8)
+
+type-banner-medium()
+  type-banner()
+  font-weight 500
+  rhythm 6rem (3/4)
 
 type-copy()
-  type-body()
+  font-family adobe-garamond-pro
 
-//- TODO make this larger after update templates that use it
-//-      where they were meant to be using medium
+type-copy-very-large()
+  type-copy()
+  rhythm 6rem (2/3)
+
 type-copy-large()
   type-copy()
-  rhythm 4rem (2/3)
+  rhythm 6rem (2/3)
 
 type-copy-medium()
   type-copy()
@@ -67,11 +78,11 @@ type-copy-medium()
 
 type-copy-small()
   type-heading()
-  rhythm 3rem (3/4)
+  rhythm 4rem (2/3)
 
 type-copy-smaller()
   type-heading()
-  rhythm 3rem (2/3)
+  rhythm 3rem (3/4)
 
 type-label()
   type-body()
