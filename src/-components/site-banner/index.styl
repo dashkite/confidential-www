@@ -2,21 +2,38 @@
 
 :host
   reset block
+  flex 1 1 auto
   column nowrap
 
 header
-  padding 4rem
+  column nowrap
   colors white darkest-kite-blue
-  & > h1
-    type heading very-large
-    min-width 36rem
-    max-width 96rem
 
+  & > a
+    row nowrap
+    justify-content center
 
-.promo
-  padding 3rem 4rem
-  colors white darker-kite-blue
-  & > p
-    type heading large
-    min-width 36rem
-    max-width 96rem
+    & > h1
+      flex 1 1 36rem
+      max-width 96rem
+      type heading very-large
+
+section
+  flex 1 1 0
+  overflow auto
+  column nowrap
+
+  & > .tagline
+    row nowrap
+    justify-content center
+    colors white dark-kite-blue
+
+    & > p
+      flex 1 1 36rem
+      max-width 96rem
+      type heading large
+
+  .content
+    margin 3rem 0
+    column nowrap
+    align-items center

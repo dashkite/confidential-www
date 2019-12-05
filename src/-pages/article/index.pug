@@ -1,4 +1,5 @@
 if meta.name == "home"
   site-banner
-
-raven-article(data-path = path || meta.name)
+    raven-article(data-path = "home")
+else
+  raven-article(data-path = path || meta.name)
