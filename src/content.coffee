@@ -1,52 +1,59 @@
+import {first, last, rest, split, merge} from "panda-parchment"
 import dictionary from "./links.yaml"
-context = require.context "./-content", true, /\.yaml/
+context = require.context "./-content", true, /\.md/
 paths = context.keys()
+
+join = (c, ax) -> ax.join c
+drop = ([ax..., a]) -> ax
 
 links = (html) ->
   html.replace /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, text, key) ->
-    key ?= text
-    if (link = dictionary[key])?
+    key ?= text.replace /<[^>]+>/g, ""
+    if (link = get key)?
+      if link.reference?.path?
+        link = "/" + link.reference.path
       "<a href='#{link}'>#{text}</a>"
     else
-      if key[0] == ":"
-        console.log data: _data
-        match
-      else
-        console.warn "Link [#{key}] not found."
-        "<a href='#broken'>#{text}</a>"
+      console.warn "Link [#{key}] not found."
+      "<a href='#broken'>#{text}</a>"
 
-load = (path) ->
-  data = require "./-content/#{path}/index.yaml"
-  data.path = path
-  data.html = links require "./-content/#{path}/index.md"
+index =
+  byName: dictionary
+  byPath: {}
+
+load = ({path}) ->
+  try
+    data = require "./-content/#{path}.yaml"
+  catch
+    data = {}
   data
 
-initialize = ->
-  root = {}
-  index = {}
-  for path in paths
-    # the path (px) is between the . and the filename
-    px = (path.split "/")[1..-2]
-    # derive the data path (ps)
-    ps = px.join "/"
-    # load the data (pd)
-    pd = load ps
-    # split into everything up to the last (px) and the last (p)
-    [pk..., p] = px
-    # prepare to descend into the tree
-    current = root
-    for k in pk
-      current = current[k] ?= {}
-    # save into the tree
-    current[p] = pd
-    # save everything in the index
-    # TODO we can also build up compound entries: api:functions:confidential
-    index[p] = pd
-  {root, index}
+normalize = (components) ->
+  name = first split ".", last components
+  parent = join "/", drop components
+  path = join "/", [ parent, name ]
+  {path, parent, name}
 
-_data = initialize()
+parse = (path) ->
+  # ignore the initial .
+  components = rest split "/", path
+  source: normalize components
+  reference: normalize drop components
+
 get = (key) ->
-  _data.index[key]
+  if (data = index.byName[key] ? index.byPath[key])?
+    data
 
+# TODO make this async via requestAnimationFrame?
+# TODO index by title? index by qualified name (ex: KeyPair.isType)?
 
-export {load}
+for path in paths
+  {source, reference} = parse path
+  data = merge {source, reference}, load source
+  index.byPath[reference.path] = index.byName[reference.name] = data
+
+for path, data of index.byPath
+  try
+    data.html ?= links require "./-content/#{data.source.path}.md"
+
+export {get}
