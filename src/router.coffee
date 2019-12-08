@@ -11,6 +11,7 @@ route = (template, data, handler) ->
 
 match = (url) -> router.match url
 
+# TODO we have this redundantly in the navigation too
 relative = (url) ->
   if /^[^\/]/.test url
     {pathname, search} = new URL url

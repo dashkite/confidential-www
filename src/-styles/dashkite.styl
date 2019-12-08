@@ -28,36 +28,40 @@ dashkite-focus-wide()
     outline-width 0.5rem
 
 dashkite-link()
-  a, a:visited
-    transition background-color 500ms ease,
-               color 250ms ease
-    color @color + 25%
-    text-decoration none
-    display inline-block
-    padding-left 0.25rem
-    padding-right 0.25rem
-    padding-bottom 1px
-    border-bottom 1px dashed @color
-
-    &:hover
-      background-color @color + 25%
-      border-bottom 1px dashed (@color + 50%)
-      // this must go last so we can use @color
-      color white
-
-  // a
-  //   display inline-block
-  //   text-align center
-  //   width available
-  //   padding 0.5rem 1rem
+  // a, a:visited
+  //   transition background-color 500ms ease,
+  //              color 250ms ease
+  //   color @color + 25%
   //   text-decoration none
-  //   border-bottom 2px solid darker-kite-blue
-  //   colors inherit lightest-kite-blue
-  //   &:visited
-  //     colors inherit lightest-kite-blue
-  //   &:focus
-  //     outline none
-  //     colors inherit light-kite-blue
+  //   display inline-block
+  //   padding-left 0.25rem
+  //   padding-right 0.25rem
+  //   padding-bottom 1px
+  //   border-bottom 1px dashed @color
+  //
+  //   &:hover
+  //     background-color @color + 25%
+  //     border-bottom 1px dashed (@color + 50%)
+  //     // this must go last so we can use @color
+  //     color white
+
+  a
+    display inline-block
+    text-align center
+    width available
+    padding 0.5rem 1rem
+    text-decoration none
+    border-bottom 2px solid darker-kite-blue
+    colors inherit lightest-kite-blue
+    &:visited
+      colors inherit lightest-kite-blue
+    &:focus
+      outline none
+      colors inherit light-kite-blue
+    &[href='#broken']
+      border-bottom 2px solid red
+      colors inherit orange
+
 
 dashkite-nav()
   & > *
