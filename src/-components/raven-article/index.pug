@@ -3,4 +3,8 @@ style
 
 article
   h1!= title
-  != html
+  
+  if html
+    != html
+  else
+    != render({})

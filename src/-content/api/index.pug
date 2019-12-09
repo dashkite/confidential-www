@@ -1,27 +1,23 @@
-extends -layout
+header
+  // .breadcrumbs: +breadcrumbs(["Confidential"], "API")
 
-block header
-  .breadcrumbs: +breadcrumbs(["Confidential"], "API")
+article
+  
+  h1 API Reference
 
-block main
+  :markdown
+    The Confidential module exports a single function, [`confidential`][]. All other properties, functions, and types are accessible via the API instance it returns.
+  
+  section.toc
 
-  article
+    h2 Functions
+
+    //- conf-function-list
     
-    h1 API Reference
+    h2 Types
 
-    :markdown
-      The Confidential module exports a single function, [`confidential`][]. All other properties, functions, and types are accessible via the API instance it returns.
+    //- conf-type-list
+
+    h2 Properties
     
-    section.toc
-
-      h2 Functions
-
-      //- conf-function-list
-      
-      h2 Types
-
-      //- conf-type-list
-
-      h2 Properties
-      
-      //- conf-property-list
+    //- conf-property-list

@@ -19,12 +19,16 @@ main
   column nowrap
 
   & > .page
-    flex 1
-    column nowrap
-
-    & > .view
+    display none
+    &.active
       flex 1
       column nowrap
+
+    & > .view
+      display none
+      &.active
+        flex 1
+        column nowrap
 
 footer
   borders top

@@ -16,7 +16,7 @@ class extends Gadget
 
     bebop, shadow, describe, navigate
 
-    resource -> get(@dom.dataset.path)
+    resource -> data = get(@dom.dataset.path)
 
     render smart template
 
