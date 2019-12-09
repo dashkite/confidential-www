@@ -69,4 +69,4 @@ for path, data of index.byPath
   try
     data.html ?= links require "./-content/#{data.source.path}.md"
 
-export {get}
+export {get, links}
