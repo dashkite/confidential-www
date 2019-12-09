@@ -44,7 +44,7 @@ replace = ({url, name, parameters, state}) ->
 
 browse = ({url, name, parameters, state}) ->
   url ?= link {name, parameters}
-  # pushState will throw if undefined or external
+  # pushState will throw if undefined
   try
     push {url, state}
     dispatch {url}

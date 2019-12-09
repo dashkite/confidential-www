@@ -19,13 +19,15 @@ route "/",
     show
   ]
 
-# route "{/path*}",
-#   name: "view article"
-#   flow [
-#     page
-#     tee path "path"
-#     root "main"
-#     view render
-#     activate [ "raven-article" ]
-#     show
-#   ]
+route "{/path*}",
+  name: "view article"
+  flow [
+    hash
+    meta
+    tee path "path"
+    root "main"
+    page
+    view render
+    activate [ "raven-article" ]
+    show
+  ]

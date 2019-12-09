@@ -1,21 +1,21 @@
-import {first, last, rest, split, merge} from "panda-parchment"
+import {first, last, rest, split, merge, toLower} from "panda-parchment"
 import dictionary from "./links.yaml"
-context = require.context "./-content", true, /\.md/
+context = require.context "./-content", true, /\.(md|yaml)$/
 paths = context.keys()
 
 join = (c, ax) -> ax.join c
 drop = ([ax..., a]) -> ax
 
 links = (html) ->
-  html.replace /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, text, key) ->
-    key ?= text.replace /<[^>]+>/g, ""
+  html.replace /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, innerHTML, key) ->
+    key ?= innerHTML.replace /<[^>]+>/g, ""
     if (link = get key)?
       if link.reference?.path?
         link = "/" + link.reference.path
-      "<a href='#{link}'>#{text}</a>"
+      "<a href='#{link}'>#{innerHTML}</a>"
     else
       console.warn "Link [#{key}] not found."
-      "<a href='#broken'>#{text}</a>"
+      "<a href='#broken'>#{innerHTML}</a>"
 
 index =
   byName: dictionary
@@ -41,7 +41,7 @@ parse = (path) ->
   reference: normalize drop components
 
 get = (key) ->
-  if (data = index.byName[key] ? index.byPath[key])?
+  if (data = index.byName[key] ? index.byName[toLower key] ? index.byPath[key])?
     data
 
 # TODO make this async via requestAnimationFrame?
@@ -49,8 +49,9 @@ get = (key) ->
 
 for path in paths
   {source, reference} = parse path
-  data = merge {source, reference}, load source
-  index.byPath[reference.path] = index.byName[reference.name] = data
+  if !index.byPath[reference.path]?
+    data = merge {source, reference}, load source
+    index.byPath[reference.path] = index.byName[reference.name] = data
 
 for path, data of index.byPath
   try

@@ -1,7 +1,7 @@
 # External Links
 nacl: https://nacl.cr.yp.to/
-TweetNaCl: https://tweetnacl.cr.yp.to/
-TweetNaCl.js: https://tweetnacl.js.org/
+tweetnacl: https://tweetnacl.cr.yp.to/
+tweetnacl.js: https://tweetnacl.js.org/
 
 # Reference Links
 function: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
@@ -40,8 +40,8 @@ tweetnacl-sign: https://github.com/dchest/tweetnacl-js#signatures
 
 # Internal Links
 
-Confidential: /
-API: /api
+confidential: /
+api: /api
 # point to the first type in the list
 types: /api/types/Declaration
 
@@ -49,9 +49,9 @@ types: /api/types/Declaration
 key: /api/types/Key
 
 guides: /guides
-Quick Start: /guides/quick-start
-Symmetric Encryption: /guides/symmetric-encryption
-Asymmetric Encryption: /guides/asymmetric-encryption
+quick start: /guides/quick-start
+symmetric encryption: /guides/symmetric-encryption
+asymmetric encryption: /guides/asymmetric-encryption
 cryptographic signatures: /guides/signatures
 motivation: /guides/motivation
-Why NaCl: /guides/why-nacl
+why nacl: /guides/why-nacl

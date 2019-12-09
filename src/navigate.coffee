@@ -1,11 +1,6 @@
 import {isDefined} from "panda-parchment"
 import {go, events, map, tee, select, reject} from "panda-river-esm"
-import {pipe as _pipe, spread} from "panda-garden"
 import {browse, dispatch} from "./router"
-import {destructure, parse} from "panda-router"
-import aliases from "./links.yaml"
-
-pipe = spread _pipe
 
 # event helpers, adapted from:
 # https://github.com/vuejs/vue-router/blob/dev/src/components/link.js
@@ -37,24 +32,14 @@ description = (e) ->
 
 isCurrentLocation = ({url}) -> window.location.href == url
 
-# TODO this isn't really a URL if we split out the origin
-getOrigin = ({url}) ->
-  if /^[^\/]/.test url
-    {origin, pathname, search} = new URL url
-    {origin, url: pathname + search}
-  else
-    {origin: window.location.origin, url}
-
-# TODO doing these as two separate checks is clumsy
-isCrossOrigin = ({url, origin}) ->
-  if window.location.origin != origin
+origin = (url) -> (new URL url).origin
+isCrossOrigin = ({url}) ->
+  if window.location.origin != origin url
     # For non-local URLs, open the link in a new tab.
-    window.open origin + url
+    window.open url
     true
   else
     false
-
-getAliasKey = destructure parse "/alias/{key}"
 
 getAlias = ({url}) ->
   if (match = getAliasKey url)? && (alias = aliases[match.key])?
@@ -76,11 +61,6 @@ navigate = (root) ->
     map description
     select isDefined
     reject isCurrentLocation
-    map getOrigin
-    reject isCrossOrigin
-    map getAlias
-    # TODO having to re-check here is a bit weird
-    map getOrigin
     reject isCrossOrigin
     tee browse
   ]
