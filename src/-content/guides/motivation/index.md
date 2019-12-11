@@ -1,6 +1,6 @@
 # Why Confidential?
 
-[NaCl][] (pronounced _salt_: NaCl is the chemical formula for sodium chloride, also known as salt, which is a [cryptographic pun](https://en.wikipedia.org/wiki/Salt_(cryptography))) provides a [state of the art implementation][Why Nacl?] of fundamental cryptographic operations. [TweetNaCl][] provides an auditable, self-contained implementation of NaCl that fits [within 100 Tweets](https://twitter.com/tweetnacl). Finally, [TweetNaCl.js][] implements TweetNaCl in JavaScript. This gives us this auditable, state-of-the-art cryptography in both browser and the server.
+[NaCl][] (pronounced _salt_: NaCl is the chemical formula for sodium chloride, also known as salt, which is a [cryptographic pun](https://en.wikipedia.org/wiki/Salt_(cryptography))) provides a [state of the art implementation][Why NaCl?] of fundamental cryptographic operations. [TweetNaCl][] provides an auditable, self-contained implementation of NaCl that fits [within 100 Tweets](https://twitter.com/tweetnacl). Finally, [TweetNaCl.js][] implements TweetNaCl in JavaScript. This gives us this auditable, state-of-the-art cryptography in both browser and the server.
 
 So why write [Confidential][]?
 
