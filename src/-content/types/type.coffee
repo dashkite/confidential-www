@@ -4,7 +4,7 @@ import {links} from "../indexer"
 
 class Type
 
-  create: (data) -> new Type data
+  @create: (data) -> new Type data
 
   constructor: ({@source, @reference, @name, @extends, @interfaces}) ->
 

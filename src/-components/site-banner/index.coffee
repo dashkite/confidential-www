@@ -1,8 +1,6 @@
 import {Gadget, mixin, tag, bebop, shadow,
   render, properties, ready, events, local} from "panda-play"
 
-import {load} from "../../content"
-
 import {navigate} from "../mixins"
 import {determined} from "../combinators"
 

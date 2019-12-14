@@ -1,7 +1,9 @@
-import {first, last, rest, split, include, toLower} from "panda-parchment"
+import {first, last, rest, split, merge, include, toLower} from "panda-parchment"
 import {match} from "./router"
 import dictionary from "./links.yaml"
-context = require.context "./-content", true, /\.(md|yaml|pug)$/
+import "./types"
+
+context = require.context "./", true, /\.(md|yaml|pug)$/
 paths = context.keys()
 
 join = (c, ax) -> ax.join c
@@ -12,7 +14,7 @@ indices =
 
 load = (path) ->
   try
-    data = require "./-content/#{path}.yaml"
+    data = require "./#{path}.yaml"
   catch
     data = {}
   data
@@ -48,9 +50,9 @@ lookup = (key) ->
 for path in paths
   {source, reference} = parse path
   if (m = match reference.path)?
-    {create, bindings} = m
+    {handler, bindings} = m
     data = merge {source, reference}, load source.path
-    object = create include data, bindings
+    object = handler include data, bindings
     for index, key of object.index
       indices[index] ?= {}
       indices[index][key] = object

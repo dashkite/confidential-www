@@ -4,9 +4,13 @@ import TemplateParser from "url-template"
 router = new Router()
 
 route = (template, handler) ->
-  router.add template
+  router.add {template, data: {handler}}
   router
 
-match = (path) -> router.match path
+match = (path) ->
+  if (m = router.match path)?
+    {bindings, data: {handler}} = m
+    {bindings, handler}
+
 
 export {router, route, match}
