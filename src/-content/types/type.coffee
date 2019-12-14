@@ -14,7 +14,7 @@ class Type
       name: @name
       path: @reference.path
     template: get: -> require "../#{@source.path}.pug"
-    html: get: -> links template @
+    html: get: -> links @template @
 
 
 route "api/types/{name}", Type.create

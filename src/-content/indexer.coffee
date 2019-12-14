@@ -40,6 +40,7 @@ parse = (path) ->
   {source, reference}
 
 lookup = (key) ->
+  key = toLower key
   for name, index of indices
     return data if (data = index[key])?
   # explicit return avoids implicit return of array of nulls

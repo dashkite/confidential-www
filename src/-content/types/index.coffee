@@ -1,2 +1,2 @@
 import "./type"
-import "./toc"
+import "./block"
