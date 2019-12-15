@@ -4,7 +4,19 @@ import {match} from "./router"
 import _links from "./links.yaml"
 import "./types"
 
-context = require.context "./", true, /\.(md|yaml|pug)$/
+# basically, the following just filters out paths with
+# files or directories that begin with a -
+# WHICH DOES NOT SEEM LIKE IT SHOULD BE THIS COMPLICATED?
+context = require.context "./", true,
+  ///
+    ^(                         # either:
+      (\/(?!\-))               # a / followed by anything other than a -
+      |                        # or ...
+      [^\/]                    # anything that isn't a /
+    )+                         # repeat one or more times
+    \.(md|yaml|pug)$           # until extension of md, yaml, or pug
+  ///
+
 paths = context.keys()
 
 join = (c, ax) -> ax.join c
@@ -48,20 +60,6 @@ lookup = (key) ->
   # explicit return avoids implicit return of array of nulls
   undefined
 
-# TODO make this async via requestAnimationFrame?
-
-for path in paths
-  {source, reference} = parse path
-  if (m = match reference.path)?
-    {handler, bindings} = m
-    data = merge {source, reference}, load source.path
-    object = handler include data, bindings
-    for index, key of object.index
-      indices[index] ?= {}
-      indices[index][key] = object
-
-console.log {indices}
-
 links = (html) ->
   html.replace /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, innerHTML, key) ->
     key ?= innerHTML.replace /<[^>]+>/g, ""
@@ -73,5 +71,18 @@ links = (html) ->
     else
       console.warn "Link [#{key}] not found."
       "<a href='#broken'>#{innerHTML}</a>"
+
+# This appears to run in like 20 microseconds?
+# So I haven't bothered doing it via requestAnimationFrame
+# or in a worker thread or something like that
+for path in paths
+  {source, reference} = parse path
+  if (m = match reference.path)?
+    {handler, bindings} = m
+    data = merge {source, reference}, load source.path
+    object = handler include data, bindings
+    for index, key of object.index
+      indices[index] ?= {}
+      indices[index][key] = object
 
 export {lookup, links}
