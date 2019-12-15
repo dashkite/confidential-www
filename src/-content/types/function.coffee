@@ -2,11 +2,11 @@ import {properties} from "panda-parchment"
 import {route} from "../router"
 import {links} from "../indexer"
 
-class Type
+class Function
 
-  @create: (data) -> new Type data
+  @create: (data) -> new Function data
 
-  constructor: ({@source, @reference, @name, @extends, @interfaces}) ->
+  constructor: ({@source, @reference, @name}) ->
 
   properties @::,
     link: get: -> "/" + @reference.path
@@ -16,5 +16,4 @@ class Type
     template: get: -> require "../#{@source.path}.pug"
     html: get: -> links @template @
 
-
-route "/api/types/{name}", Type.create
+route "/api/functions/{name}", Function.create

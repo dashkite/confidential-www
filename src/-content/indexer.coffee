@@ -1,6 +1,7 @@
-import {first, last, rest, split, merge, include, toLower} from "panda-parchment"
+import {first, last, rest, split, merge, include,
+  toLower, isString} from "panda-parchment"
 import {match} from "./router"
-import dictionary from "./links.yaml"
+import _links from "./links.yaml"
 import "./types"
 
 context = require.context "./", true, /\.(md|yaml|pug)$/
@@ -9,8 +10,9 @@ paths = context.keys()
 join = (c, ax) -> ax.join c
 drop = ([ax..., a]) -> ax
 
-indices =
-  name: dictionary
+indices = name: {}
+for key, link of _links
+  indices.name[toLower key] = link
 
 load = (path) ->
   try
@@ -58,11 +60,16 @@ for path in paths
       indices[index] ?= {}
       indices[index][key] = object
 
+console.log {indices}
+
 links = (html) ->
   html.replace /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, innerHTML, key) ->
     key ?= innerHTML.replace /<[^>]+>/g, ""
     if (target = lookup key)?
-      "<a href='#{target.link ? target}'>#{innerHTML}</a>"
+      # can't use target.link ? target b/c String::link() is a thing
+      "<a href='#{if isString target then target else target.link}'>
+        #{innerHTML}
+      </a>"
     else
       console.warn "Link [#{key}] not found."
       "<a href='#broken'>#{innerHTML}</a>"
