@@ -2,3 +2,4 @@ build/
 intermediate/
 node_modules/
 .DS_Store
+webpack-stats.json

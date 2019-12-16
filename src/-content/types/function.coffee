@@ -9,11 +9,8 @@ class Function
   constructor: ({@source, @reference, @name}) ->
 
   properties @::,
-    link: get: -> "/" + @reference.path
-    index: get: ->
-      name: @name
-      path: @reference.path
-    template: get: -> require "../#{@source.path}.pug"
-    html: get: -> links @template @
+    path: get: -> @reference.path
+    link: get: -> "/#{@path}"
+    index: get: -> {@name, @path}
 
 route "/api/functions/{name}", Function.create

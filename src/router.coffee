@@ -22,8 +22,9 @@ relative = (url) ->
 # TODO handle URL description?
 dispatch = ({url, name, parameters}) ->
   url ?= link {name, parameters}
+  path = relative url
   {data, bindings} = match relative url
-  handlers[data.name] {data, bindings}
+  handlers[data.name] {path, data, bindings}
 
 link = ({name, parameters}) ->
   for route in router.routes

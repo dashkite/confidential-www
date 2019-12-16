@@ -1,1 +1,2 @@
+import "./function"
 import "./article"

@@ -1,20 +1,13 @@
-import {curry, tee, flow} from "panda-garden"
+import {flow} from "panda-garden"
 import {route} from "../../router"
-import {hash, meta, root, page, view, activate, show} from "@dashkite/page-graph"
-import render from "./index.pug"
-
-path = curry (key, context) ->
-  context.bindings[key] = context.bindings[key].join "/"
+import {add, view, activate, show} from "@dashkite/page-graph"
+import $main from "./index.pug"
 
 # TODO need combinator hide/show header?
 route "/",
   name: "home"
   flow [
-    hash
-    meta
-    root "main"
-    page
-    view render
+    view "main", $main
     activate [ "raven-article" ]
     show
   ]
@@ -22,12 +15,8 @@ route "/",
 route "{/path*}",
   name: "view article"
   flow [
-    hash
-    meta
-    tee path "path"
-    root "main"
-    page
-    view render
+    add "path"
+    view "main", $main
     activate [ "raven-article" ]
     show
   ]
