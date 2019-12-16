@@ -89,6 +89,4 @@ for path in paths
       indices[index] ?= {}
       indices[index][key] = object
 
-console.log indices.path
-
 export {lookup, links, glob}
