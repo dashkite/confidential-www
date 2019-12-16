@@ -6,11 +6,12 @@ class Block
 
   @create: (data) -> new Block data
 
-  constructor: ({@source, @reference}) ->
+  constructor: ({@source, @reference, @name, @title}) ->
 
   properties @::,
     link: get: -> "/" + @reference.path
     index: get: ->
+      title: @title
       path: @reference.path
     template: get: ->
       try

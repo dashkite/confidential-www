@@ -1,7 +1,7 @@
 # External Links
 nacl: https://nacl.cr.yp.to/
 tweetnacl: https://tweetnacl.cr.yp.to/
-tweetnacl.js: https://tweetnacl.js.org/
+TweetNaCl.js: https://tweetnacl.js.org/
 
 # Reference Links
 function: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
@@ -37,21 +37,3 @@ tweetnacl-randombytes: https://github.com/dchest/tweetnacl-js#random-bytes-gener
 tweetnacl-secretbox: https://github.com/dchest/tweetnacl-js#secret-key-authenticated-encryption-secretbox
 tweetnacl-box: https://github.com/dchest/tweetnacl-js#public-key-authenticated-encryption-box
 tweetnacl-sign: https://github.com/dchest/tweetnacl-js#signatures
-
-# Internal Links
-
-confidential: /
-
-# point to the first type in the list
-types: /api/types/Declaration
-
-# hack to allow key to resolve correctly
-key: /api/types/Key
-
-guides: /guides
-quick start: /guides/quick-start
-symmetric encryption: /guides/symmetric-encryption
-asymmetric encryption: /guides/asymmetric-encryption
-cryptographic signatures: /guides/signatures
-motivation: /guides/motivation
-why nacl: /guides/why-nacl

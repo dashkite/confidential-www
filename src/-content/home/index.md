@@ -21,5 +21,5 @@ import {confidential} from "panda-confidential"
 ## Learn More
 
 - [Quick Start][]
-- [API Reference][API]
-- [Guides][]
+- [API Reference][api]
+- [Guides][guides]

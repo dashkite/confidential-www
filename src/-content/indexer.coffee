@@ -1,5 +1,6 @@
+import minimatch from "minimatch"
 import {first, last, rest, split, merge, include,
-  toLower, isString} from "panda-parchment"
+  toLower, isString, keys} from "panda-parchment"
 import {match} from "./router"
 import _links from "./links.yaml"
 import "./types"
@@ -24,7 +25,7 @@ drop = ([ax..., a]) -> ax
 
 indices = name: {}
 for key, link of _links
-  indices.name[toLower key] = link
+  indices.name[key] = link
 
 load = (path) ->
   try
@@ -54,7 +55,6 @@ parse = (path) ->
   {source, reference}
 
 lookup = (key) ->
-  key = toLower key
   for name, index of indices
     return data if (data = index[key])?
   # explicit return avoids implicit return of array of nulls
@@ -72,6 +72,10 @@ links = (html) ->
       console.warn "Link [#{key}] not found."
       "<a href='#broken'>#{innerHTML}</a>"
 
+glob = (pattern) ->
+  minimatch.match (keys indices.path), pattern
+  .map lookup
+
 # This appears to run in like 20 microseconds?
 # So I haven't bothered doing it via requestAnimationFrame
 # or in a worker thread or something like that
@@ -85,4 +89,6 @@ for path in paths
       indices[index] ?= {}
       indices[index][key] = object
 
-export {lookup, links}
+console.log indices.path
+
+export {lookup, links, glob}
