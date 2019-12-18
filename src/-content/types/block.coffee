@@ -1,4 +1,4 @@
-import {properties} from "panda-parchment"
+import {properties, titleCase} from "panda-parchment"
 import {route} from "../router"
 import {links} from "../indexer"
 
@@ -6,13 +6,16 @@ class Block
 
   @create: (data) -> new Block data
 
-  constructor: ({@source, @reference, @name, @title}) ->
+  constructor: ({@source, @reference, @title}) ->
+    @title ?= titleCase @name
 
   properties @::,
-    link: get: -> "/" + @reference.path
+    name: get: -> @reference.name
+    path: get: -> @reference.path
+    link: get: -> "/" + @path
     index: get: ->
       title: @title
-      path: @reference.path
+      path: @path
     template: get: ->
       try
         require "../#{@source.path}.pug"

@@ -1,0 +1,32 @@
+@require "../../-styles"
+
+:host
+  reset block
+  flex 1 1 auto
+  column nowrap
+  align-items center
+
+ul
+  type body small
+  flex 1 1 auto
+  display inline-block
+  min-width 36rem
+  max-width 96rem
+
+  & > li
+    display inline-block
+    // override margins just in case they've been styled
+    // for bulleted lists
+    margin-left 0
+    margin-bottom 1rem !important
+
+    &:last-child
+      font-weight bold
+      
+    &:not(:last-child)
+      &::after
+        margin 0 1rem
+        content "\25b8"
+
+    a, a:visited, a:hover
+      color inherit

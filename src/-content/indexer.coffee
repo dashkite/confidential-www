@@ -87,7 +87,7 @@ for path in paths
     {handler, bindings} = m
     data = merge {source, reference}, load source.path
     object = handler include data, bindings
-    for index, key of object.index
+    for index, key of object.index when key?
       indices[index] ?= {}
       indices[index][key] = object
 

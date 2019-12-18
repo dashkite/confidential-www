@@ -1,6 +1,6 @@
 import {flow} from "panda-garden"
 import {route} from "../../router"
-import {view, activate, render, show} from "@dashkite/page-graph"
+import {add, view, activate, render, show} from "@dashkite/page-graph"
 import $head from "./head.pug"
 import $header from "./header.pug"
 import $main from "./index.pug"
@@ -10,6 +10,8 @@ route "/api/functions/{name}",
   name: "view function"
 
   flow [
+
+    add "path"
 
     # render the main block of the page as a page view
     view "main", $main

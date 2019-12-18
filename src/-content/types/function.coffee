@@ -6,10 +6,12 @@ class Function
 
   @create: (data) -> new Function data
 
-  constructor: ({@source, @reference, @name, @summary,
+  constructor: ({@source, @reference, @summary,
     @signatures, @variables}) ->
 
   properties @::,
+    name: get: -> @reference.name
+    title: get: -> @name
     path: get: -> @reference.path
     link: get: -> "/#{@path}"
     index: get: -> {@name, @path}
