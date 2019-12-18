@@ -1,0 +1,25 @@
+style
+  include:stylus index.styl    
+
+section
+  if variables.length > 0
+
+    table
+      thead
+        tr
+          th name
+          th type
+          th description
+
+      tbody
+        each entry in variables
+          tr
+            if entry.fragment
+              td: p(id=entry.fragment)= entry.name
+            else
+              td: p= entry.name
+            td!= $(entry.type)
+            td!= $(entry.description)
+
+  else
+    slot

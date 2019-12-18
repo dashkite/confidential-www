@@ -13,7 +13,7 @@ class extends Gadget
 
   mixin @, [
 
-    tag "site-function"
+    tag "site-variables"
 
     bebop, shadow, describe, navigate
 
@@ -22,7 +22,6 @@ class extends Gadget
     properties
       view: get: ->
         $: (text) -> links markdown text
-
     render smart template
 
   ]

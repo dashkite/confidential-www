@@ -4,3 +4,19 @@ style
 article
   h1!= name
   
+  != $(summary)
+  
+  site-signatures(data-path = path)
+  
+  site-variables(data-path = path)
+  
+  != $(description)
+  
+  if examples.length > 0
+    if examples.length == 1
+      h2 Example
+    else
+      h2 Examples
+
+    each example in examples
+      != example.html

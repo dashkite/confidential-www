@@ -1,16 +1,12 @@
 @require "../../-styles"
 
 :host
-  reset block
-  flex 1 1 auto
-  column nowrap
-  align-items center
+  display block
 
-article
-  flex 1 1 0
-  column nowrap
-  overflow auto
+  &(.no-title) h1
+    display none
 
+section
   type copy
   min-width 36rem
   max-width 96rem
@@ -19,6 +15,7 @@ article
   background-color white
 
   article h1 h2 h3 h4 h5 p ul li blockquote code
+  dashkite link table
 
   h1
     type heading very-large
@@ -26,8 +23,6 @@ article
   h2
     type heading large
     color black
-
-  dashkite link
 
   figure
     float right
@@ -42,5 +37,3 @@ article
       borders top
       padding-top 1rem
       type body small
-
-  dashkite table

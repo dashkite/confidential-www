@@ -7,6 +7,7 @@ import $main from "./index.pug"
 route "/",
   name: "home"
   flow [
+    add "data"
     view "main", $main
     activate [ "raven-article" ]
     show

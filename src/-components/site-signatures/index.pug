@@ -1,0 +1,18 @@
+style
+  include:stylus index.styl    
+
+section
+  each signature in signatures
+    blockquote.signature
+      p
+        if parent.name
+          if scope == "class"
+            span.scope= parent.name
+          else
+            //- span.scope= $.dashed(parent.name)
+            span.scope= parent.name
+
+        span.name= name
+
+        span.arguments= signature.arguments
+        span.result= signature.result

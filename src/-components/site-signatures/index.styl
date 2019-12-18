@@ -1,16 +1,12 @@
 @require "../../-styles"
 
 :host
-  reset block
-  flex 1 1 auto
-  column nowrap
-  align-items center
+  display block
 
-article
-  flex 1 1 0
-  column nowrap
-  overflow auto
+  &(.no-title) h1
+    display none
 
+section
   type copy
   min-width 36rem
   max-width 96rem
@@ -43,4 +39,25 @@ article
       padding-top 1rem
       type body small
 
-  dashkite table
+  blockquote.signature
+
+    type caption
+    span.name, span.scope
+      font-weight bold
+    span.scope::after
+      content "."
+
+    span.name
+      margin-right 1rem
+    span.arguments::after
+      content "\2192"
+      margin-left 1rem
+      margin-right 1rem
+
+    & > p
+      margin 0
+
+  blockquote
+    background white - 5%
+    border-left 1rem solid kite-blue
+    padding 2rem
