@@ -13,6 +13,14 @@ route "/api/functions/{name}",
 
     add "path"
 
+    (context) ->
+      context.bindings.parent =
+        context.path
+        .split "/"
+        .slice(0,-1)
+        .join "/"
+      context
+
     # render the main block of the page as a page view
     view "main", $main
 
