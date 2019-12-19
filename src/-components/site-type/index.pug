@@ -1,0 +1,19 @@
+style
+  include:stylus index.styl    
+
+article
+  h1!= name
+  
+  != $(summary)
+  
+  if description
+    != $(description)
+  
+  if examples.length > 0
+    if examples.length == 1
+      h2 Example
+    else
+      h2 Examples
+
+    each example in examples
+      != example.html

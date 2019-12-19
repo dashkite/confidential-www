@@ -1,5 +1,6 @@
 import "./site-banner"
 import "./site-function"
+import "./site-type"
 import "./site-signatures"
 import "./site-variables"
 import "./site-breadcrumbs"
