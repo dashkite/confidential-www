@@ -6,23 +6,29 @@ class Block
 
   @create: (data) -> new Block data
 
-  constructor: ({@source, @reference, @title}) ->
-    @title ?= titleCase @name
+  constructor: ({@source, @reference}) ->
 
   properties @::,
     name: get: -> @reference.name
+    title: get: -> @data?.title ? titleCase @name
     path: get: -> @reference.path
-    link: get: -> "/" + @path
+    link: get: -> @path
     index: get: ->
+      name: @name
       title: @title
       path: @path
+    data: get: ->
+      try
+        require "../#{@source.path[1..]}.yaml"
     template: get: ->
       try
-        require "../#{@source.path}.pug"
+        require "../#{@source.path[1..]}.pug"
     markdown: get: ->
       try
-        require "../#{@source.path}.md"
-    html: get: -> links if @template? then @template @ else @markdown
+        require "../#{@source.path[1..]}.md"
+    html: get: ->
+      try
+        links if @template? then @template @ else @markdown
 
 
 # catch-all for content that doesn't have a more specific type

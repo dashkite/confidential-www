@@ -6,15 +6,17 @@ class Type
 
   @create: (data) -> new Type data
 
-  constructor: ({@source, @reference, @name, @extends, @interfaces}) ->
+  constructor: ({@source, @reference}) ->
 
   properties @::,
-    link: get: -> "/" + @reference.path
-    index: get: ->
-      name: @name
-      path: @reference.path
-    template: get: -> require "../#{@source.path}.pug"
-    html: get: -> links @template @
+    name: get: -> @reference.name
+    title: get: -> @name
+    path: get: -> @reference.path
+    link: get: -> @path
+    index: get: -> {@name, @path}
+    data: get: ->
+      try
+        require "../#{@source.path[1..]}.yaml"
 
 
 route "/api/types/{name}", Type.create

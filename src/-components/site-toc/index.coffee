@@ -18,7 +18,7 @@ class extends Gadget
 
     bebop, shadow, describe, navigate
 
-    resource -> glob @dom.dataset.glob.slice(1)
+    resource -> glob @dom.dataset.glob
 
     render smart template
 

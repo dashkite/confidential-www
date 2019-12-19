@@ -7,15 +7,16 @@ import $main from "./index.pug"
 route "/",
   name: "home"
   flow [
-    add "data"
+    add "path"
     view "main", $main
     activate [ "raven-article" ]
     show
   ]
 
-route "{/path*}",
+route "{/parts*}",
   name: "view article"
   flow [
+    add "data"
     add "path"
     view "main", $main
     activate [ "raven-article" ]

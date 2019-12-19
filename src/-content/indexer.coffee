@@ -2,7 +2,7 @@ import minimatch from "minimatch"
 import {first, last, rest, split, merge, include,
   toLower, isString, keys} from "panda-parchment"
 import {match} from "./router"
-import _links from "./links.yaml"
+import _links from "./-links.yaml"
 import "./types"
 
 # basically, the following just filters out paths with
@@ -29,21 +29,14 @@ indices = name: {}
 for key, link of _links
   indices.name[key] = link
 
-load = (path) ->
-  try
-    data = require "./#{path}.yaml"
-  catch
-    data = {}
-  data
-
 normalize = (components) ->
   name = first split ".", last components
   if components.length > 1
-    parent = join "/", drop components
+    parent = "/" + join "/", drop components
     path = join "/", [ parent, name ]
   else
     parent = "/"
-    path = name
+    path = "/" + name
   {path, parent, name}
 
 parse = (path) ->
@@ -85,8 +78,7 @@ for path in paths
   {source, reference} = parse path
   if (m = match reference.path)?
     {handler, bindings} = m
-    data = merge {source, reference}, load source.path
-    object = handler include data, bindings
+    object = handler include {source, reference}, bindings
     for index, key of object.index when key?
       indices[index] ?= {}
       indices[index][key] = object

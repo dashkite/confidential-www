@@ -2,7 +2,7 @@ style
   include:stylus index.styl    
 
 section
-  if variables.length > 0
+  if data.variables.length > 0
 
     table
       thead
@@ -12,7 +12,7 @@ section
           th description
 
       tbody
-        each entry in variables
+        each entry in data.variables
           tr
             if entry.fragment
               td: p(id=entry.fragment)= entry.name

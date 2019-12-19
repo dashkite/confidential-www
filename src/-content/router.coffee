@@ -8,7 +8,7 @@ route = (template, handler) ->
   router
 
 match = (path) ->
-  if (m = router.match "/#{path}")?
+  if (m = router.match path)?
     {bindings, data: {handler}} = m
     {bindings, handler}
 
