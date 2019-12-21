@@ -79,8 +79,6 @@ for path in paths
   if (m = match reference.path)?
     {handler, bindings} = m
     object = handler include {source, reference}, bindings
-    for index, key of object.index when key?
-      indices[index] ?= {}
-      indices[index][key] = object
+    object.index indices
 
 export {lookup, links, glob}
