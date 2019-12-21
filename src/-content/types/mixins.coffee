@@ -1,18 +1,14 @@
 import {pipe, tee, rtee, curry} from "panda-garden"
-import {properties, titleCase} from "panda-parchment"
+import {cat, properties, titleCase} from "panda-parchment"
 import {route as _route} from "../router"
-import {links} from "../indexer"
+import {links, glob} from "../indexer"
 
 mix = (type, mixins) -> (pipe mixins...) type
 
-bind = (instance, fx) -> f.bind instance for f in fx
 
 indexer = curry rtee (f, T) ->
-  console.log indexer: T
-  T::index ?= (indices) ->
-    console.log this: @
-    (pipe (bind @, T.indexers)...) indices
-  (T.indexers ?= []).push tee f
+  (T.indexers ?= []).push f
+  T::index ?= (indices) -> f.call @, indices for f in T.indexers
 
 index = curry rtee (name, T) ->
   mix T, [
@@ -23,7 +19,7 @@ index = curry rtee (name, T) ->
 
 basic = tee (T) ->
   T.create = (value) -> (new T).initialize value
-  T::initialize = ({@source, @reference}) ->
+  T::initialize = ({@source, @reference, @bindings}) -> @
   properties T::,
     name: get: -> @reference.name
     path: get: -> @reference.path
@@ -35,7 +31,7 @@ basic = tee (T) ->
 
 title = tee (T) ->
   properties T::,
-    title: get: -> @data.title ? titleCase name
+    title: get: -> @data?.title ? titleCase @name
   mix T, [ index "title" ]
 
 data = tee (T) ->
@@ -66,7 +62,6 @@ examples = tee (T) ->
     examples: get: ->
       cat (glob "#{@path}/examples/*"),
         glob "#{@path}/example/*"
-
 
 route = curry rtee (template, T) -> _route template, T.create
 

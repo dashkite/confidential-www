@@ -78,7 +78,7 @@ for path in paths
   {source, reference} = parse path
   if (m = match reference.path)?
     {handler, bindings} = m
-    object = handler include {source, reference}, bindings
+    object = handler {source, reference, bindings}
     object.index indices
 
 export {lookup, links, glob}
