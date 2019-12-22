@@ -1,2 +1,5 @@
+interfaces:
+  - type
+  - convert
 summary: |
   Encapsulates encrypted data for use within Confidential functions.

@@ -1,1 +1,4 @@
+interfaces:
+  - type
+  - convert
 summary: Encapsulates the [SHA-512][] hash of a document.

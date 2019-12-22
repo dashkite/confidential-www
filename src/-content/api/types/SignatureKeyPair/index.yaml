@@ -1,3 +1,7 @@
-$extends: KeyPair
+extends: KeyPair
+interfaces:
+  - keypair
+  - type
+  - convert
 summary: |
   Encapsulates a key pair for use with [cryptographic signatures][].

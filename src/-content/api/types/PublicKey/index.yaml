@@ -1,3 +1,6 @@
+extends: Key
+interfaces:
+  - type
+  - convert
 summary: |
   The public key in a [`KeyPair`][], used to perform public-key cryptography.
-$extends: Key

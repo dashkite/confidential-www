@@ -1,2 +1,5 @@
+interfaces:
+  - type
+  - convert
 summary: |
   Base class for key pair types, ex: [`EncryptionKeyPair`][].

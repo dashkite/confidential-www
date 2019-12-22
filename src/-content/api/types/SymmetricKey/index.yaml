@@ -1,3 +1,6 @@
-$extends: Key
+extends: Key
+interfaces:
+  - type
+  - convert
 summary: |
   Encapsulates a key for use with [symmetric encryption][].

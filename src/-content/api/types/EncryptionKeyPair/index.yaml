@@ -1,2 +1,6 @@
-$extends: KeyPair
+extends: KeyPair
+interfaces:
+  - keypair
+  - type
+  - convert
 summary: Key pair suitable for [asymmetric encryption][].

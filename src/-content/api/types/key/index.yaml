@@ -1,2 +1,4 @@
+interfaces:
+  - kind
 summary: |
   Base class for key types, ex: [`PublicKey`][].

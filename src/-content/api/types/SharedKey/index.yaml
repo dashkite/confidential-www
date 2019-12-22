@@ -1,3 +1,7 @@
-$extends: Key
+extends: Key
+interfaces:
+  - create
+  - type
+  - convert
 summary: |
   Encapsulates a key for use with [asymmetric encryption][].
