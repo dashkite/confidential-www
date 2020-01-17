@@ -1,6 +1,6 @@
-import minimatch from "minimatch"
+import _minimatch from "minimatch"
 import {first, last, rest, split, merge, include,
-  toLower, isString, keys} from "panda-parchment"
+  toLower, isString, property, keys} from "panda-parchment"
 import {match} from "./router"
 import _links from "./-links.yaml"
 import "./types"
@@ -29,6 +29,11 @@ indices = name: {}
 for key, link of _links
   indices.name[key] = link
 
+resolve = reject = undefined
+_indices = promise (_resolve, _reject) ->
+  resolve = _resolve
+  reject = _reject
+
 normalize = (components) ->
   name = first split ".", last components
   if components.length > 1
@@ -50,7 +55,7 @@ parse = (path) ->
   {source, reference}
 
 lookup = (key) ->
-  for name, index of indices
+  for name, index of await _indices
     return data if (data = index[key])?
   # explicit return avoids implicit return of array of nulls
   undefined
@@ -58,7 +63,7 @@ lookup = (key) ->
 links = (html) ->
   html.replace /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, innerHTML, key) ->
     key ?= innerHTML.replace /<[^>]+>/g, ""
-    if (target = lookup key)?
+    if (target = await lookup key)?
       # can't use target.link ? target b/c String::link() is a thing
       "<a href='#{if isString target then target else target.link}'>
         #{innerHTML}
@@ -67,9 +72,12 @@ links = (html) ->
       console.warn "Link [#{key}] not found."
       "<a href='#broken'>#{innerHTML}</a>"
 
+minimatch = (pattern, array) -> _minimatch.match array, pattern
+
 glob = (pattern) ->
-  minimatch.match (keys indices.path), pattern
-  .map lookup
+  dictionary = property "path", await _indices
+  paths = minimatch pattern, keys dictionary
+  map paths, (path) -> property path, dictionary
 
 # This appears to run in like 20 microseconds?
 # So I haven't bothered doing it via requestAnimationFrame
@@ -80,5 +88,7 @@ for path in paths
     {handler, bindings} = m
     object = handler {source, reference, bindings}
     object.index indices
+
+resolve indices
 
 export {lookup, links, glob}

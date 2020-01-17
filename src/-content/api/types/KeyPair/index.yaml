@@ -1,5 +1,4 @@
 interfaces:
-  - type
-  - convert
-summary: |
+  - kind
+ssummary: |
   Base class for key pair types, ex: [`EncryptionKeyPair`][].

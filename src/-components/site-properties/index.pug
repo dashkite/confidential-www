@@ -1,0 +1,25 @@
+style
+  include:stylus index.styl    
+
+section
+  if results.length > 0
+
+    table
+      thead
+        tr
+          th name
+          th type
+          th description
+
+      tbody
+        each property in results
+          tr
+            if property.fragment
+              td: p(id=property.fragment)= property.name
+            else
+              td: p= property.name
+            td!= $(property.data.type)
+            td!= $(property.data.description)
+
+  else
+    slot
