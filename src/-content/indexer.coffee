@@ -1,38 +1,13 @@
-import _minimatch from "minimatch"
-import {first, last, rest, split, merge, include,
-  toLower, isString, property, keys} from "panda-parchment"
+import minimatch from "minimatch"
+import {first, last, rest, split,
+  isString, keys, promise, all} from "panda-parchment"
 import {match} from "./router"
-import _links from "./-links.yaml"
-import "./types"
 
-# basically, the following just filters out paths with
-# files or directories that begin with a -
-# equivalent to: glob [ "**/*.{md,yaml,pug}",  "!**/-*/**", "!**/-*" ]
-# WHICH DOES NOT SEEM LIKE IT SHOULD BE THIS COMPLICATED?
-context = require.context "./", true,
-  ///
-    ^(                         # start followed by:
-      (\/(?!\-))               # a / followed by anything other than a -
-      |                        # or ...
-      [^\/]                    # anything that isn't a /
-    )+                         # repeat one or more times
-    \.(md|yaml|pug)            # until extension of md, yaml, or pug
-    $                          # and end
-  ///
-
-paths = context.keys()
+# untility methods for parsing paths
 
 join = (c, ax) -> ax.join c
+
 drop = ([ax..., a]) -> ax
-
-indices = name: {}
-for key, link of _links
-  indices.name[key] = link
-
-resolve = reject = undefined
-_indices = promise (_resolve, _reject) ->
-  resolve = _resolve
-  reject = _reject
 
 normalize = (components) ->
   name = first split ".", last components
@@ -54,11 +29,53 @@ parse = (path) ->
     reference = source
   {source, reference}
 
-lookup = (key) ->
-  for name, index of await _indices
-    return data if (data = index[key])?
+# private state shared between index functions
+# TODO should this just be a class?
+# presently, the index is effectively a singleton
+_ =
+  # raw indices, use only for updating
+  $: {}
+
+# promised indices, resolve after all the handlers are called
+# use for access (find, lookup, glob)
+_.indices = promise (resolve, reject) ->
+  _.resolve = resolve
+  _.reject = reject
+
+# TODO support URLs
+resources = (paths) ->
+  # This appears to run in like 20 microseconds?
+  # So I haven't bothered doing it via requestAnimationFrame
+  # or in a worker thread or something like that
+  for path in paths
+    {source, reference} = parse path
+    if (m = match reference.path)?
+      {handler, bindings} = m
+      handler {source, reference, bindings}
+  # okay, make the index available for use
+  _.resolve _.$
+
+add = (index, key, value) -> (_.$[index] ?= {})[key] = value
+
+# WARNING: race conditions may occur for defining and using an alias
+alias = (index, from, to) ->
+  if (value = await find index, key)?
+    add index, key, value
+
+lookup = (index, key) ->
+  await (await _.indices)[index]?[key]
+
+find = (key) ->
+  for name, index of (await _.indices)
+    return await value if (value = index[key])?
   # explicit return avoids implicit return of array of nulls
   undefined
+
+glob = (pattern) ->
+  await _available
+  dictionary = (await _.indices).path
+  paths = minimatch (keys dictionary), pattern
+  await all (dictionary[path] for path in paths)
 
 links = (html) ->
   html.replace /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, innerHTML, key) ->
@@ -72,23 +89,4 @@ links = (html) ->
       console.warn "Link [#{key}] not found."
       "<a href='#broken'>#{innerHTML}</a>"
 
-minimatch = (pattern, array) -> _minimatch.match array, pattern
-
-glob = (pattern) ->
-  dictionary = property "path", await _indices
-  paths = minimatch pattern, keys dictionary
-  map paths, (path) -> property path, dictionary
-
-# This appears to run in like 20 microseconds?
-# So I haven't bothered doing it via requestAnimationFrame
-# or in a worker thread or something like that
-for path in paths
-  {source, reference} = parse path
-  if (m = match reference.path)?
-    {handler, bindings} = m
-    object = handler {source, reference, bindings}
-    object.index indices
-
-resolve indices
-
-export {lookup, links, glob}
+export {resources, add, alias, lookup, find, glob, links}

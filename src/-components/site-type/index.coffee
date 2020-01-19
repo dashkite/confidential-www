@@ -17,7 +17,7 @@ class extends Gadget
 
     bebop, shadow, describe, navigate
 
-    resource -> lookup @dom.dataset.path
+    resource -> lookup "path", @dom.dataset.path
 
     properties
       view: get: ->

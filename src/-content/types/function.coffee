@@ -1,12 +1,14 @@
 import {properties} from "panda-parchment"
 import {mix, basic, data, description, examples, index, route} from "./mixins"
+import {load} from "./helpers"
 
 class Function
 
   mix @, [
-    basic, data, description, examples
-    index "title"
+    basic, description, examples
     route "/api/functions/{name}"
+    data load "yaml"
+    index "title"
   ]
 
   properties @::,
