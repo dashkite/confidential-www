@@ -12,8 +12,9 @@ class Type
     index "title"
     data load "yaml"
     ready ->
-      for name in @data.interfaces
-        @addInterface name
+      await all do =>
+        for name in @data.interfaces
+          @addInterface name
   ]
 
   properties @::,
@@ -29,5 +30,7 @@ class Type
     objects = await glob "/api/interfaces/#{name}/#{scope}/#{category}/*"
     await all do =>
       for object in objects
+        # TODO since we already have the object we want to alias
+        #      should we add that to the alias interface?
         alias "path", object.path,
           "#{@path}/#{scope}/#{category}/#{object.name}"
