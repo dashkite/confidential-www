@@ -1,7 +1,7 @@
 import {properties} from "panda-parchment"
 import {mix, basic, description, examples,
   route, index, data, ready} from "./mixins"
-import {alias} from "../indexer"
+import {alias, glob} from "../indexer"
 import {load} from "./helpers"
 
 class Type
@@ -12,10 +12,19 @@ class Type
     index "title"
     data load "yaml"
     ready ->
-      alias "path",
-        "/api/interfaces/keypair/class/methods/create",
-        "#{@path}/class/methods/create"
+      for name in @data.interfaces
+        @addInterface name
   ]
 
   properties @::,
     title: get: -> @name
+
+  addInterface: (name) ->
+    for scope in [ "class", "instance" ]
+      for category in [ "methods", "properties" ]
+        @addScopedInterface name, scope, category
+
+  addScopedInterface: (name, scope, category) ->
+    objects = await glob "/api/interfaces/#{name}/#{scope}/#{category}/*"
+    for object in objects
+      alias "path", object.path, "#{@path}/#{scope}/#{category}/#{object.name}"

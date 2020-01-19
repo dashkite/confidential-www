@@ -59,7 +59,6 @@ add = (index, key, value) -> (_.$[index] ?= {})[key] = value
 
 # WARNING: race conditions may occur for defining and using an alias
 alias = (index, from, to) ->
-  console.log alias: {index, from, to}
   if (value = (await _.indices)[index]?[from])?
     add index, to, value
 

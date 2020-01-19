@@ -1,5 +1,5 @@
 import "./types"
-import {resources, add} from "./indexer"
+import {resources, add, lookup} from "./indexer"
 import _links from "./-links.yaml"
 
 # basically, the following just filters out paths with
@@ -20,4 +20,4 @@ context = require.context "./", true,
 resources context.keys()
 
 for key, link of _links
-  add "name", key, link
+  add "name", key, lookup "path", link
