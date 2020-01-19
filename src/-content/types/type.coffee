@@ -12,7 +12,7 @@ class Type
     index "title"
     data load "yaml"
     ready ->
-      await all do =>
+      all do =>
         for name in @data.interfaces
           @addInterface name
   ]
@@ -21,14 +21,15 @@ class Type
     title: get: -> @name
 
   addInterface: (name) ->
-    for scope in [ "class", "instance" ]
-      await all do =>
-        for category in [ "methods", "properties" ]
-          @addScopedInterface name, scope, category
+    all do =>
+      for scope in [ "class", "instance" ]
+        all do =>
+          for category in [ "methods", "properties" ]
+            @addScopedInterface name, scope, category
 
   addScopedInterface: (name, scope, category) ->
     objects = await glob "/api/interfaces/#{name}/#{scope}/#{category}/*"
-    await all do =>
+    all do =>
       for object in objects
         # TODO since we already have the object we want to alias
         #      should we add that to the alias interface?
