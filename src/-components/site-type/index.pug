@@ -1,28 +1,32 @@
 style
-  include:stylus index.styl    
+  include:stylus index.styl
 
 article
   h1!= name
-  
-  != $(summary)
-    
+
+  != summary
+
   h2 Class Methods
-  
-  site-toc(data-glob = globs.classMethods)
-    
+
+  site-toc(data-glob = `${path}/class/methods/*`)
+    p There are no class methods.
+
   h2 Instance Methods
-  
+    site-toc(data-glob = `${path}/instance/methods/*`)
+      p There are no instance methods.
+
+
   h2 Class Properties
-  
+
   h2 Instance Properties
-  
-  site-properties(data-glob = globs.instanceProperties)
-  
+
+  site-properties(data-glob = `${path}/instance/properties/*`)
+
   h2 Description
-  
+
   if description
-    != $(description)
-  
+    != description
+
   if examples.length > 0
     if examples.length == 1
       h2 Example

@@ -19,10 +19,6 @@ class extends Gadget
 
     resource -> glob @dom.dataset.glob
 
-    properties
-      view: get: ->
-        results: wiki @value
-        $: (text) -> links markdown text
     render smart template
 
   ]

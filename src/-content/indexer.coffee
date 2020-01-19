@@ -59,8 +59,9 @@ add = (index, key, value) -> (_.$[index] ?= {})[key] = value
 
 # WARNING: race conditions may occur for defining and using an alias
 alias = (index, from, to) ->
-  if (value = await find index, key)?
-    add index, key, value
+  console.log alias: {index, from, to}
+  if (value = (await _.indices)[index]?[from])?
+    add index, to, value
 
 lookup = (index, key) ->
   await (await _.indices)[index]?[key]
@@ -72,9 +73,8 @@ find = (key) ->
   undefined
 
 glob = (pattern) ->
-  await _available
   dictionary = (await _.indices).path
-  paths = minimatch (keys dictionary), pattern
+  paths = minimatch.match (keys dictionary), pattern
   await all (dictionary[path] for path in paths)
 
 links = (html) ->

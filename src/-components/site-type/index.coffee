@@ -19,14 +19,6 @@ class extends Gadget
 
     resource -> lookup "path", @dom.dataset.path
 
-    properties
-      view: get: ->
-        if @value?
-          globs:
-            instanceProperties: "#{@value.path}/interface/instance/properties/*"
-            classMethods: "#{@value.path}/interface/class/methods/*"
-          $: (text) -> links markdown text
-
     render smart template
 
   ]
