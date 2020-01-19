@@ -1,4 +1,4 @@
-import {properties} from "panda-parchment"
+import {properties, all} from "panda-parchment"
 import {mix, basic, description, examples,
   route, index, data, ready} from "./mixins"
 import {alias, glob} from "../indexer"
@@ -21,10 +21,13 @@ class Type
 
   addInterface: (name) ->
     for scope in [ "class", "instance" ]
-      for category in [ "methods", "properties" ]
-        @addScopedInterface name, scope, category
+      await all do =>
+        for category in [ "methods", "properties" ]
+          @addScopedInterface name, scope, category
 
   addScopedInterface: (name, scope, category) ->
     objects = await glob "/api/interfaces/#{name}/#{scope}/#{category}/*"
-    for object in objects
-      alias "path", object.path, "#{@path}/#{scope}/#{category}/#{object.name}"
+    await all do =>
+      for object in objects
+        alias "path", object.path,
+          "#{@path}/#{scope}/#{category}/#{object.name}"
