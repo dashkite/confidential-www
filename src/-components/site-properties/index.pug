@@ -1,5 +1,6 @@
+include ../../-mixins
 style
-  include:stylus index.styl    
+  include:stylus index.styl
 
 section
   if results.length > 0
@@ -18,8 +19,8 @@ section
               td: p(id=property.fragment)= property.name
             else
               td: p= property.name
-            td!= $(property.data.type)
-            td!= $(property.data.description)
+            td: +wikitext(property.data.type)
+            td: +wikitext(property.data.description)
 
   else
     slot

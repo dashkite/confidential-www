@@ -2,7 +2,7 @@ mixin css(source, repo, version, path)
   if source == "jsdelivr"
     link(
       rel = "stylesheet"
-      href = `//cdn.jsdelivr.net/npm/${repo}@${version}/${path}` 
+      href = `//cdn.jsdelivr.net/npm/${repo}@${version}/${path}`
     )
 
 mixin js(source, repo, version, path)
@@ -24,7 +24,7 @@ mixin embed(title, url, description)
   meta(name = 'twitter:site' content = url)
   meta(name = 'twitter:title' content = title)
   meta(
-    name = 'twitter:text:description', 
+    name = 'twitter:text:description',
     content = description)
 
 mixin highlighting(theme = "prism")
@@ -38,10 +38,14 @@ mixin highlighting(theme = "prism")
 mixin icon(name, style = "regular")
   svg: use(xlink:href=`/images/fa/sprites/${style}.svg#${name}`)
 
+mixin wikitext(text)
+  site-wikitext
+    script(type = "text/wikitext")!= text
+
 mixin autolink(x)
   kite-autolink(data-key = x)
     block
-    
+
 mixin breadcrumbs(crumbs, here)
   if crumbs.length > 0
     ul
