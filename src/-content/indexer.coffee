@@ -1,4 +1,5 @@
 import minimatch from "minimatch"
+import {reduce} from "panda-river-esm"
 import {first, last, rest, split,
   isString, keys, promise, all} from "panda-parchment"
 import {match} from "./router"
@@ -77,15 +78,15 @@ glob = (pattern) ->
   await all (dictionary[path] for path in paths)
 
 # async replace
-replace = do ({match, result, index, groups} = {}) ->
+replace = do ({f, match, index, groups} = {}) ->
   (string, re, callback) ->
-    for result from string.matchAll re
+    f = (string, result) ->
       {index} = result
       [match, groups...] = result
-      string = "#{string[0...index]}\
-                 #{await callback match, groups...}\
-                 #{string[(index + match.length)...]}"
-    string
+      "#{string[0...index]}\
+       #{await callback match, groups...}\
+       #{string[(index + match.length)...]}"
+    reduce f, string, string.matchAll re
 
 links = (html) ->
   replace html, /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, innerHTML, key) ->
