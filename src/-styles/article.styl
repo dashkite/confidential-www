@@ -4,13 +4,13 @@ article()
 
 article-block()
   reset block
-  margin-bottom 4rem
+  &:not(:last-child)
+    margin-bottom 4rem
 
 article-h1()
   h1
     article-block()
     type heading very-large
-
 
 article-h2()
   h2
@@ -47,6 +47,9 @@ article-li()
 article-blockquote()
   blockquote
     article-block()
+    background white - 5%
+    border-left 1rem solid kite-blue
+    padding 2rem
 
 article-code()
   pre

@@ -55,7 +55,7 @@ data = curry rtee (load, T) ->
   properties T::,
     data: get: ->
       try
-        require "../#{@source.path[1..]}.yaml"
+        load @source.path
 
 content = curry rtee (load, T) ->
   properties T::,
@@ -69,10 +69,9 @@ content = curry rtee (load, T) ->
       try
         if @template? then @template @ else @markdown
 
-description = tee (T) ->
+summary = tee (T) ->
   properties T::,
     summary: get: -> @data.summary
-    description: get: -> @data.description
 
 examples = tee (T) ->
   properties T::,
@@ -83,4 +82,4 @@ examples = tee (T) ->
 route = curry rtee (template, T) -> _route template, T.create
 
 export {mix, basic, ready, index, data,
-  title, content, description, examples, route}
+  title, content, summary, examples, route}

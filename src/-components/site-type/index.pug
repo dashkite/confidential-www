@@ -28,10 +28,8 @@ article
   site-Properties(data-glob = `${path}/instance/properties/*`)
     p There are no instance properties.
 
-  h2 Description
-
-  if description
-    != description
+  site-block(data-key = `${path}/description`)
+    h2 Description
 
   if examples.length > 0
     if examples.length == 1

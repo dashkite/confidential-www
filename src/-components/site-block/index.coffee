@@ -12,7 +12,7 @@ class extends Gadget
 
   mixin @, [
 
-    tag "raven-article"
+    tag "site-block"
 
     bebop, shadow, describe, navigate
 

@@ -1,5 +1,5 @@
 import {properties, all} from "panda-parchment"
-import {mix, basic, description, examples,
+import {mix, basic, summary, examples,
   route, index, data, ready} from "./mixins"
 import {alias, glob} from "../indexer"
 import {load} from "./helpers"
@@ -29,7 +29,7 @@ aliases = ->
 class Type
 
   mix @, [
-    basic, description, examples
+    basic, summary, examples
     route "/api/types/{name}"
     index "title"
     data load "yaml"
