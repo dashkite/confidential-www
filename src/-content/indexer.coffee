@@ -76,14 +76,22 @@ glob = (pattern) ->
   paths = minimatch.match (keys dictionary), pattern
   await all (dictionary[path] for path in paths)
 
+# async replace
+replace = do ({match, result, index, groups} = {}) ->
+  (string, re, callback) ->
+    for result from string.matchAll re
+      {index} = result
+      [match, groups...] = result
+      string = "#{string[0...index]}\
+                 #{await callback match, groups...}\
+                 #{string[(index + match.length)...]}"
+    string
+
 links = (html) ->
-  html.replace /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, innerHTML, key) ->
+  replace html, /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, innerHTML, key) ->
     key ?= innerHTML.replace /<[^>]+>/g, ""
-    if (target = await lookup key)?
-      # can't use target.link ? target b/c String::link() is a thing
-      "<a href='#{if isString target then target else target.link}'>
-        #{innerHTML}
-      </a>"
+    if (target = await find key)?
+      "<a href='#{target.link}'>#{innerHTML}</a>"
     else
       console.warn "Link [#{key}] not found."
       "<a href='#broken'>#{innerHTML}</a>"

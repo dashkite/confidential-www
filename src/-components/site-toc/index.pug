@@ -4,7 +4,6 @@ style
 if results.length > 0
   ul
     each result in results
-      - console.log({result})
       li
         if window.location.pathname === result.link
           span.current= result.title

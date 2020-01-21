@@ -20,4 +20,4 @@ context = require.context "./", true,
 resources context.keys()
 
 for key, link of _links
-  add "name", key, lookup "path", link
+  add "name", key, {link}

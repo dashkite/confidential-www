@@ -22,7 +22,7 @@ utf-8 encoding: https://tools.ietf.org/html/rfc3629
 base64 encoding: https://tools.ietf.org/html/rfc4648
 url-safe base64 encoding: https://tools.ietf.org/html/rfc4648#section-5
 sha-512: https://tools.ietf.org/html/rfc4634
-symmetric encryption (wikipedia): https://en.wikipedia.org/wiki/Symmetric-key_algorithm
+symmetric encryption: https://en.wikipedia.org/wiki/Symmetric-key_algorithm
 pke: https://en.wikipedia.org/wiki/Public-key_cryptography
 authenticated encryption: https://en.wikipedia.org/wiki/Authenticated_encryption
 digitial signature: https://en.wikipedia.org/wiki/Digital_signature

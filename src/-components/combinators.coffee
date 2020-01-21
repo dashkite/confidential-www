@@ -1,5 +1,20 @@
 import {curry} from "panda-garden"
-import {isArray} from "panda-parchment"
+import {isArray, isString, isObject,
+  isDefined, isUndefined} from "panda-parchment"
+import Generic from "panda-generics"
+
+normalize = Generic.create name: "normalize"
+
+Generic.define normalize, isUndefined, isObject, (value, context) ->
+
+Generic.define normalize, isDefined, isObject, (value, context) ->
+  context[k] = v for k, v of value when v?
+
+Generic.define normalize, isString, isObject, (value, context) ->
+  context.value = value
+
+Generic.define normalize, isArray, isObject, (value, context) ->
+  context.results = value
 
 # Adapt a template so that it can merge together component facets
 smart = curry (template, object) ->
@@ -17,14 +32,7 @@ smart = curry (template, object) ->
     # lowest precedence is description
     r[k] = v for k, v of description if description?
 
-    # next is value
-    if value?
-      # adapt arrays by convention
-      if isArray value
-        r.results = value
-      else
-        # don't overwrite with null properties
-        r[k] = v for k, v of value when v?
+    normalize value, r
 
     # view has the highest precedence
     # view may be async
@@ -48,14 +56,7 @@ determined = curry (template, object) ->
   # lowest precedence is description
   r[k] = v for k, v of description if description?
 
-  # next is value
-  if value?
-    # adapt arrays by convention
-    if isArray value
-      r.results = value
-    else
-      # don't overwrite with null properties
-      r[k] = v for k, v of value when v?
+  normalize value, r
 
   # view has the highest precedence
   # view may be async
