@@ -80,20 +80,31 @@ glob = (pattern) ->
 # async replace
 replace = (string, re, callback) ->
   do ({f, result} = {}, offset = 0) ->
+
+    # define a function that takes a match from matchAll
+    # and a string and performs the replacement
+    # must be defined as a closure on callback and offset
     f = (string, result) ->
       do ({match, index, groups} = {}) ->
+        # 1. obtain the replacement string
         {index} = result
         [match, groups...] = result
         replacement = await callback match, groups...
+        # 2. figure out where to splice it in
         start = index + offset
         finish = start + match.length
+        # 3. update the offset, which must happen after (2)
         offset += replacement.length - match.length
+        # 4. generate the new string
         "#{string[0...start]}\
          #{replacement}\
          #{string[finish...]}"
+
+    # loop through matches and do the replacements
     # TODO reduce doesn't wait on the transform so we have to use a loop
     for result from string.matchAll re
       string = await f string, result
+    # return the final string
     string
 
 links = (html) ->
