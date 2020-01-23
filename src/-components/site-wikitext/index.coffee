@@ -15,14 +15,15 @@ class extends Gadget
 
     bebop, describe, queryable, navigate
 
-    resource -> links markdown @markdown
+    resource -> links markdown @text
 
     properties
-      markdown: get: ->
+      text: get: ->
         @dom
         .querySelector "script"
         .text
 
-    render smart ({value}) -> value
+    render smart ({value}) ->
+      value
 
   ]

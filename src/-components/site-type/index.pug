@@ -20,22 +20,19 @@ article
 
   h2 Class Properties
 
-  site-Properties(data-glob = `${path}/class/properties/*`)
+  site-properties(data-glob = `${path}/class/properties/*`)
     p There are no class properties.
 
   h2 Instance Properties
 
-  site-Properties(data-glob = `${path}/instance/properties/*`)
+  site-properties(data-glob = `${path}/instance/properties/*`)
     p There are no instance properties.
 
   site-block(data-key = `${path}/description`)
     h2 Description
 
-  if examples.length > 0
-    if examples.length == 1
-      h2 Example
-    else
-      h2 Examples
+  site-blocks(data-glob = `${path}/example/*`)
+    h2 Example
 
-    each example in examples
-      != example.html
+  site-blocks(data-glob = `${path}/examples/*`)
+    h2 Examples

@@ -78,15 +78,23 @@ glob = (pattern) ->
   await all (dictionary[path] for path in paths)
 
 # async replace
-replace = do ({f, match, index, groups} = {}) ->
-  (string, re, callback) ->
+replace = (string, re, callback) ->
+  do ({f, result} = {}, offset = 0) ->
     f = (string, result) ->
-      {index} = result
-      [match, groups...] = result
-      "#{string[0...index]}\
-       #{await callback match, groups...}\
-       #{string[(index + match.length)...]}"
-    reduce f, string, string.matchAll re
+      do ({match, index, groups} = {}) ->
+        {index} = result
+        [match, groups...] = result
+        replacement = await callback match, groups...
+        start = index + offset
+        finish = start + match.length
+        offset += replacement.length - match.length
+        "#{string[0...start]}\
+         #{replacement}\
+         #{string[finish...]}"
+    # TODO reduce doesn't wait on the transform so we have to use a loop
+    for result from string.matchAll re
+      string = await f string, result
+    string
 
 links = (html) ->
   replace html, /\[([^\]]+)\]\[([^\]]+)?\]/g, (match, innerHTML, key) ->
