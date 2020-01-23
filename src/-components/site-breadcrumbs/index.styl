@@ -2,16 +2,13 @@
 
 :host
   reset block
-  flex 1 1 auto
-  column nowrap
-  align-items center
 
 ul
-  type body small
-  flex 1 1 auto
+  reset block
   display inline-block
   min-width 36rem
   max-width 96rem
+  width 100%
 
   & > li
     display inline-block
@@ -22,7 +19,7 @@ ul
 
     &:last-child
       font-weight bold
-      
+
     &:not(:last-child)
       &::after
         margin 0 1rem

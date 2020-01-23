@@ -1,5 +1,5 @@
 style
-  include:stylus index.styl    
+  include:stylus index.styl
 
 ul
 
@@ -8,4 +8,5 @@ ul
   each crumb in crumbs
     li: a(href = crumb.link)= crumb.title
 
-  li= current.title
+  if current
+    li= current
