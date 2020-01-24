@@ -1,5 +1,7 @@
+include ../../-mixins
+
 style
-  include:stylus index.styl    
+  include:stylus index.styl
 
 section
   if data.variables.length > 0
@@ -18,8 +20,8 @@ section
               td: p(id=entry.fragment)= entry.name
             else
               td: p= entry.name
-            td!= $(entry.type)
-            td!= $(entry.description)
+            td: +wikitext(entry.type)
+            td: +wikitext(entry.description)
 
   else
     slot

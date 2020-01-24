@@ -9,7 +9,7 @@ route "/",
   flow [
     add "path"
     view "main", $main
-    activate [ "raven-article" ]
+    activate [ "site-block" ]
     show
   ]
 
@@ -19,6 +19,6 @@ route "{/parts*}",
     add "data"
     add "path"
     view "main", $main
-    activate [ "raven-article" ]
+    activate [ "site-block" ]
     show
   ]

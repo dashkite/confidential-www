@@ -61,13 +61,9 @@ content = curry rtee (load, T) ->
   properties T::,
     template: get: ->
       try
-        require "../#{@source.path[1..]}.pug"
-    markdown: get: ->
-      try
-        require "../#{@source.path[1..]}.md"
+        load @source.path
     html: get: ->
-      try
-        if @template? then @template @ else @markdown
+      @template? @
 
 summary = tee (T) ->
   properties T::,
