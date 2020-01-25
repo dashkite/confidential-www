@@ -1,5 +1,14 @@
 import {curry} from "panda-garden"
 
-load = curry (extension, path) -> require "../#{path[1..]}.#{extension}"
+load = curry (extension, path) ->
+  try
+    require "../#{path[1..]}.#{extension}"
 
-export {load}
+loaders = (fx) ->
+  (args...) ->
+    for f in fx
+      if (result = f args...)?
+        break
+    result
+
+export {load, loaders}

@@ -1,5 +1,5 @@
 import {pipe, tee, rtee, curry} from "panda-garden"
-import {cat, properties, titleCase, promise, all} from "panda-parchment"
+import {cat, properties, titleCase, promise, all, isFunction} from "panda-parchment"
 import {route as _route} from "../router"
 import {add, glob} from "../indexer"
 
@@ -57,13 +57,16 @@ data = curry rtee (load, T) ->
       try
         load @source.path
 
+# TODO is this the best interface?
+# TODO make async
 content = curry rtee (load, T) ->
   properties T::,
     template: get: ->
-      try
-        load @source.path
+      @_template ?= load @source.path
     html: get: ->
-      @template? @
+      if isFunction @template
+        @template @
+      else @template
 
 summary = tee (T) ->
   properties T::,
