@@ -1,0 +1,35 @@
+@require "../../-styles"
+
+:host
+  reset block
+
+  color darkest-kite-gray
+  background-color white
+
+  :last-child
+    margin-bottom 0
+
+  article h1 h2 h3 h4 h5 p ul li blockquote code
+
+  h1
+    type heading large
+    color black
+  h2
+    type heading medium
+    color black
+
+  dashkite link table
+
+  figure
+    float right
+    borders round
+    width 36rem
+    padding 1rem
+    & > img
+      width 100%
+      object-fit contain
+    & > figcaption
+      margin-top 1rem
+      borders top
+      padding-top 1rem
+      type body small

@@ -7,13 +7,15 @@ import {links} from "../../-content/indexer"
 import {navigate, describe, resource, queryable} from "../mixins"
 import {smart} from "../combinators"
 
+import template from "./index.pug"
+
 class extends Gadget
 
   mixin @, [
 
     tag "site-wikitext"
 
-    bebop, describe, queryable, navigate
+    bebop, describe, shadow, queryable, navigate
 
     resource -> links markdown @text
 
@@ -23,7 +25,6 @@ class extends Gadget
         .querySelector "script"
         .text
 
-    render smart ({value}) ->
-      value
+    render smart template
 
   ]
