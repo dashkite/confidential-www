@@ -8,7 +8,7 @@ import $main from "./index.pug"
 
 route "/api/types/{name}",
 
-  name: "view function"
+  name: "view type"
 
   flow [
 

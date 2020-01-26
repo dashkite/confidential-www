@@ -19,10 +19,6 @@ class extends Gadget
 
     resource -> lookup "path", @dom.dataset.path
 
-    properties
-      view: get: ->
-        $: (text) -> links markdown text
-
     render smart template
 
   ]

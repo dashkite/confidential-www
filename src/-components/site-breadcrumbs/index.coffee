@@ -29,7 +29,7 @@ class extends Gadget
     resource ->
       path = @dom.dataset.path
       crumbs = []
-      current = @dom.dataset.current ? (await lookup "path", path).title
+      current = @dom.dataset.current ? (await lookup "path", path)?.title
       while (path = parent path)?
         if (target = await lookup "path", path)?
           crumbs.push target

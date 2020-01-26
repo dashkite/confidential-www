@@ -40,7 +40,7 @@ mixin icon(name, style = "regular")
 
 mixin wikitext(text)
   site-wikitext
-    script(type = "text/wikitext")!= text
+    script(type = "text/plain")= text
 
 mixin autolink(x)
   kite-autolink(data-key = x)

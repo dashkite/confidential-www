@@ -1,22 +1,24 @@
+include ../../-mixins
+
 style
-  include:stylus index.styl    
+  include:stylus index.styl
 
 article
   h1!= name
-  
-  != $(summary)
-  
-  site-signatures(data-path = path)
-  
-  site-variables(data-path = path)
-  
-  != $(description)
-  
-  if examples.length > 0
-    if examples.length == 1
-      h2 Example
-    else
-      h2 Examples
 
-    each example in examples
-      != example.html
+  +wikitext(summary)
+
+  site-signatures(data-path = path)
+
+  site-variables(data-path = path)
+
+  +wikitext(description)
+
+  site-block(data-key = `${path}/description`)
+    h2 Description
+
+  site-blocks(data-glob = `${path}/example/*`)
+    h2 Example
+
+  site-blocks(data-glob = `${path}/examples/*`)
+    h2 Examples
