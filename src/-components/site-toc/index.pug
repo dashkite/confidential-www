@@ -5,7 +5,7 @@ if results.length > 0
   ul
     each result in results
       li
-        if window.location.pathname === result.link
+        if current == result.title
           span.current= result.title
         else
           a(href = result.link)= result.title

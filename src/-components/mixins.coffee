@@ -6,12 +6,12 @@ navigate = ready -> _navigate @root
 
 pipe = spread _pipe
 
-describe = ->
+describe = do ->
 
   # convert a dataset into an ordinary object
   get = (dataset) ->
     r = {}
-    r[k] = v for k, v of object when v?
+    r[k] = v for k, v of dataset when v?
     r
 
   pipe [
