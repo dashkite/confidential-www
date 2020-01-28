@@ -4,7 +4,7 @@ style
   include:stylus index.styl
 
 section
-  if data.variables.length > 0
+  if variables.length > 0
 
     table
       thead
@@ -14,7 +14,7 @@ section
           th description
 
       tbody
-        each entry in data.variables
+        each entry in variables
           tr
             td: +wikitext(entry.name)(data-path = parent)
             td: +wikitext(entry.type)(data-path = parent)

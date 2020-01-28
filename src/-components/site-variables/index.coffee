@@ -1,6 +1,7 @@
 import markdown from "marked"
 import {Gadget, mixin, tag, bebop, shadow,
   render, properties, events, local} from "panda-play"
+import {dashed} from "panda-parchment"
 
 import {lookup, links} from "../../-content/indexer"
 
@@ -21,7 +22,18 @@ class extends Gadget
 
     properties
       view: get: ->
-        $: (text) -> links markdown text
+        if @value?
+          {parent, category, scope, variables} = @value
+          if category == "method" && scope == "instance"
+            type = await lookup "path", parent
+            variables: [
+                name: dashed type.name
+                type: "[`#{type.name}`][]"
+                description: "An instance of [`#{type.name}`][]."
+              ,
+                variables...
+              ]
+
     render smart template
 
   ]

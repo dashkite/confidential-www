@@ -11,15 +11,11 @@ import {smart} from "../combinators"
 import template from "./index.pug"
 
 markup = do ({filters, apply, key} = {}) ->
-  apply = do ({filters} = {}) ->
-    filters = {dashed}
+  apply = do (filters = {dashed}) ->
     (value, name) -> filters[name] value
   (string, context = {}) ->
     string.replace /\{\{([\s\S]+)\}\}/g, (_, directive) ->
-      [key, filters...] = directive
-        .replace(/\s/,"")
-        .split("|")
-        .map (s) -> s.trim()
+      [key, filters...] = directive.split("|").map (s) -> s.trim()
       filters.reduce apply, context[key]
 
 class extends Gadget

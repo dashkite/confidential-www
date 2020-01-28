@@ -4,17 +4,7 @@ style
   include:stylus index.styl
 
 article
-  h1
-    if scope == "class"
-      +wikitext("{{name}}")(data-path = parent)
-      | .
-      != name
-    else if scope == "instance"
-      +wikitext("{{name|dashed}}")(data-path = parent)
-      | ::
-      != name
-    else
-      != name
+  h1= qname
 
   +wikitext(summary)(data-path = parent)
 

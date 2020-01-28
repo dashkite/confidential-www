@@ -14,6 +14,7 @@ class Method
 
   properties @::,
     title: get: -> @name
+    category: get: -> @data.category
     scope: get: -> @data.scope
     signatures: get: -> @data.signatures
     variables: get: -> @data.variables
