@@ -5,9 +5,9 @@ summary: |
   Generates a new instance of [`{{name}}`][] containing a pair of algorithmically related keys using the [`randomBytes`][] interface.
 signatures:
   - arguments:
-    result: {{name|dashed}}
+    result: '{{name|dashed}}'
 variables:
-  - name: {{name|dashed}}
+  - name: '{{name|dashed}}'
     type: '[`Promise`][] for an [`{{name}}`][]'
     description: |
       Promise that resolves to an instance of [`{{name}}`][].

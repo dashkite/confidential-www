@@ -1,7 +1,7 @@
-import {properties, all} from "panda-parchment"
+import {properties, all, isType, include, clone} from "panda-parchment"
 import {mix, basic, summary, examples,
   route, index, data, ready} from "./mixins"
-import {alias, glob} from "../indexer"
+import {add, glob} from "../indexer"
 import {load} from "./helpers"
 
 # It's okay to wait on this initializer because it depends on the interfaces
@@ -21,10 +21,12 @@ aliases = ->
                 objects = await glob path
                 all do =>
                   for object in objects
-                    # TODO since we already have the object we want to alias
-                    #      should we add that to the alias interface?
-                    alias "path", object.path,
-                      "#{@path}/#{scope}/#{category}/#{object.name}"
+                    copy = clone object
+                    copy.reference.path = "#{@path}/#{scope}/#{category}/#{copy.name}"
+                    copy.reference.parent = @path
+                    add "path",
+                      "#{@path}/#{scope}/#{category}/#{object.name}",
+                      copy
 
 class Type
 

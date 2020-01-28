@@ -1,4 +1,4 @@
-import {properties} from "panda-parchment"
+import {properties, include, clone, isType, isFunction} from "panda-parchment"
 import {mix, basic, data, summary, examples, index, route} from "./mixins"
 import {load} from "./helpers"
 
@@ -14,5 +14,9 @@ class Method
 
   properties @::,
     title: get: -> @name
+    scope: get: -> @data.scope
     signatures: get: -> @data.signatures
     variables: get: -> @data.variables
+
+clone._.define (isType Method), ({source, reference, bindings}) ->
+  include new Method, clone {source, reference, bindings}

@@ -4,15 +4,25 @@ style
   include:stylus index.styl
 
 article
-  h1!= name
+  h1
+    if scope == "class"
+      +wikitext("{{name}}")(data-path = parent)
+      | .
+      != name
+    else if scope == "instance"
+      +wikitext("{{name|dashed}}")(data-path = parent)
+      | ::
+      != name
+    else
+      != name
 
-  +wikitext(summary)
+  +wikitext(summary)(data-path = parent)
 
   site-signatures(data-path = path)
 
   site-variables(data-path = path)
 
-  +wikitext(description)
+  +wikitext(description)(data-path = parent)
 
   site-block(data-key = `${path}/description`)
     h2 Description

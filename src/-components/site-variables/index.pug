@@ -16,12 +16,9 @@ section
       tbody
         each entry in data.variables
           tr
-            if entry.fragment
-              td: p(id=entry.fragment)= entry.name
-            else
-              td: p= entry.name
-            td: +wikitext(entry.type)
-            td: +wikitext(entry.description)
+            td: +wikitext(entry.name)(data-path = parent)
+            td: +wikitext(entry.type)(data-path = parent)
+            td: +wikitext(entry.description)(data-path = parent)
 
   else
     slot

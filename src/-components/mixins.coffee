@@ -17,7 +17,9 @@ describe = do ->
   pipe [
 
     # define a getter that returns an ordinary object
-    property description: get: -> get(@dom.dataset)
+    property
+      description:
+        get: -> Object.assign {}, @dom.dataset
 
     # dispatch 'describe' event when we change an attribute
     ready ->

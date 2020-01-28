@@ -32,6 +32,7 @@ basic = tee (T) ->
     name: get: -> @reference.name
     path: get: -> @reference.path
     link: get: -> @path
+    parent: get: -> @reference.parent
   mix T, [
     index "name"
     index "path"

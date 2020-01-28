@@ -32,7 +32,7 @@ class extends Gadget
       current = @dom.dataset.current ? (await lookup "path", path)?.title
       while (path = parent path)?
         if (target = await lookup "path", path)?
-          crumbs.push target
+          crumbs.unshift target
       {crumbs, current}
 
     render smart template

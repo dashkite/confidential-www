@@ -1,18 +1,21 @@
+include ../../-mixins
 style
-  include:stylus index.styl    
+  include:stylus index.styl
+
+- console.log({scope, category, signatures})
 
 section
   each signature in signatures
     blockquote.signature
       p
-        if parent.name
+        if parent
           if scope == "class"
-            span.scope= parent.name
+            //- TODO is there a simpler way to do this?
+            span.scope: +wikitext("{{name}}")(data-path = parent)
           else
-            //- span.scope= $.dashed(parent.name)
-            span.scope= parent.name
+            span.scope: +wikitext("{{name|dashed}}")(data-path = parent)
 
         span.name= name
 
-        span.arguments= signature.arguments
-        span.result= signature.result
+        span.arguments: +wikitext(signature.arguments)(data-path = parent)
+        span.result: +wikitext(signature.result)(data-path = parent)
