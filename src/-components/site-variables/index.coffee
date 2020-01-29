@@ -23,7 +23,7 @@ class extends Gadget
     properties
       view: get: ->
         if @value?
-          {parent, category, scope, variables} = @value
+          {parent, category, scope, variables, data} = @value
           if category == "method" && scope == "instance"
             type = await lookup "path", parent
             variables: [
@@ -33,6 +33,8 @@ class extends Gadget
               ,
                 variables...
               ]
+          else
+            variables: variables ? data.variables
 
     render smart template
 
