@@ -27,6 +27,7 @@ aliases = ->
                     add "path",
                       "#{@path}/#{scope}/#{category}/#{object.name}",
                       copy
+                    # TODO: add another aliases ex: Envelope::to
 
 class Type
 
