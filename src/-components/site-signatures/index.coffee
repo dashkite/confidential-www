@@ -24,10 +24,13 @@ class extends Gadget
       view:
         get: ->
           if @value?
-            {parent, scope, name} = @value
-            type = await lookup "path", parent
-            scoped:
-              switch scope
-                when "class" then type.name
-                when "instance" then dashed type.name
+            {parent, category, scope, name} = @value
+            if category == "method"
+              type = await lookup "path", parent
+              scoped:
+                switch scope
+                  when "class" then type.name
+                  when "instance" then dashed type.name
+
+
   ]

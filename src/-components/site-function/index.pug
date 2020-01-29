@@ -4,7 +4,15 @@ style
   include:stylus index.styl
 
 article
-  h1= qname
+  h1
+    if category == "method"
+      if scope == "class"
+        = `${type.name}.${name}`
+      else if scope == "instance"
+        = `${type.name}::${name}`
+    else
+      = name
+
 
   +wikitext(summary)(data-path = parent)
 

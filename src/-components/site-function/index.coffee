@@ -25,12 +25,7 @@ class extends Gadget
       view:
         get: ->
           if @value?
-            {parent, scope, name} = @value
-            type = await lookup "path", parent
-            qname:
-              switch scope
-                when "class" then "#{type.name}.#{name}"
-                when "instance" then "#{type.name}::#{name}"
-                else name
-
+            {parent, category} = @value
+            if category == "method"
+              type: await lookup "path", parent
   ]
