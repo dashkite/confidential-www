@@ -1,4 +1,3 @@
-import "./site-banner"
 import "./site-function"
 import "./site-signatures"
 import "./site-variables"

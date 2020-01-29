@@ -34,6 +34,8 @@ class extends Gadget
                 variables...
               ]
           else
+            # site properties are just a Block content type
+            # so we need to pull variables from data ...
             variables: variables ? data.variables
 
     render smart template

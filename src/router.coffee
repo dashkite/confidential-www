@@ -23,8 +23,16 @@ relative = (url) ->
 dispatch = ({url, name, parameters}) ->
   url ?= link {name, parameters}
   path = relative url
-  {data, bindings} = match relative url
-  handlers[data.name] {path, data, bindings}
+  try
+    {data, bindings} = match relative url
+  catch error
+    console.warn "Failed to match '#{url}'"
+    throw error
+  try
+    handlers[data.name] {path, data, bindings}
+  catch error
+    console.warn "No handler defined for '#{data.name}'"
+    throw error
 
 link = ({name, parameters}) ->
   for route in router.routes

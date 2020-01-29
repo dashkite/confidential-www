@@ -8,15 +8,26 @@ html
   font-size (6 + 2/3)px
 
 header
-  padding-bottom 2rem
-  border-bottom 1px solid silver
-  margin-bottom 4rem
   site-toc, site-breadcrumbs
     column nowrap
     align-items center
     type body small
     margin-top 2rem
     margin-bottom 2rem
+
+  & > .banner
+    colors white darkest-kite-blue
+
+    & > a
+      row nowrap
+      justify-content center
+      padding 3rem
+
+      & > h1
+        reset block
+        flex 1 1 36rem
+        max-width 96rem
+        type banner large
 
 body
   display grid
@@ -46,6 +57,21 @@ main
           column nowrap
           align-items center
           margin-bottom 4rem
+
+        & > .tagline
+          flex auto
+          row nowrap
+          justify-content center
+          colors white kite-blue
+          padding 4rem
+
+          & > p
+            reset block
+            flex 1 1 36rem
+            max-width 96rem
+            type banner medium
+
+
 
 footer
   borders top

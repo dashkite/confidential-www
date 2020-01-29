@@ -5,10 +5,10 @@ import $head from "./head.pug"
 import $header from "./header.pug"
 import $main from "./index.pug"
 
-route "{/parts*}",
-  name: "view article"
+# TODO need combinator hide/show header?
+route "/",
+  name: "home"
   flow [
-    add "data"
     add "path"
     view "main", $main
     render "head", $head

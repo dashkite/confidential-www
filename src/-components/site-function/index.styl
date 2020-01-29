@@ -2,52 +2,47 @@
 
 :host
   reset block
-  flex 1 1 auto
-  column nowrap
-  align-items center
 
-article
-  flex 1 1 0
-  column nowrap
-  overflow auto
+  article
+    flex 1 1 0
+    column nowrap
+    overflow auto
 
-  type copy
-  min-width 36rem
-  max-width 96rem
+    type copy
+    min-width 36rem
+    max-width 96rem
 
-  color darkest-kite-gray
-  background-color white
+    color darkest-kite-gray
+    background-color white
 
-  article h1 h2 h3 h4 h5 p ul li blockquote code
+    article h1 h2 h3 h4 h5 p ul li blockquote code
 
-  & > site-wikitext
-  & > site-block
-    margin-bottom 4rem
+    & > site-wikitext
+    & > site-block
+      margin-bottom 4rem
 
-  h1 > site-wikitext
-    display inline-block
+    h1 > site-wikitext
+      display inline-block
 
-  h1
-    type heading very-large
-    color black
-  h2
-    type heading large
-    color black
+    h1
+      type heading very-large
+      color black
+    h2
+      type heading large
+      color black
 
-  dashkite link
+    dashkite link table
 
-  figure
-    float right
-    borders round
-    width 36rem
-    padding 1rem
-    & > img
-      width 100%
-      object-fit contain
-    & > figcaption
-      margin-top 1rem
-      borders top
-      padding-top 1rem
-      type body small
-
-  dashkite table
+    figure
+      float right
+      borders round
+      width 36rem
+      padding 1rem
+      & > img
+        width 100%
+        object-fit contain
+      & > figcaption
+        margin-top 1rem
+        borders top
+        padding-top 1rem
+        type body small
