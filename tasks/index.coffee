@@ -2,6 +2,7 @@ import "coffeescript/register"
 
 import Path from "path"
 
+import coffee from "coffeescript"
 import pug from "jstransformer-pug"
 import stylus from "jstransformer-stylus"
 
@@ -26,6 +27,7 @@ define "watch-source",
 
 define "watch-npm",
   watch (Path.resolve "package-lock.json"), -> run "build"
+
 define "watch", [ "watch-source", "watch-npm" ]
 
 define "build", [ "clean", "html&", "css&", "js&", "images&" ]
@@ -65,3 +67,27 @@ define "serve",
     logger: "tiny"
     rewrite: verbose: true
     port: 8000
+
+define "server:build", ->
+  resolve = (path) ->
+    require.resolve path, paths: [ process.cwd() ]
+
+  go [
+    glob [ "**/*.coffee" ], Path.join source, "-server"
+    wait map read
+    tee ({source, target}) ->
+      target.content = coffee.compile source.content,
+        bare: true
+        inlineMap: true
+        filename: source.path
+        transpile:
+          presets: [[
+            resolve "@babel/preset-env"
+            targets: node: "13.6"
+          ]]
+    map extension ".js"
+    map write Path.join target, "server"
+
+
+
+  ]
