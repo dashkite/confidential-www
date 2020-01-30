@@ -165,3 +165,35 @@ dashkite-table()
 
           &:last-child
             border-bottom-right-radius 0.5rem
+
+dashkite-toc()
+  .toc
+    ul
+      reset block
+      display inline-block
+      min-width 36rem
+      max-width 96rem
+      width 100%
+      margin-bottom 4rem
+
+      & > li
+        display inline-block
+        // override margins just in case they've been styled
+        // for bulleted lists
+        margin-left 0
+        margin-bottom 1rem !important
+
+        & > .current
+          font-weight bold
+
+        &:not(:last-child)
+          &::after
+            margin 0 1rem
+            content "\2237"
+
+        a, a:visited, a:hover
+          color inherit
+
+dashkite-header()
+  header
+    type body small
