@@ -14,7 +14,7 @@ import {go, map, wait, tee, reject} from "panda-river"
 
 import {markdown, bundle, serve} from "./helpers"
 
-import "./server"
+import "./preview"
 import "./test"
 
 source = "./src"
