@@ -1,17 +1,10 @@
-extends ../-layout
+.toc
+  :markdown
+    - [Obtaining A Key](#obtaining-a-shared-key)
+    - [Encrypting](#encrypting)
+    - [Serializing](#serializing)
+    - [Deserializing](#deserializing)
+    - [Decrypting](#decrypting)
 
-block header
-  .breadcrumbs
-    +breadcrumbs(["Confidential", "Guides"], "Asymmetric Encryption")
-    
-  .toc
-    :markdown
-      - [Obtaining A Key](#obtaining-a-shared-key)
-      - [Encrypting](#encrypting)
-      - [Serializing](#serializing)
-      - [Deserializing](#deserializing)
-      - [Decrypting](#decrypting)
-
-block main
-  article
-    include:markdown article.md
+article
+  include:markdown index.md

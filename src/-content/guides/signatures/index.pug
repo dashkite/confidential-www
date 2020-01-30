@@ -1,17 +1,11 @@
-extends ../-layout
+.toc
+  :markdown
+    - [Obtaining A Signing Key Pair](#obtaining-a-signing-key-pair)
+    - [Signing](#signing)
+    - [Serializing](#serializing)
+    - [Deserializing](#deserializing)
+    - [Verifying Signatures](#verifying-signatures)
+    - [Adding Signatures](#adding-signatures)
 
-block header
-  .breadcrumbs: +breadcrumbs(["Confidential", "Guides"], "Signatures")
-
-  .toc
-    :markdown
-      - [Obtaining A Signing Key Pair](#obtaining-a-signing-key-pair)
-      - [Signing](#signing)
-      - [Serializing](#serializing)
-      - [Deserializing](#deserializing)
-      - [Verifying Signatures](#verifying-signatures)
-      - [Adding Signatures](#adding-signatures)
-
-block main
-  article
-    include:markdown article.md
+article
+  include:markdown index.md
