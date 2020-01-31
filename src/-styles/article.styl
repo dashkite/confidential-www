@@ -53,12 +53,14 @@ article-blockquote()
 
 article-code()
   pre
+    article-block()
     padding 3rem
     overflow scroll
     //- colors darkest-kite-gray lightest-kite-gray
     borders round
-  code
-    type monospace
+
+    & > code
+      type monospace
 
 article-a()
   a

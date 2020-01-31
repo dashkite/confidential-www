@@ -12,6 +12,13 @@ dashkite-form()
   nav
     dashkite-nav()
 
+dashkite-code()
+  :not(pre) > code
+    &::before
+      content "\22d6"
+    &::after
+      content "\22d7"
+
 dashkite-focus-glow()
   &:focus
     // for some reason, i can't use shorthand w/negative offset
@@ -28,41 +35,20 @@ dashkite-focus-wide()
     outline-width 0.5rem
 
 dashkite-link()
-  // a, a:visited
-  //   transition background-color 500ms ease,
-  //              color 250ms ease
-  //   color @color + 25%
-  //   text-decoration none
-  //   display inline-block
-  //   padding-left 0.25rem
-  //   padding-right 0.25rem
-  //   padding-bottom 1px
-  //   border-bottom 1px dashed @color
-  //
-  //   &:hover
-  //     background-color @color + 25%
-  //     border-bottom 1px dashed (@color + 50%)
-  //     // this must go last so we can use @color
-  //     color white
-
-  a
+  a, a:visited, a:focus
     display inline-block
     text-align center
-    width available
-    padding-bottom -1px
-    padding-right 3px
-    padding-left 3px
+    padding-right 0.25rem
+    padding-left 0.25rem
+    padding-bottom 1px
     text-decoration none
-    border-bottom 1px solid darker-kite-blue
-    colors inherit lightest-kite-blue
-    &:visited
-      colors inherit lightest-kite-blue
+    color inherit
+    border-bottom 1px dashed currentColor
     &:focus
       outline none
-      colors inherit light-kite-blue
+      background-color lighter-kite-blue
     &[href='#broken']
-      border-bottom 2px solid red
-      colors inherit orange
+      border-bottom 1px solid red
 
 
 dashkite-nav()
