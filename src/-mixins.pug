@@ -38,9 +38,9 @@ mixin highlighting(theme = "prism")
 mixin icon(name, style = "regular")
   svg: use(xlink:href=`/images/fa/sprites/${style}.svg#${name}`)
 
-mixin wikitext(text)
+mixin wikitext(text, type = "text/html")
   site-wikitext&attributes(attributes)
-    script(type = "text/plain")= text
+    script(type = type)= text
 
 mixin autolink(x)
   kite-autolink(data-key = x)

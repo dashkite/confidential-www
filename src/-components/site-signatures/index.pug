@@ -10,5 +10,7 @@ section
           span.scope= scoped
         span.name= name
 
-        span.arguments: +wikitext(signature.arguments)(data-path = parent)
-        span.result: +wikitext(signature.result)(data-path = parent)
+        span.arguments
+          +wikitext(signature.arguments, "text/markdown")(data-path = parent)
+        span.result
+          +wikitext(signature.result, "text/markdown")(data-path = parent)

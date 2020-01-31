@@ -33,7 +33,6 @@
     "url-template": "^2.0.8"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.8.3",
     "coffee-loader": "^0.9.0",
     "coffeescript": "^2.3.2",
     "haiku9": "^4.0.1",
@@ -49,7 +48,7 @@
     "panda-serialize": "^1.0.1",
     "pug-loader": "^2.4.0",
     "stylus": "^0.54.5",
-    "webpack": "^4.41.2",
+    "webpack": "^4.41.5",
     "yaml-loader": "^0.5.0"
   }
 }

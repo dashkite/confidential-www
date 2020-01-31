@@ -54,20 +54,13 @@ title = tee (T) ->
 
 data = curry rtee (load, T) ->
   properties T::,
-    data: get: ->
-      try
-        load @source.path
+    data: get: -> load @
 
 # TODO is this the best interface?
 # TODO make async
 content = curry rtee (load, T) ->
   properties T::,
-    template: get: ->
-      @_template ?= load @source.path
-    html: get: ->
-      if isFunction @template
-        @template @
-      else @template
+    html: get: -> load @
 
 summary = tee (T) ->
   properties T::,

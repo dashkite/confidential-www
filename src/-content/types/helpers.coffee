@@ -1,8 +1,11 @@
 import {curry} from "panda-garden"
 
-load = curry (extension, path) ->
+load = curry (extension, content) ->
+  path = content.source.path[1..]
   try
-    require "../#{path[1..]}.#{extension}"
+    switch extension
+      when "pug" then (require "../#{path}.pug")? content
+      else require "../#{path}.#{extension}"
 
 loaders = (fx) ->
   (args...) ->

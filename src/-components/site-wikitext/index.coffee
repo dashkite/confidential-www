@@ -1,6 +1,6 @@
 import markdown from "marked"
 
-import {Gadget, mixin, tag, bebop, shadow, render, properties} from "panda-play"
+import {Gadget, mixin, tag, bebop, shadow, render, properties, events} from "panda-play"
 import {dashed} from "panda-parchment"
 
 import {lookup, links} from "../../-content/indexer"
@@ -26,19 +26,27 @@ class extends Gadget
 
     bebop, describe, shadow, queryable, navigate
 
-    resource ->
-      links markdown markup @text, await @data
+    resource -> links markup @html, await @data
 
     properties
       data:
+        get: -> lookup "path", @description.path ? {}
+      script:
+        get: -> @dom.querySelector "script"
+      type:
+        get: -> @script.getAttribute "type"
+      html:
         get: ->
-          lookup "path", @description.path ? {}
-      text:
-        get: ->
-          @dom
-          .querySelector "script"
-          .text
+          if @type == "text/markdown"
+            markdown @script.text
+          else # assume html
+            @script.text
 
     render smart template
+
+    events
+      render: ->
+        for e in @query.elements["[class^='language']"]
+          Prism.highlightElement e
 
   ]

@@ -47,10 +47,18 @@ bundle = (entry, target) ->
           ]
         ,
           test: /\.coffee$/
-          use: [ 'coffee-loader' ]
+          use: [ "coffee-loader" ]
         ,
           test: /\.js$/
-          use: [ "source-map-loader" ]
+          use: [
+              "source-map-loader"
+            # TODO should we use babel here?
+            # ,
+            #   loader: "babel-loader"
+            #   options:
+            #     presets: [ "@babel/preset-env"]
+
+          ]
           enforce: "pre"
         ,
           test: /\.yaml$/
@@ -58,7 +66,9 @@ bundle = (entry, target) ->
         ,
           test: /\.md$/
           use: [ "html-loader", "markdown-loader" ]
+          # use: [ "raw-loader" ]
         ]
+
       resolve:
         modules: [
           Path.resolve "node_modules"
@@ -68,6 +78,7 @@ bundle = (entry, target) ->
           Path.resolve "..", "panda-play", "node_modules"
         ]
         extensions: [ ".js", ".json", ".coffee" ]
+
       plugins: []
 
     webpack config, callback

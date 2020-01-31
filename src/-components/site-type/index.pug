@@ -1,12 +1,12 @@
+include ../../-mixins
+
 style
   include:stylus index.styl
 
 article
   h1!= name
 
-  site-wikitext
-    script(type = "text/wikitext")
-      != summary
+  +wikitext(summary, "text/markdown")
 
   h2 Class Methods
 

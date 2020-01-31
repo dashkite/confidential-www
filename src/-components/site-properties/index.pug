@@ -19,8 +19,8 @@ section
               td: p(id=property.fragment)= property.name
             else
               td: p= property.name
-            td: +wikitext(property.data.type)
-            td: +wikitext(property.data.description)
+            td: +wikitext(property.data.type, "text/markdown")
+            td: +wikitext(property.data.description, "text/markdown")
 
   else
     slot
