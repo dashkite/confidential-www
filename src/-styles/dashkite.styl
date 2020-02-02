@@ -14,6 +14,8 @@ dashkite-form()
 
 dashkite-code()
   :not(pre) > code
+    position relative
+    bottom 0.25rem
     &::before
       content "\22d6"
     &::after
@@ -183,3 +185,18 @@ dashkite-toc()
 dashkite-header()
   header
     type body small
+
+dashkite-figure()
+  figure
+    float right
+    borders round
+    width 36rem
+    padding 1rem
+    & > img
+      width 100%
+      object-fit contain
+    & > figcaption
+      margin-top 1rem
+      borders top
+      padding-top 1rem
+      type body small
