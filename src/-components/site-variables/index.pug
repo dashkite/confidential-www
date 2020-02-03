@@ -16,9 +16,9 @@ section
       tbody
         each entry in variables
           tr
-            td: +wikitext(entry.name, "text/markdown")(data-path = parent)
-            td: +wikitext(entry.type, "text/markdown")(data-path = parent)
-            td: +wikitext(entry.description, "text/markdown")(data-path = parent)
+            td: +wikitext(entry.name, "text/markdown")(class = "tabular" data-path = parent)
+            td: +wikitext(entry.type, "text/markdown")(class = "tabular" data-path = parent)
+            td: +wikitext(entry.description, "text/markdown")(class = "tabular" data-path = parent)
 
   else
     slot

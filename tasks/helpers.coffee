@@ -65,7 +65,15 @@ bundle = (entry, target) ->
           use: [ "json-loader", "yaml-loader" ]
         ,
           test: /\.md$/
-          use: [ "html-loader", "markdown-loader" ]
+          use: [
+              "html-loader"
+            ,
+              loader: "markdown-loader"
+              options:
+                smartypants: true
+                gfm: true
+                headerIds: true
+          ]
           # use: [ "raw-loader" ]
         ]
 

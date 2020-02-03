@@ -1,10 +1,10 @@
 name: from
 category: method
 scope: class
-summary: Hydrates an instance of `{{name}}` from given `data`.
+summary: Hydrates an instance of `{{name}}` from the given `data`.
 signatures:
   - arguments: hint, encoded-{{name|dashed}}
-    result: {{name|dashed}}
+    result: "{{name|dashed}}"
 variables:
   - name: hint
     type: '[`String`][]'

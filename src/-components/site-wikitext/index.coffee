@@ -1,4 +1,4 @@
-import markdown from "marked"
+import {markdown} from "../../helpers"
 
 import {Gadget, mixin, tag, bebop, shadow, render, properties, events} from "panda-play"
 import {dashed} from "panda-parchment"

@@ -1,3 +1,4 @@
+import marked from "marked"
 import dayjs from "dayjs"
 import rtime from "dayjs/plugin/relativeTime"
 import {$} from "panda-play"
@@ -18,5 +19,11 @@ message = do ({messages} = {}) ->
   (description) ->
     messages ?= await $ "raven-messages"
     messages.enqueue description
+
+markdown = (content) ->
+  marked content,
+    smartypants: true
+    gfm: true
+    # headerIds: true
 
 export {ready, time, isoTime, message}
