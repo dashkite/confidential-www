@@ -1,9 +1,10 @@
 # External Links
-nacl: https://nacl.cr.yp.to/
-tweetnacl: https://tweetnacl.cr.yp.to/
+NaCl: https://nacl.cr.yp.to/
+TweetNaCl: https://tweetnacl.cr.yp.to/
 TweetNaCl.js: https://tweetnacl.js.org/
 
 # Reference Links
+Confidential: /
 Function: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
 Array: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 Object: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
@@ -18,10 +19,10 @@ JSON: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_O
 Promise: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
 generic function: https://en.wikipedia.org/wiki/Generic_programming
-utf-8 encoding: https://tools.ietf.org/html/rfc3629
-base64 encoding: https://tools.ietf.org/html/rfc4648
-url-safe base64 encoding: https://tools.ietf.org/html/rfc4648#section-5
-sha-512: https://tools.ietf.org/html/rfc4634
+UTF-8 encoding: https://tools.ietf.org/html/rfc3629
+Base64 encoding: https://tools.ietf.org/html/rfc4648
+URL-safe Base64 encoding: https://tools.ietf.org/html/rfc4648#section-5
+SHA-512: https://tools.ietf.org/html/rfc4634
 asymmetric encryption: https://en.wikipedia.org/wiki/Public-key_cryptography
 symmetric encryption: https://en.wikipedia.org/wiki/Symmetric-key_algorithm
 pke: https://en.wikipedia.org/wiki/Public-key_cryptography

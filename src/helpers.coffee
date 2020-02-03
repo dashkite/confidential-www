@@ -26,4 +26,4 @@ markdown = (content) ->
     gfm: true
     # headerIds: true
 
-export {ready, time, isoTime, message}
+export {ready, time, isoTime, message, markdown}
