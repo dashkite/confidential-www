@@ -24,10 +24,20 @@ aliases = ->
                     copy = clone object
                     copy.reference.path = "#{@path}/#{scope}/#{category}/#{copy.name}"
                     copy.reference.parent = @path
-                    add "path",
-                      "#{@path}/#{scope}/#{category}/#{object.name}",
-                      copy
-                    # TODO: add another aliases ex: Envelope::to
+                    all [
+
+                        add "path",
+                          "#{@path}/#{scope}/#{category}/#{copy.name}",
+                          copy
+                      ,
+
+                        if category == "methods"
+                          if scope == "class"
+                            add "name", "#{@name}.#{copy.name}", copy
+                          else
+                            add "name", "#{@name}::#{copy.name}", copy
+
+                      ]
 
 class Type
 
