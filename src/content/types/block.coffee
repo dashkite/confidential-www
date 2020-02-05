@@ -1,4 +1,4 @@
-import {mix, basic, data, title, content, route} from "./mixins"
+import {mix, basic, data, title, content, route} from "@dashkite/hydrogen"
 import {load, loaders} from "./helpers"
 
 class Block

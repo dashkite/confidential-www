@@ -3,7 +3,7 @@ import {first} from "panda-parchment"
 import {Gadget, mixin, tag, bebop, shadow,
   render, properties, events, local} from "panda-play"
 
-import {glob} from "../../-content/indexer"
+import {glob} from "@dashkite/hydrogen"
 
 import {navigate, describe, resource} from "../mixins"
 import {smart} from "../combinators"

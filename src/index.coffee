@@ -1,6 +1,6 @@
 import "./-pages"
 import "./-components"
-import "./-content"
+import "./content"
 import {dispatch} from "./router"
 import {navigate} from "./navigate"
 import {ready, message} from "./helpers"

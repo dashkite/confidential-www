@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/pandastrike/panda-confidential-www#readme",
   "dependencies": {
+    "@dashkite/hydrogen": "file:../hydrogen",
     "@dashkite/page-graph": "file:../page-graph",
     "colors": "^1.3.3",
     "custom-event-polyfill": "^1.0.7",

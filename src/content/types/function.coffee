@@ -1,5 +1,5 @@
 import {properties} from "panda-parchment"
-import {mix, basic, data, summary, examples, index, route} from "./mixins"
+import {mix, basic, data, summary, examples, index, route} from "@dashkite/hydrogen"
 import {load} from "./helpers"
 
 class Function

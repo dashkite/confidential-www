@@ -4,7 +4,7 @@ import {split} from "panda-parchment"
 import {Gadget, mixin, tag, bebop, shadow,
   render, properties, events, local} from "panda-play"
 
-import {find, lookup} from "../../-content/indexer"
+import {find, lookup} from "@dashkite/hydrogen"
 
 import {navigate, describe, resource} from "../mixins"
 import {smart} from "../combinators"

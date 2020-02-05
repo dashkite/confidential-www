@@ -1,7 +1,6 @@
 import {properties, all, isType, include, clone} from "panda-parchment"
 import {mix, basic, summary, examples,
-  route, index, data, ready} from "./mixins"
-import {add, glob} from "../indexer"
+  route, index, data, ready, add, glob} from "@dashkite/hydrogen"
 import {load} from "./helpers"
 
 # It's okay to wait on this initializer because it depends on the interfaces

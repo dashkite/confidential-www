@@ -1,12 +1,12 @@
 import "./types"
-import {resources, add, lookup} from "./indexer"
-import links from "./links.yaml"
+import {resources, add, lookup} from "@dashkite/hydrogen"
+import links from "../-content/links.yaml"
 
 # basically, the following just filters out paths with
 # files or directories that begin with a -
 # equivalent to: glob [ "**/*.{md,yaml,pug}",  "!**/-*/**", "!**/-*" ]
 # WHICH DOES NOT SEEM LIKE IT SHOULD BE THIS COMPLICATED?
-context = require.context "./", true,
+context = require.context "../-content", true,
   ///
     ^(                         # start followed by:
       (\/(?!\-))               # a / followed by anything other than a -
