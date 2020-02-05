@@ -54,7 +54,10 @@ define "css", ->
     map write target
   ]
 
-define "js", -> bundle "./src/index.coffee", "./build"
+define "js", ->
+  bundle
+    entry: "./src/index.coffee"
+    target: "./build"
 
 define "images", ->
   go [

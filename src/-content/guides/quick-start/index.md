@@ -23,4 +23,4 @@ encryptMessage = (sender, reciever, message) ->
   envelope.to "base64"
 ```
 
-Confidential wraps the prescriptive [TweetNaCl.js][] library with pairs of opposing functions: [`encrypt`][] and [`decrypt`][], and [`sign`][] and [`verify`][]. These are [_generic functions_][generic function], allowing Confidential to just do the right thing based on the arguments you pass.
+Confidential wraps the prescriptive [TweetNaCl.js][] library with pairs of opposing functions: [`encrypt`][] and [`decrypt`][], and [`sign`][] and [`verify`][]. These are _[generic functions][generic function]_, allowing Confidential to just do the right thing based on the arguments you pass.

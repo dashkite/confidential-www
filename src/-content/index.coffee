@@ -1,6 +1,6 @@
 import "./types"
 import {resources, add, lookup} from "./indexer"
-import _links from "./-links.yaml"
+import links from "./links.yaml"
 
 # basically, the following just filters out paths with
 # files or directories that begin with a -
@@ -19,5 +19,5 @@ context = require.context "./", true,
 
 resources context.keys()
 
-for key, link of _links
+for key, link of links
   add "name", key, {link}

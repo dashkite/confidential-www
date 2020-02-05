@@ -12,7 +12,9 @@ import rewrite from "connect-history-api-fallback"
 import files from "serve-static"
 import {green, red} from "colors/safe"
 
-bundle = (entry, target) ->
+bundle = ({entry, target, mode}) ->
+
+  mode ?= process.env.mode ? "development"
 
   promise (resolve, reject) ->
 
@@ -28,8 +30,8 @@ bundle = (entry, target) ->
       entry: entry
       stats:
         maxModules: 100
-      mode: "development"
-      devtool: "inline-source-map"
+      devtool: if mode == "development" then "inline-source-map"
+      mode: mode
       output:
         path: Path.resolve target
         filename: "index.js"
@@ -72,7 +74,8 @@ bundle = (entry, target) ->
               options:
                 smartypants: true
                 gfm: true
-                headerIds: true
+                # TODO figure out how to make permalinks work within components
+                # headerIds: true
           ]
           # use: [ "raw-loader" ]
         ]

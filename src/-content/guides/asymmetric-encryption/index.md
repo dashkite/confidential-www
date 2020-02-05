@@ -1,3 +1,5 @@
+# Authenticated Asymmetric Encryption
+
 Alice would like to securely send a message to Bob. This calls for [asymmetric encryption][pke], allowing Alice to encrypt a message only Bob can decrypt. Bob also wants to confirm that the message is really from Alice, which requires [authenticated encryption][].
 
 Alice begins by importing Panda-Confidential and instantiating the API.

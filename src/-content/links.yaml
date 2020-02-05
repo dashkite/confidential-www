@@ -28,6 +28,7 @@ symmetric encryption: https://en.wikipedia.org/wiki/Symmetric-key_algorithm
 pke: https://en.wikipedia.org/wiki/Public-key_cryptography
 authenticated encryption: https://en.wikipedia.org/wiki/Authenticated_encryption
 digitial signature: https://en.wikipedia.org/wiki/Digital_signature
+cryptographic signatures: https://en.wikipedia.org/wiki/Digital_signature
 Curve25519: https://en.wikipedia.org/wiki/Curve25519
 ed25519: https://ed25519.cr.yp.to/
 

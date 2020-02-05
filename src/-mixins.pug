@@ -33,7 +33,6 @@ mixin highlighting(theme = "prism")
   +js("jsdelivr", "prismjs", "1.15.0", "components/prism-clike.min.js")
   +js("jsdelivr", "prismjs", "1.15.0", "components/prism-javascript.min.js")
   +js("jsdelivr", "prismjs", "1.15.0", "components/prism-coffeescript.min.js")
-  +css("jsdelivr", "prismjs", "1.15.0", `themes/${theme}.min.css`)
 
 mixin icon(name, style = "regular")
   svg: use(xlink:href=`/images/fa/sprites/${style}.svg#${name}`)

@@ -24,6 +24,7 @@ markdown = (content) ->
   marked content,
     smartypants: true
     gfm: true
+    # TODO figure out how to make permalinks work within components
     # headerIds: true
 
 export {ready, time, isoTime, message, markdown}
