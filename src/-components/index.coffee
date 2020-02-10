@@ -1,6 +1,2 @@
-import "./site-function"
-import "./site-signatures"
-import "./site-variables"
-import "./site-type"
-import "./site-properties"
 import "@dashkite/hydrogen-cx"
+import "@dashkite/hydrogen-docs-cx"
