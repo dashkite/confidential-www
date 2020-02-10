@@ -30,17 +30,17 @@ Confidential =
       ]
 
   Function:
-  	class extends Function
+    class extends Function
       store cms
       data load "yaml"
 
   Method:
-  	class extends Method
+    class extends Method
       store cms
       data load "yaml"
 
   Type:
-  	class extends Type
+    class extends Type
       store cms
       data load "yaml"
       loaders [
@@ -61,7 +61,7 @@ context = require.context "./-content", true,
 
 # TODO do we need to await on the addition of resources/links?
 
-resources context.keys()
+resources cms, context.keys()
 
 for key, link of links
   add cms, index: "name", {key}, value: link
