@@ -48,6 +48,7 @@ Confidential =
         load "pug"
       ]
 
+# Tell WebPack to bundle what we need for our CMS
 context = require.context "./-content", true,
   ///
     ^(                         # start followed by:
