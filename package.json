@@ -20,7 +20,7 @@
     "@dashkite/hydrogen": "file:../hydrogen",
     "@dashkite/hydrogen-cx": "file:../hydrogen-cx",
     "@dashkite/hydrogen-docs": "file:../hydrogen-docs",
-    "@dashkite/page-graph": "file:../page-graph",
+    "@dashkite/neon": "file:../neon",
     "colors": "^1.3.3",
     "custom-event-polyfill": "^1.0.7",
     "dayjs": "^1.8.17",
