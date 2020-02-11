@@ -1,7 +1,8 @@
 import marked from "marked"
 import dayjs from "dayjs"
 import rtime from "dayjs/plugin/relativeTime"
-import {$} from "panda-play"
+import {$} from "@dashkite/carbon"
+import {create as createRouter} from "@dashkite/oxygen"
 
 ready = (f) ->
   document.addEventListener "DOMContentLoaded", f
@@ -27,4 +28,6 @@ markdown = (content) ->
     # TODO figure out how to make permalinks work within components
     # headerIds: true
 
-export {ready, time, isoTime, message, markdown}
+router = createRouter()
+
+export {ready, time, isoTime, message, markdown, router}
