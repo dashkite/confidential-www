@@ -81,14 +81,7 @@ bundle = ({entry, target, mode}) ->
         ]
 
       resolve:
-        modules: [
-          Path.resolve "node_modules"
-          # local dev
-          # TODO seems like webpack should be able to infer this?
-          # Path.resolve "..", "page-graph", "node_modules"
-          # Path.resolve "..", "panda-play", "node_modules"
-          # Path.resolve "..", "hydrogen", "node_modules"
-        ]
+        modules: [ Path.resolve "node_modules" ]
         extensions: [ ".js", ".json", ".coffee" ]
 
       plugins: []

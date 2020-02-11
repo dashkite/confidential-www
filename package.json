@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/pandastrike/panda-confidential-www#readme",
   "dependencies": {
+    "@dashkite/oxygen": "file:../oxygen",
+    "@dashkite/neon": "file:../neon",
     "@dashkite/hydrogen": "file:../hydrogen",
     "@dashkite/hydrogen-cx": "file:../hydrogen-cx",
     "@dashkite/hydrogen-docs": "file:../hydrogen-docs",
-    "@dashkite/neon": "file:../neon",
     "colors": "^1.3.3",
     "custom-event-polyfill": "^1.0.7",
     "dayjs": "^1.8.17",
