@@ -1,5 +1,5 @@
 {
-  "name": "panda-confidential-www",
+  "name": "confidential-www",
   "version": "0.0.1",
   "description": "Documentation website for the Panda-Confidential Project",
   "main": "index.js",
@@ -11,17 +11,20 @@
     "David Harper",
     "Dan Yoder"
   ],
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
     "url": "https://github.com/pandastrike/panda-confidential-www/issues"
   },
   "homepage": "https://github.com/pandastrike/panda-confidential-www#readme",
   "dependencies": {
-    "@dashkite/oxygen": "file:../oxygen",
-    "@dashkite/neon": "file:../neon",
+    "@dashkite/carbon": "file:../carbon",
+    "@dashkite/coda": "file:../coda",
+    "@dashkite/coda-cx": "file:../coda-cx",
+    "@dashkite/helium": "file:../helium",
     "@dashkite/hydrogen": "file:../hydrogen",
     "@dashkite/hydrogen-cx": "file:../hydrogen-cx",
-    "@dashkite/hydrogen-docs": "file:../hydrogen-docs",
+    "@dashkite/neon": "file:../neon",
+    "@dashkite/oxygen": "file:../oxygen",
     "colors": "^1.3.3",
     "custom-event-polyfill": "^1.0.7",
     "dayjs": "^1.8.17",
@@ -37,6 +40,7 @@
     "url-template": "^2.0.8"
   },
   "devDependencies": {
+    "@dashkite/vogue": "file:../vogue",
     "coffee-loader": "^0.9.0",
     "coffeescript": "^2.3.2",
     "haiku9": "^4.0.1",

@@ -1,5 +1,5 @@
 import "./-pages"
-import "./-components"
+import "./components"
 import "./content"
 import {dispatch} from "@dashkite/oxygen"
 import {router} from "./helpers"

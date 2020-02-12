@@ -1,6 +1,6 @@
 import {curry} from "panda-garden"
 import {create, store, content, data, loaders} from "@dashkite/hydrogen"
-import {Block, Function, Method, Type} from "@dashkite/hydrogen-docs"
+import {Block, Function, Method, Type} from "@dashkite/coda"
 import {register} from "@dashkite/helium"
 import links from "./-content/links.yaml"
 

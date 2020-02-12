@@ -1,5 +1,5 @@
 import {flow} from "panda-garden"
-import {add} from "@dashkite/oxgen"
+import {add} from "@dashkite/oxygen"
 import {router} from "../../helpers"
 import {parent} from "../combinators"
 import {property, view, activate, render, show} from "@dashkite/neon"

@@ -1,6 +1,7 @@
 import {isDefined} from "panda-parchment"
 import {go, events, map, tee, select, reject} from "panda-river-esm"
-import {browse, dispatch} from "./router"
+import {browse, dispatch} from "@dashkite/oxygen"
+import {router} from "./helpers"
 
 # event helpers, adapted from:
 # https://github.com/vuejs/vue-router/blob/dev/src/components/link.js

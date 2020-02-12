@@ -81,11 +81,10 @@ bundle = ({entry, target, mode}) ->
         ]
 
       resolve:
-        modules: [ Path.resolve "node_modules" ]
+        modules: [ "node_modules" ]
         extensions: [ ".js", ".json", ".coffee" ]
 
       plugins: []
-
     webpack config, callback
 
 # TODO backport into p9k

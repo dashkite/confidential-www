@@ -5,6 +5,7 @@ import Path from "path"
 import coffee from "coffeescript"
 import pug from "jstransformer-pug"
 import stylus from "jstransformer-stylus"
+import vogue from "@dashkite/vogue"
 
 import {define, run, glob, read, write,
   extension, copy, transform, watch} from "panda-9000"
@@ -49,7 +50,7 @@ define "css", ->
   go [
     glob [ "**/*.styl",  "!**/-*/**", "!**/-*" ], source
     wait map read
-    map transform stylus, {}
+    map transform stylus, use: vogue
     map extension ".css"
     map write target
   ]
