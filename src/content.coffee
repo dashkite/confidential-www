@@ -1,5 +1,6 @@
 import {curry} from "panda-garden"
-import Store, {mix, store, route, content, data, loaders} from "@dashkite/hydrogen"
+import {include, clone, isType, all} from "panda-parchment"
+import Store, {mix, store, route, content, data, loaders, ready} from "@dashkite/hydrogen"
 import {Block, Function, Method, Type} from "@dashkite/coda"
 import Registry from "@dashkite/helium"
 import links from "./-content/links.yaml"
@@ -27,25 +28,44 @@ load = curry (extension, content) ->
 # Create CMS and register with the application namespace
 Registry.add cms: cms = Store.create()
 
+# It's okay to wait on this initializer because it depends on the interfaces
+# but the interfaces don't depend on types. Otherwise, we'd get a deadlock.
+# So we can be sure the aliases are ready before use. We don't need explicit
+# awaits (except for the glob) because we can do all the aliasing in parallel
+# and the all will “roll up” the promises.
+aliases = ->
+  all do =>
+    for name in @data.interfaces
+      all do (name) =>
+        for scope in [ "class", "instance" ]
+          all do (scope) =>
+            for category in [ "methods", "properties" ]
+              do (category) =>
+                path =  "/api/interfaces/#{name}/#{scope}/#{category}/*"
+                objects = await Store.glob @store, path
+                all do =>
+                  for object in objects
+                    copy = clone object
+                    copy.reference.path = "#{@path}/#{scope}/#{category}/#{copy.name}"
+                    copy.reference.parent = @path
+                    all [
+
+                        Store.add @store, "path",
+                          "#{@path}/#{scope}/#{category}/#{copy.name}",
+                          copy
+                      ,
+
+                        if category == "methods"
+                          if scope == "class"
+                            Store.add @store, "name", "#{@name}.#{copy.name}", copy
+                          else
+                            Store.add @store, "name", "#{@name}::#{copy.name}", copy
+
+                      ]
+
 # Configure the content types:
 
-# TODO allow the routes to be customized as well
-#
-# The reason we haven't done this already is because copying the interfaces
-# requires us to parameterize a variety of different paths, not just the
-# routes for loading them
-
 Confidential =
-
-  Block:
-    mix class extends Block, [
-      store cms
-      route "{/path*}"
-      content loaders [
-        load "pug"
-        load "md"
-      ]
-    ]
 
   Function:
     mix class extends Function, [
@@ -71,7 +91,24 @@ Confidential =
         load "md"
         load "pug"
       ]
+      ready aliases
     ]
+
+  # needs to go last since the order of the routes matters
+  Block:
+    mix class extends Block, [
+      store cms
+      route "{/path*}"
+      data load "yaml"
+      content loaders [
+        load "pug"
+        load "md"
+      ]
+    ]
+
+do (Method = Confidential.Method) ->
+  clone._.define (isType Method), ({source, reference, bindings}) ->
+    include new Method, clone {source, reference, bindings}
 
 # Tell CMS about the content
 
