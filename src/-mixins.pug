@@ -38,7 +38,7 @@ mixin icon(name, style = "regular")
   svg: use(xlink:href=`/images/fa/sprites/${style}.svg#${name}`)
 
 mixin wikitext(text, type = "text/html")
-  site-wikitext&attributes(attributes)
+  hydrogen-wikitext&attributes(attributes)
     script(type = type)= text
 
 mixin autolink(x)
