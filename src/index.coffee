@@ -8,4 +8,4 @@ import {ready, message} from "./helpers"
 
 ready ->
   navigate document
-  dispatch url: window.location.href
+  dispatch router, url: window.location.href

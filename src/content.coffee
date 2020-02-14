@@ -1,7 +1,7 @@
 import {curry} from "panda-garden"
-import {create, store, content, data, loaders} from "@dashkite/hydrogen"
+import Store, {mix, store, route, content, data, loaders} from "@dashkite/hydrogen"
 import {Block, Function, Method, Type} from "@dashkite/coda"
-import {register} from "@dashkite/helium"
+import Registry from "@dashkite/helium"
 import links from "./-content/links.yaml"
 
 # Tell WebPack to bundle what we need for our CMS
@@ -18,14 +18,14 @@ context = require.context "./-content", true,
 
 # Load helper to load bundled content
 load = curry (extension, content) ->
-  path = content.source.path[1..]
+  path = content.source.path
   try
     switch extension
-      when "pug" then (require "./-content/#{path}.pug")? content
-      else require "./-content/#{path}.#{extension}"
+      when "pug" then (require "./-content#{path}.pug")? content
+      else require "./-content#{path}.#{extension}"
 
 # Create CMS and register with the application namespace
-register cms: cms = create()
+Registry.add cms: cms = Store.create()
 
 # Configure the content types:
 
@@ -38,39 +38,48 @@ register cms: cms = create()
 Confidential =
 
   Block:
-    class extends Block
+    mix class extends Block, [
       store cms
+      route "{/path*}"
       content loaders [
         load "pug"
         load "md"
       ]
+    ]
 
   Function:
-    class extends Function
+    mix class extends Function, [
       store cms
+      route "/api/functions/{name}"
       data load "yaml"
+    ]
 
   Method:
-    class extends Method
+    mix class extends Method, [
       store cms
+      route "/api/types/{type}/{scope}/methods/{name}"
+      route "/api/interfaces/{interface}/{scope}/methods/{name}"
       data load "yaml"
+    ]
 
   Type:
-    class extends Type
+    mix class extends Type, [
       store cms
+      route "/api/types/{name}"
       data load "yaml"
-      loaders [
+      content loaders [
         load "md"
         load "pug"
       ]
+    ]
 
 # Tell CMS about the content
 
 # TODO do we need to await on the addition of resources/links?
 
-resources cms, context.keys()
+Store.load cms, context.keys()
 
 # Add wikilinks to CMS
 
 for key, link of links
-  add cms, index: "name", {key}, value: link
+  Store.add cms, index: "name", {key}, value: link
