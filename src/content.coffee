@@ -50,16 +50,23 @@ aliases = ->
                     copy.reference.parent = @path
                     all [
 
-                        Store.add @store, "path",
-                          "#{@path}/#{scope}/#{category}/#{copy.name}",
-                          copy
+                        Store.add @store,
+                          index: "path"
+                          key: "#{@path}/#{scope}/#{category}/#{copy.name}",
+                          value: copy
                       ,
 
                         if category == "methods"
                           if scope == "class"
-                            Store.add @store, "name", "#{@name}.#{copy.name}", copy
+                            Store.add @store,
+                              index: "name"
+                              key: "#{@name}.#{copy.name}"
+                              value: copy
                           else
-                            Store.add @store, "name", "#{@name}::#{copy.name}", copy
+                            Store.add @store,
+                              index: "name"
+                              key: "#{@name}::#{copy.name}"
+                              value: copy
 
                       ]
 
