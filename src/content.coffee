@@ -126,4 +126,4 @@ Store.load cms, context.keys()
 # Add wikilinks to CMS
 
 for key, link of links
-  Store.add cms, index: "name", {key}, value: link
+  Store.add cms, {index: "name", key, value: link}

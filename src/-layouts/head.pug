@@ -1,14 +1,60 @@
 include ../-mixins
 
+//- page metadata: title, description, image, and canonical URL
+//- these should all be defaulted by the page rendering
+
 //- the key properties are hints to the diff algorithm
-meta(key = "0" name='viewport' content='width=device-width, initial-scale=1.0')
-meta(key = "1" charset='utf-8')
-title(key = "2")= name ? name : "Confidential"
-link(key = "3" rel='shortcut icon' href='/favicon.ico')
+- var key = 0
+
+meta(key = key++ name='viewport' content='width=device-width, initial-scale=1.0')
+meta(key = key++ charset='utf-8')
+meta(key = key++ property = "og:url" content = url)
+meta(key = key++ property ='og:type' content='article')
+meta(key = key++ property ='og:title' content= title)
+meta(key = key++ property = 'og:description' content = description)
+meta(key = key++ property = 'og:image' content= image)
+meta(key = key++ name = 'twitter:card' content = 'summary_large_image')
+meta(key = key++ name = 'twitter:site' content = url)
+meta(key = key++ name = 'twitter:title' content = title)
+meta(key = key++ name = 'twitter:text:description' content = description)
+
+//- title and favicon
+title(key = key++)= title
+link(key = key++ rel='shortcut icon' href='/favicon.ico')
+
+//- fonts and styles
+//- built-in fonts
+link(key = key++ rel = "stylesheet" href = "/fonts.css")
+//- imported fonts
+link(key = key++ rel = "stylesheet" href = "//use.typekit.net/szm6utf.css")
+link(key = key++ rel = "stylesheet" href = "/index.css")
+
+//- script tags are handled differently by diffHTML so we don't need keys
+
+//- load Prism for syntax highlighting
+//- TODO getting intermittent errors that seem to be related to loading prism
+//-      Ex: Prism undefined
+//- if window
+//-   script(
+//-     type = "application/javascript"
+//-     src = "//cdn.jsdelivr.net/npm/prismjs@1.18.0/prism.min.js"
+//-   )
+//-   script(
+//-     type = "application/javascript"
+//-     src = "//cdn.jsdelivr.net/npm/prismjs@1.18.0/components/prism-core.min.js"
+//-   )
+//-   script(
+//-     type = "application/javascript"
+//-     src = "//cdn.jsdelivr.net/npm/prismjs@1.18.0/components/prism-clike.min.js"
+//-   )
+//-   script(
+//-     type = "application/javascript"
+//-     src = "//cdn.jsdelivr.net/npm/prismjs@1.18.0/components/prism-javascript.min.js"
+//-   )
+//-   script(
+//-     type = "application/javascript"
+//-     src = "//cdn.jsdelivr.net/npm/prismjs@1.18.0/components/prism-coffeescript.min.js"
+//-   )
+
+//- load site JavaScript
 script(src = "/index.js")
-link(key = "4" rel = "stylesheet" href = "/fonts.css")
-link(key = "5" rel = "stylesheet" href = "//use.typekit.net/szm6utf.css")
-link(key = "6" rel = "stylesheet" href = "/index.css")
-if window
-  meta(key = "7" property = "og:url" content = window.location.href)
-  +highlighting()
