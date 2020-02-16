@@ -8,7 +8,7 @@ import {router} from "./helpers"
 
 # ensure there's an enclosing link
 
-hasLink = (e) -> (e.target?.closest "[href]")?
+hasLink = (e) -> (e.path[0]?.closest? "[href]")?
 
 hasKeyModifier = ({altKey, ctrlKey, metaKey, shiftKey}) ->
   metaKey || altKey || ctrlKey || shiftKey
@@ -17,18 +17,13 @@ isRightClick = (e) -> e.button? && e.button != 0
 
 isAlreadyHandled = (e) -> e.defaultPrevented
 
-hasTarget = (e) -> (e.target?.getAttribute "target")?
-
 intercept = (event) ->
   event.preventDefault()
   event.stopPropagation()
 
-# extract the event target
-target = (e) -> e.target
-
 # extract the element href if it has one
 description = (e) ->
-  if (el = e.closest "[href]")? && (url = el.href)?
+  if (el = e.path[0]?.closest? "[href]")? && (url = el.href)?
     {url}
 
 isCurrentLocation = ({url}) -> window.location.href == url
@@ -56,20 +51,18 @@ navigate = (root) ->
     reject hasKeyModifier
     reject isRightClick
     reject isAlreadyHandled
-    reject hasTarget
     tee intercept
-    map target
     map description
     select isDefined
     reject isCurrentLocation
     reject isCrossOrigin
-    tee browse
+    tee browse router
   ]
 
   if root = document
     go [
       events "popstate", window
-      tee -> dispatch url: window.location.href
+      tee -> dispatch router, url: window.location.href
     ]
 
 export {navigate}
