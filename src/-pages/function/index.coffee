@@ -1,7 +1,8 @@
 import {flow} from "panda-garden"
 import {add} from "@dashkite/oxygen"
 import {router} from "../../helpers"
-import {property, view, activate, render, show} from "@dashkite/neon"
+import {view, activate, render, show} from "@dashkite/neon"
+import {metadata} from "../combinators"
 import $head from "./head.pug"
 import $header from "./header.pug"
 import $main from "./index.pug"
@@ -9,8 +10,8 @@ import $main from "./index.pug"
 add router, "/api/functions/{name}",
   name: "view function"
   flow [
-    property "path"
     # update title, meta tags, etc
+    metadata
     render "head", $head
     # update the breadcrumbs, nav
     render "header", $header
@@ -18,7 +19,7 @@ add router, "/api/functions/{name}",
     view "main", $main
     # activate the function component,
     # which will load the content
-    activate [ "site-function" ]
+    activate [ "coda-function" ]
     # reveal the view
     show
 

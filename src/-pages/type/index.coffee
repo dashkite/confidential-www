@@ -1,8 +1,8 @@
 import {flow} from "panda-garden"
 import {add} from "@dashkite/oxygen"
-import {router} from "../../helpers"
-import {parent} from "../combinators"
 import {property, view, activate, render, show} from "@dashkite/neon"
+import {router} from "../../helpers"
+import {parent, metadata} from "../combinators"
 import $head from "./head.pug"
 import $header from "./header.pug"
 import $main from "./index.pug"
@@ -10,8 +10,8 @@ import $main from "./index.pug"
 add router, "/api/types/{name}",
   name: "view type"
   flow [
-    property "path"
     parent
+    metadata
     # update title, meta tags, etc
     render "head", $head
     # update the breadcrumbs, nav
@@ -20,7 +20,7 @@ add router, "/api/types/{name}",
     view "main", $main
     # activate the function component,
     # which will load the content
-    activate [ "site-type" ]
+    activate [ "coda-type" ]
     # reveal the view
     show
   ]

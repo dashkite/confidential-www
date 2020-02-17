@@ -1,6 +1,6 @@
 import {curry} from "panda-garden"
 import {include, clone, isType, all} from "panda-parchment"
-import Store, {mix, store, route, content, data, loaders, ready} from "@dashkite/hydrogen"
+import Store, {mix, store, route, content, data, loaders, ready, getter} from "@dashkite/hydrogen"
 import {Block, Function, Method, Type} from "@dashkite/coda"
 import Registry from "@dashkite/helium"
 import links from "./-content/links.yaml"
@@ -111,6 +111,7 @@ Confidential =
         load "pug"
         load "md"
       ]
+      getter summary: -> @data?.summary
     ]
 
 do (Method = Confidential.Method) ->
