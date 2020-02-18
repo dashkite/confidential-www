@@ -12,10 +12,8 @@ parent = tee (context) ->
 
 metadata = tee flow [
   resource (context) ->
-    cms = Registry.get "cms"
-    Store.get cms, index: "path", key: context.path
+    Store.find (Registry.get "cms"), index: "path", key: context.path
   properties
-    # name: ({data}) -> data.name
     path: ({path}) -> path
     title: ({resource}) -> "Confidential: #{resource.title}"
     url: ({path}) -> window?.location.origin + path
