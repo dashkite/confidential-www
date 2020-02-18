@@ -31,30 +31,5 @@ link(key = key++ rel = "stylesheet" href = "/index.css")
 
 //- script tags are handled differently by diffHTML so we don't need keys
 
-//- load Prism for syntax highlighting
-//- TODO getting intermittent errors that seem to be related to loading prism
-//-      Ex: Prism undefined
-//- if window
-//-   script(
-//-     type = "application/javascript"
-//-     src = "//cdn.jsdelivr.net/npm/prismjs@1.18.0/prism.min.js"
-//-   )
-//-   script(
-//-     type = "application/javascript"
-//-     src = "//cdn.jsdelivr.net/npm/prismjs@1.18.0/components/prism-core.min.js"
-//-   )
-//-   script(
-//-     type = "application/javascript"
-//-     src = "//cdn.jsdelivr.net/npm/prismjs@1.18.0/components/prism-clike.min.js"
-//-   )
-//-   script(
-//-     type = "application/javascript"
-//-     src = "//cdn.jsdelivr.net/npm/prismjs@1.18.0/components/prism-javascript.min.js"
-//-   )
-//-   script(
-//-     type = "application/javascript"
-//-     src = "//cdn.jsdelivr.net/npm/prismjs@1.18.0/components/prism-coffeescript.min.js"
-//-   )
-
 //- load site JavaScript
 script(src = "/index.js")
