@@ -15,7 +15,7 @@ import {confidential} from "panda-confidential"
 encryptMessage = (sender, reciever, message) ->
 
   key = SharedKey.create sender.privateKey,
-                         recipient.publicKey
+    recipient.publicKey
 
   plaintext = Message.from "utf8", message
   envelope = await encrypt key, plaintext

@@ -8,7 +8,7 @@ She starts by importing Panda-Confidential and instantiating the API.
 import {confidential} from "panda-confidential"
 
 {SymmetricKey, Message, Envelope,
- encrypt, decrypt} = confidential()
+  encrypt, decrypt} = confidential()
 ```
 
 ## Obtaining A Key
