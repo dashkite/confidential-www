@@ -71,4 +71,4 @@ define "serve",
     files: extensions: [ "html" ]
     logger: "tiny"
     rewrite: verbose: true
-    port: 8000
+    port: 8001
