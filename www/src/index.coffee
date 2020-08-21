@@ -1,4 +1,4 @@
-import "./-pages"
+import "./pages"
 import "./components"
 import "./content"
 import {dispatch} from "@dashkite/oxygen"
